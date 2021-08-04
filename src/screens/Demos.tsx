@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const TextDemo = () => (
+export const Start = () => (
   <View style={styles.container}>
     <Text type="header">This is a header</Text>
     <Text type="subheader">This is a subheader</Text>

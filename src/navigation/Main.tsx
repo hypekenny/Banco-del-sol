@@ -2,34 +2,33 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { List } from '../screens/List';
-import { TextDemo, ButtonDemo, FormDemo } from '../screens/Demos';
+import { Start, ButtonDemo, FormDemo } from '../screens/Demos';
+import { rootStackParamList } from '../types/Types';
 
-export type MainStackParams = {
-  List: undefined;
-  TextDemo: undefined;
-  FormDemo: undefined;
-  ButtonDemo: undefined;
-};
-
-const MainStack = createStackNavigator<MainStackParams>();
+const MainStack = createStackNavigator<rootStackParamList>();
 
 export const Main = () => (
   <MainStack.Navigator>
     <MainStack.Screen name="List" component={List} />
     <MainStack.Screen
-      name="TextDemo"
-      component={TextDemo}
-      options={{ headerTitle: 'Text Demo' }}
+      name="Start"
+      component={Start}
+      options={{ headerTitle: 'Start' }}
     />
     <MainStack.Screen
-      name="FormDemo"
+      name="Login"
       component={FormDemo}
-      options={{ headerTitle: 'Button Demo' }}
+      options={{ headerTitle: 'Login' }}
     />
     <MainStack.Screen
-      name="ButtonDemo"
+      name="RegisterStep1"
       component={ButtonDemo}
-      options={{ headerTitle: 'Button Demo' }}
+      options={{ headerTitle: 'RegisterStep1' }}
+    />
+    <MainStack.Screen
+      name="RegisterStep2"
+      component={ButtonDemo}
+      options={{ headerTitle: 'RegisterStep2' }}
     />
   </MainStack.Navigator>
 );
