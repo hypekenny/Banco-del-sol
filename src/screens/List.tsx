@@ -4,15 +4,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import colors from '../constants/colors';
 import { ListItem, ListSeparator } from '../components/List';
-import { rootStackParamList } from '../types/Types';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-    paddingVertical: 20,
-  },
-});
+import { loginStackParamList } from '../types/Types';
 
 const screens = [
   {
@@ -33,7 +25,7 @@ const screens = [
 ];
 
 type Props = {
-  navigation: StackNavigationProp<rootStackParamList, 'List'>;
+  navigation: StackNavigationProp<loginStackParamList, 'List'>;
 };
 
 export const List = ({ navigation }: Props) => {
@@ -58,3 +50,11 @@ export const List = ({ navigation }: Props) => {
     />
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+    paddingVertical: 20,
+  },
+});
