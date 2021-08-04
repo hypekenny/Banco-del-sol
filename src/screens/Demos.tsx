@@ -57,7 +57,6 @@ export const Login = ({ navigation }: Props) => {
       <Button type="outline" onPress={() => navigation.goBack()}>
         back
       </Button>
-
       <TextInput
         label="Email Address"
         placeholder="Enter your email..."
