@@ -1,11 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Alert } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
+import { StackNavigationProp } from '@react-navigation/stack';
 import colors from '../constants/colors';
 import { Text } from '../components/Text';
 import { Button } from '../components/Button';
 import { TextInput } from '../components/Form';
 import { useLogin } from '../util/auth';
+import { loginStackParamList } from '../types/Types';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,19 +17,46 @@ const styles = StyleSheet.create({
   },
 });
 
-export const TextDemo = () => (
+type Props = {
+  navigation: StackNavigationProp<loginStackParamList, 'List'>;
+};
+
+export const Start = ({ navigation }: Props) => (
   <View style={styles.container}>
-    <Text type="header">This is a header</Text>
-    <Text type="subheader">This is a subheader</Text>
-    <Text>This is normal text</Text>
+    <Text type="header">START</Text>
+    <Button type="outline" onPress={() => navigation.push('Login')}>
+      Login
+    </Button>
+    <Button type="outline" onPress={() => navigation.push('RegisterStep1')}>
+      RegisterStep1
+    </Button>
+    <Button type="outline" onPress={() => navigation.push('RegisterStep2')}>
+      RegisterStep2
+    </Button>
+    <Button type="outline" onPress={() => navigation.push('Home')}>
+      Home
+    </Button>
+    <Button type="outline" onPress={() => navigation.push('Account')}>
+      Account
+    </Button>
+    <Button type="outline" onPress={() => navigation.push('AddFunds')}>
+      AddFunds
+    </Button>
+    <Button type="outline" onPress={() => navigation.push('Transfer')}>
+      Transfer
+    </Button>
   </View>
 );
 
-export const FormDemo = () => {
-  const { submit, errors, email, setEmail, password, setPassword } = useLogin();
+export const Login = ({ navigation }: Props) => {
+  const { errors, email, setEmail, password, setPassword } = useLogin();
 
   return (
     <View style={styles.container}>
+      <Text type="header">LOGIN</Text>
+      <Button type="outline" onPress={() => navigation.goBack()}>
+        back
+      </Button>
       <TextInput
         label="Email Address"
         placeholder="Enter your email..."
@@ -46,21 +75,59 @@ export const FormDemo = () => {
         errorText={errors.password}
         autoCapitalize="none"
       />
-      <Button onPress={submit}>Sign In</Button>
     </View>
   );
 };
 
-export const ButtonDemo = () => (
+export const RegisterStep1 = ({ navigation }: Props) => (
   <View style={styles.container}>
-    <Button onPress={() => Alert.alert('you pressed the default button')}>
-      Default Button
+    <Text type="header">REGISTERSTEP1</Text>
+    <Button type="outline" onPress={() => navigation.goBack()}>
+      back
     </Button>
-    <Button
-      type="outline"
-      onPress={() => Alert.alert('you pressed the outline button')}
-    >
-      Outline Button
+  </View>
+);
+export const RegisterStep2 = ({ navigation }: Props) => (
+  <View style={styles.container}>
+    <Text type="header">REGISTERSTEP2</Text>
+    <Button type="outline" onPress={() => navigation.goBack()}>
+      back
+    </Button>
+  </View>
+);
+
+export const Home = ({ navigation }: Props) => (
+  <View style={styles.container}>
+    <Text type="header">HOME</Text>
+    <Button type="outline" onPress={() => navigation.goBack()}>
+      back
+    </Button>
+  </View>
+);
+
+export const Account = ({ navigation }: Props) => (
+  <View style={styles.container}>
+    <Text type="header">ACCOUNT</Text>
+    <Button type="outline" onPress={() => navigation.goBack()}>
+      back
+    </Button>
+  </View>
+);
+
+export const AddFunds = ({ navigation }: Props) => (
+  <View style={styles.container}>
+    <Text type="header">ADDFOUNTS</Text>
+    <Button type="outline" onPress={() => navigation.goBack()}>
+      back
+    </Button>
+  </View>
+);
+
+export const Transfer = ({ navigation }: Props) => (
+  <View style={styles.container}>
+    <Text type="header">TRANSFER</Text>
+    <Button type="outline" onPress={() => navigation.goBack()}>
+      back
     </Button>
   </View>
 );
