@@ -7,47 +7,10 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     padding: 10,
   },
-  inputEmail: {
-    borderRadius: 50,
-    height: 45,
-    borderWidth: 2,
-    borderColor: '#FF6C5D',
-    paddingVertical: 0,
-
-    paddingLeft: 8,
-    paddingRight: 8,
-    marginTop: 10,
-  },
-  inputPassword: {
-    borderRadius: 50,
-    height: 45,
-    borderWidth: 2,
-    borderColor: '#FF6C5D',
-    paddingVertical: 0,
-
-    paddingLeft: 8,
-    paddingRight: 8,
-    marginTop: -40,
-  },
-  inputRegister: {
-    borderRadius: 50,
-    height: 45,
-    borderWidth: 2,
-    borderColor: '#FF6C5D',
-    paddingVertical: 0,
-
-    paddingLeft: 8,
-    paddingRight: 8,
-    // marginTop: -40,
-  },
-  btn: {
-    backgroundColor: 'blue',
-  },
-  img: {
-    borderRadius: 50,
-    width: 80,
-    height: 80,
-    marginLeft: 'auto',
-    marginRight: 'auto',
+  view: {
+    backgroundColor: '#92929266',
+    width: 250,
+    height: 200,
+    borderRadius: 22,
   },
 });
