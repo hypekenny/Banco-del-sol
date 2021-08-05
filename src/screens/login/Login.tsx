@@ -45,7 +45,10 @@ export const Login = () => {
       {/* <Button type="outline" onPress={() => navigation.goBack()}>
         back
       </Button> */}
-      <Image style={styles.img} source={require('../../assets/profile.jpg')} />
+      <Image
+        style={styles.img}
+        source={require('../../../assets/profile.jpg')}
+      />
       <TextInput
         label=""
         placeholder="Usuario"
