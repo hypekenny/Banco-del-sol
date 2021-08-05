@@ -1,18 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-
-// import { List } from '../screens/List';
-import {
-  Start,
-  Login,
-  RegisterStep1,
-  RegisterStep2,
-  Home,
-  Account,
-  AddFunds,
-  Transfer,
-} from '../screens/Demos';
 import { loginStackParamList } from '../types/Types';
+import { config } from '../screens/index';
+
+const { Start, Login, Register, Home, Transfer, AddFunds, Account } = config;
 
 const LoginStack = createStackNavigator<loginStackParamList>();
 // const MainStack = createStackNavigator<mainStackParamList>();mainStackParamList
@@ -31,13 +22,8 @@ export const Main = () => (
     />
     <LoginStack.Screen
       name="RegisterStep1"
-      component={RegisterStep1}
+      component={Register}
       options={{ headerTitle: 'RegisterStep1' }}
-    />
-    <LoginStack.Screen
-      name="RegisterStep2"
-      component={RegisterStep2}
-      options={{ headerTitle: 'RegisterStep2' }}
     />
     <LoginStack.Screen
       name="Home"
