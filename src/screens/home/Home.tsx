@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Text } from '../../components/Text';
-import { styles } from './HomeStart';
+import { styles } from './HomeStyles';
 
 export const Home = () => (
   <View style={styles.container}>

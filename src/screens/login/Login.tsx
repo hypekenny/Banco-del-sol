@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Alert, Image } from 'react-native';
+import { View, Alert, Image, TouchableOpacity, Text } from 'react-native';
 import { Button } from '../../components/Button';
 import { TextInput } from '../../components/Form';
 import { useLogin } from '../../util/auth';
 import { styles } from './LoginStyles';
+import { login, logOut, register } from '../../util/auth2';
 
 const createTwoButtonAlert = () =>
   Alert.alert(
@@ -49,6 +50,16 @@ export const Login = () => {
         style={styles.img}
         source={require('../../../assets/profile.jpg')}
       />
+      <TouchableOpacity
+        onPress={() => login('kitefo6728@1uscare.com', '123456')}
+      >
+        <Text>register</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => logOut()}>
+        <Text>log out</Text>
+      </TouchableOpacity>
+
       <TextInput
         label=""
         placeholder="Usuario"
