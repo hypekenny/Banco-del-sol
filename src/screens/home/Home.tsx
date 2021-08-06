@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight, Button } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { styles } from './HomeStyle';
 import { Start } from '../start/Start';
@@ -34,32 +34,33 @@ function HomeScreen() {
 
   const [gast, setGast] = useState<number>(0);
 
-  const [bal, setBal] = useState<number>(0);
-
   useEffect(() => {
-    setBalance(12);
+    setBalance(500);
     setIng(12);
     setGast(12);
-    setBal(12);
   }, []);
 
   return (
-    <View>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Balance</Text>
-        <Text>${balance}</Text>
+    <View style={{ flex: 1, backgroundColor: '#fff' }}>
+      <View style={styles.view1}>
+        <Text style={{ fontSize: 40 }}>Balance</Text>
+        <Text style={{ fontSize: 30 }}>${balance}</Text>
 
         <View style={styles.view}>
-          <Text>General</Text>
-          <Text>Ingresos</Text>
-          <Text>${ing}</Text>
-          <Text>Balance</Text>
-          <Text>${bal}</Text>
-          <Text>Gastos</Text>
-          <Text>${gast}</Text>
+          <Text style={styles.textGeneral}>General</Text>
+          <View
+            style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}
+          >
+            <Text style={styles.text}>Ingresos</Text>
+            <Text style={styles.text}>Gastos</Text>
+          </View>
+          <View style={styles.view2}>
+            <Text style={styles.text}>${ing}</Text>
+            <Text style={styles.text}>${gast}</Text>
+          </View>
         </View>
       </View>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+      <View style={styles.view3}>
         <View>
           <TouchableHighlight
             onPress={recargarDinero}
@@ -88,7 +89,17 @@ export const Home = () => (
     <Tab.Screen
       name="User"
       component={HomeScreen}
-      options={{ headerTitle: `Hola {name}`, headerShown: true }}
+      options={{
+        headerTitle: `Hola {name}`,
+        headerShown: true,
+        headerRight: () => (
+          <Button
+            onPress={() => alert('This is a button!')}
+            title="mi cuenta"
+            color="#FF6C5D"
+          />
+        ),
+      }}
     />
     <Tab.Screen name="Home" component={Start} />
     <Tab.Screen name="Register" component={Register} />
