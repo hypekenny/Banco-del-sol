@@ -5,6 +5,7 @@ import { Home } from '../screens/home/Home';
 import { Transfer } from '../screens/transfer/Transfer';
 import { Account } from '../screens/account/Account';
 import { AddFunds } from './addFunds/AddFunds';
+import { Transitions } from './transacciones/Transitions';
 
 export const config = {
   Start,
@@ -14,4 +15,5 @@ export const config = {
   AddFunds,
   Transfer,
   Account,
+  Transitions,
 };
