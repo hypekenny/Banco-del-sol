@@ -9,22 +9,24 @@ function shareCVU() {}
 export const Account = () => (
   <View style={styles.container}>
     <View style={styles.container2}>
-      <View style={styles.cvu}>
+      <View style={styles.block}>
         <Text>CVU</Text>
         <Text>00000526789452134567</Text>
       </View>
-      <View style={styles.bankName}>
+      <View style={styles.block}>
         <Text>Nombre del Banco</Text>
         <Text>Banco del Sol</Text>
       </View>
-      <Text>Nombre del Titular</Text>
-      <Text>usuario loggeado</Text>
+      <View style={styles.block}>
+        <Text>Nombre del Titular</Text>
+        <Text>usuario loggeado</Text>
+      </View>
     </View>
-    <View>
-      <TouchableHighlight onPress={() => asociateCVU()}>
+    <View style={styles.buttonsContainer}>
+      <TouchableHighlight style={styles.button} onPress={() => asociateCVU()}>
         <Text>Asociar CVU</Text>
       </TouchableHighlight>
-      <TouchableHighlight onPress={() => shareCVU()}>
+      <TouchableHighlight style={styles.button} onPress={() => shareCVU()}>
         <Text>Compartir CVU</Text>
       </TouchableHighlight>
     </View>
