@@ -9,14 +9,14 @@ import { login, logOut, register } from '../../util/auth2';
 const createTwoButtonAlert = () =>
   Alert.alert(
     'Te has olvidado la contraseña',
-    'Maldita sea como sos tan bobo?',
+    'No se puede cambiar la contraseña',
     [
       {
         text: 'Si me la olvide',
         onPress: () => console.log('Cancel Pressed'),
         style: 'cancel',
       },
-      { text: 'Joda', onPress: () => console.log('OK Pressed') },
+      { text: 'Cancel', onPress: () => console.log('OK Pressed') },
     ],
   );
 const IngresarError = () =>
@@ -29,7 +29,7 @@ const IngresarError = () =>
     { text: 'OK', onPress: () => console.log('OK Pressed') },
   ]);
 const Ingresar = () =>
-  Alert.alert('Login', 'Todo ok, pero el back ni patra', [
+  Alert.alert('Login', 'Todo ok', [
     {
       text: 'Cancel',
       onPress: () => console.log('Cancel Pressed'),
