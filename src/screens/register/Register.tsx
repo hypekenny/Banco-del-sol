@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { TextInput } from '../../components/Form';
 import { styles } from './RegisterStyles';
 
-export default function Register() {
+export function Register() {
   return (
     <View style={styles.container}>
       <TextInput
