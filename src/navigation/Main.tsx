@@ -1,7 +1,11 @@
 import React from 'react';
+import firebase from 'firebase/app';
 import { createStackNavigator } from '@react-navigation/stack';
+import { firebaseConfig } from '../constants/firebase.config';
 import { loginStackParamList } from '../types/Types';
 import { config } from '../screens/index';
+
+firebase.initializeApp(firebaseConfig);
 
 const { Start, Login, Register, Home, Transfer, AddFunds, Account } = config;
 
@@ -28,7 +32,10 @@ export const Main = () => (
     <LoginStack.Screen
       name="Home"
       component={Home}
-      options={{ headerTitle: 'Home' }}
+      options={{
+        headerTitle: 'Home',
+        headerShown: false,
+      }}
     />
     <LoginStack.Screen
       name="Account"
