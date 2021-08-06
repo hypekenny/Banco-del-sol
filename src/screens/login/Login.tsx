@@ -50,10 +50,11 @@ export const Login = () => {
         style={styles.img}
         source={require('../../../assets/profile.jpg')}
       />
-      <TouchableOpacity
-        onPress={() => login('kitefo6728@1uscare.com', '123456')}
-      >
+      <TouchableOpacity onPress={() => register('f4@jwlying.com', '123456')}>
         <Text>register</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => login('tilman45@jwlying.com', '123456')}>
+        <Text>login</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => logOut()}>

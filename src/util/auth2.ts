@@ -6,7 +6,7 @@ export async function login(email: string, password: string) {
   const credential = await firebase
     .auth()
     .signInWithEmailAndPassword(email, password);
-  console.log('AAAAAAAAAAA', credential.user);
+  console.log('LOGIN', credential.user);
   return credential.user?.uid;
 }
 
@@ -14,7 +14,11 @@ export async function register(email: string, password: string) {
   const credential = await firebase
     .auth()
     .createUserWithEmailAndPassword(email, password);
-  return credential.user?.uid;
+  if (credential.user?.emailVerified === false) {
+    credential.user?.sendEmailVerification();
+  }
+  console.log('REGISTER', credential.user);
+  return credential.user;
 }
 
 export async function logOut() {
