@@ -1,22 +1,21 @@
 import React from 'react';
-import { View, Alert, Image, TouchableOpacity, Text } from 'react-native';
+import { View, Alert, Image } from 'react-native';
 import { Button } from '../../components/Button';
 import { TextInput } from '../../components/Form';
 import { useLogin } from '../../util/auth';
 import { styles } from './LoginStyles';
-import { login, logOut, register } from '../../util/auth2';
 
 const createTwoButtonAlert = () =>
   Alert.alert(
     'Te has olvidado la contraseña',
-    'Maldita sea como sos tan bobo?',
+    'No se puede cambiar la contraseña',
     [
       {
         text: 'Si me la olvide',
         onPress: () => console.log('Cancel Pressed'),
         style: 'cancel',
       },
-      { text: 'Joda', onPress: () => console.log('OK Pressed') },
+      { text: 'Cancel', onPress: () => console.log('OK Pressed') },
     ],
   );
 const IngresarError = () =>
@@ -29,7 +28,7 @@ const IngresarError = () =>
     { text: 'OK', onPress: () => console.log('OK Pressed') },
   ]);
 const Ingresar = () =>
-  Alert.alert('Login', 'Todo ok, pero el back ni patra', [
+  Alert.alert('Login', 'Todo ok', [
     {
       text: 'Cancel',
       onPress: () => console.log('Cancel Pressed'),
@@ -50,16 +49,6 @@ export const Login = () => {
         style={styles.img}
         source={require('../../../assets/profile.jpg')}
       />
-      <TouchableOpacity onPress={() => register('f4@jwlying.com', '123456')}>
-        <Text>register</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => login('tilman45@jwlying.com', '123456')}>
-        <Text>login</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => logOut()}>
-        <Text>log out</Text>
-      </TouchableOpacity>
 
       <TextInput
         label=""
