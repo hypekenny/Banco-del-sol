@@ -1,9 +1,8 @@
 /* eslint-disable prefer-const */
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableHighlight } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { styles } from './HomeStyle';
-
 import { Start } from '../start/Start';
 import { Register } from '../register/Register';
 import { Login } from '../login/Login';
@@ -20,8 +19,17 @@ const Tab = createBottomTabNavigator();
 // eslint-disable-next-line no-unused-vars
 // let bal: number = 123123;
 
+function recargarDinero() {
+  console.log('recargaste dinero');
+}
+
+function enviarDinero() {
+  console.log('enviaste dinero');
+}
+
 function HomeScreen() {
   const [balance, setBalance] = useState<number>(0);
+
   const [ing, setIng] = useState<number>(0);
 
   const [gast, setGast] = useState<number>(0);
@@ -36,18 +44,38 @@ function HomeScreen() {
   }, []);
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Balance</Text>
-      <Text>${balance}</Text>
-
-      <View style={styles.view}>
-        <Text>General</Text>
-        <Text>Ingresos</Text>
-        <Text>${ing}</Text>
+    <View>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Balance</Text>
-        <Text>${bal}</Text>
-        <Text>Gastos</Text>
-        <Text>${gast}</Text>
+        <Text>${balance}</Text>
+
+        <View style={styles.view}>
+          <Text>General</Text>
+          <Text>Ingresos</Text>
+          <Text>${ing}</Text>
+          <Text>Balance</Text>
+          <Text>${bal}</Text>
+          <Text>Gastos</Text>
+          <Text>${gast}</Text>
+        </View>
+      </View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+        <View>
+          <TouchableHighlight
+            onPress={recargarDinero}
+            style={styles.bottonRecargar}
+          >
+            <Text style={styles.bottonTextR}>Recargar Dinero</Text>
+          </TouchableHighlight>
+        </View>
+        <View>
+          <TouchableHighlight
+            onPress={enviarDinero}
+            style={styles.bottonEnviar}
+          >
+            <Text style={styles.bottonTextE}>Enviar Dinero</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     </View>
   );

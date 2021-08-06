@@ -28,7 +28,10 @@ export const Main = () => (
     <LoginStack.Screen
       name="Home"
       component={Home}
-      options={{ headerTitle: 'Home', headerShown: false }}
+      options={{
+        headerTitle: 'Home',
+        headerShown: false,
+      }}
     />
     <LoginStack.Screen
       name="Account"
