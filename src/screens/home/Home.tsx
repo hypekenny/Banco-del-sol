@@ -1,4 +1,4 @@
-/* eslint-disable prefer-const */
+
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
