@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions';
 import { styles } from './LoginStyles';
 // import { resFromBack } from '../../types/Types';
-// prueba para el comit
 
 export const Login = () => {
   // const userStore = useSelector((state: resFromBack) => state.user);
@@ -33,6 +32,13 @@ export const Login = () => {
           secureTextEntry
           style={styles.inputEmail}
         />
+      {/* <Button type="outline" onPress={() => navigation.goBack()}>
+        back
+      </Button> */}
+      <Image
+        style={styles.img}
+        source={require('../../../assets/profile.jpg')}
+      />
 
         <TouchableOpacity onPress={() => console.log('a')}>
           <Text>Olvidaste tu mail?</Text>
