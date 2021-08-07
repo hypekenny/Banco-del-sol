@@ -1,91 +1,58 @@
-import React from 'react';
-import { View, Alert, Image } from 'react-native';
-import { Button } from '../../components/Button';
-import { TextInput } from '../../components/Form';
-import { useLogin } from '../../util/auth';
+import React, { useState } from 'react';
+import { View, Button, TouchableOpacity, Text, TextInput } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/actions';
 import { styles } from './LoginStyles';
-
-const createTwoButtonAlert = () =>
-  Alert.alert(
-    'Te has olvidado la contraseña',
-    'No se puede cambiar la contraseña',
-    [
-      {
-        text: 'Si me la olvide',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
-      },
-      { text: 'Cancel', onPress: () => console.log('OK Pressed') },
-    ],
-  );
-const IngresarError = () =>
-  Alert.alert('Login', 'No podes logearte', [
-    {
-      text: 'Cancel',
-      onPress: () => console.log('Cancel Pressed'),
-      style: 'cancel',
-    },
-    { text: 'OK', onPress: () => console.log('OK Pressed') },
-  ]);
-const Ingresar = () =>
-  Alert.alert('Login', 'Todo ok', [
-    {
-      text: 'Cancel',
-      onPress: () => console.log('Cancel Pressed'),
-      style: 'cancel',
-    },
-    { text: 'OK', onPress: () => console.log('OK Pressed') },
-  ]);
+// import { resFromBack } from '../../types/Types';
 
 export const Login = () => {
-  const { errors, email, setEmail, password, setPassword } = useLogin();
+  // const userStore = useSelector((state: resFromBack) => state.user);
+  const dispatch = useDispatch();
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  });
 
   return (
     <View style={styles.container}>
-      {/* <Button type="outline" onPress={() => navigation.goBack()}>
-        back
-      </Button> */}
-      <Image
-        style={styles.img}
-        source={require('../../../assets/profile.jpg')}
-      />
+      <View>
+        <TextInput
+          placeholder="Email..."
+          placeholderTextColor="black"
+          value={user.email}
+          onChangeText={(text: string) => setUser({ ...user, email: text })}
+          keyboardType="email-address"
+          style={styles.inputEmail}
+        />
 
-      <TextInput
-        label=""
-        placeholder="Usuario"
-        placeholderTextColor="black"
-        value={email}
-        onChangeText={(text: string) => setEmail(text)}
-        errorText={errors.email}
-        keyboardType="email-address"
-        autoCapitalize="none"
-        style={styles.inputEmail}
-      />
-      <TextInput
-        label=""
-        placeholderTextColor="black"
-        placeholder="Contraseña"
-        value={password}
-        onChangeText={(text: string) => setPassword(text)}
-        secureTextEntry
-        errorText={errors.password}
-        autoCapitalize="none"
-        style={styles.inputPassword}
-      />
+        <TextInput
+          placeholder="Password..."
+          placeholderTextColor="black"
+          value={user.password}
+          onChangeText={(text: string) => setUser({ ...user, password: text })}
+          secureTextEntry
+          style={styles.inputEmail}
+        />
 
-      <Button type="outline" onPress={() => createTwoButtonAlert()}>
-        te olvidaste la pass
-      </Button>
-      {password.length < 1 || email.length < 4 ? (
-        <Button type="outline" onPress={() => IngresarError()}>
-          Login
-        </Button>
-      ) : (
-        <Button type="outline" onPress={() => Ingresar()}>
-          Login
-        </Button>
-      )}
-      {/* <Text onPress={createTwoButtonAlert}>Google</Text> */}
+        <TouchableOpacity onPress={() => console.log('a')}>
+          <Text>Olvidaste tu mail?</Text>
+        </TouchableOpacity>
+
+        {user.password.length > 6 && user.email.length > 4 ? (
+          <Button
+            onPress={() => {
+              dispatch(login(user.email, user.password));
+            }}
+            title="Login"
+          />
+        ) : (
+          <Button
+            onPress={() => console.log('esto no puede pasar')}
+            title="Login"
+            disabled
+          />
+        )}
+      </View>
     </View>
   );
 };

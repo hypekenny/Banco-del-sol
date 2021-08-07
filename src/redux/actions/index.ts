@@ -8,7 +8,7 @@ export const REGISTER = 'REGISTER';
 export const SET_USER = 'SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
 
-export function registerUser(email: string, password: string) {
+export function register(email: string, password: string) {
   return (dispatch: any) => {
     firebase
       .auth()
@@ -23,11 +23,7 @@ export function registerUser(email: string, password: string) {
   };
 }
 
-export function createAccount(user: userType) {
-  axios.post(`http://localhost:3001/api/user/${user.email}`, user);
-}
-
-export function loginUser(email: string, password: string) {
+export function login(email: string, password: string) {
   return (dispatch: any) => {
     firebase
       .auth()
@@ -52,6 +48,19 @@ export function loginUser(email: string, password: string) {
   };
 }
 
-export function logout() {
-  firebase.auth().signOut();
+export function createAccount(user: userType) {
+  axios.post(`http://localhost:3001/api/user/${user.email}`, user);
+}
+
+export async function logout() {
+  await firebase.auth().signOut();
+}
+
+export async function resetPassword(mail: string) {
+  try {
+    await firebase.auth().sendPasswordResetEmail(mail);
+    alert('Revisa tu email para resetear tu contraseña');
+  } catch (error) {
+    console.error(error);
+  }
 }
