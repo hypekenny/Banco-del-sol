@@ -19,7 +19,7 @@ export function registerUser(email: string, password: string) {
         }
         dispatch({ type: REGISTER, payload: response.user?.email });
       })
-      .catch(error => console.error(error));
+      .catch(() => alert('El correo ya está registrado'));
   };
 }
 
@@ -47,7 +47,8 @@ export function loginUser(email: string, password: string) {
               payload: responseFromBack.data.account,
             });
           });
-      });
+      })
+      .catch(() => alert('El mail no está registrado'));
   };
 }
 
