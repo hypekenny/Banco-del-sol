@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image } from 'react-native';
 import { styles } from './TransitionsStyles';
-
 export function Transitions() {
   const [money, setMoney] = useState<number>(0);
   const [moneyd, setMoneyd] = useState<number>(0);
@@ -11,29 +10,37 @@ export function Transitions() {
     setMoneyd(3342.5);
   }, [money]);
   return (
-    <View>
-      <Text>Transitions</Text>
-      <View>
-        <Text>21 Jun</Text>
-        <View>
+    <View style={styles.container}>
+      <Text style={styles.text}>Transitions</Text>
+      <View style={styles.box}>
+        <View style={styles.boxin}>
+          <Text style={styles.boxt}>21 Jun</Text>
           <Image
             style={styles.img}
             source={require('../../../assets/profile.jpg')}
           />
-          <Text>Mac Donalds</Text>
-          <Text>+${money}</Text>
+          <View style={styles.boxdetailsin}>
+            <View style={styles.boxdetails}>
+              <Text style={styles.textgast}>Mac Donalds</Text>
+              <Text style={styles.textgastn}>+${money}</Text>
+            </View>
+          </View>
         </View>
       </View>
 
-      <View>
-        <Text>18 Jun</Text>
-        <View>
+      <View style={styles.box}>
+        <View style={styles.boxin}>
+          <Text style={styles.boxt}>21 Jun</Text>
           <Image
             style={styles.img}
             source={require('../../../assets/profile.jpg')}
           />
-          <Text>YPF GAS</Text>
-          <Text>+{moneyd}</Text>
+          <View style={styles.boxdetailsin}>
+            <View style={styles.boxdetails}>
+              <Text style={styles.textgast}>Mac Donalds</Text>
+              <Text style={styles.textgastn}>-${moneyd}</Text>
+            </View>
+          </View>
         </View>
       </View>
     </View>
