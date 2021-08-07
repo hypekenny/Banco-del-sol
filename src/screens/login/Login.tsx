@@ -1,11 +1,17 @@
+import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { View, Button, TouchableOpacity, Text, TextInput } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions';
+import { loginStackParamList } from '../../types/Types';
 import { styles } from './LoginStyles';
 // import { resFromBack } from '../../types/Types';
 
-export const Login = () => {
+type Props = {
+  navigation: StackNavigationProp<loginStackParamList, 'List'>;
+};
+
+export const Login = ({ navigation }: Props) => {
   // const userStore = useSelector((state: resFromBack) => state.user);
   const dispatch = useDispatch();
   const [user, setUser] = useState({
@@ -34,8 +40,8 @@ export const Login = () => {
           style={styles.inputEmail}
         />
 
-        <TouchableOpacity onPress={() => console.log('a')}>
-          <Text>Olvidaste tu mail?</Text>
+        <TouchableOpacity onPress={() => navigation.push('ForgotPassword')}>
+          <Text>Olvidaste tu contraseña?</Text>
         </TouchableOpacity>
 
         {user.password.length > 6 && user.email.length > 4 ? (
