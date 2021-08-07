@@ -1,9 +1,8 @@
 import { REGISTER, SET_USER, SET_ACCOUNT } from '../actions';
-import { resFromBack } from '../../types/Types';
 
 interface actionType {
   type: string;
-  payload: resFromBack;
+  payload: Object;
 }
 
 const initialState = {
@@ -21,12 +20,12 @@ export default function rootReducer(state = initialState, action: actionType) {
     case SET_USER:
       return {
         ...state,
-        user: action.payload.user,
+        user: action.payload,
       };
     case SET_ACCOUNT:
       return {
         ...state,
-        account: action.payload.account,
+        account: action.payload,
       };
     default:
       return state;
