@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { styles } from './HomeStyle';
+import { styles } from './HomeStyles';
 import { Start } from '../start/Start';
 import { Register } from '../register/Register';
 import { Login } from '../login/Login';
