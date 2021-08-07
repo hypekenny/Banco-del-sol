@@ -58,11 +58,12 @@ export async function logout() {
   await firebase.auth().signOut();
 }
 
-export async function resetPassword(mail: string) {
+/* export async function resetPassword(mail: string) {
   try {
-    await firebase.auth().sendPasswordResetEmail(mail);
+    const reset = await firebase.auth().sendPasswordResetEmail(mail);
     alert('Revisa tu email para resetear tu contraseña');
+    return reset;
   } catch (error) {
     console.error(error);
   }
-}
+} */
