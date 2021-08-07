@@ -35,24 +35,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  button: {
-    alignItems: 'center',
-    marginTop: 20,
-    marginBotom: 25,
-    borderRadius: 25,
-    borderWidth: 2,
-    borderColor: colors.primary,
-    backgroundColor: '#ffffff',
-    padding: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 26,
-
-    elevation: 14,
+  ImageAndButton: {
+    flex: 1,
+    flexDirection: 'row',
   },
   countContainer: {
     alignItems: 'center',
