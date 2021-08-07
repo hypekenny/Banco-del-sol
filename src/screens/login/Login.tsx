@@ -24,6 +24,7 @@ export const Login = () => {
           keyboardType="email-address"
           style={styles.inputEmail}
         />
+        
         <TextInput
           placeholder="Password..."
           placeholderTextColor="black"
@@ -32,14 +33,7 @@ export const Login = () => {
           secureTextEntry
           style={styles.inputEmail}
         />
-      {/* <Button type="outline" onPress={() => navigation.goBack()}>
-        back
-      </Button> */}
-      <Image
-        style={styles.img}
-        source={require('../../../assets/profile.jpg')}
-      />
-
+        
         <TouchableOpacity onPress={() => console.log('a')}>
           <Text>Olvidaste tu mail?</Text>
         </TouchableOpacity>
