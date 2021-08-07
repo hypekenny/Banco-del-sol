@@ -34,11 +34,12 @@ export const styles = StyleSheet.create({
     width: 275,
     marginRight: 'auto',
     marginLeft: 'auto',
-    borderRadius: 15,
-    backgroundColor: '#00000030',
+    // borderRadius: 15,
+    // backgroundColor: '#00000030',
 
     // marginTop,
   },
+
   boxin: {
     backgroundColor: '#fff',
     // borderWidth: 1,
@@ -49,6 +50,16 @@ export const styles = StyleSheet.create({
     marginRight: 1,
     // marginLeft: 1,
     borderRadius: 15,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 26,
+
+    elevation: 14,
   },
 
   boxdetailsin: {
@@ -65,9 +76,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'flex-end',
     marginRight: 35,
-    // marginTop: -25,
-    // position: 'absolute',
   },
+
   // Texts
   textgast: { fontSize: 16, fontWeight: 'normal' },
   boxt: {
