@@ -11,6 +11,7 @@ export function ForgotPassword() {
       await firebase.auth().sendPasswordResetEmail(e);
       alert('Revisa tu email para resetear tu contraseña');
     } catch (error) {
+      alert('Debes ingresar un email válido');
       console.error(error);
     }
   }
