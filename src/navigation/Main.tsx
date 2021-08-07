@@ -65,7 +65,8 @@ export const Main = () => (
       name="Transitions"
       component={Transitions}
       options={{
-        headerTitle: 'Hola {nombre}',
+        headerTitle: 'Hola {Name}',
+        headerShown: true,
       }}
     />
   </LoginStack.Navigator>

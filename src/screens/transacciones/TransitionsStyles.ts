@@ -1,8 +1,20 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  //  #FF6F91
+  // DOU #FA8072
+  // #FF8882
+  // F39189
+
+  // ch
+
+  // 949CDF
+  // A685E2
+  // 6155A6
+
   container: {
-    backgroundColor: '#FFF',
+    // backgroundColor: '#FA8072',
+    backgroundColor: '#fff',
     height: '100%',
   },
   img: {
@@ -15,25 +27,27 @@ export const styles = StyleSheet.create({
 
   // bfbfbf
   box: {
-    marginTop: 30,
+    marginTop: 20,
     // borderWidth: 2,
     // borderColor: '#babdbe',
-    // height: 120,
-    // width: 270,
-    // marginRight: 'auto',
-    // marginLeft: 'auto',
-    // borderRadius: 15,
-    // backgroundColor: 'black',
-    // marginTop
+    height: 134,
+    width: 275,
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    borderRadius: 15,
+    backgroundColor: '#00000030',
+
+    // marginTop,
   },
   boxin: {
     backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#ff4b6e',
-    height: 120,
+    // borderWidth: 1,
+    // borderColor: '#ff4b6e',
+    height: 130,
     width: 270,
-    marginRight: 'auto',
-    marginLeft: 'auto',
+    // marginTop: 1,
+    marginRight: 1,
+    // marginLeft: 1,
     borderRadius: 15,
   },
 
@@ -60,17 +74,21 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 20,
+    marginTop: 10,
   },
   text: {
     fontSize: 30,
     fontWeight: 'bold',
     marginRight: 'auto',
     marginLeft: 'auto',
+    marginTop: 35,
+    marginBottom: 20,
   },
   textgastn: {
     fontSize: 20,
     fontWeight: 'bold',
     marginRight: 'auto',
     marginLeft: 'auto',
+    marginTop: 10,
   },
 });
