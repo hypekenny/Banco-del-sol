@@ -52,6 +52,15 @@ export function createAccount(user: userType) {
   axios.post(`http://localhost:3001/api/user/${user.email}`, user);
 }
 
-export function logout() {
-  firebase.auth().signOut();
+export async function logout() {
+  await firebase.auth().signOut();
+}
+
+export async function resetPassword(mail: string) {
+  try {
+    await firebase.auth().sendPasswordResetEmail(mail);
+    alert('Revisa tu email para resetear tu contraseña');
+  } catch (error) {
+    console.error(error);
+  }
 }
