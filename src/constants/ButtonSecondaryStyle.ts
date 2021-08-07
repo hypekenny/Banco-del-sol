@@ -6,7 +6,7 @@ export const ButtonSecondaryStyle = StyleSheet.create({
     width: 250,
     alignItems: 'center',
     marginTop: 20,
-    marginBotom: 20,
+    marginBottom: 20,
     borderRadius: 25,
     borderWidth: 2,
     borderColor: 'white',

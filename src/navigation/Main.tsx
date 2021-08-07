@@ -16,6 +16,7 @@ const {
   AddFunds,
   Account,
   Transactions,
+  ForgotPassword,
 } = config;
 
 const LoginStack = createStackNavigator<loginStackParamList>();
@@ -68,6 +69,11 @@ export const Main = () => (
         headerTitle: 'Hola {Name}',
         headerShown: true,
       }}
+    />
+    <LoginStack.Screen
+      name="ForgotPassword"
+      component={ForgotPassword}
+      options={{ headerTitle: 'Forgot password' }}
     />
   </LoginStack.Navigator>
 );
