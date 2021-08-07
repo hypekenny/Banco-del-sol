@@ -1,4 +1,4 @@
-import { REGISTER, SET_USER, SET_ACCOUNT } from '../actions';
+import { REGISTER, SET_USER, SET_ACCOUNT } from '../actions/index';
 
 interface actionType {
   type: string;
