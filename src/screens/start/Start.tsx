@@ -35,6 +35,9 @@ export const Start = ({ navigation }: Props) => (
       <Button type="outline" onPress={() => navigation.push('Transfer')}>
         Transfer
       </Button>
+      <Button type="outline" onPress={() => navigation.push('Transactions')}>
+        Transactions
+      </Button>
     </ScrollView>
   </View>
 );

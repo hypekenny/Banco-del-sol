@@ -7,7 +7,16 @@ import { config } from '../screens/index';
 
 firebase.initializeApp(firebaseConfig);
 
-const { Start, Login, Register, Home, Transfer, AddFunds, Account } = config;
+const {
+  Start,
+  Login,
+  Register,
+  Home,
+  Transfer,
+  AddFunds,
+  Account,
+  Transactions,
+} = config;
 
 const LoginStack = createStackNavigator<loginStackParamList>();
 // const MainStack = createStackNavigator<mainStackParamList>();mainStackParamList
@@ -51,6 +60,14 @@ export const Main = () => (
       name="Transfer"
       component={Transfer}
       options={{ headerTitle: 'Account' }}
+    />
+    <LoginStack.Screen
+      name="Transactions"
+      component={Transactions}
+      options={{
+        headerTitle: 'Hola {Name}',
+        headerShown: true,
+      }}
     />
   </LoginStack.Navigator>
 );

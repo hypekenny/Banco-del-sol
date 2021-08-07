@@ -10,6 +10,7 @@ export type loginStackParamList = {
   Account: undefined;
   AddFunds: undefined;
   Transfer: undefined;
+  Transactions: undefined;
 };
 
 export type loginScreenNavigationProp = StackNavigationProp<
@@ -26,6 +27,7 @@ export type mainStackParamList = {
   AddFunds: undefined;
   Transfer: undefined;
   History: undefined;
+  Transactions: undefined;
 };
 
 export type mainScreenNavigationProp = StackNavigationProp<
