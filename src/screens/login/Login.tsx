@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions';
 import { styles } from './LoginStyles';
 // import { resFromBack } from '../../types/Types';
+// prueba para el comit
 
 export const Login = () => {
   // const userStore = useSelector((state: resFromBack) => state.user);
