@@ -49,7 +49,7 @@ export const Main = () => (
     <LoginStack.Screen
       name="Account"
       component={Account}
-      options={{ headerTitle: 'Account' }}
+      options={{ headerTitle: 'Mi Cuenta' }}
     />
     <LoginStack.Screen
       name="AddFunds"
