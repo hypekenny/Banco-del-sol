@@ -15,7 +15,7 @@ const {
   Transfer,
   AddFunds,
   Account,
-  Transitions,
+  Transactions,
 } = config;
 
 const LoginStack = createStackNavigator<loginStackParamList>();
@@ -62,8 +62,8 @@ export const Main = () => (
       options={{ headerTitle: 'Account' }}
     />
     <LoginStack.Screen
-      name="Transitions"
-      component={Transitions}
+      name="Transactions"
+      component={Transactions}
       options={{
         headerTitle: 'Hola {Name}',
         headerShown: true,

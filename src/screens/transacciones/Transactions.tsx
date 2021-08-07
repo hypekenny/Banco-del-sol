@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
-import { styles } from './TransitionsStyles';
+import { styles } from './TransactionsStyles';
 
-export function Transitions() {
+export function Transactions() {
   const [money, setMoney] = useState<number>(0);
   const [moneyd, setMoneyd] = useState<number>(0);
   useEffect(() => {
