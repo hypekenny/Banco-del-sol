@@ -8,6 +8,10 @@ export const REGISTER = 'REGISTER';
 export const SET_USER = 'SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
 
+interface tokenType {
+  i: string;
+}
+
 export function register(email: string, password: string) {
   return (dispatch: any) => {
     firebase
@@ -29,20 +33,28 @@ export function login(email: string, password: string) {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(response => {
-        axios
-          .get<resFromBack>(
-            `http://localhost:3001/api/user/?token=${response.user?.getIdToken()}`,
-          )
-          .then(responseFromBack => {
-            dispatch({
-              type: SET_USER,
-              payload: responseFromBack.data.user,
-            });
-            dispatch({
-              type: SET_ACCOUNT,
-              payload: responseFromBack.data.account,
-            });
-          });
+        response.user
+          ?.getIdToken(true)
+          .then(idToken => {
+            axios
+              .get<resFromBack>(`http://localhost:3001/api/user/`, {
+                headers: {
+                  authorization: idToken,
+                },
+              })
+              .then(responseFromBack => {
+                console.log('el back dice', responseFromBack);
+                dispatch({
+                  type: SET_USER,
+                  payload: responseFromBack.data.user,
+                });
+                dispatch({
+                  type: SET_ACCOUNT,
+                  payload: responseFromBack.data.account,
+                });
+              });
+          })
+          .catch(error => console.log('a', error));
       })
       .catch(() => alert('El mail no está registrado'));
   };

@@ -24,7 +24,7 @@ export const Login = () => {
           keyboardType="email-address"
           style={styles.inputEmail}
         />
-        
+
         <TextInput
           placeholder="Password..."
           placeholderTextColor="black"
@@ -33,7 +33,7 @@ export const Login = () => {
           secureTextEntry
           style={styles.inputEmail}
         />
-        
+
         <TouchableOpacity onPress={() => console.log('a')}>
           <Text>Olvidaste tu mail?</Text>
         </TouchableOpacity>
