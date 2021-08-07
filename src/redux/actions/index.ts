@@ -30,9 +30,11 @@ export function login(email: string, password: string) {
       .signInWithEmailAndPassword(email, password)
       .then(response => {
         axios
-          .get<resFromBack>(
-            `http://localhost:3001/api/user/?token=${response.user?.getIdToken()}`,
-          )
+          .get<resFromBack>(`http://localhost:3001/api/user/`, {
+            headers: {
+              authorization: response.user?.getIdToken(),
+            },
+          })
           .then(responseFromBack => {
             dispatch({
               type: SET_USER,
