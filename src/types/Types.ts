@@ -34,3 +34,27 @@ export type mainScreenNavigationProp = StackNavigationProp<
 >;
 
 export type MainProps = { navigation: mainScreenNavigationProp };
+
+export type address = {
+  street: string;
+  number: number;
+  zipCode: number;
+  city: string;
+  province: string;
+  country: string;
+};
+
+export type userType = {
+  email: string;
+  dni: number;
+  name: string;
+  lastName: string;
+  birthdate: string;
+  phoneNumber: string;
+  address: address;
+};
+
+export type resFromBack = {
+  user: userType;
+  account: Object;
+};
