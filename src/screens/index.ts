@@ -6,6 +6,7 @@ import { Transfer } from '../screens/transfer/Transfer';
 import { Account } from '../screens/account/Account';
 import { AddFunds } from './addFunds/AddFunds';
 import { Transactions } from './transacciones/Transactions';
+import { ForgotPassword } from './forgotPassword/ForgotPassword';
 
 export const config = {
   Start,
@@ -16,4 +17,5 @@ export const config = {
   Transfer,
   Account,
   Transactions,
+  ForgotPassword,
 };

@@ -1,13 +1,20 @@
+import firebase from 'firebase';
 import React, { useState } from 'react';
 import { Button, TextInput, View } from 'react-native';
-import { useDispatch } from 'react-redux';
 import { Text } from '../../components/Text';
-import { resetPassword } from '../../redux/actions';
 
-export default function ForgotPassword() {
-  const dispatch = useDispatch();
-
+export function ForgotPassword() {
   const [email, setEmail] = useState('');
+
+  async function handlePress(e: string) {
+    try {
+      await firebase.auth().sendPasswordResetEmail(e);
+      alert('Revisa tu email para resetear tu contraseña');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <View>
       <Text type="header">Resetea tu contraseña</Text>
@@ -16,15 +23,8 @@ export default function ForgotPassword() {
         placeholderTextColor="black"
         value={email}
         onChangeText={(text: string) => setEmail(text)}
-        secureTextEntry
-        style={styles.inputEmail}
       />
-      <Button
-        onPress={() => {
-          dispatch(resetPassword(email));
-        }}
-        title="resetPassword"
-      />
+      <Button onPress={() => handlePress(email)} title="Resetea tu email" />
     </View>
   );
 }

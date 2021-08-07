@@ -11,6 +11,7 @@ export type loginStackParamList = {
   AddFunds: undefined;
   Transfer: undefined;
   Transactions: undefined;
+  ForgotPassword: undefined;
 };
 
 export type loginScreenNavigationProp = StackNavigationProp<
