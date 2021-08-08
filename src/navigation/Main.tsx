@@ -17,6 +17,7 @@ const {
   Account,
   Transactions,
   ForgotPassword,
+  RegisterV2,
 } = config;
 
 const LoginStack = createStackNavigator<loginStackParamList>();
@@ -34,10 +35,16 @@ export const Main = () => (
       component={Login}
       options={{ headerTitle: 'Login' }}
     />
+
     <LoginStack.Screen
-      name="RegisterStep1"
+      name="Register"
       component={Register}
-      options={{ headerTitle: 'RegisterStep1' }}
+      options={{ headerTitle: 'Register' }}
+    />
+    <LoginStack.Screen
+      name="RegisterV2"
+      component={RegisterV2}
+      options={{ headerTitle: 'RegisterV2' }}
     />
     <LoginStack.Screen
       name="Home"

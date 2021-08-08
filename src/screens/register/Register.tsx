@@ -9,33 +9,9 @@ export function Register() {
       <TextInput
         label=""
         placeholderTextColor="black"
-        placeholder="Pasaporte"
+        placeholder="Nombre"
         // value={pasaport}
         // onChangeText={(text: string) => setPasaport(text)}
-        secureTextEntry
-        // errorText={errors.password}
-        autoCapitalize="none"
-        style={styles.inputPassword}
-      />
-
-      <TextInput
-        label=""
-        placeholderTextColor="black"
-        placeholder="DNI"
-        // value={password}
-        // onChangeText={(text: string) => setPassword(text)}
-        secureTextEntry
-        // errorText={errors.password}
-        autoCapitalize="none"
-        style={styles.inputPassword}
-      />
-
-      <TextInput
-        label=""
-        placeholderTextColor="black"
-        placeholder="Nombre"
-        // value={password}
-        // onChangeText={(text: string) => setPassword(text)}
         secureTextEntry
         // errorText={errors.password}
         autoCapitalize="none"
@@ -57,7 +33,31 @@ export function Register() {
       <TextInput
         label=""
         placeholderTextColor="black"
-        placeholder="Fecha de nacimiento"
+        placeholder="Email"
+        // value={password}
+        // onChangeText={(text: string) => setPassword(text)}
+        secureTextEntry
+        // errorText={errors.password}
+        autoCapitalize="none"
+        style={styles.inputPassword}
+      />
+
+      <TextInput
+        label=""
+        placeholderTextColor="black"
+        placeholder="Contraseña"
+        // value={password}
+        // onChangeText={(text: string) => setPassword(text)}
+        secureTextEntry
+        // errorText={errors.password}
+        autoCapitalize="none"
+        style={styles.inputPassword}
+      />
+
+      <TextInput
+        label=""
+        placeholderTextColor="black"
+        placeholder="Repite tu contraseña"
         // value={password}
         // onChangeText={(text: string) => setPassword(text)}
         secureTextEntry

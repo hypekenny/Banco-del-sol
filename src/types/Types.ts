@@ -4,8 +4,8 @@ export type loginStackParamList = {
   List: undefined;
   Start: undefined;
   Login: undefined;
-  RegisterStep1: undefined;
-  RegisterStep2: undefined;
+  Register: undefined;
+  RegisterV2: undefined;
   Home: undefined;
   Account: undefined;
   AddFunds: undefined;
