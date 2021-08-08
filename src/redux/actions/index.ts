@@ -10,41 +10,26 @@ export const REGISTER = 'REGISTER';
 export const SET_USER = 'SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
 
-// export function createAccount(user: userType) {
-//   axios.post(`http://localhost:3001/api/user/${user.email}`, user);
-// }
-export function register(email: string, password: string, user: UserRegister) {
-  console.log(user);
 
-  const { dni, name, lastName, birthdate, phoneNumber } = user;
-  // parseInt(dni);
-  // parseInt(phoneNumber);
+
+export function register(user: any, password: string) {
   return (dispatch: any) => {
     firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(user.email, password)
       .then(response => {
         response.user
           ?.getIdToken(true)
           .then(idToken => {
+            console.log(idToken);
             axios
-              .post<resFromBack>('http://localhost:3001/api/user/', {
+              .post<resFromBack>(`http://localhost:3001/api/user/`, user, {
                 headers: {
                   authorization: `Bearer ${idToken}`,
                 },
-                response,
               })
               .then(responseAgain => {
-                // try {
-                //   const response = axios({
-                //     url: 'http://localhost:3001/api/user/',
-                //     method: 'POST',
-                //     data: user,
-                //   });
-                //   return response;
-                // } catch (error) {
-                //   console.log('El error fue', error);
-                // }
+                console.log('el back dice', responseAgain);
                 dispatch({
                   type: SET_USER,
                   payload: responseAgain.data.user,
@@ -73,11 +58,11 @@ export function login(email: string, password: string) {
             axios
               .get<resFromBack>(`http://localhost:3001/api/user/`, {
                 headers: {
-                  authorization: idToken,
+                  authorization: `Bearer ${idToken}`,
                 },
               })
               .then(responseFromBack => {
-                console.log('el back dice', responseFromBack);
+                console.log('Response from back', responseFromBack.data);
                 dispatch({
                   type: SET_USER,
                   payload: responseFromBack.data.user,
@@ -97,13 +82,3 @@ export function login(email: string, password: string) {
 export async function logout() {
   await firebase.auth().signOut();
 }
-
-/* export async function resetPassword(mail: string) {
-  try {
-    const reset = await firebase.auth().sendPasswordResetEmail(mail);
-    alert('Revisa tu email para resetear tu contraseña');
-    return reset;
-  } catch (error) {
-    console.error(error);
-  }
-} */

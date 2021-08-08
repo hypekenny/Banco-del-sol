@@ -1,5 +1,9 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 
+export type Props = {
+  navigation: StackNavigationProp<loginStackParamList, 'List'>;
+};
+
 export type loginStackParamList = {
   List: undefined;
   Start: undefined;
@@ -19,7 +23,9 @@ export type loginScreenNavigationProp = StackNavigationProp<
   'Start'
 >;
 
-export type loginProps = { navigation: loginScreenNavigationProp };
+export interface loginProps {
+  navigation: loginScreenNavigationProp;
+}
 
 export type mainStackParamList = {
   List: undefined;
@@ -57,23 +63,19 @@ export type userType = {
   address: address;
 };
 
+export interface accountType {
+  email: string;
+  balance: number;
+  cvu: string;
+}
+
 export type resFromBack = {
   user: userType;
   account: Object;
 };
 
-export interface UserRegister {
-  email: string;
 
-  dni: number;
-
-  name: string;
-
-  lastName: string;
-
-  birthdate: string;
-
-  phoneNumber: string;
-
-  address: address;
+export interface RootState {
+  account: accountType;
+  user: userType;
 }

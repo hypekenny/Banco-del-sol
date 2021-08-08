@@ -40,8 +40,11 @@ export const Login = ({ navigation }: Props) => {
           style={styles.inputEmail}
         />
 
-        <TouchableOpacity onPress={() => navigation.push('ForgotPassword')}>
-          <Text>Olvidaste tu contraseña?</Text>
+        <TouchableOpacity
+          style={styles.link}
+          onPress={() => navigation.push('ForgotPassword')}
+        >
+          <Text style={styles.text}>¿Olvidaste tu contraseña?</Text>
         </TouchableOpacity>
 
         {user.password.length > 6 && user.email.length > 4 ? (
@@ -50,6 +53,7 @@ export const Login = ({ navigation }: Props) => {
               dispatch(login(user.email, user.password));
             }}
             title="Login"
+            color="#ff4b6e"
           />
         ) : (
           <Button
