@@ -56,7 +56,7 @@ export const TextInput = ({
 
   return (
     <View style={styles.inputContainer}>
-      <Text style={[styles.labelText]}>{label}</Text>
+      {/* <Text style={[styles.labelText]}>{label}</Text> */}
       <RNTextInput style={styles.textInput} {...rest} />
       <View style={borderStyles} />
       <Text style={[styles.errorText]}>{errorText}</Text>
