@@ -1,7 +1,7 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect } from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './AccountStyles';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
@@ -42,7 +42,7 @@ export function Account() {
         </View>
       </LinearGradient>
       <View style={styles.buttonsContainer}>
-        <TouchableHighlight
+        <TouchableOpacity
           style={ButtonPrimaryStyle.button}
           onPress={() => asociateCVU()}
         >
@@ -55,8 +55,8 @@ export function Account() {
             />
             <Text style={ButtonPrimaryStyle.text}>Asociar CVU</Text>
           </View>
-        </TouchableHighlight>
-        <TouchableHighlight
+        </TouchableOpacity>
+        <TouchableOpacity
           style={ButtonSecondaryStyle.button}
           onPress={() => shareCVU()}
         >
@@ -69,7 +69,7 @@ export function Account() {
             />
             <Text style={ButtonSecondaryStyle.text}>Compartir CVU</Text>
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     </View>
   );
