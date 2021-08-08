@@ -1,13 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import DropDownPicker from 'react-native-dropdown-picker';
-
+import { useDispatch } from 'react-redux';
 import { Button, Text, View, ScrollView } from 'react-native';
+import { register } from '../../redux/actions';
+
 import { TextInput } from '../../components/Form';
 import { styles } from './RegisterStyles';
 
 // ep 11 / 12
-export function RegisterV2() {
+export function RegisterV2({ email, pass }) {
+  const [correo, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  // if (email.length > 9 && pass.length > 6) {
+  //   setEmail(email);
+  //   setPassword(pass);
+  // }
+  // // console.log(email.length, correo, password);
+  useEffect(() => {
+    if (pass !== undefined && pass.length > 6) {
+      setPassword(pass);
+      setEmail(email);
+      console.log('a');
+    }
+  }, [pass && email]);
+
+  console.log(correo, 'correo');
+  console.log(password, 'password');
+
+  const dispatch = useDispatch();
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [date, setDate] = useState('false');
   const [open, setOpen] = useState(false);
@@ -134,7 +155,12 @@ export function RegisterV2() {
         address.length > 2 &&
         value !== null &&
         date ? (
-          <Button title="GG" onPress={() => console.log('Fi')} />
+          <Button
+            onPress={() => {
+              dispatch(register(correo, password));
+            }}
+            title="REGISTRATE"
+          />
         ) : null}
       </ScrollView>
     </View>

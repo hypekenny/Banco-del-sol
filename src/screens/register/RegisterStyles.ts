@@ -50,4 +50,8 @@ export const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+  registertwo: {
+    width: 0,
+    height: 0,
+  },
 });
