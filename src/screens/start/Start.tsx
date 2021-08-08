@@ -20,9 +20,6 @@ export const Start = ({ navigation }: Props) => (
       <Button type="outline" onPress={() => navigation.push('Register')}>
         Register
       </Button>
-      {/* <Button type="outline" onPress={() => navigation.push('RegisterV2')}>
-        RegisterV2
-      </Button> */}
       <Button type="outline" onPress={() => navigation.push('Home')}>
         Home
       </Button>

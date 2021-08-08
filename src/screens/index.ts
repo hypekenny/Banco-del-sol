@@ -7,7 +7,6 @@ import { Account } from '../screens/account/Account';
 import { AddFunds } from './addFunds/AddFunds';
 import { Transactions } from './transacciones/Transactions';
 import { ForgotPassword } from './forgotPassword/forgotPassword';
-import { RegisterV2 } from './register/RegisterV2';
 
 export const config = {
   Start,
@@ -19,5 +18,4 @@ export const config = {
   Account,
   Transactions,
   ForgotPassword,
-  RegisterV2,
 };
