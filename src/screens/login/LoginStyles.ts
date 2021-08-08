@@ -50,4 +50,11 @@ export const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+  link: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  text: {
+    color: 'blue',
+  },
 });

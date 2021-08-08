@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
-    padding: 10,
+    padding: 5,
   },
   inputEmail: {
     borderRadius: 50,
@@ -51,5 +51,10 @@ export const styles = StyleSheet.create({
     height: 80,
     marginLeft: 'auto',
     marginRight: 'auto',
+  },
+  containerButton: {
+    flex: 1,
+    backgroundColor: colors.white,
+    alignItems: 'center',
   },
 });
