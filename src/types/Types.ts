@@ -61,3 +61,19 @@ export type resFromBack = {
   user: userType;
   account: Object;
 };
+
+export interface UserRegister {
+  email: string;
+
+  dni: number;
+
+  name: string;
+
+  lastName: string;
+
+  birthdate: string;
+
+  phoneNumber: string;
+
+  address: address;
+}

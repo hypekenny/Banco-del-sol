@@ -1,7 +1,8 @@
 import axios from 'axios';
 import firebase from 'firebase';
+
 // import { resFromBack } from '../../types/Types';
-import { userType, resFromBack } from '../../types/Types';
+import { UserRegister, resFromBack } from '../../types/Types';
 
 require('firebase/firebase-auth');
 
@@ -12,7 +13,12 @@ export const SET_ACCOUNT = 'SET_ACCOUNT';
 // export function createAccount(user: userType) {
 //   axios.post(`http://localhost:3001/api/user/${user.email}`, user);
 // }
-export function register(email: string, password: string) {
+export function register(email: string, password: string, user: UserRegister) {
+  console.log(user);
+
+  const { dni, name, lastName, birthdate, phoneNumber } = user;
+  // parseInt(dni);
+  // parseInt(phoneNumber);
   return (dispatch: any) => {
     firebase
       .auth()
@@ -24,12 +30,21 @@ export function register(email: string, password: string) {
             axios
               .post<resFromBack>('http://localhost:3001/api/user/', {
                 headers: {
-                  authorization: idToken,
+                  authorization: `Bearer ${idToken}`,
                 },
                 response,
               })
               .then(responseAgain => {
-                console.log('el back dice', responseAgain);
+                // try {
+                //   const response = axios({
+                //     url: 'http://localhost:3001/api/user/',
+                //     method: 'POST',
+                //     data: user,
+                //   });
+                //   return response;
+                // } catch (error) {
+                //   console.log('El error fue', error);
+                // }
                 dispatch({
                   type: SET_USER,
                   payload: responseAgain.data.user,

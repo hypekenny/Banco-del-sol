@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
 
     paddingLeft: 8,
     paddingRight: 8,
-    marginTop: -10,
+    marginTop: 30,
   },
   inputRegister: {
     borderRadius: 50,

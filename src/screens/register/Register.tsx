@@ -1,255 +1,286 @@
-import React, { useState } from 'react';
-import { View, ScrollView } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RegisterV2 } from './RegisterV2';
-// import { useDispatch } from 'react-redux';
-// import DateTimePickerModal from 'react-native-modal-datetime-picker';
-// import DropDownPicker from 'react-native-dropdown-picker';
-import { TextInput } from '../../components/Form';
+import React, { useEffect, useState } from 'react';
+import { View, ScrollView, Button, Text, TextInput } from 'react-native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { useDispatch } from 'react-redux';
+import DropDownPicker from 'react-native-dropdown-picker';
+// import { TextInput } from '../../components/Form';
 import { styles } from './RegisterStyles';
-import { loginStackParamList } from '../../types/Types';
-import { Button } from '../../components/Button';
 
-// import { register } from '../../redux/actions';
+import { register } from '../../redux/actions';
 
-type Props = {
-  navigation: StackNavigationProp<loginStackParamList, 'List'>;
-};
-
-export function Register({ navigation }: Props) {
+export function Register() {
   const [yes, setYes] = useState<boolean>(false);
-  const [name, setName] = useState<string>('');
+  // ESTASDOS REGISTERV2
+  const dispatch = useDispatch();
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  // const [date, setDate] = useState('false');
+  const [open, setOpen] = useState(false);
+  const [openT, setOpenT] = useState(false);
+  const [openA, setOpenA] = useState(false);
+  const [value, setValue] = useState(null);
+  const [valueCountry, setValueCountry] = useState(null);
+  const [valueLocalidad, setValueLocalidad] = useState(null);
 
-  const [lastName, setLastName] = useState<string>('');
+  const [country, setCountry] = useState([
+    { label: 'Argentina', value: 'Argentina' },
+    { label: 'Venezuela', value: 'Venezuela' },
+    { label: 'Brasil', value: 'Brasil' },
+    { label: 'Chile', value: 'Chile' },
+    { label: 'Colombia', value: 'Colombia' },
+    { label: 'Peru', value: 'Peru' },
+  ]);
+  const [items, setItems] = useState([
+    { label: 'Tucuman', value: 'Tucuman' },
+    { label: 'Buenos Aires', value: 'Buenos Aires' },
+    { label: 'Neuquen', value: 'Neuquen' },
+    { label: 'Salta', value: 'Salta' },
+    { label: 'Rio Negro', value: 'Rio Negro' },
+    { label: 'Cordoba', value: 'Cordoba' },
+  ]);
 
-  const [email, setEmail] = useState<string>('');
+  const [localidad, setLocalidad] = useState([
+    { label: 'CABA', value: 'CABA' },
+    { label: 'Provincia', value: 'Provincia' },
+  ]);
 
-  const [pass, setPass] = useState<string>('');
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
 
-  const [passT, setPassT] = useState<string>('');
-  // console.log(passT.length);
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
 
+  // eslint-disable-next-line no-shadow
+  const handleConfirm = (date: React.SetStateAction<string>) => {
+    // console.warn('A date has been picked: ', date);
+    setUser({ ...user, birthdate: date });
+    hideDatePicker();
+  };
+  const [address, setAddres] = useState({
+    address: '',
+    addressNum: '',
+    zipCode: '',
+    value: '',
+    valueCountry,
+    valueLocalidad,
+  });
+  // console.log(address);
+  useEffect(() => {
+    setUser({ ...user, address });
+  }, [address]);
+  const [user, setUser] = useState({
+    name: '',
+    lastName: '',
+    email: '',
+    pass: '',
+    passT: '',
+
+    dni: '',
+    numberPhone: '',
+    birthdate: '',
+    address,
+  });
   return (
     <View style={styles.container}>
       <ScrollView>
-        <TextInput
-          label=""
-          placeholderTextColor="black"
-          placeholder="Nombre"
-          value={name}
-          onChangeText={(text: string) => setName(text)}
-          // errorText={errors.password}
-          autoCapitalize="none"
-          style={styles.inputPassword}
-        />
-
-        <TextInput
-          label=""
-          placeholderTextColor="black"
-          placeholder="Apellido"
-          value={lastName}
-          onChangeText={(text: string) => setLastName(text)}
-          // errorText={errors.password}
-          autoCapitalize="none"
-          style={styles.inputPassword}
-        />
-
-        <TextInput
-          label=""
-          placeholderTextColor="black"
-          placeholder="Email"
-          value={email}
-          onChangeText={(text: string) => setEmail(text)}
-          autoCapitalize="none"
-          style={styles.inputPassword}
-          keyboardType="email-address"
-        />
-
-        <TextInput
-          label=""
-          placeholderTextColor="black"
-          placeholder="Contraseña"
-          value={pass}
-          onChangeText={(text: string) => setPass(text)}
-          secureTextEntry
-          // errorText={errors.password}
-          autoCapitalize="none"
-          style={styles.inputPassword}
-        />
-
-        <TextInput
-          label=""
-          placeholderTextColor="black"
-          placeholder="Repite tu contraseña"
-          value={passT}
-          onChangeText={(text: string) => setPassT(text)}
-          secureTextEntry
-          // errorText={errors.password}
-          autoCapitalize="none"
-          style={styles.inputPassword}
-        />
-
-        {name.length > 2 &&
-        email.length > 8 &&
-        pass.length > 6 &&
-        pass === passT ? (
-          <Button type="outline" onPress={() => setYes(true)}>
-            RegisterV2
-          </Button>
-        ) : null}
-
-        {yes ? (
+        {!yes ? (
           <View>
-            <RegisterV2 email={email} pass={pass} />
+            <TextInput
+              style={styles.inputPassword}
+              onChangeText={(text: string) => setUser({ ...user, name: text })}
+              placeholderTextColor="black"
+              placeholder="Nombre"
+              value={user.name}
+              // errorText={errors.password}
+              autoCapitalize="none"
+            />
+
+            <TextInput
+              placeholderTextColor="black"
+              placeholder="Apellido"
+              value={user.lastName}
+              onChangeText={(text: string) =>
+                setUser({ ...user, lastName: text })
+              }
+              // errorText={errors.password}
+              autoCapitalize="none"
+              style={styles.inputPassword}
+            />
+
+            <TextInput
+              placeholderTextColor="black"
+              placeholder="Email"
+              value={user.email}
+              onChangeText={(text: string) => setUser({ ...user, email: text })}
+              autoCapitalize="none"
+              style={styles.inputPassword}
+              keyboardType="email-address"
+            />
+
+            <TextInput
+              placeholderTextColor="black"
+              placeholder="Contraseña"
+              value={user.pass}
+              onChangeText={(text: string) => setUser({ ...user, pass: text })}
+              secureTextEntry
+              // errorText={errors.password}
+              autoCapitalize="none"
+              style={styles.inputPassword}
+            />
+
+            <TextInput
+              placeholderTextColor="black"
+              placeholder="Repite tu contraseña"
+              value={user.passT}
+              onChangeText={(text: string) => setUser({ ...user, passT: text })}
+              secureTextEntry
+              // errorText={errors.password}
+              autoCapitalize="none"
+              style={styles.inputPassword}
+            />
+
+            {user.name.length > 2 &&
+            user.email.length > 8 &&
+            user.pass.length > 6 &&
+            user.pass === user.passT ? (
+              <Button
+                onPress={() => {
+                  setYes(true);
+                }}
+                title="Siguiente"
+              />
+            ) : null}
           </View>
-        ) : null}
+        ) : (
+          <View style={styles.container}>
+            <ScrollView>
+              <TextInput
+                placeholderTextColor="black"
+                placeholder="DNI"
+                value={user.dni}
+                onChangeText={(text: string) => setUser({ ...user, dni: text })}
+                // errorText={errors.password}
+                // autoCapitalize="none"
+                style={styles.inputPassword}
+                keyboardType="numeric"
+              />
+
+              <TextInput
+                placeholderTextColor="black"
+                placeholder="Telefono"
+                value={user.numberPhone}
+                onChangeText={(text: string) =>
+                  setUser({ ...user, numberPhone: text })
+                }
+                autoCapitalize="none"
+                style={styles.inputPassword}
+              />
+
+              <Button title="Fecha de nacimiento" onPress={showDatePicker} />
+
+              <DateTimePickerModal
+                isVisible={isDatePickerVisible}
+                mode="date"
+                onConfirm={() => handleConfirm}
+                onCancel={hideDatePicker}
+              />
+
+              <Text>¿Donde vivis?</Text>
+              <View>
+                <DropDownPicker
+                  open={open}
+                  value={address.value}
+                  items={items}
+                  setOpen={setOpen}
+                  setValue={setValue}
+                  setItems={setItems}
+                />
+              </View>
+
+              <View>
+                <DropDownPicker
+                  open={openT}
+                  value={valueCountry}
+                  items={country}
+                  setOpen={setOpenT}
+                  setValue={setValueCountry}
+                  setItems={setCountry}
+                />
+              </View>
+              {/* <br /> */}
+              <View>
+                <DropDownPicker
+                  open={openA}
+                  value={valueLocalidad}
+                  items={localidad}
+                  setOpen={setOpenA}
+                  setValue={setValueLocalidad}
+                  setItems={setLocalidad}
+                />
+              </View>
+              <TextInput
+                placeholderTextColor="black"
+                placeholder="Codigo Postal"
+                value={address.zipCode}
+                onChangeText={(text: string) =>
+                  setAddres({ ...address, zipCode: text })
+                }
+                // errorText={errors.password}
+                autoCapitalize="none"
+                style={styles.inputPassword}
+              />
+
+              <TextInput
+                placeholderTextColor="black"
+                placeholder="Direccion NUM"
+                value={address.addressNum}
+                onChangeText={(text: string) =>
+                  setAddres({ ...address, addressNum: text })
+                }
+                // errorText={errors.password}
+                autoCapitalize="none"
+                style={styles.inputPassword}
+                keyboardType="numeric"
+              />
+
+              <TextInput
+                placeholderTextColor="black"
+                placeholder="Direccion Calle"
+                value={address.address}
+                onChangeText={(text: string) =>
+                  setAddres({ ...address, address: text })
+                }
+                autoCapitalize="none"
+                style={styles.inputPassword}
+              />
+              {/* {console.log(
+                user.dni,
+                user.numberPhone,
+                user.zipCode,
+                user.addressNum,
+                user.address,
+              )} */}
+
+              {user.dni.length > 7 &&
+              user.numberPhone.length > 9 &&
+              address.zipCode.length > 3 &&
+              address.addressNum.length > 1 &&
+              address.address.length > 2 &&
+              value !== null &&
+              valueCountry !== null &&
+              valueLocalidad !== null ? (
+                <Button
+                  onPress={() => {
+                    dispatch(register(user.email, user.pass, user));
+                  }}
+                  title="REGISTRATE"
+                />
+              ) : null}
+            </ScrollView>
+          </View>
+        )}
       </ScrollView>
     </View>
   );
 }
-
-// export function RegisterV2() {
-//   const dispatch = useDispatch();
-//   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-//   const [date, setDate] = useState('false');
-//   const [open, setOpen] = useState(false);
-//   const [value, setValue] = useState(null);
-//   const [items, setItems] = useState([
-//     { label: 'Tucuman', value: 'Tucuman' },
-//     { label: 'Buenos Aires', value: 'Buenos Aires' },
-//     { label: 'Neuquen', value: 'Neuquen' },
-//     { label: 'Salta', value: 'Salta' },
-//     { label: 'Rio Negro', value: 'Rio Negro' },
-//     { label: 'Cordoba', value: 'Cordoba' },
-//   ]);
-
-//   const showDatePicker = () => {
-//     setDatePickerVisibility(true);
-//   };
-
-//   const hideDatePicker = () => {
-//     setDatePickerVisibility(false);
-//   };
-
-//   // eslint-disable-next-line no-shadow
-//   const handleConfirm = (date: React.SetStateAction<string>) => {
-//     // console.warn('A date has been picked: ', date);
-//     setDate(date);
-//     hideDatePicker();
-//   };
-//   // Estados FORMULARIO
-
-//   const [dni, setDni] = useState<string>('');
-
-//   const [numberPhone, setNumberPhone] = useState<string>('');
-
-//   const [zipCode, setZipCode] = useState<string>('');
-
-//   const [addressNum, setAddressNum] = useState<string>('');
-
-//   const [address, setAddress] = useState<string>('');
-//   return (
-//     <View style={styles.container}>
-//       <ScrollView>
-//         <TextInput
-//           label=""
-//           placeholderTextColor="black"
-//           placeholder="DNI"
-//           value={dni}
-//           onChangeText={(text: string) => setDni(text)}
-//           // secureTextEntry
-//           // errorText={errors.password}
-//           // autoCapitalize="none"
-//           style={styles.inputPassword}
-//           keyboardType="numeric"
-//         />
-
-//         <TextInput
-//           label=""
-//           placeholderTextColor="black"
-//           placeholder="Telefono"
-//           value={numberPhone}
-//           onChangeText={(text: string) => setNumberPhone(text)}
-//           secureTextEntry
-//           autoCapitalize="none"
-//           style={styles.inputPassword}
-//         />
-//         <Button type="outline" onPress={() => showDatePicker}>
-//           Fecha de nacimiento
-//         </Button>
-//         {/* <Button title="Fecha de nacimiento" onPress={showDatePicker} /> */}
-
-//         <DateTimePickerModal
-//           isVisible={isDatePickerVisible}
-//           mode="date"
-//           onConfirm={() => handleConfirm}
-//           onCancel={hideDatePicker}
-//         />
-
-//         <Text>¿Donde vivis?</Text>
-
-//         <View>
-//           <DropDownPicker
-//             open={open}
-//             value={value}
-//             items={items}
-//             setOpen={setOpen}
-//             setValue={setValue}
-//             setItems={setItems}
-//           />
-//         </View>
-
-//         <TextInput
-//           label=""
-//           placeholderTextColor="black"
-//           placeholder="Codigo Postal"
-//           value={zipCode}
-//           onChangeText={(text: string) => setZipCode(text)}
-//           // errorText={errors.password}
-//           autoCapitalize="none"
-//           style={styles.inputPassword}
-//         />
-
-//         <TextInput
-//           label=""
-//           placeholderTextColor="black"
-//           placeholder="Direccion NUM"
-//           value={addressNum}
-//           onChangeText={(text: string) => setAddressNum(text)}
-//           // errorText={errors.password}
-//           autoCapitalize="none"
-//           style={styles.inputPassword}
-//           keyboardType="numeric"
-//         />
-
-//         <TextInput
-//           label=""
-//           placeholderTextColor="black"
-//           placeholder="Direccion Calle"
-//           value={address}
-//           onChangeText={(text: string) => setAddress(text)}
-//           autoCapitalize="none"
-//           style={styles.inputPassword}
-//         />
-
-//         {dni.length > 7 &&
-//         numberPhone.length > 9 &&
-//         zipCode.length > 3 &&
-//         addressNum.length > 1 &&
-//         address.length > 2 &&
-//         value !== null &&
-//         date ? (
-//           <Button
-//             onPress={() => {
-//               dispatch(register(email, pass));
-//             }}
-//             title="REGISTRATE"
-//           />
-//         ) : null}
-//       </ScrollView>
-//     </View>
-//   );
-// }
-
-// email;
-// pass;
