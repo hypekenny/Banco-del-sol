@@ -8,18 +8,38 @@ export const REGISTER = 'REGISTER';
 export const SET_USER = 'SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
 
-export function register(email: string, password: string) {
+
+export function register(user: any, password: string) {
   return (dispatch: any) => {
     firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(user.email, password)
       .then(response => {
-        if (response.user?.emailVerified === false) {
-          response.user?.sendEmailVerification();
-        }
-        dispatch({ type: REGISTER, payload: response.user?.email });
+        response.user
+          ?.getIdToken(true)
+          .then(idToken => {
+            console.log(idToken);
+            axios
+              .post<resFromBack>(`http://localhost:3001/api/user/`, user, {
+                headers: {
+                  authorization: `Bearer ${idToken}`,
+                },
+              })
+              .then(responseAgain => {
+                console.log('el back dice', responseAgain);
+                dispatch({
+                  type: SET_USER,
+                  payload: responseAgain.data.user,
+                });
+                dispatch({
+                  type: SET_ACCOUNT,
+                  payload: responseAgain.data.account,
+                });
+              });
+          })
+          .catch(error => console.log('a', error));
       })
-      .catch(() => alert('El correo ya está registrado'));
+      .catch(() => alert('El mail no está registrado'));
   };
 }
 
@@ -63,13 +83,3 @@ export function createAccount(user: userType) {
 export async function logout() {
   await firebase.auth().signOut();
 }
-
-/* export async function resetPassword(mail: string) {
-  try {
-    const reset = await firebase.auth().sendPasswordResetEmail(mail);
-    alert('Revisa tu email para resetear tu contraseña');
-    return reset;
-  } catch (error) {
-    console.error(error);
-  }
-} */

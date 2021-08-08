@@ -2,7 +2,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { View, Button, TouchableOpacity, Text, TextInput } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { login, register } from '../../redux/actions';
+import { login } from '../../redux/actions';
 import { loginStackParamList } from '../../types/Types';
 import { styles } from './LoginStyles';
 // import { resFromBack } from '../../types/Types';
@@ -53,6 +53,7 @@ export const Login = ({ navigation }: Props) => {
               dispatch(login(user.email, user.password));
             }}
             title="Login"
+            color="#ff4b6e"
           />
         ) : (
           <Button
