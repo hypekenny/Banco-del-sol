@@ -29,22 +29,28 @@ export function login(email: string, password: string) {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(response => {
-        axios
-          .get<resFromBack>(`http://localhost:3001/api/user/`, {
-            headers: {
-              authorization: response.user?.getIdToken(),
-            },
+        response.user
+          ?.getIdToken(true)
+          .then(idToken => {
+            axios
+              .get<resFromBack>(`http://localhost:3001/api/user/`, {
+                headers: {
+                  authorization: `Bearer ${idToken}`,
+                },
+              })
+              .then(responseFromBack => {
+                console.log('Response from back', responseFromBack.data);
+                dispatch({
+                  type: SET_USER,
+                  payload: responseFromBack.data.user,
+                });
+                dispatch({
+                  type: SET_ACCOUNT,
+                  payload: responseFromBack.data.account,
+                });
+              });
           })
-          .then(responseFromBack => {
-            dispatch({
-              type: SET_USER,
-              payload: responseFromBack.data.user,
-            });
-            dispatch({
-              type: SET_ACCOUNT,
-              payload: responseFromBack.data.account,
-            });
-          });
+          .catch(error => console.log('a', error));
       })
       .catch(() => alert('El mail no está registrado'));
   };
