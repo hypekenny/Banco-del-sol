@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import React, { useState } from 'react';
 import { Button, TextInput, View } from 'react-native';
 import { Text } from '../../components/Text';
+import { styles } from './ForgotPasswordStyles';
 
 export function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -17,15 +18,19 @@ export function ForgotPassword() {
   }
 
   return (
-    <View>
-      <Text type="header">Resetea tu contraseña</Text>
+    <View style={styles.container}>
       <TextInput
-        placeholder="Mail..."
+        placeholder="Ingresa tu email..."
         placeholderTextColor="black"
         value={email}
+        style={styles.inputEmail}
         onChangeText={(text: string) => setEmail(text)}
       />
-      <Button onPress={() => handlePress(email)} title="Resetea tu email" />
+      <Button
+        onPress={() => handlePress(email)}
+        title="Enviar"
+        color="#ff4b6e"
+      />
     </View>
   );
 }

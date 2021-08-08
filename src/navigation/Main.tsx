@@ -73,7 +73,7 @@ export const Main = () => (
     <LoginStack.Screen
       name="ForgotPassword"
       component={ForgotPassword}
-      options={{ headerTitle: 'Forgot password' }}
+      options={{ headerTitle: 'Cambia tu contraseña' }}
     />
   </LoginStack.Navigator>
 );
