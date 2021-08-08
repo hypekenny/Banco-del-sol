@@ -8,10 +8,6 @@ export const REGISTER = 'REGISTER';
 export const SET_USER = 'SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
 
-interface tokenType {
-  i: string;
-}
-
 export function register(email: string, password: string) {
   return (dispatch: any) => {
     firebase
