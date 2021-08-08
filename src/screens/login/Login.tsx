@@ -50,9 +50,10 @@ export const Login = ({ navigation }: Props) => {
         {user.password.length > 6 && user.email.length > 4 ? (
           <Button
             onPress={() => {
-              dispatch(login(user.email, user.password));
+              dispatch(register());
             }}
             title="Login"
+            color="#ff4b6e"
           />
         ) : (
           <Button
