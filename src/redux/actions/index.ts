@@ -8,31 +8,21 @@ export const REGISTER = 'REGISTER';
 export const SET_USER = 'SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
 
-export function register() {
-  const obj = {
-    name: 'ricardo',
-    lastName: 'rabufeti',
-    email: 'lasdal@hotmail.com',
-    dni: 546665421,
-    birthdate: 'eweqeqweq',
-    phoneNumber: '32323232',
-  };
-
+export function register(user: any, password: string) {
   return (dispatch: any) => {
     firebase
       .auth()
-      .createUserWithEmailAndPassword(obj.email, 'lalalala')
+      .createUserWithEmailAndPassword(user.email, password)
       .then(response => {
         response.user
           ?.getIdToken(true)
           .then(idToken => {
             console.log(idToken);
             axios
-              .post<resFromBack>(`http://localhost:3001/api/user/`, {
+              .post<resFromBack>(`http://localhost:3001/api/user/`, user, {
                 headers: {
                   authorization: `Bearer ${idToken}`,
                 },
-                obj,
               })
               .then(responseAgain => {
                 console.log('el back dice', responseAgain);

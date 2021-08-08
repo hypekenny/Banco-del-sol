@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import React, { useState } from 'react';
-import { Button, TextInput, View } from 'react-native';
-import { Text } from '../../components/Text';
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import { styles } from './ForgotPasswordStyles';
 
 export function ForgotPassword() {
@@ -26,11 +26,14 @@ export function ForgotPassword() {
         style={styles.inputEmail}
         onChangeText={(text: string) => setEmail(text)}
       />
-      <Button
-        onPress={() => handlePress(email)}
-        title="Enviar"
-        color="#ff4b6e"
-      />
+      <View style={styles.containerButton}>
+        <TouchableOpacity
+          onPress={() => handlePress(email)}
+          style={ButtonSecondaryStyle.button}
+        >
+          <Text style={ButtonSecondaryStyle.text}>Enviar</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
