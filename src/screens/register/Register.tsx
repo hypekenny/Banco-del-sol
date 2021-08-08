@@ -17,18 +17,19 @@ export function Register() {
   const [open, setOpen] = useState(false);
   const [openT, setOpenT] = useState(false);
   const [openA, setOpenA] = useState(false);
-  const [value, setValue] = useState(null);
   const [valueCountry, setValueCountry] = useState(null);
+  const [value, setValue] = useState(null);
   const [valueLocalidad, setValueLocalidad] = useState(null);
 
   const [country, setCountry] = useState([
-    { label: 'Argentina', value: 'Argentina' },
+    { label: 'Argentina', value: 'ARG' },
     { label: 'Venezuela', value: 'Venezuela' },
     { label: 'Brasil', value: 'Brasil' },
     { label: 'Chile', value: 'Chile' },
     { label: 'Colombia', value: 'Colombia' },
     { label: 'Peru', value: 'Peru' },
   ]);
+
   const [items, setItems] = useState([
     { label: 'Tucuman', value: 'Tucuman' },
     { label: 'Buenos Aires', value: 'Buenos Aires' },
@@ -39,6 +40,10 @@ export function Register() {
   ]);
 
   const [localidad, setLocalidad] = useState([
+    { label: 'CABA', value: 'CABA' },
+    { label: 'Provincia', value: 'Provincia' },
+    { label: 'CABA', value: 'CABA' },
+    { label: 'Provincia', value: 'Provincia' },
     { label: 'CABA', value: 'CABA' },
     { label: 'Provincia', value: 'Provincia' },
   ]);
@@ -52,8 +57,10 @@ export function Register() {
   };
 
   // eslint-disable-next-line no-shadow
-  const handleConfirm = (date: React.SetStateAction<string>) => {
+  const handleConfirm = (date: any) => {
     // console.warn('A date has been picked: ', date);
+    console.log(date, 'date');
+
     setUser({ ...user, birthdate: date });
     hideDatePicker();
   };
@@ -61,10 +68,20 @@ export function Register() {
     address: '',
     addressNum: '',
     zipCode: '',
-    value: '',
-    valueCountry,
-    valueLocalidad,
+    valorCountry: '',
+    valor: '',
+    valorCity: '',
   });
+  useEffect(() => {
+    setAddres({ ...address, valorCountry: valueCountry });
+  }, [valueCountry]);
+
+  useEffect(() => {
+    setAddres({ ...address, valor: value });
+  }, [value]);
+  useEffect(() => {
+    setAddres({ ...address, valorCity: valueLocalidad });
+  }, [valueLocalidad]);
   // console.log(address);
   useEffect(() => {
     setUser({ ...user, address });
@@ -81,6 +98,7 @@ export function Register() {
     birthdate: '',
     address,
   });
+  console.log(user);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -92,7 +110,6 @@ export function Register() {
               placeholderTextColor="black"
               placeholder="Nombre"
               value={user.name}
-              // errorText={errors.password}
               autoCapitalize="none"
             />
 
@@ -182,43 +199,53 @@ export function Register() {
               <DateTimePickerModal
                 isVisible={isDatePickerVisible}
                 mode="date"
-                onConfirm={() => handleConfirm}
+                onConfirm={handleConfirm}
                 onCancel={hideDatePicker}
               />
 
               <Text>¿Donde vivis?</Text>
+
               <View>
                 <DropDownPicker
+                  style={styles.inputPassword}
                   open={open}
-                  value={address.value}
-                  items={items}
+                  value={address.valorCountry}
                   setOpen={setOpen}
-                  setValue={setValue}
-                  setItems={setItems}
+                  items={country}
+                  setItems={setCountry}
+                  setValue={setValueCountry}
                 />
               </View>
 
               <View>
-                <DropDownPicker
-                  open={openT}
-                  value={valueCountry}
-                  items={country}
-                  setOpen={setOpenT}
-                  setValue={setValueCountry}
-                  setItems={setCountry}
-                />
+                {valueCountry ? (
+                  <DropDownPicker
+                    style={styles.inputPassword}
+                    open={openT}
+                    value={address.valor}
+                    setOpen={setOpenT}
+                    items={items}
+                    setItems={setItems}
+                    setValue={setValue}
+                  />
+                ) : null}
               </View>
-              {/* <br /> */}
+
               <View>
-                <DropDownPicker
-                  open={openA}
-                  value={valueLocalidad}
-                  items={localidad}
-                  setOpen={setOpenA}
-                  setValue={setValueLocalidad}
-                  setItems={setLocalidad}
-                />
+                {value ? (
+                  <DropDownPicker
+                    style={styles.inputPassword}
+                    open={openA}
+                    value={address.valorCity}
+                    setOpen={setOpenA}
+                    items={localidad}
+                    setItems={setLocalidad}
+                    setValue={setValueLocalidad}
+                  />
+                ) : null}
               </View>
+              {/* {let data = } */}
+
               <TextInput
                 placeholderTextColor="black"
                 placeholder="Codigo Postal"
@@ -267,7 +294,7 @@ export function Register() {
               address.zipCode.length > 3 &&
               address.addressNum.length > 1 &&
               address.address.length > 2 &&
-              value !== null &&
+              address.value !== null &&
               valueCountry !== null &&
               valueLocalidad !== null ? (
                 <Button
