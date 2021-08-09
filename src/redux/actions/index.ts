@@ -1,15 +1,15 @@
 import axios from 'axios';
 import firebase from 'firebase';
-import { userType, resFromBack } from '../../types/Types';
+import { resFromBack, userType } from '../../types/Types';
 
 require('firebase/firebase-auth');
 
 export const REGISTER = 'REGISTER';
 export const SET_USER = 'SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
+export const LOG_OUT = 'LOG_OUT';
 
-
-export function register(user: any, password: string) {
+export function register(user: userType, password: string) {
   return (dispatch: any) => {
     firebase
       .auth()
@@ -26,7 +26,6 @@ export function register(user: any, password: string) {
                 },
               })
               .then(responseAgain => {
-                console.log('el back dice', responseAgain);
                 dispatch({
                   type: SET_USER,
                   payload: responseAgain.data.user,
@@ -35,11 +34,13 @@ export function register(user: any, password: string) {
                   type: SET_ACCOUNT,
                   payload: responseAgain.data.account,
                 });
+                alert('El usuario fue creado con exito');
+                console.log('el back dice', responseAgain);
               });
           })
           .catch(error => console.log('a', error));
       })
-      .catch(() => alert('El mail no está registrado'));
+      .catch(() => alert('Ese Email ya existe '));
   };
 }
 
@@ -52,6 +53,7 @@ export function login(email: string, password: string) {
         response.user
           ?.getIdToken(true)
           .then(idToken => {
+            console.log(idToken);
             axios
               .get<resFromBack>(`http://localhost:3001/api/user/`, {
                 headers: {
@@ -60,6 +62,7 @@ export function login(email: string, password: string) {
               })
               .then(responseFromBack => {
                 console.log('Response from back', responseFromBack.data);
+                console.log('user from back', responseFromBack.data.user);
                 dispatch({
                   type: SET_USER,
                   payload: responseFromBack.data.user,
@@ -76,10 +79,16 @@ export function login(email: string, password: string) {
   };
 }
 
-export function createAccount(user: userType) {
-  axios.post(`http://localhost:3001/api/user/${user.email}`, user);
-}
-
-export async function logout() {
-  await firebase.auth().signOut();
+export function logout() {
+  return (dispatch: any) => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch({
+          type: LOG_OUT,
+          payload: {},
+        });
+      });
+  };
 }

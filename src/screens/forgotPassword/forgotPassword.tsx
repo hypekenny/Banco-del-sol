@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import { styles } from './ForgotPasswordStyles';
 
@@ -21,9 +22,9 @@ export function ForgotPassword() {
     <View style={styles.container}>
       <TextInput
         placeholder="Ingresa tu email..."
-        placeholderTextColor="black"
+        placeholderTextColor="grey"
         value={email}
-        style={styles.inputEmail}
+        style={ButtonPrimaryStyle.input}
         onChangeText={(text: string) => setEmail(text)}
       />
       <View style={styles.containerButton}>

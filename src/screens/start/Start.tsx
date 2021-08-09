@@ -17,11 +17,8 @@ export const Start = ({ navigation }: Props) => (
       <Button type="outline" onPress={() => navigation.push('Login')}>
         Login
       </Button>
-      <Button type="outline" onPress={() => navigation.push('RegisterStep1')}>
-        RegisterStep1
-      </Button>
-      <Button type="outline" onPress={() => navigation.push('RegisterStep2')}>
-        RegisterStep2
+      <Button type="outline" onPress={() => navigation.push('Register')}>
+        Register
       </Button>
       <Button type="outline" onPress={() => navigation.push('Home')}>
         Home
