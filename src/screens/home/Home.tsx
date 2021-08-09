@@ -169,6 +169,7 @@ export const Home = ({ navigation }: Props) => {
               end={{ x: 0, y: 1 }}
             />
           ),
+          headerTintColor: '#fff',
           headerTitle: `Hola Marcos`,
           headerShown: true,
           headerRight: () => (
