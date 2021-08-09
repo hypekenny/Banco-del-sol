@@ -64,6 +64,7 @@ export const styles = StyleSheet.create({
   bottonTextR: {
     marginLeft: 45,
     marginBottom: 40,
+    marginTop: 35,
     color: '#ff9349',
   },
   bottonEnviar: {
@@ -90,6 +91,7 @@ export const styles = StyleSheet.create({
     marginBottom: 40,
     marginLeft: 55,
     color: '#ff9349',
+    marginTop: 35,
   },
   textGeneral: {
     fontSize: 25,
@@ -108,13 +110,15 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   styleIcon: {
-    marginTop: 40,
+    // marginTop: 40,
     marginLeft: 10,
+    position: 'absolute',
     color: '#ff4b6e',
   },
   styleIcon1: {
-    marginTop: 40,
-    marginLeft: 15,
+    // marginTop: 40,
+    marginLeft: 10,
+    position: 'absolute',
     color: '#ff4b6e',
   },
   container2: {
