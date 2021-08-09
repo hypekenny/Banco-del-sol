@@ -1,13 +1,16 @@
 /* eslint-disable prefer-const */
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { ThemeProvider, Button } from 'react-native-elements';
+import { ThemeProvider, Button, Icon } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './HomeStyles';
 import { Start } from '../start/Start';
 import { Register } from '../register/Register';
 import { Login } from '../login/Login';
 import { AddFunds } from '../addFunds/AddFunds';
+import colors from '../../constants/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,12 +21,13 @@ const theme = {
         marginRight: 10,
         borderRadius: 12,
         borderWidth: 1,
-        borderColor: '#FF6C5D',
+        borderColor: 'black',
         textAlign: 'center',
+        backgroundColor: 'white',
       },
     ],
     titleStyle: {
-      color: '#FF6C5D',
+      color: 'black',
     },
   },
 };
@@ -54,8 +58,13 @@ function HomeScreen() {
       <View style={styles.view1}>
         <Text style={{ fontSize: 40 }}>Balance</Text>
         <Text style={{ fontSize: 30 }}>${balance}</Text>
+      </View>
 
-        <View style={styles.view}>
+      <LinearGradient
+        colors={[colors.primary, colors.secondary]}
+        style={styles.container2}
+      >
+        <View>
           <Text style={styles.textGeneral}>General</Text>
           <View
             style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}
@@ -68,18 +77,21 @@ function HomeScreen() {
             <Text style={styles.text}>${gast}</Text>
           </View>
         </View>
-      </View>
+      </LinearGradient>
+
       <View style={styles.view3}>
         <View>
           <TouchableOpacity
             onPress={recargarDinero}
             style={styles.bottonRecargar}
           >
+            <Ionicons style={styles.styleIcon} name="add-circle" size={28} />
             <Text style={styles.bottonTextR}>Recargar Dinero</Text>
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={enviarDinero} style={styles.bottonEnviar}>
+            <Ionicons style={styles.styleIcon1} name="send" size={28} />
             <Text style={styles.bottonTextE}>Enviar Dinero</Text>
           </TouchableOpacity>
         </View>
@@ -87,31 +99,72 @@ function HomeScreen() {
     </View>
   );
 }
-
+const screensOptions = (route: any, color: string) => {
+  let iconName;
+  switch (route.name) {
+    case 'Home':
+      iconName = 'home';
+      break;
+    case 'Start':
+      iconName = 'star-face';
+      break;
+    case 'Register':
+      iconName = 'account-edit';
+      break;
+    case 'Login':
+      iconName = 'account-check';
+      break;
+    case 'Estadisticas':
+      iconName = 'cards-heart';
+      break;
+    default:
+      break;
+  }
+  return (
+    <Icon type="material-community" name={iconName} size={25} color={color} />
+  );
+};
 // const [name, setName] = useState<string>('');
 // setName('Seba');
-export const Home = () => (
-  <Tab.Navigator>
-    <Tab.Screen
-      name="Home"
-      component={HomeScreen}
-      options={{
-        headerTitle: `Hola {name}`,
-        headerShown: true,
-        headerRight: () => (
-          <ThemeProvider theme={theme}>
-            <Button
-              onPress={() => alert('This is a button!')}
-              title="mi cuenta"
-              type="clear"
+export const Home = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color }) => screensOptions(route, color),
+        tabBarActiveTintColor: '#ff4b6e',
+        tabBarInactiveTintColor: '#ff9349',
+      })}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerBackground: () => (
+            <LinearGradient
+              colors={['#ff4b6e', '#ff9349']}
+              style={{ flex: 1 }}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
             />
-          </ThemeProvider>
-        ),
-      }}
-    />
-    <Tab.Screen name="Start" component={Start} />
-    <Tab.Screen name="Register" component={Register} />
-    <Tab.Screen name="Login" component={Login} />
-    <Tab.Screen name="Estadisticas" component={AddFunds} />
-  </Tab.Navigator>
-);
+          ),
+          headerTitle: `Hola Marcos`,
+          headerShown: true,
+          headerRight: () => (
+            <ThemeProvider theme={theme}>
+              <Button
+                onPress={() => alert('This is a button!')}
+                title="mi cuenta"
+                type="clear"
+              />
+            </ThemeProvider>
+          ),
+        }}
+      />
+      <Tab.Screen name="Start" component={Start} />
+      <Tab.Screen name="Register" component={Register} />
+      <Tab.Screen name="Login" component={Login} />
+      <Tab.Screen name="Estadisticas" component={AddFunds} />
+    </Tab.Navigator>
+  );
+};

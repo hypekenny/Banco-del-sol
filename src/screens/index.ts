@@ -4,9 +4,9 @@ import { Register } from '../screens/register/Register';
 import { Home } from '../screens/home/Home';
 import { Transfer } from '../screens/transfer/Transfer';
 import { Account } from '../screens/account/Account';
-import { AddFunds } from './addFunds/AddFunds';
-import { Transactions } from './transacciones/Transactions';
-import { ForgotPassword } from './forgotPassword/ForgotPassword';
+import { AddFunds } from '../screens/addFunds/AddFunds';
+import { Transactions } from '../screens/transacciones/Transactions';
+import { ForgotPassword } from '../screens/forgotPassword/forgotPassword';
 
 export const config = {
   Start,
