@@ -1,5 +1,4 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import React from 'react';
 
 export type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;

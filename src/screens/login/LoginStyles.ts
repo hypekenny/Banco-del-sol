@@ -98,8 +98,6 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   btns: {
-    // backgroundColor: '#000',
-
     width: 300,
     height: 100,
     zIndex: 30,
