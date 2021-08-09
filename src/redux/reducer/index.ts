@@ -1,4 +1,4 @@
-import { REGISTER, SET_USER, SET_ACCOUNT } from '../actions/index';
+import { REGISTER, SET_USER, SET_ACCOUNT, ALERT_ERROR } from '../actions/index';
 
 interface actionType {
   type: string;
@@ -8,6 +8,7 @@ interface actionType {
 const initialState = {
   account: {},
   user: {},
+  alert: {},
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -26,6 +27,11 @@ export default function rootReducer(state = initialState, action: actionType) {
       return {
         ...state,
         account: action.payload,
+      };
+    case ALERT_ERROR:
+      return {
+        ...state,
+        alert: action.payload,
       };
     default:
       return state;
