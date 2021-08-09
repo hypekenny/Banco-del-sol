@@ -17,8 +17,6 @@ export const Login = ({ navigation }: Props) => {
     password: '',
   });
 
-  console.log('a', userStore);
-
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
