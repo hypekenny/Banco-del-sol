@@ -62,6 +62,7 @@ export function login(email: string, password: string) {
         response.user
           ?.getIdToken(true)
           .then(idToken => {
+            console.log(idToken);
             axios
               .get<resFromBack>(`http://localhost:3001/api/user/`, {
                 headers: {
