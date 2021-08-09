@@ -37,11 +37,6 @@ export function Register({ navigation }: Props) {
   const dispatch = useDispatch();
   const [pass, setPass] = useState({ pass: '', confirm: '' });
 
-  const country = [
-    { label: 'Pais...', value: '' },
-    { label: 'Argentina', value: 'ARG' },
-  ];
-
   const province = [
     { label: 'Provincia...', value: '' },
     { label: 'Buenos Aires', value: 'Buenos Aires' },
@@ -113,7 +108,7 @@ export function Register({ navigation }: Props) {
             user.email.length > 8 &&
             pass.pass.length > 6 &&
             pass.pass === pass.confirm ? (
-              <View style={{ justifyContent: 'center' }}>
+              <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
                 <TouchableOpacity
                   style={ButtonSecondaryStyle.button}
                   onPress={() => setStep(!step)}
@@ -122,23 +117,25 @@ export function Register({ navigation }: Props) {
                 </TouchableOpacity>
               </View>
             ) : null}
-            <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+          </View>
+        ) : (
+          <View style={styles.container}>
+            <View
+              style={{
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginTop: -20,
+                marginBottom: -30,
+              }}
+            >
               <TouchableOpacity
                 style={ButtonSecondaryStyle.button}
                 onPress={() => setStep(!step)}
               >
-                <Text style={ButtonSecondaryStyle.text}>Siguiente</Text>
+                <Text style={ButtonSecondaryStyle.text}>back</Text>
               </TouchableOpacity>
             </View>
-          </View>
-        ) : (
-          <View style={styles.container}>
-            <TouchableOpacity
-              style={ButtonSecondaryStyle.button}
-              onPress={() => setStep(!step)}
-            >
-              <Text style={ButtonSecondaryStyle.text}>back</Text>
-            </TouchableOpacity>
+
             <TextInput
               placeholderTextColor="black"
               placeholder="DNI"
@@ -175,36 +172,17 @@ export function Register({ navigation }: Props) {
                   e.target.value.length
                     ? setUser({
                         ...user,
-                        address: { ...user.address, country: e.target.value },
+                        address: {
+                          ...user.address,
+                          province: e.target.value,
+                        },
                       })
                     : null
                 }
-                options={country}
-                value={user.address.country}
-                defaultValue={country[0].label}
+                options={province}
+                value={user.address.province}
+                defaultValue={province[0].value}
               />
-            </View>
-            <View
-              style={user.address.country.length ? styles.inputPassword : null}
-            >
-              {user.address.country.length ? (
-                <Select
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    e.target.value.length
-                      ? setUser({
-                          ...user,
-                          address: {
-                            ...user.address,
-                            province: e.target.value,
-                          },
-                        })
-                      : null
-                  }
-                  options={province}
-                  value={user.address.province}
-                  defaultValue={province[0].value}
-                />
-              ) : null}
             </View>
             <View
               style={user.address.province.length ? styles.inputPassword : null}
@@ -270,12 +248,14 @@ export function Register({ navigation }: Props) {
             user.address.zipCode.length > 3 &&
             user.address.number.length > 1 &&
             user.address.street.length > 2 ? (
-              <TouchableOpacity
-                style={ButtonSecondaryStyle.button}
-                onPress={() => dispatch(register(user, pass.pass))}
-              >
-                <Text style={ButtonSecondaryStyle.text}>REGISTRATE</Text>
-              </TouchableOpacity>
+              <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                <TouchableOpacity
+                  style={ButtonSecondaryStyle.button}
+                  onPress={() => dispatch(register(user, pass.pass))}
+                >
+                  <Text style={ButtonSecondaryStyle.text}>REGISTRATE</Text>
+                </TouchableOpacity>
+              </View>
             ) : null}
             {userStore.email && userStore.email.length
               ? navigation.push('Home')
