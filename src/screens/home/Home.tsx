@@ -140,12 +140,13 @@ const screensOptions = (route: any, color: string) => {
 export const Home = ({ navigation }: Props) => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  /*  useEffect(() => {
     return dispatch(logout());
-  }, []);
+  }, []); */
 
   function exit() {
-    navigation.push('Login');
+    dispatch(logout());
+    navigation.popToTop();
   }
 
   return (
@@ -170,12 +171,12 @@ export const Home = ({ navigation }: Props) => {
             />
           ),
           headerTintColor: '#fff',
-          headerTitle: `Hola Marcos`,
+          headerTitle: `Hola Santiago`,
           headerShown: true,
           headerRight: () => (
             <ThemeProvider theme={theme}>
               <Button
-                onPress={() => navigation.popToTop()}
+                onPress={() => exit()}
                 title="Cerrar sesión"
                 type="clear"
               />
