@@ -1,5 +1,7 @@
 /* eslint-disable prefer-const */
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { ThemeProvider, Button, Icon } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,8 +12,14 @@ import { Start } from '../start/Start';
 import { Register } from '../register/Register';
 import { Login } from '../login/Login';
 import { AddFunds } from '../addFunds/AddFunds';
+import { logout } from '../../redux/actions';
+import { loginStackParamList } from '../../types/Types';
 
 const Tab = createBottomTabNavigator();
+
+type Props = {
+  navigation: StackNavigationProp<loginStackParamList, 'List'>;
+};
 
 const theme = {
   Button: {
@@ -129,7 +137,17 @@ const screensOptions = (route: any, color: string) => {
 };
 // const [name, setName] = useState<string>('');
 // setName('Seba');
-export const Home = () => {
+export const Home = ({ navigation }: Props) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return dispatch(logout());
+  }, []);
+
+  function exit() {
+    navigation.push('Login');
+  }
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -156,8 +174,8 @@ export const Home = () => {
           headerRight: () => (
             <ThemeProvider theme={theme}>
               <Button
-                onPress={() => alert('This is a button!')}
-                title="mi cuenta"
+                onPress={() => navigation.popToTop()}
+                title="Cerrar sesión"
                 type="clear"
               />
             </ThemeProvider>

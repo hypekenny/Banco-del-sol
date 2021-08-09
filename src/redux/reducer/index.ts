@@ -1,4 +1,4 @@
-import { REGISTER, SET_USER, SET_ACCOUNT, ALERT_ERROR } from '../actions/index';
+import { REGISTER, SET_USER, SET_ACCOUNT, LOG_OUT } from '../actions/index';
 
 interface actionType {
   type: string;
@@ -8,7 +8,7 @@ interface actionType {
 const initialState = {
   account: {},
   user: {},
-  alert: {},
+  token: '',
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -30,10 +30,11 @@ export default function rootReducer(state = initialState, action: actionType) {
         ...state,
         account: action.payload,
       };
-    case ALERT_ERROR:
+    case LOG_OUT:
       return {
         ...state,
-        alert: action.payload,
+        account: action.payload,
+        user: action.payload,
       };
     default:
       return state;
