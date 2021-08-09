@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, TextInput } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { login } from '../../redux/actions';
 import { styles } from './LoginStyles';
-import { Props } from '../../types/Types';
+import { Props, resFromBack } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
 
 export const Login = ({ navigation }: Props) => {
+  const userStore = useSelector((state: resFromBack) => state.user);
   const dispatch = useDispatch();
 
   const [user, setUser] = useState({
@@ -16,11 +17,8 @@ export const Login = ({ navigation }: Props) => {
     password: '',
   });
 
-  if (user.email.length > 9 && user.password.length > 6) {
-    (function () {
-      navigation.push('Home');
-    })();
-  }
+  console.log('a', userStore);
+
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -62,7 +60,7 @@ export const Login = ({ navigation }: Props) => {
         ) : (
           <TouchableOpacity
             onPress={() => {
-              dispatch(login(user.email, user.password));
+              console.log();
             }}
             disabled
             style={styles.buttondisabled}
@@ -76,6 +74,9 @@ export const Login = ({ navigation }: Props) => {
         colors={[colors.primary, colors.secondary]}
         end={[1, 1]}
       />
+      {userStore.email && userStore.email.length
+        ? navigation.push('Home')
+        : null}
     </View>
   );
 };

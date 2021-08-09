@@ -11,7 +11,7 @@ import Select from 'react-select-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { styles } from './RegisterStyles';
 import { register } from '../../redux/actions';
-import { resFromBack, Props, userType } from '../../types/Types';
+import { resFromBack, Props } from '../../types/Types';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 
 export function Register({ navigation }: Props) {
@@ -113,13 +113,23 @@ export function Register({ navigation }: Props) {
             user.email.length > 8 &&
             pass.pass.length > 6 &&
             pass.pass === pass.confirm ? (
+              <View style={{ justifyContent: 'center' }}>
+                <TouchableOpacity
+                  style={ButtonSecondaryStyle.button}
+                  onPress={() => setStep(!step)}
+                >
+                  <Text style={ButtonSecondaryStyle.text}>Siguiente</Text>
+                </TouchableOpacity>
+              </View>
+            ) : null}
+            <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
               <TouchableOpacity
                 style={ButtonSecondaryStyle.button}
                 onPress={() => setStep(!step)}
               >
                 <Text style={ButtonSecondaryStyle.text}>Siguiente</Text>
               </TouchableOpacity>
-            ) : null}
+            </View>
           </View>
         ) : (
           <View style={styles.container}>

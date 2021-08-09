@@ -71,6 +71,7 @@ export function login(email: string, password: string) {
               })
               .then(responseFromBack => {
                 console.log('Response from back', responseFromBack.data);
+                console.log('user from back', responseFromBack.data.user);
                 dispatch({
                   type: SET_USER,
                   payload: responseFromBack.data.user,

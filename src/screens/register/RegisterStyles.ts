@@ -38,7 +38,6 @@ export const styles = StyleSheet.create({
 
     paddingLeft: 8,
     paddingRight: 8,
-    // marginTop: -40,
   },
   btn: {
     backgroundColor: 'blue',
@@ -53,5 +52,16 @@ export const styles = StyleSheet.create({
   registertwo: {
     width: 0,
     height: 0,
+  },
+  ellipse: {
+    position: 'relative',
+    zIndex: 20,
+    bottom: '-25%',
+    marginTop: '-50%',
+    left: '20%',
+    width: '60%',
+    height: '60%',
+    borderRadius: 999,
+    transform: [{ scaleX: 3 }],
   },
 });
