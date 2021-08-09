@@ -8,6 +8,7 @@ interface actionType {
 const initialState = {
   account: {},
   user: {},
+  token: '',
 };
 
 export default function rootReducer(state = initialState, action: actionType) {

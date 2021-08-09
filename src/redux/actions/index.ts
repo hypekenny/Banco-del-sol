@@ -31,10 +31,6 @@ export function register(user: userType, password: string) {
                   payload: responseAgain.data.user,
                 });
                 dispatch({
-                  type: SET_USER,
-                  payload: responseAgain.data.user,
-                });
-                dispatch({
                   type: SET_ACCOUNT,
                   payload: responseAgain.data.account,
                 });
