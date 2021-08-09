@@ -1,4 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
+import React from 'react';
 
 export type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
@@ -8,8 +9,8 @@ export type loginStackParamList = {
   List: undefined;
   Start: undefined;
   Login: undefined;
-  RegisterStep1: undefined;
-  RegisterStep2: undefined;
+  Register: undefined;
+  RegisterV2: undefined;
   Home: undefined;
   Account: undefined;
   AddFunds: undefined;
@@ -44,10 +45,10 @@ export type mainScreenNavigationProp = StackNavigationProp<
 
 export type MainProps = { navigation: mainScreenNavigationProp };
 
-export type address = {
+export type addressType = {
   street: string;
-  number: number;
-  zipCode: number;
+  number: string;
+  zipCode: string;
   city: string;
   province: string;
   country: string;
@@ -60,7 +61,7 @@ export type userType = {
   lastName: string;
   birthdate: string;
   phoneNumber: string;
-  address: address;
+  address: addressType;
 };
 
 export interface accountType {
