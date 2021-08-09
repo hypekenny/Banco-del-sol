@@ -1,7 +1,5 @@
 import axios from 'axios';
 import firebase from 'firebase';
-
-// import { resFromBack } from '../../types/Types';
 import { resFromBack, userType } from '../../types/Types';
 
 require('firebase/firebase-auth');
@@ -9,7 +7,7 @@ require('firebase/firebase-auth');
 export const REGISTER = 'REGISTER';
 export const SET_USER = 'SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
-export const ALERT_ERROR = 'ALERT_ERROR';
+export const LOG_OUT = 'LOG_OUT';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -40,10 +38,7 @@ export function register(user: userType, password: string) {
                   type: SET_ACCOUNT,
                   payload: responseAgain.data.account,
                 });
-                dispatch({
-                  type: ALERT_ERROR,
-                  payload: alert('El usuario fue creado con exito'),
-                });
+                alert('El usuario fue creado con exito');
                 console.log('el back dice', responseAgain);
               });
           })
@@ -87,6 +82,16 @@ export function login(email: string, password: string) {
   };
 }
 
-export async function logout() {
-  await firebase.auth().signOut();
+export function logout() {
+  return (dispatch: any) => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch({
+          type: LOG_OUT,
+          payload: {},
+        });
+      });
+  };
 }
