@@ -1,28 +1,15 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, TextInput } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { login } from '../../redux/actions';
 import { styles } from './LoginStyles';
 import { Props } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
-import { loginStackParamList } from '../../types/Types';
-
-type Props = {
-  navigation: StackNavigationProp<loginStackParamList, 'List'>;
-};
 
 export const Login = ({ navigation }: Props) => {
   const dispatch = useDispatch();
-  // const usarios = useSelector(store => store.user);
-
-  // const cuentas = useSelector(store => store.account);
-
-  // console.log(usarios, 'usarios');
-
-  // console.log(cuentas, 'cuentas');
 
   const [user, setUser] = useState({
     email: '',
