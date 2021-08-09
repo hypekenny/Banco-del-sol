@@ -270,12 +270,12 @@ export function Register({ navigation }: Props) {
             user.address.zipCode.length > 3 &&
             user.address.number.length > 1 &&
             user.address.street.length > 2 ? (
-              <Button
-                onPress={() => {
-                  dispatch(register(user, pass.pass));
-                }}
-                title="REGISTRATE"
-              />
+              <TouchableOpacity
+                style={ButtonSecondaryStyle.button}
+                onPress={() => dispatch(register(user, pass.pass))}
+              >
+                <Text style={ButtonSecondaryStyle.text}>REGISTRATE</Text>
+              </TouchableOpacity>
             ) : null}
             {userStore.email && userStore.email.length
               ? navigation.push('Home')
