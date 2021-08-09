@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, Button, Text, TextInput } from 'react-native';
+
+import {
+  View,
+  ScrollView,
+  Button,
+  Text,
+  TextInput,
+  SafeAreaView,
+} from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useDispatch } from 'react-redux';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -20,6 +28,8 @@ export function Register() {
   const [valueCountry, setValueCountry] = useState(null);
   const [value, setValue] = useState(null);
   const [valueLocalidad, setValueLocalidad] = useState(null);
+  const [password, setPassword] = useState('');
+  const [passwordT, setPasswordT] = useState('');
 
   const [country, setCountry] = useState([
     { label: 'Argentina', value: 'ARG' },
@@ -42,10 +52,6 @@ export function Register() {
   const [localidad, setLocalidad] = useState([
     { label: 'CABA', value: 'CABA' },
     { label: 'Provincia', value: 'Provincia' },
-    { label: 'CABA', value: 'CABA' },
-    { label: 'Provincia', value: 'Provincia' },
-    { label: 'CABA', value: 'CABA' },
-    { label: 'Provincia', value: 'Provincia' },
   ]);
 
   const showDatePicker = () => {
@@ -59,28 +65,28 @@ export function Register() {
   // eslint-disable-next-line no-shadow
   const handleConfirm = (date: any) => {
     // console.warn('A date has been picked: ', date);
-    console.log(date, 'date');
+    // console.log(date, 'date');
 
     setUser({ ...user, birthdate: date });
     hideDatePicker();
   };
   const [address, setAddres] = useState({
-    address: '',
-    addressNum: '',
+    street: '',
+    number: '',
     zipCode: '',
-    valorCountry: '',
-    valor: '',
-    valorCity: '',
+    country: '',
+    province: '',
+    city: '',
   });
   useEffect(() => {
-    setAddres({ ...address, valorCountry: valueCountry });
+    setAddres({ ...address, country: valueCountry });
   }, [valueCountry]);
 
   useEffect(() => {
-    setAddres({ ...address, valor: value });
+    setAddres({ ...address, province: value });
   }, [value]);
   useEffect(() => {
-    setAddres({ ...address, valorCity: valueLocalidad });
+    setAddres({ ...address, city: valueLocalidad });
   }, [valueLocalidad]);
   // console.log(address);
   useEffect(() => {
@@ -90,198 +96,208 @@ export function Register() {
     name: '',
     lastName: '',
     email: '',
-    pass: '',
-    passT: '',
-
     dni: '',
-    numberPhone: '',
+    phoneNumber: '',
     birthdate: '',
     address,
   });
-  console.log(user);
+  // console.log(user);
   return (
     <View style={styles.container}>
-      <ScrollView>
-        {!yes ? (
-          <View>
-            <TextInput
-              style={styles.inputPassword}
-              onChangeText={(text: string) => setUser({ ...user, name: text })}
-              placeholderTextColor="black"
-              placeholder="Nombre"
-              value={user.name}
-              autoCapitalize="none"
-            />
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView>
+          {!yes ? (
+            <View>
+              <TextInput
+                style={styles.inputPassword}
+                onChangeText={(text: string) =>
+                  setUser({ ...user, name: text })
+                }
+                placeholderTextColor="black"
+                placeholder="Nombre"
+                value={user.name}
+                autoCapitalize="none"
+              />
 
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="Apellido"
-              value={user.lastName}
-              onChangeText={(text: string) =>
-                setUser({ ...user, lastName: text })
-              }
-              // errorText={errors.password}
-              autoCapitalize="none"
-              style={styles.inputPassword}
-            />
+              <TextInput
+                placeholderTextColor="black"
+                placeholder="Apellido"
+                value={user.lastName}
+                onChangeText={(text: string) =>
+                  setUser({ ...user, lastName: text })
+                }
+                // errorText={errors.password}
+                autoCapitalize="none"
+                style={styles.inputPassword}
+              />
 
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="Email"
-              value={user.email}
-              onChangeText={(text: string) => setUser({ ...user, email: text })}
-              autoCapitalize="none"
-              style={styles.inputPassword}
-              keyboardType="email-address"
-            />
+              <TextInput
+                placeholderTextColor="black"
+                placeholder="Email"
+                value={user.email}
+                onChangeText={(text: string) =>
+                  setUser({ ...user, email: text })
+                }
+                autoCapitalize="none"
+                style={styles.inputPassword}
+                keyboardType="email-address"
+              />
 
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="Contraseña"
-              value={user.pass}
-              onChangeText={(text: string) => setUser({ ...user, pass: text })}
-              secureTextEntry
-              // errorText={errors.password}
-              autoCapitalize="none"
-              style={styles.inputPassword}
-            />
+              <TextInput
+                placeholderTextColor="black"
+                placeholder="Contraseña"
+                value={password}
+                onChangeText={(text: string) => setPassword(text)}
+                secureTextEntry
+                // errorText={errors.password}
+                autoCapitalize="none"
+                style={styles.inputPassword}
+              />
 
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="Repite tu contraseña"
-              value={user.passT}
-              onChangeText={(text: string) => setUser({ ...user, passT: text })}
-              secureTextEntry
-              // errorText={errors.password}
-              autoCapitalize="none"
-              style={styles.inputPassword}
-            />
+              <TextInput
+                placeholderTextColor="black"
+                placeholder="Repite tu contraseña"
+                value={passwordT}
+                onChangeText={(text: string) => setPasswordT(text)}
+                secureTextEntry
+                // errorText={errors.password}
+                autoCapitalize="none"
+                style={styles.inputPassword}
+              />
 
-            {user.name.length > 2 &&
-            user.email.length > 8 &&
-            user.pass.length > 6 &&
-            user.pass === user.passT ? (
+              {user.name.length > 2 &&
+              user.email.length > 8 &&
+              password.length > 6 &&
+              passwordT === password ? (
+                <Button
+                  onPress={() => {
+                    setYes(true);
+                  }}
+                  title="Siguiente"
+                />
+              ) : null}
+            </View>
+          ) : (
+            <View style={styles.container}>
               <Button
                 onPress={() => {
-                  setYes(true);
+                  setYes(false);
                 }}
-                title="Siguiente"
+                title="Retroceder"
               />
-            ) : null}
-          </View>
-        ) : (
-          <View style={styles.container}>
-            <ScrollView>
-              <TextInput
-                placeholderTextColor="black"
-                placeholder="DNI"
-                value={user.dni}
-                onChangeText={(text: string) => setUser({ ...user, dni: text })}
-                // errorText={errors.password}
-                // autoCapitalize="none"
-                style={styles.inputPassword}
-                keyboardType="numeric"
-              />
-
-              <TextInput
-                placeholderTextColor="black"
-                placeholder="Telefono"
-                value={user.numberPhone}
-                onChangeText={(text: string) =>
-                  setUser({ ...user, numberPhone: text })
-                }
-                autoCapitalize="none"
-                style={styles.inputPassword}
-              />
-
-              <Button title="Fecha de nacimiento" onPress={showDatePicker} />
-
-              <DateTimePickerModal
-                isVisible={isDatePickerVisible}
-                mode="date"
-                onConfirm={handleConfirm}
-                onCancel={hideDatePicker}
-              />
-
-              <Text>¿Donde vivis?</Text>
-
-              <View>
-                <DropDownPicker
+              <ScrollView>
+                <TextInput
+                  placeholderTextColor="black"
+                  placeholder="DNI"
+                  value={user.dni}
+                  onChangeText={(text: string) =>
+                    setUser({ ...user, dni: text })
+                  }
+                  // errorText={errors.password}
+                  // autoCapitalize="none"
                   style={styles.inputPassword}
-                  open={open}
-                  value={address.valorCountry}
-                  setOpen={setOpen}
-                  items={country}
-                  setItems={setCountry}
-                  setValue={setValueCountry}
+                  keyboardType="numeric"
                 />
-              </View>
 
-              <View>
-                {valueCountry ? (
+                <TextInput
+                  placeholderTextColor="black"
+                  placeholder="Telefono"
+                  value={user.phoneNumber}
+                  onChangeText={(text: string) =>
+                    setUser({ ...user, phoneNumber: text })
+                  }
+                  autoCapitalize="none"
+                  style={styles.inputPassword}
+                />
+
+                <Button title="Fecha de nacimiento" onPress={showDatePicker} />
+
+                <DateTimePickerModal
+                  isVisible={isDatePickerVisible}
+                  mode="date"
+                  onConfirm={handleConfirm}
+                  onCancel={hideDatePicker}
+                />
+
+                <Text>¿Donde vivis?</Text>
+
+                <View>
                   <DropDownPicker
                     style={styles.inputPassword}
-                    open={openT}
-                    value={address.valor}
-                    setOpen={setOpenT}
-                    items={items}
-                    setItems={setItems}
-                    setValue={setValue}
+                    open={open}
+                    value={address.country}
+                    setOpen={setOpen}
+                    items={country}
+                    setItems={setCountry}
+                    setValue={setValueCountry}
                   />
-                ) : null}
-              </View>
+                </View>
 
-              <View>
-                {value ? (
-                  <DropDownPicker
-                    style={styles.inputPassword}
-                    open={openA}
-                    value={address.valorCity}
-                    setOpen={setOpenA}
-                    items={localidad}
-                    setItems={setLocalidad}
-                    setValue={setValueLocalidad}
-                  />
-                ) : null}
-              </View>
-              {/* {let data = } */}
+                <View>
+                  {valueCountry ? (
+                    <DropDownPicker
+                      style={styles.inputPassword}
+                      open={openT}
+                      value={address.province}
+                      setOpen={setOpenT}
+                      items={items}
+                      setItems={setItems}
+                      setValue={setValue}
+                    />
+                  ) : null}
+                </View>
 
-              <TextInput
-                placeholderTextColor="black"
-                placeholder="Codigo Postal"
-                value={address.zipCode}
-                onChangeText={(text: string) =>
-                  setAddres({ ...address, zipCode: text })
-                }
-                // errorText={errors.password}
-                autoCapitalize="none"
-                style={styles.inputPassword}
-              />
+                <View>
+                  {value ? (
+                    <DropDownPicker
+                      style={styles.inputPassword}
+                      open={openA}
+                      value={address.city}
+                      setOpen={setOpenA}
+                      items={localidad}
+                      setItems={setLocalidad}
+                      setValue={setValueLocalidad}
+                    />
+                  ) : null}
+                </View>
+                {/* {let data = } */}
 
-              <TextInput
-                placeholderTextColor="black"
-                placeholder="Direccion NUM"
-                value={address.addressNum}
-                onChangeText={(text: string) =>
-                  setAddres({ ...address, addressNum: text })
-                }
-                // errorText={errors.password}
-                autoCapitalize="none"
-                style={styles.inputPassword}
-                keyboardType="numeric"
-              />
+                <TextInput
+                  placeholderTextColor="black"
+                  placeholder="Codigo Postal"
+                  value={address.zipCode}
+                  onChangeText={(text: string) =>
+                    setAddres({ ...address, zipCode: text })
+                  }
+                  // errorText={errors.password}
+                  autoCapitalize="none"
+                  style={styles.inputPassword}
+                />
 
-              <TextInput
-                placeholderTextColor="black"
-                placeholder="Direccion Calle"
-                value={address.address}
-                onChangeText={(text: string) =>
-                  setAddres({ ...address, address: text })
-                }
-                autoCapitalize="none"
-                style={styles.inputPassword}
-              />
-              {/* {console.log(
+                <TextInput
+                  placeholderTextColor="black"
+                  placeholder="Direccion NUM"
+                  value={address.number}
+                  onChangeText={(text: string) =>
+                    setAddres({ ...address, number: text })
+                  }
+                  // errorText={errors.password}
+                  autoCapitalize="none"
+                  style={styles.inputPassword}
+                  keyboardType="numeric"
+                />
+
+                <TextInput
+                  placeholderTextColor="black"
+                  placeholder="Direccion Calle"
+                  value={address.street}
+                  onChangeText={(text: string) =>
+                    setAddres({ ...address, street: text })
+                  }
+                  autoCapitalize="none"
+                  style={styles.inputPassword}
+                />
+                {/* {console.log(
                 user.dni,
                 user.numberPhone,
                 user.zipCode,
@@ -289,25 +305,26 @@ export function Register() {
                 user.address,
               )} */}
 
-              {user.dni.length > 7 &&
-              user.numberPhone.length > 9 &&
-              address.zipCode.length > 3 &&
-              address.addressNum.length > 1 &&
-              address.address.length > 2 &&
-              address.value !== null &&
-              valueCountry !== null &&
-              valueLocalidad !== null ? (
-                <Button
-                  onPress={() => {
-                    dispatch(register(user.email, user.pass, user));
-                  }}
-                  title="REGISTRATE"
-                />
-              ) : null}
-            </ScrollView>
-          </View>
-        )}
-      </ScrollView>
+                {user.dni.length > 7 &&
+                user.phoneNumber.length > 9 &&
+                address.zipCode.length > 3 &&
+                address.number.length > 1 &&
+                address.street.length > 2 &&
+                address.province !== null &&
+                valueCountry !== null &&
+                valueLocalidad !== null ? (
+                  <Button
+                    onPress={() => {
+                      dispatch(register(user, password));
+                    }}
+                    title="REGISTRATE"
+                  />
+                ) : null}
+              </ScrollView>
+            </View>
+          )}
+        </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }

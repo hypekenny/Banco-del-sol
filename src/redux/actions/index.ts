@@ -2,17 +2,16 @@ import axios from 'axios';
 import firebase from 'firebase';
 
 // import { resFromBack } from '../../types/Types';
-import { UserRegister, resFromBack } from '../../types/Types';
+import { resFromBack, userType } from '../../types/Types';
 
 require('firebase/firebase-auth');
 
 export const REGISTER = 'REGISTER';
 export const SET_USER = 'SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
+export const ALERT_ERROR = 'ALERT_ERROR';
 
-
-
-export function register(user: any, password: string) {
+export function register(user: userType, password: string) {
   return (dispatch: any) => {
     firebase
       .auth()
@@ -29,7 +28,10 @@ export function register(user: any, password: string) {
                 },
               })
               .then(responseAgain => {
-                console.log('el back dice', responseAgain);
+                dispatch({
+                  type: SET_USER,
+                  payload: responseAgain.data.user,
+                });
                 dispatch({
                   type: SET_USER,
                   payload: responseAgain.data.user,
@@ -38,11 +40,16 @@ export function register(user: any, password: string) {
                   type: SET_ACCOUNT,
                   payload: responseAgain.data.account,
                 });
+                dispatch({
+                  type: ALERT_ERROR,
+                  payload: alert('El usuario fue creado con exito'),
+                });
+                console.log('el back dice', responseAgain);
               });
           })
           .catch(error => console.log('a', error));
       })
-      .catch(() => alert('El mail no está registrado'));
+      .catch(() => alert('Ese Email ya existe '));
   };
 }
 
