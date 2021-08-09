@@ -34,10 +34,11 @@ export const Main = () => (
       component={Login}
       options={{ headerTitle: 'Login' }}
     />
+
     <LoginStack.Screen
-      name="RegisterStep1"
+      name="Register"
       component={Register}
-      options={{ headerTitle: 'RegisterStep1' }}
+      options={{ headerTitle: 'Register' }}
     />
     <LoginStack.Screen
       name="Home"
