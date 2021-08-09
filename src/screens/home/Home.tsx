@@ -10,7 +10,6 @@ import { Start } from '../start/Start';
 import { Register } from '../register/Register';
 import { Login } from '../login/Login';
 import { AddFunds } from '../addFunds/AddFunds';
-import colors from '../../constants/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -41,30 +40,34 @@ function enviarDinero() {
 }
 
 function HomeScreen() {
-  const [balance, setBalance] = useState<number>(0);
+  const [balance, setBalance] = useState<string>('0');
 
-  const [ing, setIng] = useState<number>(0);
+  const [ing, setIng] = useState<string>('0');
 
-  const [gast, setGast] = useState<number>(0);
+  const [gast, setGast] = useState<string>('0');
 
   useEffect(() => {
-    setBalance(500);
-    setIng(12);
-    setGast(12);
+    setBalance('54,000.00');
+    setIng('5,750');
+    setGast('3,100.5');
   }, []);
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <View style={styles.view1}>
-        <Text style={{ fontSize: 40 }}>Balance</Text>
-        <Text style={{ fontSize: 30 }}>${balance}</Text>
+        <Text style={{ fontSize: 20, fontWeight: '100', color: '#3b3b3b' }}>
+          Balance
+        </Text>
+        <Text style={{ fontSize: 40, fontWeight: '900' }}>${balance}</Text>
       </View>
 
-      <LinearGradient
+      {/* <LinearGradient
         colors={[colors.primary, colors.secondary]}
         style={styles.container2}
-      >
-        <View>
+      > */}
+      {/* <View  */}
+      <View style={styles.box}>
+        <View style={styles.boxt}>
           <Text style={styles.textGeneral}>General</Text>
           <View
             style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}
@@ -73,11 +76,11 @@ function HomeScreen() {
             <Text style={styles.text}>Gastos</Text>
           </View>
           <View style={styles.view2}>
-            <Text style={styles.text}>${ing}</Text>
-            <Text style={styles.text}>${gast}</Text>
+            <Text style={styles.textNum}>${ing}</Text>
+            <Text style={styles.textNum}>${gast}</Text>
           </View>
         </View>
-      </LinearGradient>
+      </View>
 
       <View style={styles.view3}>
         <View>

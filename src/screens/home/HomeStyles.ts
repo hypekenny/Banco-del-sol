@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   view3: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginBottom: 150,
+    marginBottom: 120,
     backgroundColor: 'white',
   },
   view: {
@@ -93,11 +93,19 @@ export const styles = StyleSheet.create({
   },
   textGeneral: {
     fontSize: 25,
+    fontWeight: '800',
     textAlign: 'center',
+    marginTop: 15,
   },
   text: {
-    fontSize: 18,
-    marginTop: 15,
+    fontSize: 20,
+    marginTop: 19,
+    fontWeight: '100',
+  },
+  textNum: {
+    fontSize: 20,
+    marginTop: 19,
+    fontWeight: 'bold',
   },
   styleIcon: {
     marginTop: 40,
@@ -132,5 +140,34 @@ export const styles = StyleSheet.create({
   },
   footer: {
     backgroundColor: '#000',
+  },
+
+  box: {
+    borderWidth: 1,
+    height: 190,
+    width: 330,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    borderRadius: 18,
+    borderColor: colors.primary,
+    marginBottom: 29,
+  },
+  boxt: {
+    height: '105%',
+    width: '104%',
+    borderRadius: 18,
+    // marginBottom: '15%',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 1,
+
+    elevation: 8,
+    marginTop: -9,
+    marginLeft: -5,
+    // marginRight: 'auto',
   },
 });
