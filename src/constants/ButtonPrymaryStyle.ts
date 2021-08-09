@@ -19,7 +19,6 @@ export const ButtonPrimaryStyle = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 26,
-
     elevation: 14,
   },
   input: {
@@ -39,8 +38,8 @@ export const ButtonPrimaryStyle = StyleSheet.create({
     elevation: 14,
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 30,
+    marginBottom: 10,
   },
   text: {
     color: colors.primary,
