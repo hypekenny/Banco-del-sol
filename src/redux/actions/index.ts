@@ -8,7 +8,6 @@ export const REGISTER = 'REGISTER';
 export const SET_USER = 'SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
 
-
 export function register(user: any, password: string) {
   return (dispatch: any) => {
     firebase
@@ -52,6 +51,7 @@ export function login(email: string, password: string) {
         response.user
           ?.getIdToken(true)
           .then(idToken => {
+            console.log(idToken);
             axios
               .get<resFromBack>(`http://localhost:3001/api/user/`, {
                 headers: {
