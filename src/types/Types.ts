@@ -44,10 +44,10 @@ export type mainScreenNavigationProp = StackNavigationProp<
 
 export type MainProps = { navigation: mainScreenNavigationProp };
 
-export type address = {
+export type addressType = {
   street: string;
-  number: number;
-  zipCode: number;
+  number: string;
+  zipCode: string;
   city: string;
   province: string;
   country: string;
@@ -60,7 +60,7 @@ export type userType = {
   lastName: string;
   birthdate: string;
   phoneNumber: string;
-  address: address;
+  address: addressType;
 };
 
 export interface accountType {
@@ -73,7 +73,6 @@ export type resFromBack = {
   user: userType;
   account: Object;
 };
-
 
 export interface RootState {
   account: accountType;

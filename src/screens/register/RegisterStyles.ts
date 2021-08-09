@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#FF6C5D',
     paddingVertical: 0,
-
     paddingLeft: 8,
     paddingRight: 8,
     marginTop: 10,
@@ -24,10 +23,11 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#FF6C5D',
     paddingVertical: 0,
-
+    justifyContent: 'center',
     paddingLeft: 8,
     paddingRight: 8,
     marginTop: 30,
+    outline: 'none',
   },
   inputRegister: {
     borderRadius: 50,
@@ -35,10 +35,8 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#FF6C5D',
     paddingVertical: 0,
-
     paddingLeft: 8,
     paddingRight: 8,
-    // marginTop: -40,
   },
   btn: {
     backgroundColor: 'blue',
@@ -53,5 +51,16 @@ export const styles = StyleSheet.create({
   registertwo: {
     width: 0,
     height: 0,
+  },
+  ellipse: {
+    position: 'relative',
+    zIndex: 20,
+    bottom: '-25%',
+    marginTop: '-50%',
+    left: '20%',
+    width: '60%',
+    height: '60%',
+    borderRadius: 999,
+    transform: [{ scaleX: 3 }],
   },
 });
