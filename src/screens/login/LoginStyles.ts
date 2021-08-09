@@ -5,40 +5,13 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
+    justifyContent: 'center',
     padding: 10,
   },
-  inputEmail: {
-    borderRadius: 50,
-    height: 45,
-    borderWidth: 2,
-    borderColor: '#FF6C5D',
-    paddingVertical: 0,
-
-    paddingLeft: 8,
-    paddingRight: 8,
-    marginTop: 10,
-  },
-  inputPassword: {
-    borderRadius: 50,
-    height: 45,
-    borderWidth: 2,
-    borderColor: '#FF6C5D',
-    paddingVertical: 0,
-
-    paddingLeft: 8,
-    paddingRight: 8,
-    marginTop: -40,
-  },
-  inputRegister: {
-    borderRadius: 50,
-    height: 45,
-    borderWidth: 2,
-    borderColor: '#FF6C5D',
-    paddingVertical: 0,
-
-    paddingLeft: 8,
-    paddingRight: 8,
-    // marginTop: -40,
+  inputContainer: {
+    flex: 1,
+    backgroundColor: colors.white,
+    justifyContent: 'center',
   },
   btn: {
     backgroundColor: 'blue',
@@ -56,5 +29,7 @@ export const styles = StyleSheet.create({
   },
   text: {
     color: 'blue',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 });

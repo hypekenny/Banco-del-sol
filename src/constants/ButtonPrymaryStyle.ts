@@ -11,7 +11,7 @@ export const ButtonPrimaryStyle = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.primary,
     backgroundColor: '#ffffff',
-    padding: 10,
+    padding: 15,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -21,6 +21,26 @@ export const ButtonPrimaryStyle = StyleSheet.create({
     shadowRadius: 26,
 
     elevation: 14,
+  },
+  input: {
+    width: '90%',
+    borderRadius: 25,
+    borderWidth: 2,
+    borderColor: colors.primary,
+    backgroundColor: '#ffffff',
+    padding: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 26,
+    elevation: 14,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 20,
+    marginBottom: 20,
   },
   text: {
     color: colors.primary,
