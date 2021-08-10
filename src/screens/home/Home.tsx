@@ -8,13 +8,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './HomeStyles';
-import { Start } from '../start/Start';
-import { Register } from '../register/Register';
-import { Login } from '../login/Login';
+import { Transactions } from '../transacciones/Transactions';
 import { AddFunds } from '../addFunds/AddFunds';
 import { logout } from '../../redux/actions';
-import { loginStackParamList } from '../../types/Types';
-import { resFromBack } from '../../types/Types';
+import { loginStackParamList, resFromBack } from '../../types/Types';
+import { Account } from '../account/Account';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,14 +33,6 @@ const theme = {
     },
   },
 };
-
-function recargarDinero() {
-  console.log('recargaste dinero');
-}
-
-function enviarDinero() {
-  console.log('enviaste dinero');
-}
 
 type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
@@ -73,12 +63,6 @@ function HomeScreen({ navigation }: Props) {
         </Text>
         <Text style={{ fontSize: 40, fontWeight: '900' }}>${balance}</Text>
       </View>
-
-      {/* <LinearGradient
-        colors={[colors.primary, colors.secondary]}
-        style={styles.container2}
-      > */}
-      {/* <View  */}
       <View style={styles.box}>
         <View style={styles.boxt}>
           <Text style={styles.textGeneral}>General</Text>
@@ -106,7 +90,10 @@ function HomeScreen({ navigation }: Props) {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={enviarDinero} style={styles.bottonEnviar}>
+          <TouchableOpacity
+            onPress={() => navigation.push('Transfer')}
+            style={styles.bottonEnviar}
+          >
             <Ionicons style={styles.styleIcon1} name="send" size={28} />
             <Text style={styles.bottonTextE}>Enviar Dinero</Text>
           </TouchableOpacity>
@@ -121,23 +108,20 @@ const screensOptions = (route: any, color: string) => {
     case 'Home':
       iconName = 'home';
       break;
-    case 'Start':
-      iconName = 'star-face';
-      break;
-    case 'Register':
-      iconName = 'account-edit';
-      break;
-    case 'Login':
-      iconName = 'account-check';
+    case 'Transacciones':
+      iconName = 'swap-horizontal-bold';
       break;
     case 'Estadisticas':
-      iconName = 'cards-heart';
+      iconName = 'trending-up';
+      break;
+    case 'Mi Cuenta':
+      iconName = 'bank';
       break;
     default:
       break;
   }
   return (
-    <Icon type="material-community" name={iconName} size={25} color={color} />
+    <Icon type="material-community" name={iconName} size={27} color={color} />
   );
 };
 
@@ -155,7 +139,16 @@ export const Home = ({ navigation }: Props) => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => screensOptions(route, color),
         tabBarActiveTintColor: '#ff4b6e',
-        tabBarInactiveTintColor: '#ff9349',
+        tabBarInactiveTintColor: 'white',
+        tabBarActiveBackgroundColor: 'white',
+        tabBarBackground: () => (
+          <LinearGradient
+            colors={['#ff4b6e', '#ff9349']}
+            style={{ flex: 1 }}
+            start={{ x: 0, y: 1 }}
+            end={{ x: 0, y: 0 }}
+          />
+        ),
       })}
     >
       <Tab.Screen
@@ -177,17 +170,16 @@ export const Home = ({ navigation }: Props) => {
             <ThemeProvider theme={theme}>
               <Button
                 onPress={() => exit()}
-                title="Cerrar sesión"
+                title="Cerrar Sesion"
                 type="clear"
               />
             </ThemeProvider>
           ),
         }}
       />
-      <Tab.Screen name="Start" component={Start} />
-      <Tab.Screen name="Register" component={Register} />
-      <Tab.Screen name="Login" component={Login} />
+      <Tab.Screen name="Transacciones" component={Transactions} />
       <Tab.Screen name="Estadisticas" component={AddFunds} />
+      <Tab.Screen name="Mi Cuenta" component={Account} />
     </Tab.Navigator>
   );
 };
