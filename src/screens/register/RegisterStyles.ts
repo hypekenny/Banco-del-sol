@@ -63,4 +63,7 @@ export const styles = StyleSheet.create({
     borderRadius: 999,
     transform: [{ scaleX: 3 }],
   },
+  textError: {
+    color: 'red'
+  }
 });
