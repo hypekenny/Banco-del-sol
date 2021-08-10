@@ -19,7 +19,6 @@ const initialState = {
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
-  console.log('reducer ', action);
   switch (action.type) {
     case REGISTER:
       return {
@@ -27,7 +26,6 @@ export default function rootReducer(state = initialState, action: actionType) {
         user: action.payload,
       };
     case SET_USER:
-      console.log('c', action.payload);
       return {
         ...state,
         user: action.payload,

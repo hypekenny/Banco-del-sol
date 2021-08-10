@@ -19,7 +19,6 @@ export function register(user: userType, password: string) {
         response.user
           ?.getIdToken(true)
           .then(idToken => {
-            console.log(idToken);
             axios
               .post<resFromBack>(`http://localhost:3001/api/user/`, user, {
                 headers: {
@@ -36,12 +35,11 @@ export function register(user: userType, password: string) {
                   payload: responseAgain.data.account,
                 });
                 alert('El usuario fue creado con exito');
-                console.log('el back dice', responseAgain);
               });
           })
-          .catch(error => console.log('a', error));
+          .catch(error => console.error(error));
       })
-      .catch(() => alert('Ese Email ya existe '));
+      .catch(error => console.error(error));
   };
 }
 
@@ -54,7 +52,6 @@ export function login(email: string, password: string) {
         response.user
           ?.getIdToken(true)
           .then(idToken => {
-            console.log(idToken);
             axios
               .get<resFromBack>(`http://localhost:3001/api/user/`, {
                 headers: {
@@ -62,8 +59,6 @@ export function login(email: string, password: string) {
                 },
               })
               .then(responseFromBack => {
-                console.log('Response from back', responseFromBack.data);
-                console.log('user from back', responseFromBack.data.user);
                 dispatch({
                   type: SET_USER,
                   payload: responseFromBack.data.user,
@@ -74,9 +69,9 @@ export function login(email: string, password: string) {
                 });
               });
           })
-          .catch(error => console.log('a', error));
+          .catch(error => console.error(error));
       })
-      .catch(() => alert('El mail no está registrado'));
+      .catch(error => console.error(error));
   };
 }
 
@@ -101,4 +96,37 @@ export function fetchCvu() {
       payload: true,
     });
   };
+}
+
+export function updateBalance(value: number) {
+  firebase.auth().onAuthStateChanged(async user => {
+    try {
+      if (user) {
+        const token = await user.getIdToken(true);
+        const response = await axios.put(
+          `http://localhost:3001/api/account`,
+          { value },
+          {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        if (response.data) {
+          return (dispatch: any) => {
+            dispatch({
+              type: SET_ACCOUNT,
+              payload: response.data.account,
+            });
+          };
+        }
+      } else {
+        console.log('por favor vuelva a autenticarse');
+        return null;
+      }
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  });
 }

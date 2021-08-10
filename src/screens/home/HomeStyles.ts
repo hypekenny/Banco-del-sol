@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 100,
+    marginTop: 90,
   },
   view2: {
     flexDirection: 'row',
@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     marginBottom: 120,
     backgroundColor: 'white',
+    marginTop: 10,
   },
   view: {
     backgroundColor: colors.white,
@@ -121,6 +122,11 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     color: '#ff4b6e',
   },
+  styleIcon2: {
+    // marginTop: 40,
+    marginLeft: 10,
+    color: 'white',
+  },
   container2: {
     marginLeft: 70,
     width: 250,
@@ -139,13 +145,11 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 26,
-
     elevation: 14,
   },
   footer: {
     backgroundColor: '#000',
   },
-
   box: {
     borderWidth: 1,
     height: 190,
@@ -154,24 +158,19 @@ export const styles = StyleSheet.create({
     marginRight: 'auto',
     borderRadius: 18,
     borderColor: colors.primary,
-    marginBottom: 29,
+    marginBottom: 30,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 13.16,
+    elevation: 14,
   },
   boxt: {
     height: '105%',
     width: '104%',
     borderRadius: 18,
-    // marginBottom: '15%',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 1,
-
-    elevation: 8,
-    marginTop: -9,
-    marginLeft: -5,
-    // marginRight: 'auto',
   },
 });
