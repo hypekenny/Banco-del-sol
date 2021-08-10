@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { ThemeProvider, Button, Icon } from 'react-native-elements';
@@ -14,12 +14,9 @@ import { Login } from '../login/Login';
 import { AddFunds } from '../addFunds/AddFunds';
 import { logout } from '../../redux/actions';
 import { loginStackParamList } from '../../types/Types';
+import { resFromBack } from '../../types/Types';
 
 const Tab = createBottomTabNavigator();
-
-type Props = {
-  navigation: StackNavigationProp<loginStackParamList, 'List'>;
-};
 
 const theme = {
   Button: {
@@ -47,18 +44,26 @@ function enviarDinero() {
   console.log('enviaste dinero');
 }
 
-function HomeScreen() {
+type Props = {
+  navigation: StackNavigationProp<loginStackParamList, 'List'>;
+};
+
+function HomeScreen({ navigation }: Props) {
   const [balance, setBalance] = useState<string>('0');
 
   const [ing, setIng] = useState<string>('0');
 
   const [gast, setGast] = useState<string>('0');
 
+  const userStore = useSelector((state: resFromBack) => state.account);
+
   useEffect(() => {
-    setBalance('54,000.00');
+    if (userStore) {
+      setBalance(userStore.balance);
+    }
     setIng('5,750');
     setGast('3,100.5');
-  }, []);
+  }, [userStore]);
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -93,7 +98,7 @@ function HomeScreen() {
       <View style={styles.view3}>
         <View>
           <TouchableOpacity
-            onPress={recargarDinero}
+            onPress={() => navigation.push('AddFunds')}
             style={styles.bottonRecargar}
           >
             <Ionicons style={styles.styleIcon} name="add-circle" size={28} />
@@ -135,14 +140,9 @@ const screensOptions = (route: any, color: string) => {
     <Icon type="material-community" name={iconName} size={25} color={color} />
   );
 };
-// const [name, setName] = useState<string>('');
-// setName('Seba');
+
 export const Home = ({ navigation }: Props) => {
   const dispatch = useDispatch();
-
-  /*  useEffect(() => {
-    return dispatch(logout());
-  }, []); */
 
   function exit() {
     dispatch(logout());
