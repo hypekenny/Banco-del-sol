@@ -5,6 +5,9 @@ import { firebaseConfig } from '../constants/firebase.config';
 import { loginStackParamList } from '../types/Types';
 import { config } from '../screens/index';
 
+import { RegisterFormix } from '../screens/register/Registerformix';
+
+
 firebase.initializeApp(firebaseConfig);
 
 const {
@@ -37,8 +40,8 @@ export const Main = () => (
 
     <LoginStack.Screen
       name="Register"
-      component={Register}
-      options={{ headerTitle: 'Register' }}
+      component={RegisterFormix}
+      options={{ headerTitle: 'RegisterFormix' }}
     />
     <LoginStack.Screen
       name="Home"

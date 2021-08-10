@@ -64,6 +64,7 @@ export const styles = StyleSheet.create({
     transform: [{ scaleX: 3 }],
   },
   textError: {
+    display: 'hidden',
     color: 'red'
   }
 });
