@@ -9,6 +9,7 @@ firebase.initializeApp(firebaseConfig);
 
 const {
   Start,
+  StartView,
   Login,
   Register,
   Home,
@@ -25,9 +26,9 @@ const LoginStack = createStackNavigator<loginStackParamList>();
 export const Main = () => (
   <LoginStack.Navigator>
     <LoginStack.Screen
-      name="Start"
-      component={Start}
-      options={{ headerTitle: 'Start' }}
+      name="StartView"
+      component={StartView}
+      options={{ headerShown: false, }}
     />
     <LoginStack.Screen
       name="Login"

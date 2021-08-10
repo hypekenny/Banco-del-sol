@@ -7,6 +7,7 @@ export type Props = {
 export type loginStackParamList = {
   List: undefined;
   Start: undefined;
+  StartView: undefined;
   Login: undefined;
   Register: undefined;
   RegisterV2: undefined;
