@@ -1,10 +1,10 @@
 import React from 'react';
-import { TextInput as RNTextInput, View, StyleSheet } from 'react-native';
+import { TextInput as RNTextInput, View, Text, StyleSheet } from 'react-native';
 import { Entypo as Icon } from '@expo/vector-icons';
 
 
-export default function TextInput({ icon, ...otherProps }) {
-  const validationColor = '#223e4b';
+export default function TextInput({ icon, error, touched, ...otherProps }) {
+  const validationColor = !touched ? '#223e4b' : error ? '#FF5A5F' : '#223e4b';
   return (
     <View
       style={{
@@ -27,6 +27,8 @@ export default function TextInput({ icon, ...otherProps }) {
           {...otherProps}
         />
       </View>
+      {!touched ? null : error ? <Text style={{color:'red'}}>{error}</Text> : null}
+      
     </View>
   );
 }
