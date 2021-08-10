@@ -24,6 +24,16 @@ export const styles = StyleSheet.create({
 
     elevation: 14,
   },
+  h1: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  h2: {
+    fontSize: 21,
+    fontWeight: 'normal',
+    color: 'white',
+  },
   block: {
     paddingLeft: 10,
     paddingRight: 10,

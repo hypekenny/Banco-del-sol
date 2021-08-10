@@ -8,6 +8,7 @@ export const REGISTER = 'REGISTER';
 export const SET_USER = 'SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
 export const LOG_OUT = 'LOG_OUT';
+export const FETCH_CVU = 'FETCH_CVU';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -84,6 +85,15 @@ export function logout() {
           payload: {},
         });
       });
+  };
+}
+
+export function fetchCvu() {
+  return (dispatch: any) => {
+    dispatch({
+      type: FETCH_CVU,
+      payload: true,
+    });
   };
 }
 
