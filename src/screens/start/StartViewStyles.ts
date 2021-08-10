@@ -26,9 +26,10 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   image: {
-    width: 294,
-    height: 171,
-    transform: [{ translateY: -0.65*height},{ translateX: 0.2*width}],
+    width: width *(294/411),
+    height: height * (171/823),
+    transform: [{ translateY: -0.9*height}],
+    alignSelf: 'center',
   },
  
 });

@@ -43,13 +43,13 @@ export const StartView = ({ navigation }: Props) => {
                   <Text style={ButtonPrimaryStyle.text}>Iniciar Sesión</Text>
                 </TouchableOpacity>
         </View>
-        <Image
+        
+    </ LinearGradient>
+    
+    <Image
         source={require('../../../Img-Sant/Banco-del-Sol-Logo.png')}
         style={styles.image}
       />
-    </ LinearGradient>
-    
-        
     
     
       </View>
