@@ -86,3 +86,36 @@ export function logout() {
       });
   };
 }
+
+export function updateBalance(value: number) {
+  firebase.auth().onAuthStateChanged(async user => {
+    try {
+      if (user) {
+        const token = await user.getIdToken(true);
+        const response = await axios.put(
+          `http://localhost:3001/api/account`,
+          { value },
+          {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        if (response.data) {
+          return (dispatch: any) => {
+            dispatch({
+              type: SET_ACCOUNT,
+              payload: response.data.account,
+            });
+          };
+        }
+      } else {
+        console.log('por favor vuelva a autenticarse');
+        return null;
+      }
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  });
+}
