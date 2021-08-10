@@ -114,6 +114,7 @@ export function updateBalance(value: number) {
         );
         if (response.data) {
           return (dispatch: any) => {
+            console.log('response', response.data);
             dispatch({
               type: SET_ACCOUNT,
               payload: response.data.account,
