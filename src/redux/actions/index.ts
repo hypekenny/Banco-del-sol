@@ -98,6 +98,7 @@ export function fetchCvu() {
 }
 
 export function updateBalance(value: number) {
+  console.log('a', value);
   firebase.auth().onAuthStateChanged(async user => {
     try {
       if (user) {
