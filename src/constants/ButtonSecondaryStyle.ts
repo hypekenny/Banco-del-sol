@@ -22,16 +22,17 @@ export const ButtonSecondaryStyle = StyleSheet.create({
 
     elevation: 14,
   },
-  buttonDisable: {
-    width: 250,
+  buttondisabled: {
+    zIndex: 80,
+    width: '90%',
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 20,
     borderRadius: 25,
     borderWidth: 2,
-    borderColor: 'white',
-    backgroundColor: 'grey',
-    padding: 10,
+    borderColor: colors.primary,
+    backgroundColor: '#deac98de',
+    padding: 15,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -39,8 +40,10 @@ export const ButtonSecondaryStyle = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 26,
-
     elevation: 14,
+
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   text: {
     color: 'white',
