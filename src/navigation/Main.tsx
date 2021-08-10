@@ -28,7 +28,7 @@ export const Main = () => (
     <LoginStack.Screen
       name="StartView"
       component={StartView}
-      options={{ headerTitle: '' }}
+      options={{ headerShown: false, }}
     />
     <LoginStack.Screen
       name="Login"
