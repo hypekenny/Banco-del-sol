@@ -47,6 +47,6 @@ export const ButtonPrimaryStyle = StyleSheet.create({
     paddingRight: 5,
     alignSelf: 'center',
     fontSize: 18,
-    fontWeight: '500',
+    fontWeight: '700',
   },
 });

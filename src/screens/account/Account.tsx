@@ -1,21 +1,29 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './AccountStyles';
 import { resFromBack } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
+import { fetchCvu } from '../../redux/actions';
+
+interface store {
+  cvuAsociate: boolean;
+}
 
 export function Account() {
+  const dispatch = useDispatch();
+
+  const cvuAsociate = useSelector((state: store) => state.cvuAsociate);
+
   const accountDetails = useSelector((state: resFromBack) => state.account);
+
   const userDetails = useSelector((state: resFromBack) => state.user);
 
-  const [data, setData] = useState(false);
-
   function asociateCVU() {
-    setData(true);
+    dispatch(fetchCvu());
     alert('CVU asociado');
   }
 
@@ -25,7 +33,7 @@ export function Account() {
 
   return (
     <View style={styles.container}>
-      {data ? (
+      {cvuAsociate ? (
         <LinearGradient
           colors={[colors.primary, colors.secondary]}
           style={styles.container2}
@@ -51,7 +59,7 @@ export function Account() {
         <View />
       )}
       <View style={styles.buttonsContainer}>
-        {!data ? (
+        {!cvuAsociate ? (
           <TouchableOpacity
             style={ButtonPrimaryStyle.button}
             onPress={() => asociateCVU()}
@@ -69,6 +77,7 @@ export function Account() {
         ) : (
           <View />
         )}
+
         <TouchableOpacity
           style={ButtonPrimaryStyle.button}
           onPress={() => shareCVU()}

@@ -1,4 +1,10 @@
-import { REGISTER, SET_USER, SET_ACCOUNT, LOG_OUT } from '../actions/index';
+import {
+  REGISTER,
+  SET_USER,
+  SET_ACCOUNT,
+  LOG_OUT,
+  FETCH_CVU,
+} from '../actions/index';
 
 interface actionType {
   type: string;
@@ -9,6 +15,7 @@ const initialState = {
   account: {},
   user: {},
   token: '',
+  cvuAsociate: false,
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -35,6 +42,11 @@ export default function rootReducer(state = initialState, action: actionType) {
         ...state,
         account: action.payload,
         user: action.payload,
+      };
+    case FETCH_CVU:
+      return {
+        ...state,
+        cvuAsociate: action.payload,
       };
     default:
       return state;
