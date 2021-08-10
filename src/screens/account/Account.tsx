@@ -1,16 +1,18 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './AccountStyles';
+import { resFromBack } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
-import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import colors from '../../constants/colors';
 
 export function Account() {
-  useEffect(() => {
-    console.log('traigo de redux los datos del User');
-  }, []);
+  const accountDetails = useSelector((state: resFromBack) => state.account);
+  const userDetails = useSelector((state: resFromBack) => state.user);
+
+  console.log('userDetails', userDetails);
 
   function asociateCVU() {
     alert('CVU asociado');
@@ -28,16 +30,18 @@ export function Account() {
       >
         <View>
           <View style={styles.block}>
-            <Text>CVU</Text>
-            <Text>00000526789452134567</Text>
+            <Text style={styles.h1}>CVU</Text>
+            <Text style={styles.h2}>{accountDetails.cvu}</Text>
           </View>
           <View style={styles.block}>
-            <Text>Nombre del Banco</Text>
-            <Text>Banco del Sol</Text>
+            <Text style={styles.h1}>Nombre del Banco</Text>
+            <Text style={styles.h2}>Banco del Sol</Text>
           </View>
           <View style={styles.block}>
-            <Text>Nombre del Titular</Text>
-            <Text>usuario loggeado</Text>
+            <Text style={styles.h1}>Titular</Text>
+            <Text
+              style={styles.h2}
+            >{`${userDetails.name} ${userDetails.lastName}`}</Text>
           </View>
         </View>
       </LinearGradient>
@@ -57,17 +61,17 @@ export function Account() {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          style={ButtonSecondaryStyle.button}
+          style={ButtonPrimaryStyle.button}
           onPress={() => shareCVU()}
         >
           <View style={styles.ImageAndButton}>
             <MaterialIcons
               name="share"
               size={32}
-              color="white"
+              color={colors.primary}
               style={{ paddingLeft: 5, paddingRight: 5 }}
             />
-            <Text style={ButtonSecondaryStyle.text}>Compartir CVU</Text>
+            <Text style={ButtonPrimaryStyle.text}>Compartir CVU</Text>
           </View>
         </TouchableOpacity>
       </View>

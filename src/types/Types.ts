@@ -68,10 +68,10 @@ export interface accountType {
   balance: number;
   cvu: string;
 }
-
+/* OJO que toque el account */
 export type resFromBack = {
   user: userType;
-  account: Object;
+  account: accountType;
 };
 
 export interface RootState {
