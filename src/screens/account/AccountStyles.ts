@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     color: 'white',
   },
   h2: {
-    fontSize: 19,
+    fontSize: 21,
     fontWeight: 'normal',
     color: 'white',
   },
