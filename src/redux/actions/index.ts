@@ -40,8 +40,7 @@ export function register(user: userType, password: string) {
           })
           .catch(error => console.log('a', error));
       })
-      .catch(() => alert('Ese Email ya existe '));
-  };
+      .catch(error => console.error(error));  };
 }
 
 export function login(email: string, password: string) {

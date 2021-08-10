@@ -1,113 +1,247 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   Button,
   Text,
-  TextInput,
   SafeAreaView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import Select from 'react-select-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { styles } from './RegisterStyles';
 import { register } from '../../redux/actions';
 import { resFromBack, Props } from '../../types/Types';
+import TextInput from '../../components/TextInputFormix';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+const yup = require('yup');
+require('yup-password')(yup);
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { Entypo as Icon } from '@expo/vector-icons';
 
 export function Register({ navigation }: Props) {
   const userStore = useSelector((state: resFromBack) => state.user);
-  const [user, setUser] = useState({
-    name: '',
-    lastName: '',
-    email: '',
-    dni: 0,
-    phoneNumber: '',
-    birthdate: '',
-    address: {
-      street: '',
-      number: '',
-      zipCode: '',
-      country: '',
-      province: '',
-      city: '',
-    },
+
+  const FormSchema = Yup.object().shape({
+    name: Yup.string().required('Requerido!').min(2, 'Invalido!'),
+    lastName: Yup.string().required('Requerido!').min(2, 'Invalido!'),
+    email: Yup.string().email('E-mail invalido ').required('Requerido!'),
+    pass: yup
+      .string()
+      .required('Requerido!')
+      .min(6, 'Minimo 6 caracteres')
+      .minNumbers(3, 'Debe contener 3 numeros')
+      .minUppercase(1, 'Debe contener una mayuscula')
+      .minSymbols(1, 'Debe contener un simbolo'),
+    passConfirm: Yup.string()
+      .required('Requerido!')
+      .oneOf([Yup.ref('pass'), null], 'Deben coincidir'),
+    dni: Yup.number().typeError('Debe ser un numero').required('Requerido!'),
+    phoneNumber: Yup.number()
+      .typeError('Debe ser un numero')
+      .required('Requerido!'),
+    //birthdate: Yup.date(),
+    birthdate: Yup.string().required('Requerido!'),
+    address: Yup.object().shape({
+      street: Yup.string().required('Requerido!'),
+      number: Yup.number()
+        .typeError('Debe ser un numero')
+        .required('Requerido!'),
+      zipCode: Yup.number()
+        .typeError('Debe ser un numero')
+        .required('Requerido!'),
+      province: Yup.string().required('Requerido!'),
+      city: Yup.string().required('Requerido!'),
+    }),
   });
+
+  const { handleChange, handleSubmit, handleBlur, values, errors, touched } =
+    useFormik({
+      validationSchema: FormSchema,
+      initialValues: {
+        name: '',
+        lastName: '',
+        email: '',
+        pass: '',
+        passConfirm: '',
+        dni: '',
+        phoneNumber: '',
+        birthdate: '',
+        address: {
+          street: '',
+          number: '',
+          zipCode: '',
+          city: '',
+          province: '',
+        },
+      },
+      onSubmit: values => console.log(values),
+      /* alert(`Email: ${values.email}`), */
+    });
 
   const [step, setStep] = useState(false);
   const dispatch = useDispatch();
-  const [pass, setPass] = useState({ pass: '', confirm: '' });
+
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = date => {
+    values.birthdate = date;
+    hideDatePicker();
+  };
 
   const province = [
     { label: 'Provincia...', value: '' },
-    { label: 'Buenos Aires', value: 'Buenos Aires' },
-  ];
-
-  const city = [
-    { label: 'Localidad', value: '' },
     { label: 'CABA', value: 'CABA' },
+    { label: 'Buenos Aires', value: 'Buenos Aires' },
+    { label: 'Catamarca', value: 'Catamarca' },
+    { label: 'Chaco', value: 'Chaco' },
+    { label: 'Chubut', value: 'Chubut' },
+    { label: 'Córdoba', value: 'Córdoba' },
+    { label: 'Corrientes', value: 'Corrientes' },
+    { label: 'Entre Ríos', value: 'Entre Ríos' },
+    { label: 'Jujuy', value: 'Jujuy' },
+    { label: 'La Pampa', value: 'La Pampa' },
+    { label: 'La Rioja', value: 'La Rioja' },
+    { label: 'Mendoza', value: 'Mendoza' },
+    { label: 'Misiones', value: 'Misiones' },
+    { label: 'Neuquén', value: 'Neuquén' },
+    { label: 'Río Negro', value: 'Río Negro' },
+    { label: 'Salta', value: 'Salta' },
+    { label: 'San Juan', value: 'San Juan' },
+    { label: 'San Luis', value: 'San Luis' },
+    { label: 'Santa Cruz', value: 'Santa Cruz' },
+    { label: 'Santa Fe', value: 'Santa Fe' },
+    { label: 'Santiago del Estero', value: 'Santiago del Estero' },
+    { label: 'Tierra del Fuego', value: 'Tierra del Fuego' },
+    { label: 'Tucumán', value: 'Tucumán' },
   ];
 
+  function send(e) {
+    const {
+      name,
+      lastName,
+      email,
+      dni,
+      phoneNumber,
+      birthdate,
+      address,
+      pass,
+    } = values;
+    const user = {
+      name,
+      lastName,
+      email,
+      dni,
+      phoneNumber,
+      birthdate,
+      address,
+    };
+    dispatch(register(user, pass));
+  }
   return (
     <View style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
         {!step ? (
           <View>
-            <TextInput
-              style={styles.inputPassword}
-              onChangeText={(text: string) => setUser({ ...user, name: text })}
-              placeholderTextColor="black"
-              placeholder="Nombre"
-              value={user.name}
-              autoCapitalize="none"
-            />
+            <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+            >
+              <TextInput
+                icon="user"
+                value={values.name}
+                onChangeText={handleChange('name')}
+                placeholderTextColor="grey"
+                placeholder="Nombre"
+                autoCapitalize="none"
+                onBlur={handleBlur('name')}
+                error={errors.name}
+                touched={touched.name}
+              />
+            </View>
 
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="Apellido"
-              value={user.lastName}
-              onChangeText={(text: string) =>
-                setUser({ ...user, lastName: text })
-              }
-              autoCapitalize="none"
-              style={styles.inputPassword}
-            />
+            <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+            >
+              <TextInput
+                icon="user"
+                placeholderTextColor="grey"
+                value={values.lastName}
+                placeholder="Apellido"
+                onChangeText={handleChange('lastName')}
+                autoCapitalize="none"
+                onBlur={handleBlur('lastName')}
+                error={errors.lastName}
+                touched={touched.lastName}
+              />
+            </View>
 
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="Email"
-              value={user.email}
-              onChangeText={(text: string) => setUser({ ...user, email: text })}
-              autoCapitalize="none"
-              style={styles.inputPassword}
-              keyboardType="email-address"
-            />
+            <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+            >
+              <TextInput
+                icon="mail"
+                placeholderTextColor="grey"
+                value={values.email}
+                placeholder="Email"
+                onChangeText={handleChange('email')}
+                autoCapitalize="none"
+                keyboardType="email-address"
+                onBlur={handleBlur('email')}
+                error={errors.email}
+                touched={touched.email}
+              />
+            </View>
 
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="Contraseña"
-              value={pass.pass}
-              onChangeText={(text: string) => setPass({ ...pass, pass: text })}
-              secureTextEntry
-              autoCapitalize="none"
-              style={styles.inputPassword}
-            />
+            <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+            >
+              <TextInput
+                icon="key"
+                placeholderTextColor="grey"
+                placeholder="Contraseña"
+                value={values.pass}
+                onChangeText={handleChange('pass')}
+                secureTextEntry
+                autoCapitalize="none"
+                onBlur={handleBlur('pass')}
+                error={errors.pass}
+                touched={touched.pass}
+              />
+            </View>
 
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="Repite tu contraseña"
-              value={pass.confirm}
-              onChangeText={(text: string) =>
-                setPass({ ...pass, confirm: text })
-              }
-              secureTextEntry
-              autoCapitalize="none"
-              style={styles.inputPassword}
-            />
+            <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+            >
+              <TextInput
+                icon="key"
+                placeholderTextColor="grey"
+                placeholder="Repite tu contraseña"
+                value={values.passConfirm}
+                onChangeText={handleChange('passConfirm')}
+                secureTextEntry
+                autoCapitalize="none"
+                onBlur={handleBlur('passConfirm')}
+                error={errors.passConfirm}
+                touched={touched.passConfirm}
+              />
+            </View>
 
-            {user.name.length > 2 &&
-            user.email.length > 8 &&
-            pass.pass.length > 6 &&
-            pass.pass === pass.confirm ? (
+            {!errors.name &&
+            !errors.lastName &&
+            !errors.email &&
+            !errors.pass &&
+            !errors.passConfirm &&
+            values.name ? (
               <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
                 <TouchableOpacity
                   style={ButtonSecondaryStyle.button}
@@ -116,152 +250,196 @@ export function Register({ navigation }: Props) {
                   <Text style={ButtonSecondaryStyle.text}>Siguiente</Text>
                 </TouchableOpacity>
               </View>
-            ) : null}
+            ) : (
+              <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                <TouchableOpacity style={ButtonSecondaryStyle.buttondisabled}>
+                  <Text style={ButtonSecondaryStyle.text}>Siguiente</Text>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         ) : (
           <View style={styles.container}>
-            <View
-              style={{
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                marginTop: -20,
-                marginBottom: -30,
-              }}
-            >
-              <TouchableOpacity
-                style={ButtonSecondaryStyle.button}
-                onPress={() => setStep(!step)}
-              >
-                <Text style={ButtonSecondaryStyle.text}>back</Text>
+            <View style={styles.back}>
+              <TouchableOpacity onPress={() => setStep(!step)}>
+                <View style={{ padding: 8 }}>
+                  <Icon name={'chevron-left'} size={30} />
+                </View>
               </TouchableOpacity>
             </View>
 
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="DNI"
-              value={user.dni ? user.dni.toString() : ''}
-              onChangeText={(text: string) =>
-                setUser({ ...user, dni: parseInt(text, 10) })
-              }
-              style={styles.inputPassword}
-              keyboardType="numeric"
-            />
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="Telefono"
-              value={user.phoneNumber}
-              onChangeText={(text: string) =>
-                setUser({ ...user, phoneNumber: text })
-              }
-              autoCapitalize="none"
-              style={styles.inputPassword}
-            />
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="Fecha de nacimiento"
-              value={user.birthdate}
-              onChangeText={(text: string) =>
-                setUser({ ...user, birthdate: text })
-              }
-              autoCapitalize="none"
-              style={styles.inputPassword}
-            />
-            <View style={styles.inputPassword}>
-              <Select
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  e.target.value.length
-                    ? setUser({
-                        ...user,
-                        address: {
-                          ...user.address,
-                          province: e.target.value,
-                        },
-                      })
-                    : null
-                }
-                options={province}
-                value={user.address.province}
-                defaultValue={province[0].value}
+            <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+            >
+              <TextInput
+                icon="wallet"
+                placeholderTextColor="grey"
+                value={values.dni}
+                placeholder="DNI"
+                onChangeText={handleChange('dni')}
+                keyboardType="numeric"
+                onBlur={handleBlur('dni')}
+                error={errors.dni}
+                touched={touched.dni}
               />
             </View>
             <View
-              style={user.address.province.length ? styles.inputPassword : null}
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
             >
-              {user.address.province.length ? (
-                <Select
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    e.target.value.length
-                      ? setUser({
-                          ...user,
-                          address: { ...user.address, city: e.target.value },
-                        })
-                      : null
-                  }
-                  options={city}
-                  value={user.address.province}
-                  defaultValue={city[0].value}
-                />
-              ) : null}
+              <TextInput
+                icon="phone"
+                placeholderTextColor="grey"
+                value={values.phoneNumber}
+                placeholder="Telefono"
+                onChangeText={handleChange('phoneNumber')}
+                keyboardType="numeric"
+                autoCapitalize="none"
+                onBlur={handleBlur('phoneNumber')}
+                error={errors.phoneNumber}
+                touched={touched.phoneNumber}
+              />
             </View>
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="Codigo Postal"
-              value={user.address.zipCode}
-              onChangeText={(text: string) =>
-                setUser({
-                  ...user,
-                  address: { ...user.address, zipCode: text },
-                })
-              }
-              autoCapitalize="none"
-              style={styles.inputPassword}
-            />
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="Direccion NUM"
-              value={user.address.number}
-              onChangeText={(text: string) =>
-                setUser({
-                  ...user,
-                  address: { ...user.address, number: text },
-                })
-              }
-              autoCapitalize="none"
-              style={styles.inputPassword}
-              keyboardType="numeric"
-            />
-            <TextInput
-              placeholderTextColor="black"
-              placeholder="Nombre de calle"
-              value={user.address.street}
-              onChangeText={(text: string) =>
-                setUser({
-                  ...user,
-                  address: { ...user.address, street: text },
-                })
-              }
-              autoCapitalize="none"
-              style={styles.inputPassword}
-            />
-            {user.dni.toString().length > 7 &&
-            user.phoneNumber.length > 9 &&
-            user.address.zipCode.length > 3 &&
-            user.address.number.length > 1 &&
-            user.address.street.length > 2 ? (
+
+            {/* <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+            >
+              <TextInput
+                icon="calendar"
+                placeholderTextColor="grey"
+                value={values.birthdate}
+                placeholder="Nacimiento"
+                onChangeText={handleChange('birthdate')}
+                autoCapitalize="none"
+                onBlur={handleBlur('birthdate')}
+                error={errors.birthdate}
+                touched={touched.birthdate}
+              />
+            </View> */}
+            <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+            >
+              <TouchableOpacity
+                style={styles.birthdateButton}
+                onPress={showDatePicker}
+              >
+                <View style={{ padding: 8 }}>
+                  <Icon name={'calendar'} size={16} />
+                </View>
+                <Text style={styles.birthdateButtonText}>Nacimiento</Text>
+              </TouchableOpacity>
+              <DateTimePickerModal
+                isVisible={isDatePickerVisible}
+                mode="date"
+                onConfirm={handleConfirm}
+                onCancel={hideDatePicker}
+              />
+            </View>
+
+            <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+            >
+              <TextInput
+                icon="key"
+                placeholderTextColor="grey"
+                placeholder="Calle"
+                value={values.address.street}
+                onChangeText={handleChange('address.street')}
+                onBlur={handleBlur('address.street')}
+                error={errors.address?.street}
+                touched={touched.address?.street}
+              />
+            </View>
+            <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+            >
+              <TextInput
+                icon="location"
+                placeholderTextColor="grey"
+                placeholder="Direccion NUM"
+                onChangeText={handleChange('address.number')}
+                value={values.address.number}
+                autoCapitalize="none"
+                keyboardType="numeric"
+                onBlur={handleBlur('address.number')}
+                error={errors.address?.number}
+                touched={touched.address?.number}
+              />
+            </View>
+            <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+            >
+              <TextInput
+                icon="location"
+                placeholderTextColor="grey"
+                placeholder="Codigo Postal"
+                onChangeText={handleChange('address.zipCode')}
+                value={values.address.zipCode}
+                autoCapitalize="none"
+                onBlur={handleBlur('address.zipcode')}
+                error={errors.address?.zipCode}
+                touched={touched.address?.zipCode}
+              />
+            </View>
+            <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+            >
+              <TextInput
+                icon="address"
+                placeholderTextColor="grey"
+                value={values.address.city}
+                placeholder="Ciudad"
+                onChangeText={handleChange('address.city')}
+                autoCapitalize="none"
+                onBlur={handleBlur('address.city')}
+                error={errors.address?.city}
+                touched={touched.address?.city}
+              />
+            </View>
+            <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+            >
+              <View style={styles.birthdateButton}>
+                <View style={{ padding: 8 }}>
+                  <Icon name={'calendar'} size={16} />
+                </View>
+                <Select
+                  style={styles.birthdateButton}
+                  onChange={handleChange('address.province')}
+                  value={values.address.province}
+                  options={province}
+                  defaultValue={province[0].value}
+                />
+              </View>
+            </View>
+            {!errors.dni &&
+            !errors.phoneNumber &&
+            !errors.birthdate &&
+            !errors.address?.street &&
+            !errors.address?.number &&
+            !errors.address?.zipCode &&
+            !errors.address?.city &&
+            !errors.address?.province ? (
               <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
                 <TouchableOpacity
                   style={ButtonSecondaryStyle.button}
-                  onPress={() => dispatch(register(user, pass.pass))}
+                  onPress={() => send(values)}
                 >
-                  <Text style={ButtonSecondaryStyle.text}>REGISTRATE</Text>
+                  <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
                 </TouchableOpacity>
               </View>
-            ) : null}
-            {userStore.email && userStore.email.length
-              ? navigation.push('Home')
-              : null}
+            ) : (
+              <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                <TouchableOpacity style={ButtonSecondaryStyle.buttondisabled}>
+                  <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         )}
+
+        {userStore.email && userStore.email.length
+          ? navigation.push('Home')
+          : null}
       </SafeAreaView>
     </View>
   );

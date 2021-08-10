@@ -17,6 +17,11 @@ export const styles = StyleSheet.create({
     paddingRight: 8,
     marginTop: 10,
   },
+  back: {
+    position: 'absolute',
+    left: -10,
+    top: -15,
+  },
   inputPassword: {
     borderRadius: 50,
     height: 45,
@@ -62,4 +67,17 @@ export const styles = StyleSheet.create({
     borderRadius: 999,
     transform: [{ scaleX: 3 }],
   },
+  textError: {
+    color: 'red',
+  },
+  birthdateButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 48,
+    borderRadius: 8,
+    borderColor: 'grey',
+    borderWidth: StyleSheet.hairlineWidth,
+    padding: 8,
+  },
+  birthdateButtonText: { color: 'grey' },
 });
