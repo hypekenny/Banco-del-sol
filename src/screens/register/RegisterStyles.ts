@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     paddingRight: 8,
     marginTop: 10,
   },
-  back:{
+  back: {
     position: 'absolute',
     left: -10,
     top: -15,
@@ -32,7 +32,6 @@ export const styles = StyleSheet.create({
     paddingLeft: 8,
     paddingRight: 8,
     marginTop: 30,
-    //outline: 'none',
   },
   inputRegister: {
     borderRadius: 50,
