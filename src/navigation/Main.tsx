@@ -39,7 +39,7 @@ export const Main = () => (
     <LoginStack.Screen
       name="Register"
       component={Register}
-      options={{ headerTitle: 'Register' }}
+      options={{ headerTitle: 'RegisterFormix' }}
     />
     <LoginStack.Screen
       name="Home"

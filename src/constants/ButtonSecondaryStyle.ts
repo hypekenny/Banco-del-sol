@@ -22,6 +22,29 @@ export const ButtonSecondaryStyle = StyleSheet.create({
 
     elevation: 14,
   },
+  buttondisabled: {
+    zIndex: 80,
+    width: '90%',
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 20,
+    borderRadius: 25,
+    borderWidth: 2,
+    borderColor: colors.primary,
+    backgroundColor: '#deac98de',
+    padding: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 26,
+    elevation: 14,
+
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
   text: {
     color: 'white',
     paddingLeft: 5,

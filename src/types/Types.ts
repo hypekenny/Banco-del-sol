@@ -56,7 +56,7 @@ export type addressType = {
 
 export type userType = {
   email: string;
-  dni: number;
+  dni: string;
   name: string;
   lastName: string;
   birthdate: string;
