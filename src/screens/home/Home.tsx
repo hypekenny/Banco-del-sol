@@ -39,7 +39,7 @@ type Props = {
 };
 
 function HomeScreen({ navigation }: Props) {
-  const [balance, setBalance] = useState<string>('0');
+  const [balance, setBalance] = useState<number>(0);
 
   const [ing, setIng] = useState<string>('0');
 

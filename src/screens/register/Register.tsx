@@ -1,25 +1,19 @@
 import React, { useState, useRef } from 'react';
-import {
-  View,
-  Button,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import Select from 'react-select-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from 'formik';
+import { Entypo as Icon } from '@expo/vector-icons';
+import * as Yup from 'yup';
 import { styles } from './RegisterStyles';
 import { register } from '../../redux/actions';
 import { resFromBack, Props } from '../../types/Types';
 import TextInput from '../../components/TextInputFormix';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+
 const yup = require('yup');
+
 require('yup-password')(yup);
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { Entypo as Icon } from '@expo/vector-icons';
 
 export function Register({ navigation }: Props) {
   const userStore = useSelector((state: resFromBack) => state.user);
@@ -42,7 +36,6 @@ export function Register({ navigation }: Props) {
     phoneNumber: Yup.number()
       .typeError('Debe ser un numero')
       .required('Requerido!'),
-    //birthdate: Yup.date(),
     birthdate: Yup.string().required('Requerido!'),
     address: Yup.object().shape({
       street: Yup.string().required('Requerido!'),
@@ -126,7 +119,7 @@ export function Register({ navigation }: Props) {
     { label: 'Tucumán', value: 'Tucumán' },
   ];
 
-  function send(e) {
+  function send(e: any) {
     const {
       name,
       lastName,
@@ -136,7 +129,7 @@ export function Register({ navigation }: Props) {
       birthdate,
       address,
       pass,
-    } = values;
+    } = e;
     const user = {
       name,
       lastName,
@@ -263,7 +256,7 @@ export function Register({ navigation }: Props) {
             <View style={styles.back}>
               <TouchableOpacity onPress={() => setStep(!step)}>
                 <View style={{ padding: 8 }}>
-                  <Icon name={'chevron-left'} size={30} />
+                  <Icon name="chevron-left" size={30} />
                 </View>
               </TouchableOpacity>
             </View>
@@ -300,7 +293,7 @@ export function Register({ navigation }: Props) {
               />
             </View>
 
-            {/* <View
+            <View
               style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
             >
               <TextInput
@@ -314,8 +307,8 @@ export function Register({ navigation }: Props) {
                 error={errors.birthdate}
                 touched={touched.birthdate}
               />
-            </View> */}
-            <View
+            </View>
+            {/*    <View
               style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
             >
               <TouchableOpacity
@@ -333,7 +326,7 @@ export function Register({ navigation }: Props) {
                 onConfirm={handleConfirm}
                 onCancel={hideDatePicker}
               />
-            </View>
+            </View> */}
 
             <View
               style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
@@ -400,7 +393,7 @@ export function Register({ navigation }: Props) {
             >
               <View style={styles.birthdateButton}>
                 <View style={{ padding: 8 }}>
-                  <Icon name={'calendar'} size={16} />
+                  <Icon name="calendar" size={16} />
                 </View>
                 <Select
                   style={styles.birthdateButton}
