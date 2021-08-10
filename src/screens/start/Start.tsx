@@ -14,6 +14,9 @@ export const Start = ({ navigation }: Props) => (
   <View style={styles.container}>
     <ScrollView>
       <Text type="header">START</Text>
+      <Button type="outline" onPress={() => navigation.push('StartView')}>
+        Start
+      </Button>
       <Button type="outline" onPress={() => navigation.push('Login')}>
         Login
       </Button>

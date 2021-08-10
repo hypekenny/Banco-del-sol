@@ -1,4 +1,5 @@
 import { Start } from '../screens/start/Start';
+import { StartView } from '../screens/start/StartView';
 import { Login } from '../screens/login/Login';
 import { Register } from '../screens/register/Register';
 import { Home } from '../screens/home/Home';
@@ -10,6 +11,7 @@ import { ForgotPassword } from './forgotPassword/forgotPassword';
 
 export const config = {
   Start,
+  StartView,
   Login,
   Register,
   Home,

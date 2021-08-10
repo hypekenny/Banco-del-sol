@@ -7,6 +7,7 @@ export type Props = {
 export type loginStackParamList = {
   List: undefined;
   Start: undefined;
+  StartView: undefined;
   Login: undefined;
   Register: undefined;
   RegisterV2: undefined;
@@ -55,7 +56,7 @@ export type addressType = {
 
 export type userType = {
   email: string;
-  dni: number;
+  dni: string;
   name: string;
   lastName: string;
   birthdate: string;
@@ -68,10 +69,10 @@ export interface accountType {
   balance: number;
   cvu: string;
 }
-
+/* OJO que toque el account */
 export type resFromBack = {
   user: userType;
-  account: Object;
+  account: accountType;
 };
 
 export interface RootState {
