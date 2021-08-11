@@ -144,140 +144,140 @@ export function Register({ navigation }: Props) {
     dispatch(register(user, pass));
   }
   return (
-    <KeyboardAwareScrollView>
-      <View style={styles.container}>
-        <SafeAreaView style={{ flex: 1 }}>
-          {!step ? (
-            <View style={styles.setpOne}>
-              <View
-                style={{
-                  paddingHorizontal: 32,
-                  marginBottom: 16,
-                  width: '100%',
-                }}
-              >
-                <TextInput
-                  icon="user"
-                  value={values.name}
-                  onChangeText={handleChange('name')}
-                  placeholderTextColor="grey"
-                  placeholder="Nombre"
-                  autoCapitalize="none"
-                  onBlur={handleBlur('name')}
-                  error={errors.name}
-                  touched={touched.name}
-                />
-              </View>
-
-              <View
-                style={{
-                  paddingHorizontal: 32,
-                  marginBottom: 16,
-                  width: '100%',
-                }}
-              >
-                <TextInput
-                  icon="user"
-                  placeholderTextColor="grey"
-                  value={values.lastName}
-                  placeholder="Apellido"
-                  onChangeText={handleChange('lastName')}
-                  autoCapitalize="none"
-                  onBlur={handleBlur('lastName')}
-                  error={errors.lastName}
-                  touched={touched.lastName}
-                />
-              </View>
-
-              <View
-                style={{
-                  paddingHorizontal: 32,
-                  marginBottom: 16,
-                  width: '100%',
-                }}
-              >
-                <TextInput
-                  icon="mail"
-                  placeholderTextColor="grey"
-                  value={values.email}
-                  placeholder="Email"
-                  onChangeText={handleChange('email')}
-                  autoCapitalize="none"
-                  keyboardType="email-address"
-                  onBlur={handleBlur('email')}
-                  error={errors.email}
-                  touched={touched.email}
-                />
-              </View>
-
-              <View
-                style={{
-                  paddingHorizontal: 32,
-                  marginBottom: 16,
-                  width: '100%',
-                }}
-              >
-                <TextInput
-                  icon="key"
-                  placeholderTextColor="grey"
-                  placeholder="Contraseña"
-                  value={values.pass}
-                  onChangeText={handleChange('pass')}
-                  secureTextEntry
-                  autoCapitalize="none"
-                  onBlur={handleBlur('pass')}
-                  error={errors.pass}
-                  touched={touched.pass}
-                />
-              </View>
-
-              <View
-                style={{
-                  paddingHorizontal: 32,
-                  marginBottom: 16,
-                  width: '100%',
-                }}
-              >
-                <TextInput
-                  icon="key"
-                  placeholderTextColor="grey"
-                  placeholder="Repite tu contraseña"
-                  value={values.passConfirm}
-                  onChangeText={handleChange('passConfirm')}
-                  secureTextEntry
-                  autoCapitalize="none"
-                  onBlur={handleBlur('passConfirm')}
-                  error={errors.passConfirm}
-                  touched={touched.passConfirm}
-                />
-              </View>
-
-              <View style={styles.btns}>
-                {!errors.name &&
-                !errors.lastName &&
-                !errors.email &&
-                !errors.pass &&
-                !errors.passConfirm &&
-                values.name ? (
-                  <TouchableOpacity
-                    style={styles.buttonRegister}
-                    onPress={() => setStep(!step)}
-                  >
-                    <Text style={ButtonSecondaryStyle.text}>SIGUIENTE</Text>
-                  </TouchableOpacity>
-                ) : (
-                  <TouchableOpacity style={styles.button}>
-                    <Text style={styles.next}>SIGUIENTE</Text>
-                  </TouchableOpacity>
-                )}
-              </View>
-              <LinearGradient
-                style={styles.ellipse}
-                colors={[colors.primary, colors.secondary]}
-                end={[1, 1]}
+    <View style={styles.containerOne}>
+      <SafeAreaView style={{ flex: 1 }}>
+        {!step ? (
+          <View style={styles.setpOne}>
+            <View
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
+            >
+              <TextInput
+                icon="user"
+                value={values.name}
+                onChangeText={handleChange('name')}
+                placeholderTextColor="grey"
+                placeholder="Nombre"
+                autoCapitalize="none"
+                onBlur={handleBlur('name')}
+                error={errors.name}
+                touched={touched.name}
               />
             </View>
-          ) : (
+
+            <View
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
+            >
+              <TextInput
+                icon="user"
+                placeholderTextColor="grey"
+                value={values.lastName}
+                placeholder="Apellido"
+                onChangeText={handleChange('lastName')}
+                autoCapitalize="none"
+                onBlur={handleBlur('lastName')}
+                error={errors.lastName}
+                touched={touched.lastName}
+              />
+            </View>
+
+            <View
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
+            >
+              <TextInput
+                icon="mail"
+                placeholderTextColor="grey"
+                value={values.email}
+                placeholder="Email"
+                onChangeText={handleChange('email')}
+                autoCapitalize="none"
+                keyboardType="email-address"
+                onBlur={handleBlur('email')}
+                error={errors.email}
+                touched={touched.email}
+              />
+            </View>
+
+            <View
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
+            >
+              <TextInput
+                icon="key"
+                placeholderTextColor="grey"
+                placeholder="Contraseña"
+                value={values.pass}
+                onChangeText={handleChange('pass')}
+                secureTextEntry
+                autoCapitalize="none"
+                onBlur={handleBlur('pass')}
+                error={errors.pass}
+                touched={touched.pass}
+              />
+            </View>
+
+            <View
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
+            >
+              <TextInput
+                icon="key"
+                placeholderTextColor="grey"
+                placeholder="Repite tu contraseña"
+                value={values.passConfirm}
+                onChangeText={handleChange('passConfirm')}
+                secureTextEntry
+                autoCapitalize="none"
+                onBlur={handleBlur('passConfirm')}
+                error={errors.passConfirm}
+                touched={touched.passConfirm}
+              />
+            </View>
+
+            <View style={styles.btns}>
+              {!errors.name &&
+              !errors.lastName &&
+              !errors.email &&
+              !errors.pass &&
+              !errors.passConfirm &&
+              values.name ? (
+                <TouchableOpacity
+                  style={styles.buttonRegister}
+                  onPress={() => setStep(!step)}
+                >
+                  <Text style={ButtonSecondaryStyle.text}>SIGUIENTE</Text>
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity style={styles.button}>
+                  <Text style={styles.next}>SIGUIENTE</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+            <LinearGradient
+              style={styles.ellipse}
+              colors={[colors.primary, colors.secondary]}
+              end={[1, 1]}
+            />
+          </View>
+        ) : (
+          <KeyboardAwareScrollView>
             <View style={styles.container}>
               <View style={styles.back}>
                 <TouchableOpacity onPress={() => setStep(!step)}>
@@ -495,9 +495,16 @@ export function Register({ navigation }: Props) {
                 !errors.address?.zipCode &&
                 !errors.address?.city &&
                 !errors.address?.province ? (
+                  //   <TouchableOpacity
+                  //   style={styles.buttonRegister}
+                  //   onPress={() => send(values)}
+                  // >
+                  //   <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
+                  // </TouchableOpacity>
+
                   <TouchableOpacity
-                    style={styles.buttonRegister}
-                    onPress={() => setStep(!step)}
+                    style={styles.buttonRegisterTwo}
+                    onPress={() => send(values)}
                   >
                     <Text style={ButtonSecondaryStyle.text}>REGISTRARSE</Text>
                   </TouchableOpacity>
@@ -513,12 +520,12 @@ export function Register({ navigation }: Props) {
                 end={[1, 1]}
               />
             </View>
-          )}
-          {userStore.email && userStore.email.length
-            ? navigation.push('Home')
-            : null}
-        </SafeAreaView>
-      </View>
-    </KeyboardAwareScrollView>
+          </KeyboardAwareScrollView>
+        )}
+        {userStore.email && userStore.email.length
+          ? navigation.push('Home')
+          : null}
+      </SafeAreaView>
+    </View>
   );
 }

@@ -56,8 +56,9 @@ export const ButtonSecondaryStyle = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     alignSelf: 'center',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '700',
+    justifyContent: 'center',
     marginTop: '-3%',
   },
 });
