@@ -5,7 +5,14 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
+    width: '100%',
     padding: 10,
+  },
+  containerOne: {
+    flex: 1,
+    backgroundColor: colors.white,
+
+    overflow: 'hidden',
   },
   inputEmail: {
     borderRadius: 50,
@@ -89,6 +96,8 @@ export const styles = StyleSheet.create({
     marginTop: '-3%',
   },
   button: {
+    borderColor: colors.primary,
+    backgroundColor: '#deac98de',
     width: '120%',
     alignItems: 'center',
     height: '50%',
@@ -97,8 +106,6 @@ export const styles = StyleSheet.create({
     // marginBottom: 20,
     borderRadius: 25,
     borderWidth: 2,
-    borderColor: colors.primary,
-    backgroundColor: '#deac98de',
     padding: 15,
     shadowColor: '#000',
     shadowOffset: {
@@ -114,16 +121,37 @@ export const styles = StyleSheet.create({
   },
 
   buttonRegister: {
+    borderColor: colors.primary,
+    backgroundColor: '#fff',
     width: '120%',
     alignItems: 'center',
     height: '50%',
-    marginTop: '55%',
+    marginTop: '30%',
     marginLeft: '-11%',
     // marginBottom: 20,
     borderRadius: 25,
     borderWidth: 2,
+    padding: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 26,
+    elevation: 14,
+  },
+  buttonRegisterTwo: {
     borderColor: colors.primary,
     backgroundColor: '#fff',
+    width: '120%',
+    alignItems: 'center',
+    height: '50%',
+    marginTop: '70%',
+    marginLeft: '-11%',
+    // marginBottom: 20,
+    borderRadius: 25,
+    borderWidth: 2,
     padding: 15,
     shadowColor: '#000',
     shadowOffset: {
@@ -174,7 +202,7 @@ export const styles = StyleSheet.create({
     width: '120%',
     alignItems: 'center',
     height: '50%',
-    marginTop: '30%',
+    marginTop: '70%',
     marginLeft: '-11%',
     // marginBottom: 20,
     borderRadius: 25,
