@@ -6,8 +6,9 @@ import { styles } from './AddFundsStyles';
 import { updateBalance } from '../../redux/actions';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
+import { Props } from '../../types/Types';
 
-export const AddFunds = () => {
+export const AddFunds = ({ navigation }: Props) => {
   const token = useSelector((state: any) => state.token);
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
@@ -21,6 +22,7 @@ export const AddFunds = () => {
   const handleSubmit = () => {
     updateBalance(value, token, dispatch);
     setValue(0);
+    navigation.push('Home');
   };
 
   return (
