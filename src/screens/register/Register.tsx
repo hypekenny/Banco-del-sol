@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import Select from 'react-select-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +10,8 @@ import { register } from '../../redux/actions';
 import { resFromBack, Props } from '../../types/Types';
 import TextInput from '../../components/TextInputFormix';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
+import { LinearGradient } from 'expo-linear-gradient';
+import colors from '../../constants/colors';
 
 const yup = require('yup');
 
@@ -50,29 +52,28 @@ export function Register({ navigation }: Props) {
     }),
   });
 
-  const { handleChange, handleSubmit, handleBlur, values, errors, touched } =
-    useFormik({
-      validationSchema: FormSchema,
-      initialValues: {
-        name: '',
-        lastName: '',
-        email: '',
-        pass: '',
-        passConfirm: '',
-        dni: '',
-        phoneNumber: '',
-        birthdate: '',
-        address: {
-          street: '',
-          number: '',
-          zipCode: '',
-          city: '',
-          province: '',
-        },
+  const { handleChange, handleBlur, values, errors, touched } = useFormik({
+    validationSchema: FormSchema,
+    initialValues: {
+      name: '',
+      lastName: '',
+      email: '',
+      pass: '',
+      passConfirm: '',
+      dni: '',
+      phoneNumber: '',
+      birthdate: '',
+      address: {
+        street: '',
+        number: '',
+        zipCode: '',
+        city: '',
+        province: '',
       },
-      onSubmit: values => console.log(values),
-      /* alert(`Email: ${values.email}`), */
-    });
+    },
+    onSubmit: values => console.log(values),
+    /* alert(`Email: ${values.email}`), */
+  });
 
   const [step, setStep] = useState(false);
   const dispatch = useDispatch();
@@ -145,7 +146,7 @@ export function Register({ navigation }: Props) {
     <View style={styles.container}>
       <SafeAreaView style={{ flex: 1 }}>
         {!step ? (
-          <View>
+          <View style={styles.setpOne}>
             <View
               style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
             >
@@ -229,27 +230,30 @@ export function Register({ navigation }: Props) {
               />
             </View>
 
-            {!errors.name &&
-            !errors.lastName &&
-            !errors.email &&
-            !errors.pass &&
-            !errors.passConfirm &&
-            values.name ? (
-              <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+            <View style={styles.btns}>
+              {!errors.name &&
+              !errors.lastName &&
+              !errors.email &&
+              !errors.pass &&
+              !errors.passConfirm &&
+              values.name ? (
                 <TouchableOpacity
-                  style={ButtonSecondaryStyle.button}
+                  style={styles.buttonRegister}
                   onPress={() => setStep(!step)}
                 >
-                  <Text style={ButtonSecondaryStyle.text}>Siguiente</Text>
+                  <Text style={ButtonSecondaryStyle.text}>SIGUIENTE</Text>
                 </TouchableOpacity>
-              </View>
-            ) : (
-              <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-                <TouchableOpacity style={ButtonSecondaryStyle.buttondisabled}>
-                  <Text style={ButtonSecondaryStyle.text}>Siguiente</Text>
+              ) : (
+                <TouchableOpacity style={styles.button}>
+                  <Text style={styles.next}>SIGUIENTE</Text>
                 </TouchableOpacity>
-              </View>
-            )}
+              )}
+            </View>
+            <LinearGradient
+              style={styles.ellipse}
+              colors={[colors.primary, colors.secondary]}
+              end={[1, 1]}
+            />
           </View>
         ) : (
           <View style={styles.container}>
@@ -262,7 +266,11 @@ export function Register({ navigation }: Props) {
             </View>
 
             <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
             >
               <TextInput
                 icon="wallet"
@@ -277,7 +285,11 @@ export function Register({ navigation }: Props) {
               />
             </View>
             <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
             >
               <TextInput
                 icon="phone"
@@ -294,7 +306,11 @@ export function Register({ navigation }: Props) {
             </View>
 
             <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
             >
               <TextInput
                 icon="calendar"
@@ -310,26 +326,30 @@ export function Register({ navigation }: Props) {
             </View>
             {/*    <View
               style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
-            >
-              <TouchableOpacity
-                style={styles.birthdateButton}
-                onPress={showDatePicker}
               >
-                <View style={{ padding: 8 }}>
-                  <Icon name={'calendar'} size={16} />
-                </View>
-                <Text style={styles.birthdateButtonText}>Nacimiento</Text>
+              <TouchableOpacity
+              style={styles.birthdateButton}
+              onPress={showDatePicker}
+              >
+              <View style={{ padding: 8 }}>
+              <Icon name={'calendar'} size={16} />
+              </View>
+              <Text style={styles.birthdateButtonText}>Nacimiento</Text>
               </TouchableOpacity>
               <DateTimePickerModal
-                isVisible={isDatePickerVisible}
-                mode="date"
-                onConfirm={handleConfirm}
-                onCancel={hideDatePicker}
+              isVisible={isDatePickerVisible}
+              mode="date"
+              onConfirm={handleConfirm}
+              onCancel={hideDatePicker}
               />
             </View> */}
 
             <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
             >
               <TextInput
                 icon="key"
@@ -343,7 +363,11 @@ export function Register({ navigation }: Props) {
               />
             </View>
             <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
             >
               <TextInput
                 icon="location"
@@ -359,7 +383,11 @@ export function Register({ navigation }: Props) {
               />
             </View>
             <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
             >
               <TextInput
                 icon="location"
@@ -374,7 +402,11 @@ export function Register({ navigation }: Props) {
               />
             </View>
             <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
             >
               <TextInput
                 icon="address"
@@ -389,7 +421,11 @@ export function Register({ navigation }: Props) {
               />
             </View>
             <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
             >
               <View style={styles.birthdateButton}>
                 <View style={{ padding: 8 }}>
@@ -404,7 +440,7 @@ export function Register({ navigation }: Props) {
                 />
               </View>
             </View>
-            {!errors.dni &&
+            {/* {!errors.dni &&
             !errors.phoneNumber &&
             !errors.birthdate &&
             !errors.address?.street &&
@@ -413,23 +449,44 @@ export function Register({ navigation }: Props) {
             !errors.address?.city &&
             !errors.address?.province ? (
               <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-                <TouchableOpacity
-                  style={ButtonSecondaryStyle.button}
-                  onPress={() => send(values)}
-                >
-                  <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
-                </TouchableOpacity>
+              <TouchableOpacity
+              style={ButtonSecondaryStyle.button}
+              onPress={() => send(values)}
+              >
+              <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
+              </TouchableOpacity>
               </View>
-            ) : (
-              <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+              ) : (
+                <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
                 <TouchableOpacity style={ButtonSecondaryStyle.buttondisabled}>
-                  <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
+                <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
                 </TouchableOpacity>
-              </View>
-            )}
+                </View>
+              )} */}
+            {/* aaaaaaaaaaaaaaaaaaaaaa */}
+            <View style={styles.btns}>
+              {!errors.dni &&
+              !errors.phoneNumber &&
+              !errors.birthdate &&
+              !errors.address?.street &&
+              !errors.address?.number &&
+              !errors.address?.zipCode &&
+              !errors.address?.city &&
+              !errors.address?.province ? (
+                <TouchableOpacity
+                  style={styles.buttonRegister}
+                  onPress={() => setStep(!step)}
+                >
+                  <Text style={ButtonSecondaryStyle.text}>REGISTRARSE</Text>
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity style={styles.button}>
+                  <Text style={styles.next}>REGISTRARSE</Text>
+                </TouchableOpacity>
+              )}
+            </View>
           </View>
         )}
-
         {userStore.email && userStore.email.length
           ? navigation.push('Home')
           : null}
