@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import Select from 'react-select-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import { Entypo as Icon } from '@expo/vector-icons';
+import { Entypo, AntDesign } from '@expo/vector-icons';
 import * as Yup from 'yup';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './RegisterStyles';
@@ -12,8 +13,6 @@ import { resFromBack, Props } from '../../types/Types';
 import TextInput from '../../components/TextInputFormix';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import colors from '../../constants/colors';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { AntDesign } from '@expo/vector-icons';
 
 const yup = require('yup');
 
@@ -472,7 +471,7 @@ export function Register({ navigation }: Props) {
               >
                 <View style={styles.input}>
                   <View style={{ padding: 8 }}>
-                    <Icon name="location" size={22} color={'#fb6583'} />
+                    <Entypo name="location" size={22} color="#fb6583" />
                   </View>
                   <Select
                     style={styles.input}
