@@ -13,7 +13,6 @@ export function Transactions() {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Text style={styles.text}>Transitions</Text>
         <View style={styles.box}>
           <View style={styles.boxin}>
             <Text style={styles.boxt}>21 Jun</Text>

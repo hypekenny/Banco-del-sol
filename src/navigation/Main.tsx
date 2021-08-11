@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase/app';
 import { createStackNavigator } from '@react-navigation/stack';
+import { LinearGradient } from 'expo-linear-gradient';
 import { firebaseConfig } from '../constants/firebase.config';
 import { loginStackParamList } from '../types/Types';
 import { config } from '../screens/index';
@@ -8,7 +9,6 @@ import { config } from '../screens/index';
 firebase.initializeApp(firebaseConfig);
 
 const {
-  Start,
   StartView,
   Login,
   Register,
@@ -33,36 +33,71 @@ export const Main = () => (
     <LoginStack.Screen
       name="Login"
       component={Login}
-      options={{ headerTitle: 'Login' }}
+      options={{ headerTitle: 'Ingresar' }}
     />
 
     <LoginStack.Screen
       name="Register"
       component={Register}
-      options={{ headerTitle: 'RegisterFormix' }}
+      options={{
+        headerTitle: 'Registro',
+      }}
     />
     <LoginStack.Screen
       name="Home"
       component={Home}
       options={{
-        headerTitle: 'Home',
+        headerTitle: 'Inicio',
         headerShown: false,
       }}
     />
     <LoginStack.Screen
       name="Account"
       component={Account}
-      options={{ headerTitle: 'Mi Cuenta' }}
+      options={{
+        headerTitle: 'Inicio',
+        headerTintColor: 'white',
+        headerBackground: () => (
+          <LinearGradient
+            colors={['#ff4b6e', '#ff9349']}
+            style={{ flex: 1 }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+          />
+        ),
+      }}
     />
     <LoginStack.Screen
       name="AddFunds"
       component={AddFunds}
-      options={{ headerTitle: 'Account' }}
+      options={{
+        headerTitle: 'Inicio',
+        headerTintColor: 'white',
+        headerBackground: () => (
+          <LinearGradient
+            colors={['#ff4b6e', '#ff9349']}
+            style={{ flex: 1 }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+          />
+        ),
+      }}
     />
     <LoginStack.Screen
       name="Transfer"
       component={Transfer}
-      options={{ headerTitle: 'Account' }}
+      options={{
+        headerTitle: 'Inicio',
+        headerTintColor: 'white',
+        headerBackground: () => (
+          <LinearGradient
+            colors={['#ff4b6e', '#ff9349']}
+            style={{ flex: 1 }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+          />
+        ),
+      }}
     />
     <LoginStack.Screen
       name="Transactions"
@@ -70,6 +105,16 @@ export const Main = () => (
       options={{
         headerTitle: 'Hola {Name}',
         headerShown: true,
+
+        headerTintColor: 'white',
+        headerBackground: () => (
+          <LinearGradient
+            colors={['#ff4b6e', '#ff9349']}
+            style={{ flex: 1 }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+          />
+        ),
       }}
     />
     <LoginStack.Screen

@@ -13,10 +13,9 @@ export const Transfer = () => {
   });
   return (
     <View style={styles.container}>
-      <Text>TRANSFER</Text>
       <TextInput
-        placeholder="Ingresá email"
-        placeholderTextColor="black"
+        placeholder="Ingresá email..."
+        placeholderTextColor="grey"
         value={data.email}
         onChangeText={(text: string) => setData({ ...data, email: text })}
         keyboardType="email-address"
@@ -24,19 +23,23 @@ export const Transfer = () => {
       />
       <Text style={ButtonPrimaryStyle.text}>${accountStore.balance}</Text>
       <TextInput
-        placeholder="Ingresá email"
-        placeholderTextColor="black"
-        value={data.email}
-        onChangeText={(text: string) => setData({ ...data, email: text })}
-        keyboardType="email-address"
+        placeholder="Ingresá monto..."
+        placeholderTextColor="grey"
+        value={data.amount.toString()}
+        onChangeText={(text: string) =>
+          setData({ ...data, amount: parseInt(text, 10) })
+        }
+        keyboardType="number-pad"
         style={styles.inputEmail}
       />
-      <TouchableOpacity
-        style={ButtonPrimaryStyle.button}
-        onPress={() => console.log('pending')}
-      >
-        <Text>enviar</Text>
-      </TouchableOpacity>
+      <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+        <TouchableOpacity
+          style={ButtonPrimaryStyle.button}
+          onPress={() => console.log('pending')}
+        >
+          <Text>enviar</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

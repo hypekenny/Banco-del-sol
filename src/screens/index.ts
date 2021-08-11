@@ -8,6 +8,7 @@ import { Account } from './account/Account';
 import { AddFunds } from './addFunds/AddFunds';
 import { Transactions } from './transacciones/Transactions';
 import { ForgotPassword } from './forgotPassword/forgotPassword';
+import { Statistics } from './statistics/Statistics';
 
 export const config = {
   Start,
@@ -20,4 +21,5 @@ export const config = {
   Account,
   Transactions,
   ForgotPassword,
+  Statistics,
 };

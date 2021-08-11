@@ -9,10 +9,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './HomeStyles';
 import { Transactions } from '../transacciones/Transactions';
-import { AddFunds } from '../addFunds/AddFunds';
 import { logout } from '../../redux/actions';
 import { loginStackParamList, resFromBack } from '../../types/Types';
 import { Account } from '../account/Account';
+import { Statistics } from '../statistics/Statistics';
 
 const Tab = createBottomTabNavigator();
 
@@ -41,6 +41,7 @@ type Props = {
 function HomeScreen({ navigation }: Props) {
   const [ing, setIng] = useState<string>('0');
   const [gast, setGast] = useState<string>('0');
+
   const accountStore = useSelector((state: resFromBack) => state.account);
 
   useEffect(() => {
@@ -100,7 +101,7 @@ function HomeScreen({ navigation }: Props) {
 const screensOptions = (route: any, color: string) => {
   let iconName;
   switch (route.name) {
-    case 'Home':
+    case 'Inicio':
       iconName = 'home';
       break;
     case 'Transacciones':
@@ -131,7 +132,7 @@ export const Home = ({ navigation }: Props) => {
 
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Inicio"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => screensOptions(route, color),
         tabBarActiveTintColor: '#ff4b6e',
@@ -148,7 +149,7 @@ export const Home = ({ navigation }: Props) => {
       })}
     >
       <Tab.Screen
-        name="Home"
+        name="Inicio"
         component={HomeScreen}
         options={{
           headerBackground: () => (
@@ -173,9 +174,51 @@ export const Home = ({ navigation }: Props) => {
           ),
         }}
       />
-      <Tab.Screen name="Transacciones" component={Transactions} />
-      <Tab.Screen name="Estadisticas" component={AddFunds} />
-      <Tab.Screen name="Mi Cuenta" component={Account} />
+      <Tab.Screen
+        name="Transacciones"
+        component={Transactions}
+        options={{
+          headerTintColor: 'white',
+          headerBackground: () => (
+            <LinearGradient
+              colors={['#ff4b6e', '#ff9349']}
+              style={{ flex: 1 }}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Estadisticas"
+        component={Statistics}
+        options={{
+          headerTintColor: 'white',
+          headerBackground: () => (
+            <LinearGradient
+              colors={['#ff4b6e', '#ff9349']}
+              style={{ flex: 1 }}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Mi Cuenta"
+        component={Account}
+        options={{
+          headerTintColor: 'white',
+          headerBackground: () => (
+            <LinearGradient
+              colors={['#ff4b6e', '#ff9349']}
+              style={{ flex: 1 }}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
