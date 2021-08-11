@@ -15,7 +15,7 @@ export function register(user: userType, password: string) {
   return (dispatch: any) => {
     firebase
       .auth()
-      .createUserWithEmailAndPassword(user.email, password)
+      .createUserWithEmailAndPassword(user.email.toLowerCase(), password)
       .then(response => {
         response.user
           ?.getIdToken(true)
@@ -50,7 +50,7 @@ export function login(email: string, password: string) {
   return (dispatch: any) => {
     firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email.toLowerCase(), password)
       .then(response => {
         response.user
           ?.getIdToken(true)
