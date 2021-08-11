@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, TextInput, Image } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { LinearGradient } from 'expo-linear-gradient';
-import { login } from '../../redux/actions';
 import { styles } from './StartViewStyles';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
 import { loginStackParamList } from '../../types/Types';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
