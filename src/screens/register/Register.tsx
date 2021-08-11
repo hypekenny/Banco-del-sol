@@ -13,6 +13,7 @@ import TextInput from '../../components/TextInputFormix';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import colors from '../../constants/colors';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { AntDesign } from '@expo/vector-icons';
 
 const yup = require('yup');
 
@@ -22,34 +23,38 @@ export function Register({ navigation }: Props) {
   const userStore = useSelector((state: resFromBack) => state.user);
 
   const FormSchema = Yup.object().shape({
-    name: Yup.string().required('Requerido!').min(2, 'Invalido!'),
-    lastName: Yup.string().required('Requerido!').min(2, 'Invalido!'),
-    email: Yup.string().email('E-mail invalido ').required('Requerido!'),
+    name: Yup.string().required('Debe ingresar un nombre!'),
+    lastName: Yup.string().required('Debe ingresar un apellido!'),
+    email: Yup.string()
+      .email('E-mail invalido ')
+      .required('Debe ingresar un E-Mail!'),
     pass: yup
       .string()
-      .required('Requerido!')
+      .required('Debe ingresar una contraseña!!')
       .min(6, 'Minimo 6 caracteres')
       .minNumbers(3, 'Debe contener 3 numeros')
       .minUppercase(1, 'Debe contener una mayuscula')
       .minSymbols(1, 'Debe contener un simbolo'),
     passConfirm: Yup.string()
-      .required('Requerido!')
-      .oneOf([Yup.ref('pass'), null], 'Deben coincidir'),
-    dni: Yup.number().typeError('Debe ser un numero').required('Requerido!'),
+      .required('Debe confirmar la contraseña!')
+      .oneOf([Yup.ref('pass'), null], 'Las contraseñas no coinciden'),
+    dni: Yup.number()
+      .typeError('El DNI debe ser un numero')
+      .required('Debe ingresar un DNI!'),
     phoneNumber: Yup.number()
       .typeError('Debe ser un numero')
-      .required('Requerido!'),
-    birthdate: Yup.string().required('Requerido!'),
+      .required('Debe ingresar un telefono!'),
+    birthdate: Yup.string().required('Debe ingresar su fecha de nacimiento!'),
     address: Yup.object().shape({
-      street: Yup.string().required('Requerido!'),
+      street: Yup.string().required('Debe ingresar una calle!'),
       number: Yup.number()
         .typeError('Debe ser un numero')
-        .required('Requerido!'),
+        .required('Debe ingresar un numero!'),
       zipCode: Yup.number()
         .typeError('Debe ser un numero')
-        .required('Requerido!'),
-      province: Yup.string().required('Requerido!'),
-      city: Yup.string().required('Requerido!'),
+        .required('Debe ingresar el codigo postal!'),
+      province: Yup.string().required('Debe ingresar una provincia!'),
+      city: Yup.string().required('Debe ingresar una ciudad!'),
     }),
   });
 
@@ -146,6 +151,30 @@ export function Register({ navigation }: Props) {
   return (
     <View style={styles.containerOne}>
       <SafeAreaView style={{ flex: 1 }}>
+        {!step ? (
+          <View style={styles.back}>
+            <TouchableOpacity onPress={() => navigation.push('StartView')}>
+              <View style={{ marginLeft: 20, marginTop: 10 }}>
+                <AntDesign name="arrowleft" size={35} color="white" />
+              </View>
+            </TouchableOpacity>
+            <Text style={styles.textHeader}>Registro</Text>
+          </View>
+        ) : (
+          <View style={styles.back}>
+            <TouchableOpacity onPress={() => setStep(!step)}>
+              <View style={{ marginLeft: 20, marginTop: 10 }}>
+                <AntDesign name="arrowleft" size={35} color="white" />
+              </View>
+            </TouchableOpacity>
+            <Text style={styles.textHeader}>Registro</Text>
+          </View>
+        )}
+        <LinearGradient
+          style={styles.header}
+          colors={[colors.primary, colors.secondary]}
+          end={[1, 1]}
+        />
         {!step ? (
           <View style={styles.setpOne}>
             <View
@@ -279,14 +308,6 @@ export function Register({ navigation }: Props) {
         ) : (
           <KeyboardAwareScrollView>
             <View style={styles.container}>
-              <View style={styles.back}>
-                <TouchableOpacity onPress={() => setStep(!step)}>
-                  <View style={{ padding: 8 }}>
-                    <Icon name="chevron-left" size={30} />
-                  </View>
-                </TouchableOpacity>
-              </View>
-
               <View
                 style={{
                   paddingHorizontal: 32,
@@ -295,7 +316,7 @@ export function Register({ navigation }: Props) {
                 }}
               >
                 <TextInput
-                  icon="wallet"
+                  icon="v-card"
                   placeholderTextColor="grey"
                   value={values.dni}
                   placeholder="DNI"
@@ -374,7 +395,7 @@ export function Register({ navigation }: Props) {
                 }}
               >
                 <TextInput
-                  icon="key"
+                  icon="address"
                   placeholderTextColor="grey"
                   placeholder="Calle"
                   value={values.address.street}
@@ -392,7 +413,7 @@ export function Register({ navigation }: Props) {
                 }}
               >
                 <TextInput
-                  icon="location"
+                  icon="home"
                   placeholderTextColor="grey"
                   placeholder="Direccion NUM"
                   onChangeText={handleChange('address.number')}
@@ -431,7 +452,7 @@ export function Register({ navigation }: Props) {
                 }}
               >
                 <TextInput
-                  icon="address"
+                  icon="location-pin"
                   placeholderTextColor="grey"
                   value={values.address.city}
                   placeholder="Ciudad"
@@ -449,12 +470,12 @@ export function Register({ navigation }: Props) {
                   width: '100%',
                 }}
               >
-                <View style={styles.birthdateButton}>
+                <View style={styles.input}>
                   <View style={{ padding: 8 }}>
-                    <Icon name="calendar" size={16} />
+                    <Icon name="location" size={22} color={'#fb6583'} />
                   </View>
                   <Select
-                    style={styles.birthdateButton}
+                    style={styles.input}
                     onChange={handleChange('address.province')}
                     value={values.address.province}
                     options={province}
