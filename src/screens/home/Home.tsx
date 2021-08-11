@@ -39,21 +39,14 @@ type Props = {
 };
 
 function HomeScreen({ navigation }: Props) {
-  const [balance, setBalance] = useState<number>(0);
-
   const [ing, setIng] = useState<string>('0');
-
   const [gast, setGast] = useState<string>('0');
-
-  const userStore = useSelector((state: resFromBack) => state.account);
+  const accountStore = useSelector((state: resFromBack) => state.account);
 
   useEffect(() => {
-    if (userStore) {
-      setBalance(userStore.balance);
-    }
     setIng('5,750');
     setGast('3,100.5');
-  }, [userStore]);
+  }, []);
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -61,7 +54,9 @@ function HomeScreen({ navigation }: Props) {
         <Text style={{ fontSize: 20, fontWeight: '100', color: '#3b3b3b' }}>
           Balance
         </Text>
-        <Text style={{ fontSize: 40, fontWeight: '900' }}>${balance}</Text>
+        <Text style={{ fontSize: 40, fontWeight: '900' }}>
+          ${accountStore.balance}
+        </Text>
       </View>
       <View style={styles.box}>
         <View style={styles.boxt}>

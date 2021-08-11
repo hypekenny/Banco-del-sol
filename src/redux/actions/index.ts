@@ -1,5 +1,6 @@
 import axios from 'axios';
 import firebase from 'firebase';
+import { useDispatch } from 'react-redux';
 import { resFromBack, userType } from '../../types/Types';
 
 require('firebase/firebase-auth');
@@ -66,6 +67,10 @@ export function login(email: string, password: string) {
                   type: SET_ACCOUNT,
                   payload: responseFromBack.data.account,
                 });
+                dispatch({
+                  type: 'SET_TOKEN',
+                  payload: idToken,
+                });
               });
           })
           .catch(error => console.error(error));
@@ -97,37 +102,26 @@ export function fetchCvu() {
   };
 }
 
-export function updateBalance(value: number) {
-  console.log('a', value);
-  firebase.auth().onAuthStateChanged(async user => {
-    try {
-      if (user) {
-        const token = await user.getIdToken(true);
-        const response = await axios.put(
-          `http://localhost:3001/api/account`,
-          { value },
-          {
-            headers: {
-              authorization: `Bearer ${token}`,
-            },
-          },
-        );
-        if (response.data) {
-          return (dispatch: any) => {
-            console.log('response', response.data);
-            dispatch({
-              type: SET_ACCOUNT,
-              payload: response.data.account,
-            });
-          };
-        }
-      } else {
-        console.log('por favor vuelva a autenticarse');
-        return null;
-      }
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
-  });
+export async function updateBalance(
+  value: number,
+  token: string,
+  dispatch: any,
+) {
+  axios
+    .put(
+      `http://localhost:3001/api/account`,
+      { value },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      },
+    )
+    .then(response => {
+      dispatch({
+        type: SET_ACCOUNT,
+        payload: response.data.account,
+      });
+    })
+    .catch(error => console.log(error));
 }

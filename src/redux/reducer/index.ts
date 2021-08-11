@@ -46,6 +46,11 @@ export default function rootReducer(state = initialState, action: actionType) {
         ...state,
         cvuAsociate: action.payload,
       };
+    case 'SET_TOKEN':
+      return {
+        ...state,
+        token: action.payload,
+      };
     default:
       return state;
   }

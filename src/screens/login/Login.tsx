@@ -19,7 +19,6 @@ export const Login = ({ navigation }: Props) => {
 
   return (
     <View style={styles.container}>
-      {console.log('user', userStore)}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email..."
