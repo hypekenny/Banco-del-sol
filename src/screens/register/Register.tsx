@@ -9,17 +9,18 @@ import {
 } from 'react-native';
 import Select from 'react-select-native';
 import { useDispatch, useSelector } from 'react-redux';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { Entypo as Icon } from '@expo/vector-icons';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { styles } from './RegisterStyles';
 import { register } from '../../redux/actions';
 import { resFromBack, Props } from '../../types/Types';
 import TextInput from '../../components/TextInputFormix';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+
 const yup = require('yup');
 require('yup-password')(yup);
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { Entypo as Icon } from '@expo/vector-icons';
 
 export function Register({ navigation }: Props) {
   const userStore = useSelector((state: resFromBack) => state.user);
