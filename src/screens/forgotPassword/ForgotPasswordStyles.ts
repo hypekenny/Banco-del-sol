@@ -58,4 +58,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 17,
   },
+  ellipse: {
+    position: 'relative',
+    zIndex: 20,
+    bottom: '-25%',
+    marginTop: '-50%',
+    left: '20%',
+    width: '60%',
+    height: '60%',
+    borderRadius: 999,
+    transform: [{ scaleX: 3 }],
+  },
 });
