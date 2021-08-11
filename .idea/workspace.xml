@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02339979-5921-418c-b1fe-b52f0fc05364" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/constants/ButtonPrymaryStyle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ButtonPrymaryStyle.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/actions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducer/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/account/Account.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/account/Account.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/start/StartView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/start/StartView.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
