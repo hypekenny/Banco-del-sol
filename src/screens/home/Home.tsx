@@ -124,6 +124,7 @@ const screensOptions = (route: any, color: string) => {
 
 export const Home = ({ navigation }: Props) => {
   const dispatch = useDispatch();
+  const userStore = useSelector((state: resFromBack) => state.user);
 
   function exit() {
     dispatch(logout());
@@ -161,7 +162,7 @@ export const Home = ({ navigation }: Props) => {
             />
           ),
           headerTintColor: '#fff',
-          headerTitle: `Hola Santiago`,
+          headerTitle: `Hola ${userStore.name}`,
           headerShown: true,
           headerRight: () => (
             <ThemeProvider theme={theme}>
