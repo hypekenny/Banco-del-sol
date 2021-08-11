@@ -13,6 +13,7 @@ import TextInput from '../../components/TextInputFormix';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import colors from '../../constants/colors';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { AntDesign } from '@expo/vector-icons';
 
 const yup = require('yup');
 
@@ -151,6 +152,30 @@ export function Register({ navigation }: Props) {
     <View style={styles.containerOne}>
       <SafeAreaView style={{ flex: 1 }}>
         {!step ? (
+          <View style={styles.back}>
+            <TouchableOpacity onPress={() => navigation.push('StartView')}>
+              <View style={{ marginLeft: 20, marginTop: 10 }}>
+                <AntDesign name="arrowleft" size={35} color="white" />
+              </View>
+            </TouchableOpacity>
+            <Text style={styles.textHeader}>Registro</Text>
+          </View>
+        ) : (
+          <View style={styles.back}>
+            <TouchableOpacity onPress={() => setStep(!step)}>
+              <View style={{ marginLeft: 20, marginTop: 10 }}>
+                <AntDesign name="arrowleft" size={35} color="white" />
+              </View>
+            </TouchableOpacity>
+            <Text style={styles.textHeader}>Registro</Text>
+          </View>
+        )}
+        <LinearGradient
+          style={styles.header}
+          colors={[colors.primary, colors.secondary]}
+          end={[1, 1]}
+        />
+        {!step ? (
           <View style={styles.setpOne}>
             <View
               style={{
@@ -283,14 +308,6 @@ export function Register({ navigation }: Props) {
         ) : (
           <KeyboardAwareScrollView>
             <View style={styles.container}>
-              <View style={styles.back}>
-                <TouchableOpacity onPress={() => setStep(!step)}>
-                  <View style={{ padding: 8 }}>
-                    <Icon name="chevron-left" size={30} />
-                  </View>
-                </TouchableOpacity>
-              </View>
-
               <View
                 style={{
                   paddingHorizontal: 32,

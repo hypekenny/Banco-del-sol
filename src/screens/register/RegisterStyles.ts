@@ -24,10 +24,34 @@ export const styles = StyleSheet.create({
     paddingRight: 8,
     marginTop: 10,
   },
+  prueba:{
+    backgroundColor: '#000',
+    
+  },
   back: {
-    position: 'absolute',
-    left: -10,
-    top: -15,
+    //position: 'absolute',
+    height: '7.5%',
+    zIndex: 30,
+  },
+  header: {
+    position: 'relative',
+    zIndex: 20,
+    //bottom: '-25%',
+    marginTop: '-20%',
+    left: '20%',
+    width: '60%',
+    height: '10%',
+    borderRadius: 999,
+    transform: [{ scaleX: 3 }],
+  },
+  textHeader: {
+    fontSize: 25,
+    color: 'white',
+    fontWeight: 600,
+    width: '45%',
+    marginTop: '-9.5%',
+    marginLeft: 'auto',
+    marginRight: '35%',
   },
   inputPassword: {
     borderRadius: 50,
