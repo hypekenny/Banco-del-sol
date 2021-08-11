@@ -42,7 +42,6 @@ export function register(user: userType, password: string) {
       .catch(error => console.error(error));
   };
 }
-
 export function login(email: string, password: string) {
   return (dispatch: any) => {
     firebase

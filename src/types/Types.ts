@@ -51,7 +51,6 @@ export type addressType = {
   zipCode: string;
   city: string;
   province: string;
-  country: string;
 };
 
 export type userType = {
