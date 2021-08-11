@@ -35,6 +35,10 @@ export function register(user: userType, password: string) {
                   type: SET_ACCOUNT,
                   payload: responseAgain.data.account,
                 });
+                dispatch({
+                  type: SET_TOKEN,
+                  payload: idToken,
+                });
               });
           })
           .catch(error => console.error(error));
