@@ -6,6 +6,10 @@ import { firebaseConfig } from '../constants/firebase.config';
 import { loginStackParamList } from '../types/Types';
 import { config } from '../screens/index';
 
+import { View, Button, TouchableOpacity } from 'react-native';
+import { Entypo as Icon } from '@expo/vector-icons';
+
+
 firebase.initializeApp(firebaseConfig);
 
 const {
@@ -39,9 +43,7 @@ export const Main = () => (
     <LoginStack.Screen
       name="Register"
       component={Register}
-      options={{
-        headerTitle: 'Registro',
-      }}
+      options={{ headerShown: false }}
     />
     <LoginStack.Screen
       name="Home"

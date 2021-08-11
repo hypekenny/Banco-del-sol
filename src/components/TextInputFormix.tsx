@@ -19,7 +19,7 @@ export default function TextInput({ icon, error, touched, ...otherProps }) {
       }}
     >
       <View style={{ padding: 8 }}>
-        <Icon name={icon} color={validationColor} size={16} />
+        <Icon name={icon} color={validationColor} size={22} />
       </View>
       <View style={{ flex: 1 }}>
         <RNTextInput
