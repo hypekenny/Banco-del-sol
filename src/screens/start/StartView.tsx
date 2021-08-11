@@ -13,47 +13,37 @@ type Props = {
 };
 
 export const StartView = ({ navigation }: Props) => {
-  
-
   return (
     <View style={styles.containerT}>
-  
-    <LinearGradient
+      <LinearGradient
         // Background Linear Gradient
-        colors={['white','white',colors.primary, colors.secondary]}
-        locations={[0,0.4,0.4,1]}
+        colors={['white', 'white', colors.primary, colors.secondary]}
+        locations={[0, 0.4, 0.4, 1]}
         style={styles.containerT}
-    >
-       <View style={styles.ellipse}/>
-      
+      >
+        <View style={styles.ellipse} />
 
-       <View style={styles.containerButton}>
-                <TouchableOpacity
-                  style={ButtonPrimaryStyle.button}
-                  onPress={() => navigation.push('Register')}
-                >
-                  <Text style={ButtonPrimaryStyle.text}>Registrarse</Text>
-                </TouchableOpacity>
+        <View style={styles.containerButton}>
+          <TouchableOpacity
+            style={ButtonPrimaryStyle.button}
+            onPress={() => navigation.push('Register')}
+          >
+            <Text style={ButtonPrimaryStyle.text}>Registrarse</Text>
+          </TouchableOpacity>
 
-                <TouchableOpacity
-                  style={ButtonPrimaryStyle.button}
-                  onPress={() => navigation.push('Login')}
-                 
-                >
-                  <Text style={ButtonPrimaryStyle.text}>Iniciar Sesión</Text>
-                </TouchableOpacity>
+          <TouchableOpacity
+            style={ButtonPrimaryStyle.button}
+            onPress={() => navigation.push('Login')}
+          >
+            <Text style={ButtonPrimaryStyle.text}>Iniciar Sesión</Text>
+          </TouchableOpacity>
         </View>
-        
-    </ LinearGradient>
-    
-    <Image
+      </LinearGradient>
+
+      <Image
         source={require('../../../Img-Sant/Banco-del-Sol-Logo.png')}
         style={styles.image}
       />
-    
-    
-      </View>
-
-      
+    </View>
   );
 };

@@ -3,15 +3,17 @@ import colors from '../constants/colors';
 
 export const ButtonSecondaryStyle = StyleSheet.create({
   button: {
-    width: 250,
+    // width: '90%',
+    zIndex: 80,
+    width: 200,
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 20,
     borderRadius: 25,
     borderWidth: 2,
-    borderColor: 'white',
-    backgroundColor: colors.primary,
-    padding: 10,
+    borderColor: colors.primary,
+    backgroundColor: '#fff',
+    padding: 15,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -19,9 +21,12 @@ export const ButtonSecondaryStyle = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 26,
-
     elevation: 14,
+
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
+
   buttondisabled: {
     zIndex: 80,
     width: '90%',
@@ -45,12 +50,14 @@ export const ButtonSecondaryStyle = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+
   text: {
-    color: 'white',
+    color: colors.primary,
     paddingLeft: 5,
     paddingRight: 5,
     alignSelf: 'center',
     fontSize: 18,
-    fontWeight: '500',
+    fontWeight: '700',
+    marginTop: '-3%',
   },
 });

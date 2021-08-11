@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02339979-5921-418c-b1fe-b52f0fc05364" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/constants/ButtonPrymaryStyle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ButtonPrymaryStyle.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/actions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducer/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/account/Account.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/account/Account.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/login/LoginStyles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/LoginStyles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/register/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/register/Register.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/register/RegisterStyles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/register/RegisterStyles.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
