@@ -453,12 +453,12 @@ export function Register({ navigation }: Props) {
                   width: '100%',
                 }}
               >
-                <View style={styles.birthdateButton}>
+                <View style={styles.input}>
                   <View style={{ padding: 8 }}>
-                    <Icon name="location" size={16} />
+                    <Icon name="location" size={22} color={'#fb6583'} />
                   </View>
                   <Select
-                    style={styles.birthdateButton}
+                    style={styles.input}
                     onChange={handleChange('address.province')}
                     value={values.address.province}
                     options={province}

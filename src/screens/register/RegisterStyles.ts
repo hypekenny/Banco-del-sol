@@ -67,12 +67,12 @@ export const styles = StyleSheet.create({
   textError: {
     color: 'red',
   },
-  birthdateButton: {
+  input: {
     flexDirection: 'row',
     alignItems: 'center',
     height: 48,
-    borderRadius: 8,
-    borderColor: 'grey',
+    borderRadius: 25,
+    borderColor: '#fb6583',
     borderWidth: StyleSheet.hairlineWidth,
     padding: 8,
   },
