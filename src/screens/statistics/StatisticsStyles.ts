@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
-    padding: 5,
+    padding: 10,
   },
   inputEmail: {
     borderRadius: 50,
@@ -17,7 +17,6 @@ export const styles = StyleSheet.create({
     paddingLeft: 8,
     paddingRight: 8,
     marginTop: 10,
-    marginBottom: 10,
   },
   inputPassword: {
     borderRadius: 50,
@@ -43,7 +42,6 @@ export const styles = StyleSheet.create({
   },
   btn: {
     backgroundColor: 'blue',
-    borderRadius: 50,
   },
   img: {
     borderRadius: 50,
@@ -51,22 +49,5 @@ export const styles = StyleSheet.create({
     height: 80,
     marginLeft: 'auto',
     marginRight: 'auto',
-  },
-  containerButton: {
-    flex: 1,
-    backgroundColor: colors.white,
-    alignItems: 'center',
-    marginTop: 17,
-  },
-  ellipse: {
-    position: 'relative',
-    zIndex: 20,
-    bottom: '-25%',
-    marginTop: '-50%',
-    left: '20%',
-    width: '60%',
-    height: '60%',
-    borderRadius: 999,
-    transform: [{ scaleX: 3 }],
   },
 });

@@ -9,6 +9,7 @@ export const SET_USER = 'SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
 export const LOG_OUT = 'LOG_OUT';
 export const FETCH_CVU = 'FETCH_CVU';
+export const SET_TOKEN = 'SET_TOKEN';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -34,7 +35,6 @@ export function register(user: userType, password: string) {
                   type: SET_ACCOUNT,
                   payload: responseAgain.data.account,
                 });
-                alert('El usuario fue creado con exito');
               });
           })
           .catch(error => console.error(error));
@@ -65,6 +65,10 @@ export function login(email: string, password: string) {
                 dispatch({
                   type: SET_ACCOUNT,
                   payload: responseFromBack.data.account,
+                });
+                dispatch({
+                  type: SET_TOKEN,
+                  payload: idToken,
                 });
               });
           })
@@ -97,35 +101,26 @@ export function fetchCvu() {
   };
 }
 
-export function updateBalance(value: number) {
-  firebase.auth().onAuthStateChanged(async user => {
-    try {
-      if (user) {
-        const token = await user.getIdToken(true);
-        const response = await axios.put(
-          `http://localhost:3001/api/account`,
-          { value },
-          {
-            headers: {
-              authorization: `Bearer ${token}`,
-            },
-          },
-        );
-        if (response.data) {
-          return (dispatch: any) => {
-            dispatch({
-              type: SET_ACCOUNT,
-              payload: response.data.account,
-            });
-          };
-        }
-      } else {
-        console.log('por favor vuelva a autenticarse');
-        return null;
-      }
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
-  });
+export async function updateBalance(
+  value: number,
+  token: string,
+  dispatch: any,
+) {
+  axios
+    .put(
+      `http://localhost:3001/api/account`,
+      { value },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      },
+    )
+    .then(response => {
+      dispatch({
+        type: SET_ACCOUNT,
+        payload: response.data.account,
+      });
+    })
+    .catch(error => console.log(error));
 }

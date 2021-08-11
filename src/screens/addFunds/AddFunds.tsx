@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
 import { styles } from './AddFundsStyles';
 import { updateBalance } from '../../redux/actions';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 
 export const AddFunds = () => {
+  const token = useSelector((state: any) => state.token);
+  const dispatch = useDispatch();
   const [value, setValue] = useState(0);
 
   const handleInputChange = (text: string) => {
@@ -16,7 +19,8 @@ export const AddFunds = () => {
   };
 
   const handleSubmit = () => {
-    updateBalance(value);
+    updateBalance(value, token, dispatch);
+    setValue(0);
   };
 
   return (

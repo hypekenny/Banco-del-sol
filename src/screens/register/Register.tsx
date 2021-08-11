@@ -1,15 +1,18 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import Select from 'react-select-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { Entypo as Icon } from '@expo/vector-icons';
 import * as Yup from 'yup';
+import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './RegisterStyles';
 import { register } from '../../redux/actions';
 import { resFromBack, Props } from '../../types/Types';
 import TextInput from '../../components/TextInputFormix';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
+import colors from '../../constants/colors';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const yup = require('yup');
 
@@ -50,29 +53,28 @@ export function Register({ navigation }: Props) {
     }),
   });
 
-  const { handleChange, handleSubmit, handleBlur, values, errors, touched } =
-    useFormik({
-      validationSchema: FormSchema,
-      initialValues: {
-        name: '',
-        lastName: '',
-        email: '',
-        pass: '',
-        passConfirm: '',
-        dni: '',
-        phoneNumber: '',
-        birthdate: '',
-        address: {
-          street: '',
-          number: '',
-          zipCode: '',
-          city: '',
-          province: '',
-        },
+  const { handleChange, handleBlur, values, errors, touched } = useFormik({
+    validationSchema: FormSchema,
+    initialValues: {
+      name: '',
+      lastName: '',
+      email: '',
+      pass: '',
+      passConfirm: '',
+      dni: '',
+      phoneNumber: '',
+      birthdate: '',
+      address: {
+        street: '',
+        number: '',
+        zipCode: '',
+        city: '',
+        province: '',
       },
-      onSubmit: values => console.log(values),
-      /* alert(`Email: ${values.email}`), */
-    });
+    },
+    onSubmit: values => console.log(values),
+    /* alert(`Email: ${values.email}`), */
+  });
 
   const [step, setStep] = useState(false);
   const dispatch = useDispatch();
@@ -142,12 +144,16 @@ export function Register({ navigation }: Props) {
     dispatch(register(user, pass));
   }
   return (
-    <View style={styles.container}>
+    <View style={styles.containerOne}>
       <SafeAreaView style={{ flex: 1 }}>
         {!step ? (
-          <View>
+          <View style={styles.setpOne}>
             <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
             >
               <TextInput
                 icon="user"
@@ -163,7 +169,11 @@ export function Register({ navigation }: Props) {
             </View>
 
             <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
             >
               <TextInput
                 icon="user"
@@ -179,7 +189,11 @@ export function Register({ navigation }: Props) {
             </View>
 
             <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
             >
               <TextInput
                 icon="mail"
@@ -196,7 +210,11 @@ export function Register({ navigation }: Props) {
             </View>
 
             <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
             >
               <TextInput
                 icon="key"
@@ -213,7 +231,11 @@ export function Register({ navigation }: Props) {
             </View>
 
             <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              style={{
+                paddingHorizontal: 32,
+                marginBottom: 16,
+                width: '100%',
+              }}
             >
               <TextInput
                 icon="key"
@@ -229,182 +251,218 @@ export function Register({ navigation }: Props) {
               />
             </View>
 
-            {!errors.name &&
-            !errors.lastName &&
-            !errors.email &&
-            !errors.pass &&
-            !errors.passConfirm &&
-            values.name ? (
-              <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+            <View style={styles.btns}>
+              {!errors.name &&
+              !errors.lastName &&
+              !errors.email &&
+              !errors.pass &&
+              !errors.passConfirm &&
+              values.name ? (
                 <TouchableOpacity
-                  style={ButtonSecondaryStyle.button}
+                  style={styles.buttonRegister}
                   onPress={() => setStep(!step)}
                 >
-                  <Text style={ButtonSecondaryStyle.text}>Siguiente</Text>
+                  <Text style={ButtonSecondaryStyle.text}>SIGUIENTE</Text>
                 </TouchableOpacity>
-              </View>
-            ) : (
-              <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-                <TouchableOpacity style={ButtonSecondaryStyle.buttondisabled}>
-                  <Text style={ButtonSecondaryStyle.text}>Siguiente</Text>
+              ) : (
+                <TouchableOpacity style={styles.button}>
+                  <Text style={styles.next}>SIGUIENTE</Text>
                 </TouchableOpacity>
-              </View>
-            )}
+              )}
+            </View>
+            <LinearGradient
+              style={styles.ellipse}
+              colors={[colors.primary, colors.secondary]}
+              end={[1, 1]}
+            />
           </View>
         ) : (
-          <View style={styles.container}>
-            <View style={styles.back}>
-              <TouchableOpacity onPress={() => setStep(!step)}>
-                <View style={{ padding: 8 }}>
-                  <Icon name="chevron-left" size={30} />
-                </View>
-              </TouchableOpacity>
-            </View>
+          <KeyboardAwareScrollView>
+            <View style={styles.container}>
+              <View style={styles.back}>
+                <TouchableOpacity onPress={() => setStep(!step)}>
+                  <View style={{ padding: 8 }}>
+                    <Icon name="chevron-left" size={30} />
+                  </View>
+                </TouchableOpacity>
+              </View>
 
-            <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
-            >
-              <TextInput
-                icon="wallet"
-                placeholderTextColor="grey"
-                value={values.dni}
-                placeholder="DNI"
-                onChangeText={handleChange('dni')}
-                keyboardType="numeric"
-                onBlur={handleBlur('dni')}
-                error={errors.dni}
-                touched={touched.dni}
-              />
-            </View>
-            <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
-            >
-              <TextInput
-                icon="phone"
-                placeholderTextColor="grey"
-                value={values.phoneNumber}
-                placeholder="Telefono"
-                onChangeText={handleChange('phoneNumber')}
-                keyboardType="numeric"
-                autoCapitalize="none"
-                onBlur={handleBlur('phoneNumber')}
-                error={errors.phoneNumber}
-                touched={touched.phoneNumber}
-              />
-            </View>
-
-            <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
-            >
-              <TextInput
-                icon="calendar"
-                placeholderTextColor="grey"
-                value={values.birthdate}
-                placeholder="Nacimiento"
-                onChangeText={handleChange('birthdate')}
-                autoCapitalize="none"
-                onBlur={handleBlur('birthdate')}
-                error={errors.birthdate}
-                touched={touched.birthdate}
-              />
-            </View>
-            {/*    <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
-            >
-              <TouchableOpacity
-                style={styles.birthdateButton}
-                onPress={showDatePicker}
+              <View
+                style={{
+                  paddingHorizontal: 32,
+                  marginBottom: 16,
+                  width: '100%',
+                }}
               >
-                <View style={{ padding: 8 }}>
-                  <Icon name={'calendar'} size={16} />
-                </View>
-                <Text style={styles.birthdateButtonText}>Nacimiento</Text>
+                <TextInput
+                  icon="wallet"
+                  placeholderTextColor="grey"
+                  value={values.dni}
+                  placeholder="DNI"
+                  onChangeText={handleChange('dni')}
+                  keyboardType="numeric"
+                  onBlur={handleBlur('dni')}
+                  error={errors.dni}
+                  touched={touched.dni}
+                />
+              </View>
+              <View
+                style={{
+                  paddingHorizontal: 32,
+                  marginBottom: 16,
+                  width: '100%',
+                }}
+              >
+                <TextInput
+                  icon="phone"
+                  placeholderTextColor="grey"
+                  value={values.phoneNumber}
+                  placeholder="Telefono"
+                  onChangeText={handleChange('phoneNumber')}
+                  keyboardType="numeric"
+                  autoCapitalize="none"
+                  onBlur={handleBlur('phoneNumber')}
+                  error={errors.phoneNumber}
+                  touched={touched.phoneNumber}
+                />
+              </View>
+
+              <View
+                style={{
+                  paddingHorizontal: 32,
+                  marginBottom: 16,
+                  width: '100%',
+                }}
+              >
+                <TextInput
+                  icon="calendar"
+                  placeholderTextColor="grey"
+                  value={values.birthdate}
+                  placeholder="Nacimiento"
+                  onChangeText={handleChange('birthdate')}
+                  autoCapitalize="none"
+                  onBlur={handleBlur('birthdate')}
+                  error={errors.birthdate}
+                  touched={touched.birthdate}
+                />
+              </View>
+              {/*    <View
+              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
+              >
+              <TouchableOpacity
+              style={styles.birthdateButton}
+              onPress={showDatePicker}
+              >
+              <View style={{ padding: 8 }}>
+              <Icon name={'calendar'} size={16} />
+              </View>
+              <Text style={styles.birthdateButtonText}>Nacimiento</Text>
               </TouchableOpacity>
               <DateTimePickerModal
-                isVisible={isDatePickerVisible}
-                mode="date"
-                onConfirm={handleConfirm}
-                onCancel={hideDatePicker}
+              isVisible={isDatePickerVisible}
+              mode="date"
+              onConfirm={handleConfirm}
+              onCancel={hideDatePicker}
               />
             </View> */}
 
-            <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
-            >
-              <TextInput
-                icon="key"
-                placeholderTextColor="grey"
-                placeholder="Calle"
-                value={values.address.street}
-                onChangeText={handleChange('address.street')}
-                onBlur={handleBlur('address.street')}
-                error={errors.address?.street}
-                touched={touched.address?.street}
-              />
-            </View>
-            <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
-            >
-              <TextInput
-                icon="location"
-                placeholderTextColor="grey"
-                placeholder="Direccion NUM"
-                onChangeText={handleChange('address.number')}
-                value={values.address.number}
-                autoCapitalize="none"
-                keyboardType="numeric"
-                onBlur={handleBlur('address.number')}
-                error={errors.address?.number}
-                touched={touched.address?.number}
-              />
-            </View>
-            <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
-            >
-              <TextInput
-                icon="location"
-                placeholderTextColor="grey"
-                placeholder="Codigo Postal"
-                onChangeText={handleChange('address.zipCode')}
-                value={values.address.zipCode}
-                autoCapitalize="none"
-                onBlur={handleBlur('address.zipcode')}
-                error={errors.address?.zipCode}
-                touched={touched.address?.zipCode}
-              />
-            </View>
-            <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
-            >
-              <TextInput
-                icon="address"
-                placeholderTextColor="grey"
-                value={values.address.city}
-                placeholder="Ciudad"
-                onChangeText={handleChange('address.city')}
-                autoCapitalize="none"
-                onBlur={handleBlur('address.city')}
-                error={errors.address?.city}
-                touched={touched.address?.city}
-              />
-            </View>
-            <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
-            >
-              <View style={styles.birthdateButton}>
-                <View style={{ padding: 8 }}>
-                  <Icon name="calendar" size={16} />
-                </View>
-                <Select
-                  style={styles.birthdateButton}
-                  onChange={handleChange('address.province')}
-                  value={values.address.province}
-                  options={province}
-                  defaultValue={province[0].value}
+              <View
+                style={{
+                  paddingHorizontal: 32,
+                  marginBottom: 16,
+                  width: '100%',
+                }}
+              >
+                <TextInput
+                  icon="key"
+                  placeholderTextColor="grey"
+                  placeholder="Calle"
+                  value={values.address.street}
+                  onChangeText={handleChange('address.street')}
+                  onBlur={handleBlur('address.street')}
+                  error={errors.address?.street}
+                  touched={touched.address?.street}
                 />
               </View>
-            </View>
-            {!errors.dni &&
+              <View
+                style={{
+                  paddingHorizontal: 32,
+                  marginBottom: 16,
+                  width: '100%',
+                }}
+              >
+                <TextInput
+                  icon="location"
+                  placeholderTextColor="grey"
+                  placeholder="Direccion NUM"
+                  onChangeText={handleChange('address.number')}
+                  value={values.address.number}
+                  autoCapitalize="none"
+                  keyboardType="numeric"
+                  onBlur={handleBlur('address.number')}
+                  error={errors.address?.number}
+                  touched={touched.address?.number}
+                />
+              </View>
+              <View
+                style={{
+                  paddingHorizontal: 32,
+                  marginBottom: 16,
+                  width: '100%',
+                }}
+              >
+                <TextInput
+                  icon="location"
+                  placeholderTextColor="grey"
+                  placeholder="Codigo Postal"
+                  onChangeText={handleChange('address.zipCode')}
+                  value={values.address.zipCode}
+                  autoCapitalize="none"
+                  onBlur={handleBlur('address.zipcode')}
+                  error={errors.address?.zipCode}
+                  touched={touched.address?.zipCode}
+                />
+              </View>
+              <View
+                style={{
+                  paddingHorizontal: 32,
+                  marginBottom: 16,
+                  width: '100%',
+                }}
+              >
+                <TextInput
+                  icon="address"
+                  placeholderTextColor="grey"
+                  value={values.address.city}
+                  placeholder="Ciudad"
+                  onChangeText={handleChange('address.city')}
+                  autoCapitalize="none"
+                  onBlur={handleBlur('address.city')}
+                  error={errors.address?.city}
+                  touched={touched.address?.city}
+                />
+              </View>
+              <View
+                style={{
+                  paddingHorizontal: 32,
+                  marginBottom: 16,
+                  width: '100%',
+                }}
+              >
+                <View style={styles.birthdateButton}>
+                  <View style={{ padding: 8 }}>
+                    <Icon name="calendar" size={16} />
+                  </View>
+                  <Select
+                    style={styles.birthdateButton}
+                    onChange={handleChange('address.province')}
+                    value={values.address.province}
+                    options={province}
+                    defaultValue={province[0].value}
+                  />
+                </View>
+              </View>
+              {/* {!errors.dni &&
             !errors.phoneNumber &&
             !errors.birthdate &&
             !errors.address?.street &&
@@ -413,23 +471,57 @@ export function Register({ navigation }: Props) {
             !errors.address?.city &&
             !errors.address?.province ? (
               <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-                <TouchableOpacity
-                  style={ButtonSecondaryStyle.button}
-                  onPress={() => send(values)}
-                >
-                  <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
-                </TouchableOpacity>
+              <TouchableOpacity
+              style={ButtonSecondaryStyle.button}
+              onPress={() => send(values)}
+              >
+              <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
+              </TouchableOpacity>
               </View>
-            ) : (
-              <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+              ) : (
+                <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
                 <TouchableOpacity style={ButtonSecondaryStyle.buttondisabled}>
-                  <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
+                <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
                 </TouchableOpacity>
-              </View>
-            )}
-          </View>
-        )}
+                </View>
+              )} */}
+              {/* aaaaaaaaaaaaaaaaaaaaaa */}
+              <View style={styles.btns}>
+                {!errors.dni &&
+                !errors.phoneNumber &&
+                !errors.birthdate &&
+                !errors.address?.street &&
+                !errors.address?.number &&
+                !errors.address?.zipCode &&
+                !errors.address?.city &&
+                !errors.address?.province ? (
+                  //   <TouchableOpacity
+                  //   style={styles.buttonRegister}
+                  //   onPress={() => send(values)}
+                  // >
+                  //   <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
+                  // </TouchableOpacity>
 
+                  <TouchableOpacity
+                    style={styles.buttonRegisterTwo}
+                    onPress={() => send(values)}
+                  >
+                    <Text style={ButtonSecondaryStyle.text}>REGISTRARSE</Text>
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity style={styles.buttontwo}>
+                    <Text style={styles.next}>REGISTRARSE</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+              <LinearGradient
+                style={styles.ellipseTwo}
+                colors={[colors.primary, colors.secondary]}
+                end={[1, 1]}
+              />
+            </View>
+          </KeyboardAwareScrollView>
+        )}
         {userStore.email && userStore.email.length
           ? navigation.push('Home')
           : null}

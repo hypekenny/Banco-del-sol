@@ -1,9 +1,11 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import firebase from 'firebase';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import { styles } from './ForgotPasswordStyles';
+import colors from '../../constants/colors';
 
 export function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -30,11 +32,16 @@ export function ForgotPassword() {
       <View style={styles.containerButton}>
         <TouchableOpacity
           onPress={() => handlePress(email)}
-          style={ButtonSecondaryStyle.button}
+          style={ButtonPrimaryStyle.button}
         >
           <Text style={ButtonSecondaryStyle.text}>Enviar</Text>
         </TouchableOpacity>
       </View>
+      <LinearGradient
+        style={styles.ellipse}
+        colors={[colors.primary, colors.secondary]}
+        end={[1, 1]}
+      />
     </View>
   );
 }
