@@ -4,6 +4,7 @@ import {
   SET_ACCOUNT,
   LOG_OUT,
   FETCH_CVU,
+  SET_TOKEN,
 } from '../actions/index';
 
 interface actionType {
@@ -46,7 +47,7 @@ export default function rootReducer(state = initialState, action: actionType) {
         ...state,
         cvuAsociate: action.payload,
       };
-    case 'SET_TOKEN':
+    case SET_TOKEN:
       return {
         ...state,
         token: action.payload,

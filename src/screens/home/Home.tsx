@@ -113,6 +113,7 @@ const screensOptions = (route: any, color: string) => {
       iconName = 'bank';
       break;
     default:
+      iconName = '';
       break;
   }
   return (

@@ -1,10 +1,10 @@
-import { Start } from '../screens/start/Start';
-import { StartView } from '../screens/start/StartView';
-import { Login } from '../screens/login/Login';
-import { Register } from '../screens/register/Register';
-import { Home } from '../screens/home/Home';
-import { Transfer } from '../screens/transfer/Transfer';
-import { Account } from '../screens/account/Account';
+import { Start } from './start/Start';
+import { StartView } from './start/StartView';
+import { Login } from './login/Login';
+import { Register } from './register/Register';
+import { Home } from './home/Home';
+import { Transfer } from './transfer/Transfer';
+import { Account } from './account/Account';
 import { AddFunds } from './addFunds/AddFunds';
 import { Transactions } from './transacciones/Transactions';
 import { ForgotPassword } from './forgotPassword/forgotPassword';

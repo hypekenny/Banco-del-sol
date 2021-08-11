@@ -1,6 +1,5 @@
 import axios from 'axios';
 import firebase from 'firebase';
-import { useDispatch } from 'react-redux';
 import { resFromBack, userType } from '../../types/Types';
 
 require('firebase/firebase-auth');
@@ -10,6 +9,7 @@ export const SET_USER = 'SET_USER';
 export const SET_ACCOUNT = 'SET_ACCOUNT';
 export const LOG_OUT = 'LOG_OUT';
 export const FETCH_CVU = 'FETCH_CVU';
+export const SET_TOKEN = 'SET_TOKEN';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -68,7 +68,7 @@ export function login(email: string, password: string) {
                   payload: responseFromBack.data.account,
                 });
                 dispatch({
-                  type: 'SET_TOKEN',
+                  type: SET_TOKEN,
                   payload: idToken,
                 });
               });

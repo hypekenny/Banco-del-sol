@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import { styles } from './TransferStyles';
-import { RootState, Props } from '../../types/Types';
+import { RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 
-export const Transfer = ({ navigation }: Props) => {
+export const Transfer = () => {
   const accountStore = useSelector((state: RootState) => state.account);
   const [data, setData] = useState({
     email: '',
