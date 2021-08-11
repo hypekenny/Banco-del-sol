@@ -35,7 +35,6 @@ export function register(user: userType, password: string) {
                   type: SET_ACCOUNT,
                   payload: responseAgain.data.account,
                 });
-                alert('El usuario fue creado con exito');
               });
           })
           .catch(error => console.error(error));
