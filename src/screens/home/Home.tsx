@@ -9,10 +9,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './HomeStyles';
 import { Transactions } from '../transacciones/Transactions';
-import { AddFunds } from '../addFunds/AddFunds';
 import { logout } from '../../redux/actions';
 import { loginStackParamList, resFromBack } from '../../types/Types';
 import { Account } from '../account/Account';
+import { Statistics } from '../statistics/Statistics';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,21 +39,15 @@ type Props = {
 };
 
 function HomeScreen({ navigation }: Props) {
-  const [balance, setBalance] = useState<number>(0);
-
   const [ing, setIng] = useState<string>('0');
-
   const [gast, setGast] = useState<string>('0');
 
-  const userStore = useSelector((state: resFromBack) => state.account);
+  const accountStore = useSelector((state: resFromBack) => state.account);
 
   useEffect(() => {
-    if (userStore) {
-      setBalance(userStore.balance);
-    }
     setIng('5,750');
     setGast('3,100.5');
-  }, [userStore]);
+  }, []);
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -61,7 +55,9 @@ function HomeScreen({ navigation }: Props) {
         <Text style={{ fontSize: 20, fontWeight: '100', color: '#3b3b3b' }}>
           Balance
         </Text>
-        <Text style={{ fontSize: 40, fontWeight: '900' }}>${balance}</Text>
+        <Text style={{ fontSize: 40, fontWeight: '900' }}>
+          ${accountStore.balance}
+        </Text>
       </View>
       <View style={styles.box}>
         <View style={styles.boxt}>
@@ -105,7 +101,7 @@ function HomeScreen({ navigation }: Props) {
 const screensOptions = (route: any, color: string) => {
   let iconName;
   switch (route.name) {
-    case 'Home':
+    case 'Inicio':
       iconName = 'home';
       break;
     case 'Transacciones':
@@ -118,6 +114,7 @@ const screensOptions = (route: any, color: string) => {
       iconName = 'bank';
       break;
     default:
+      iconName = '';
       break;
   }
   return (
@@ -135,7 +132,7 @@ export const Home = ({ navigation }: Props) => {
 
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Inicio"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => screensOptions(route, color),
         tabBarActiveTintColor: '#ff4b6e',
@@ -152,7 +149,7 @@ export const Home = ({ navigation }: Props) => {
       })}
     >
       <Tab.Screen
-        name="Home"
+        name="Inicio"
         component={HomeScreen}
         options={{
           headerBackground: () => (
@@ -177,9 +174,51 @@ export const Home = ({ navigation }: Props) => {
           ),
         }}
       />
-      <Tab.Screen name="Transacciones" component={Transactions} />
-      <Tab.Screen name="Estadisticas" component={AddFunds} />
-      <Tab.Screen name="Mi Cuenta" component={Account} />
+      <Tab.Screen
+        name="Transacciones"
+        component={Transactions}
+        options={{
+          headerTintColor: 'white',
+          headerBackground: () => (
+            <LinearGradient
+              colors={['#ff4b6e', '#ff9349']}
+              style={{ flex: 1 }}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Estadisticas"
+        component={Statistics}
+        options={{
+          headerTintColor: 'white',
+          headerBackground: () => (
+            <LinearGradient
+              colors={['#ff4b6e', '#ff9349']}
+              style={{ flex: 1 }}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Mi Cuenta"
+        component={Account}
+        options={{
+          headerTintColor: 'white',
+          headerBackground: () => (
+            <LinearGradient
+              colors={['#ff4b6e', '#ff9349']}
+              style={{ flex: 1 }}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };

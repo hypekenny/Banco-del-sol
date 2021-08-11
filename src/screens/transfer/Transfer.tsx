@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import { styles } from './TransferStyles';
-import { RootState, Props } from '../../types/Types';
+import { RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 
-export const Transfer = ({ navigation }: Props) => {
+export const Transfer = () => {
   const accountStore = useSelector((state: RootState) => state.account);
   const [data, setData] = useState({
     email: '',
@@ -13,10 +13,9 @@ export const Transfer = ({ navigation }: Props) => {
   });
   return (
     <View style={styles.container}>
-      <Text>TRANSFER</Text>
       <TextInput
-        placeholder="Ingresá email"
-        placeholderTextColor="black"
+        placeholder="Ingresá email..."
+        placeholderTextColor="grey"
         value={data.email}
         onChangeText={(text: string) => setData({ ...data, email: text })}
         keyboardType="email-address"
@@ -24,19 +23,23 @@ export const Transfer = ({ navigation }: Props) => {
       />
       <Text style={ButtonPrimaryStyle.text}>${accountStore.balance}</Text>
       <TextInput
-        placeholder="Ingresá email"
-        placeholderTextColor="black"
-        value={data.email}
-        onChangeText={(text: string) => setData({ ...data, email: text })}
-        keyboardType="email-address"
+        placeholder="Ingresá monto..."
+        placeholderTextColor="grey"
+        value={data.amount.toString()}
+        onChangeText={(text: string) =>
+          setData({ ...data, amount: parseInt(text, 10) })
+        }
+        keyboardType="number-pad"
         style={styles.inputEmail}
       />
-      <TouchableOpacity
-        style={ButtonPrimaryStyle.button}
-        onPress={() => console.log('pending')}
-      >
-        <Text>enviar</Text>
-      </TouchableOpacity>
+      <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+        <TouchableOpacity
+          style={ButtonPrimaryStyle.button}
+          onPress={() => console.log('pending')}
+        >
+          <Text>enviar</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
