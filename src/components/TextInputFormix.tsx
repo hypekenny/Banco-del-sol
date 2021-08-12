@@ -2,20 +2,26 @@ import React from 'react';
 import { TextInput as RNTextInput, View, Text, StyleSheet } from 'react-native';
 import { Entypo as Icon } from '@expo/vector-icons';
 
-export default function TextInput({ icon, error, touched, ...otherProps }) {
+export default function TextInput({
+  size,
+  icon,
+  error,
+  touched,
+  ...otherProps
+}) {
   const validationColor = !touched ? '#fb6583' : error ? '#FF0000' : '#fe6886';
   return (
     <View
       style={{
         flexDirection: 'row',
         alignItems: 'center',
-        height: 48,
+        height: size,
         borderRadius: 25,
         borderColor: validationColor,
         borderWidth: StyleSheet.hairlineWidth,
         padding: 8,
 
-        marginBottom: '10%',
+        //marginBottom: '10%',
       }}
     >
       <View style={{ padding: 8 }}>
