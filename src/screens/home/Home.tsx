@@ -42,7 +42,6 @@ type Props = {
 function HomeScreen({ navigation }: Props) {
   const [ing, setIng] = useState<number>(0);
   const [gast, setGast] = useState<number>(0);
-  const [try, setTry] = useState<boolean>(false)
   const accountStore = useSelector((state: resFromBack) => state.account);
 
   useEffect(() => {
