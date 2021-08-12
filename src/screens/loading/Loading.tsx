@@ -6,14 +6,14 @@ export default function Loading() {
   const [spinAnim, setSpinAnim] = useState(new Animated.Value(0));
   const spin = spinAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
+    outputRange: ['0deg', '3600deg'],
   });
 
   useEffect(() => {
     Animated.loop(
       Animated.timing(spinAnim, {
         toValue: -1,
-        duration: 6000,
+        duration: 60000,
         easing: Easing.linear,
         useNativeDriver: true,
       }),
