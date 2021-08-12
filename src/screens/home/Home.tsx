@@ -1,7 +1,6 @@
 /* eslint-disable prefer-const */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { ThemeProvider, Button, Icon } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,7 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './HomeStyles';
 import { Transactions } from '../transacciones/Transactions';
 import { logout } from '../../redux/actions';
-import { loginStackParamList, Props, RootState } from '../../types/Types';
+import { Props, RootState } from '../../types/Types';
 import { Account } from '../account/Account';
 import { Statistics } from '../statistics/Statistics';
 
@@ -120,7 +119,7 @@ const screensOptions = (route: any, color: string) => {
 
 export const Home = ({ navigation }: Props) => {
   const dispatch = useDispatch();
-  const userStore = useSelector((state: resFromBack) => state.user);
+  const userStore = useSelector((state: RootState) => state.user);
 
   function exit() {
     dispatch(logout());
