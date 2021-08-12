@@ -62,12 +62,10 @@ export function login(email: string, password: string) {
                 },
               })
               .then(responseFromBack => {
-                console.log('b', responseFromBack.data);
                 dispatch({
                   type: SET_ACCOUNT,
                   payload: responseFromBack.data.account,
                 });
-                console.log('d');
                 dispatch({
                   type: SET_USER,
                   payload: responseFromBack.data.user,
