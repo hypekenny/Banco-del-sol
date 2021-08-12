@@ -21,7 +21,9 @@ export const Transfer = () => {
         keyboardType="email-address"
         style={styles.inputEmail}
       />
-      <Text style={ButtonPrimaryStyle.text}>${accountStore.balance}</Text>
+      <Text style={ButtonPrimaryStyle.text}>
+        ${accountStore.balance.amount}
+      </Text>
       <TextInput
         placeholder="Ingresá monto..."
         placeholderTextColor="grey"
