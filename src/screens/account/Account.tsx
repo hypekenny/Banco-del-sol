@@ -101,7 +101,7 @@ export function Account() {
       </View>
     );
   }
-  if (loaded) {
+  if (loaded && cvuAsociate) {
     return (
       <View style={styles.container}>
         <LinearGradient
