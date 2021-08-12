@@ -29,7 +29,9 @@ export const Transfer = () => {
         placeholderTextColor="grey"
         value={data.amount.toString()}
         onChangeText={(text: string) =>
-          setData({ ...data, amount: parseInt(text, 10) })
+          parseInt(text, 10) < accountStore.balance.amount
+            ? setData({ ...data, amount: parseInt(text, 10) })
+            : null
         }
         keyboardType="number-pad"
         style={styles.inputEmail}

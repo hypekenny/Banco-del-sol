@@ -28,12 +28,12 @@ export function register(user: userType, password: string) {
               })
               .then(responseAgain => {
                 dispatch({
-                  type: SET_USER,
-                  payload: responseAgain.data.user,
-                });
-                dispatch({
                   type: SET_ACCOUNT,
                   payload: responseAgain.data.account,
+                });
+                dispatch({
+                  type: SET_USER,
+                  payload: responseAgain.data.user,
                 });
                 dispatch({
                   type: SET_TOKEN,
@@ -62,13 +62,15 @@ export function login(email: string, password: string) {
                 },
               })
               .then(responseFromBack => {
-                dispatch({
-                  type: SET_USER,
-                  payload: responseFromBack.data.user,
-                });
+                console.log('b', responseFromBack.data);
                 dispatch({
                   type: SET_ACCOUNT,
                   payload: responseFromBack.data.account,
+                });
+                console.log('d');
+                dispatch({
+                  type: SET_USER,
+                  payload: responseFromBack.data.user,
                 });
                 dispatch({
                   type: SET_TOKEN,

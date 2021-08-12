@@ -27,11 +27,13 @@ export default function rootReducer(state = initialState, action: actionType) {
         user: action.payload,
       };
     case SET_USER:
+      console.log('f', action.payload);
       return {
         ...state,
         user: action.payload,
       };
     case SET_ACCOUNT:
+      console.log('c', action.payload);
       return {
         ...state,
         account: action.payload,
