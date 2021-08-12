@@ -10,7 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './HomeStyles';
 import { Transactions } from '../transacciones/Transactions';
 import { logout } from '../../redux/actions';
-import { loginStackParamList, resFromBack } from '../../types/Types';
+import { loginStackParamList, resFromBack, Props } from '../../types/Types';
 import { Account } from '../account/Account';
 import { Statistics } from '../statistics/Statistics';
 
@@ -32,10 +32,6 @@ const theme = {
       color: 'black',
     },
   },
-};
-
-type Props = {
-  navigation: StackNavigationProp<loginStackParamList, 'List'>;
 };
 
 function HomeScreen({ navigation }: Props) {

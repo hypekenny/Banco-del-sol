@@ -65,9 +65,22 @@ export type userType = {
 
 export interface accountType {
   email: string;
-  balance: number;
+  balance: balanceType;
   cvu: string;
 }
+
+interface balanceType {
+  amount: number;
+  history: Array<transactionType>;
+}
+
+interface transactionType {
+  email: string;
+  type: string;
+  value: number;
+  date: Date;
+}
+
 /* OJO que toque el account */
 export type resFromBack = {
   user: userType;
