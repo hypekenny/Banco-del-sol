@@ -21,7 +21,7 @@ export function register(user: userType, password: string) {
           ?.getIdToken(true)
           .then(idToken => {
             axios
-              .post<resFromBack>(`http://localhost:3001/api/user/`, user, {
+              .post<resFromBack>(`http://192.168.0.229:3001/api/user/`, user, {
                 headers: {
                   authorization: `Bearer ${idToken}`,
                 },
@@ -56,7 +56,7 @@ export function login(email: string, password: string) {
           ?.getIdToken(true)
           .then(idToken => {
             axios
-              .get<resFromBack>(`http://localhost:3001/api/user/`, {
+              .get<resFromBack>(`http://192.168.0.229:3001/api/user/`, {
                 headers: {
                   authorization: `Bearer ${idToken}`,
                 },
@@ -112,7 +112,7 @@ export async function updateBalance(
 ) {
   axios
     .put(
-      `http://localhost:3001/api/account`,
+      `http://192.168.0.229:3001/api/account`,
       { value },
       {
         headers: {

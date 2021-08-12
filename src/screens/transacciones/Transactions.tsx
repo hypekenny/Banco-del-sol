@@ -6,10 +6,12 @@ import { styles } from './TransactionsStyles';
 export function Transactions() {
   const [money, setMoney] = useState<number>(0);
   const [moneyd, setMoneyd] = useState<number>(0);
+
   useEffect(() => {
     setMoney(3532.5);
     setMoneyd(3342.5);
-  }, [money]);
+  }, []);
+
   return (
     <View style={styles.container}>
       <ScrollView>

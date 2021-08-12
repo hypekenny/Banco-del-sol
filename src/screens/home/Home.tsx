@@ -1,4 +1,5 @@
 /* eslint-disable prefer-const */
+// feat-Cell-phone-compatibility
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -39,14 +40,14 @@ type Props = {
 };
 
 function HomeScreen({ navigation }: Props) {
-  const [ing, setIng] = useState<string>('0');
-  const [gast, setGast] = useState<string>('0');
-
+  const [ing, setIng] = useState<number>(0);
+  const [gast, setGast] = useState<number>(0);
+  const [try, setTry] = useState<boolean>(false)
   const accountStore = useSelector((state: resFromBack) => state.account);
 
   useEffect(() => {
-    setIng('5,750');
-    setGast('3,100.5');
+    setIng(5750);
+    setGast(3100.5);
   }, []);
 
   return (
