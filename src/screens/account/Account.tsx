@@ -24,7 +24,7 @@ export function Account() {
   const [loaded, setLoaded] = useState(false);
 
   function asociateCVU() {
-    /* Simulacion de demora de pedido a la api */
+    /* Simulacion de demora de pedido a la api de 3 segundos */
     setAssociatePushed(true);
     function resolveAfter3Seconds() {
       return new Promise(resolve => {
