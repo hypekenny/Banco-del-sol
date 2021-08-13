@@ -586,6 +586,9 @@ export function Register({ navigation }: Props) {
         colors={[colors.primary, colors.secondary]}
         end={[1, 1]}
       />
+      {userStore.email && userStore.email.length
+        ? navigation.push('Home')
+        : null}
     </View>
   );
 }
