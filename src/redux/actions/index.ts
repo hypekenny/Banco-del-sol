@@ -21,11 +21,15 @@ export function register(user: userType, password: string) {
           ?.getIdToken(true)
           .then(idToken => {
             axios
-              .post<resFromBack>(`http://192.168.0.229:3001/api/user/`, user, {
-                headers: {
-                  authorization: `Bearer ${idToken}`,
+              .post<resFromBack>(
+                `http://${process.env.IP_ADDRESS}:3001/api/user/`,
+                user,
+                {
+                  headers: {
+                    authorization: `Bearer ${idToken}`,
+                  },
                 },
-              })
+              )
               .then(responseAgain => {
                 dispatch({
                   type: SET_USER,
@@ -56,11 +60,14 @@ export function login(email: string, password: string) {
           ?.getIdToken(true)
           .then(idToken => {
             axios
-              .get<resFromBack>(`http://192.168.0.229:3001/api/user/`, {
-                headers: {
-                  authorization: `Bearer ${idToken}`,
+              .get<resFromBack>(
+                `http://${process.env.IP_ADDRESS}:3001/api/user/`,
+                {
+                  headers: {
+                    authorization: `Bearer ${idToken}`,
+                  },
                 },
-              })
+              )
               .then(responseFromBack => {
                 dispatch({
                   type: SET_USER,
@@ -112,7 +119,7 @@ export async function updateBalance(
 ) {
   axios
     .put(
-      `http://192.168.0.229:3001/api/account`,
+      `http://${process.env.IP_ADDRESS}:3001/api/account`,
       { value },
       {
         headers: {
