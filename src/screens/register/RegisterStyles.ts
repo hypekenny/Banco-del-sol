@@ -209,7 +209,7 @@ export const styles = StyleSheet.create({
   button: {
     borderColor: colors.primary,
     backgroundColor: '#fff',
-    width: '40%',
+    width: '45%',
     alignItems: 'center',
     justifyContent: 'center',
     height: '35%',
@@ -228,7 +228,7 @@ export const styles = StyleSheet.create({
   buttonDisable: {
     borderColor: colors.primary,
     backgroundColor: '#deac98de',
-    width: '40%',
+    width: '45%',
     alignItems: 'center',
     justifyContent: 'center',
     height: '35%',
@@ -304,21 +304,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-  view1: {
-    backgroundColor: 'red',
-    height: 200,
-    width: 200,
+  picker: {
+    color: 'grey' /* 
+    border:'none', */,
+    width: '100%',
   },
-  view2: {
-    backgroundColor: 'blue',
-    height: 200,
-    width: 200,
-  },
-  view3: {
-    backgroundColor: 'yellow',
-    height: 200,
-    width: 200,
-  },
+
   footer: {
     height: 150,
     width: 200,
