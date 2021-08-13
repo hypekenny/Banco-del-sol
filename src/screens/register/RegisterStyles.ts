@@ -36,6 +36,21 @@ export const styles = StyleSheet.create({
   prueba: {
     backgroundColor: '#000',
   },
+  backSEBAASK: {
+    height: '7.5%',
+    zIndex: 30,
+  },
+  headerSEBAASK: {
+    position: 'relative',
+    zIndex: 20,
+    marginTop: '-20%',
+    left: '20%',
+    width: '60%',
+    height: '10%',
+    borderRadius: 999,
+    transform: [{ scaleX: 3 }],
+
+  },
   header: {
     height: 70,
     width: '100%',
