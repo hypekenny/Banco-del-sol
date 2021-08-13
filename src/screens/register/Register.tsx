@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import Select from 'react-select-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +19,7 @@ import { register } from '../../redux/actions';
 import { resFromBack, Props } from '../../types/Types';
 import TextInput from '../../components/TextInputFormix';
 import colors from '../../constants/colors';
+
 const yup = require('yup');
 
 export const deviceWidth = Dimensions.get('window').width;
@@ -47,7 +54,7 @@ export function Register({ navigation }: Props) {
     phoneNumber: Yup.number()
       .typeError('Debe ser un numero')
       .required('Debe ingresar un telefono!'),
-    birthdate: Yup.string().required('Debe ingresar su fecha de nacimiento!'),
+    birthdate: Yup.string().required('Ingrese fecha de nacimiento!'),
     address: Yup.object().shape({
       street: Yup.string().required('Debe ingresar una calle!'),
       number: Yup.number()
@@ -87,7 +94,7 @@ export function Register({ navigation }: Props) {
   const [step, setStep] = useState(false);
   const dispatch = useDispatch();
 
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  /* const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -100,7 +107,7 @@ export function Register({ navigation }: Props) {
   const handleConfirm = date => {
     values.birthdate = date;
     hideDatePicker();
-  };
+  }; */
 
   const province = [
     { label: 'Provincia...', value: '' },
@@ -174,8 +181,8 @@ export function Register({ navigation }: Props) {
       >
         <AntDesign name="arrowleft" size={35} color="white" />
       </TouchableOpacity>
-      <View style={styles.linea1}></View>
-      <View style={!step ? styles.linea2 : styles.linea2s}></View>
+      {/* <View style={styles.linea1}></View>
+      <View style={!step ? styles.linea2 : styles.linea2s}></View> */}
       {!step ? (
         <View style={styles.container1}>
           <View
@@ -457,7 +464,17 @@ export function Register({ navigation }: Props) {
               width: '100%',
             }}
           >
-            <View style={styles.input}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                height: size2,
+                borderRadius: 25,
+                borderColor: '#fb6583',
+                borderWidth: StyleSheet.hairlineWidth,
+                padding: 8,
+              }}
+            >
               <View style={{ padding: 8 }}>
                 <Entypo name="location" size={22} color="#fb6583" />
               </View>
