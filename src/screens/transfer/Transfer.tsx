@@ -45,8 +45,8 @@ export const Transfer = () => {
           style={ButtonPrimaryStyle.button}
           onPress={() =>
             addFunds(
-              userStore.email,
-              data.email,
+              userStore.email.toLowerCase(),
+              data.email.toLowerCase(),
               'Transfer',
               data.amount,
               token,

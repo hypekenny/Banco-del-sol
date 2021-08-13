@@ -126,7 +126,7 @@ export async function addFunds(
     .then(response => {
       dispatch({
         type: SET_ACCOUNT,
-        payload: response.data.account,
+        payload: response.data,
       });
     })
     .catch(error => console.log(error));
