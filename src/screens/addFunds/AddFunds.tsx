@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { styles } from './AddFundsStyles';
-import { updateBalance } from '../../redux/actions';
+import { addFunds } from '../../redux/actions';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import { Props, RootState } from '../../types/Types';
@@ -21,7 +21,7 @@ export const AddFunds = ({ navigation }: Props) => {
   };
 
   const handleSubmit = () => {
-    updateBalance(
+    addFunds(
       userStore.email,
       userStore.email,
       'Recarga',
