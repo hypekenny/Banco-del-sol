@@ -2,24 +2,26 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
-  SafeAreaView,
   TouchableOpacity,
   StyleSheet,
+  Dimensions,
+  LogBox,
 } from 'react-native';
 import Select from 'react-select-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { Entypo, AntDesign } from '@expo/vector-icons';
 import * as Yup from 'yup';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+//  import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Dimensions } from 'react-native';
-import { styles } from './RegisterStyles';
 import { register } from '../../redux/actions';
 import { resFromBack, Props } from '../../types/Types';
 import TextInput from '../../components/TextInputFormix';
 import colors from '../../constants/colors';
+import { styles } from './RegisterStyles';
+
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //  Ignore all log notifications
 
 const yup = require('yup');
 
