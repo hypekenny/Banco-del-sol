@@ -9,8 +9,8 @@ import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import { Props, RootState } from '../../types/Types';
 
 export const AddFunds = ({ navigation }: Props) => {
-  const token = useSelector((state: RootState) => state.token);
   const userStore = useSelector((state: RootState) => state.user);
+  const token = useSelector((state: RootState) => state.token);
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
 

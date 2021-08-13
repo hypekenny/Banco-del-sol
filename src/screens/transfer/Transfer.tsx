@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { styles } from './TransferStyles';
 import { RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
+import { transferFunds } from '../../redux/actions';
 
 export const Transfer = () => {
   const accountStore = useSelector((state: RootState) => state.account);
+  const userStore = useSelector((state: RootState) => state.user);
+  const token = useSelector((state: RootState) => state.token);
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     email: '',
     amount: 0,
@@ -39,7 +43,16 @@ export const Transfer = () => {
       <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
         <TouchableOpacity
           style={ButtonPrimaryStyle.button}
-          onPress={() => console.log('pending')}
+          onPress={() =>
+            transferFunds(
+              userStore.email,
+              data.email,
+              'Transfer',
+              data.amount,
+              token,
+              dispatch,
+            )
+          }
         >
           <Text>enviar</Text>
         </TouchableOpacity>
