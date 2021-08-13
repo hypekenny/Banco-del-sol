@@ -283,12 +283,18 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     marginTop: '-3%',
   },
-  selectPrueba: {
+  view: {
     flex: 1,
-    paddingTop: 40,
-    alignItems: "center"
-  }
-  
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  picker: {
+    color: 'grey',
+    border:'none',
+    width: '100%',
+  },
+
   footer: {
     height: 150,
     width: 200,

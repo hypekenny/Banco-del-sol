@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Dimensions,
   LogBox,
+  Picker,
 } from 'react-native';
 import Select from 'react-select-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -66,8 +67,8 @@ export function Register({ navigation }: Props) {
       zipCode: Yup.number()
         .typeError('Debe ser un numero')
         .required('Debe ingresar el codigo postal!'),
-      province: Yup.string().required('Debe ingresar una provincia!'),
       city: Yup.string().required('Debe ingresar una ciudad!'),
+      province: Yup.string().required('Debe ingresar una provincia!'),
     }),
   });
 
@@ -93,6 +94,11 @@ export function Register({ navigation }: Props) {
     onSubmit: values => console.log(values),
     /* alert(`Email: ${values.email}`), */
   });
+
+  const [selectedValue, setSelectedValue] = useState('java');
+  const handleConfirmProvince = provincia => {
+    values.address.province = provincia;
+  };
 
   const [step, setStep] = useState(false);
   const dispatch = useDispatch();
@@ -138,6 +144,34 @@ export function Register({ navigation }: Props) {
     { label: 'Tierra del Fuego', value: 'Tierra del Fuego' },
     { label: 'Tucumán', value: 'Tucumán' },
   ];
+  const provinces = [
+    'Provincia...',
+    'CABA',
+    'Buenos Aires',
+    'Catamarca',
+    'Chaco',
+    'Chubut',
+    'Córdoba',
+    'Corrientes',
+    'Entre Ríos',
+    'Jujuy',
+    'La Pampa',
+    'La Rioja',
+    'Mendoza',
+    'Misiones',
+    'Neuquén',
+    'Río Negro',
+    'Salta',
+    'San Juan',
+    'San Luis',
+    'Santa Cruz',
+    'Santa Fe',
+    'Santiago del Estero',
+    'Tierra del Fuego',
+    'Tucumán',
+  ];
+
+  let pickerItems = provinces.map(p => <Picker.Item label={p} value={p} />);
 
   function send(e: any) {
     const {
@@ -161,6 +195,7 @@ export function Register({ navigation }: Props) {
     };
     dispatch(register(user, pass));
   }
+  console.log(values);
 
   return (
     <View style={styles.view}>
@@ -427,6 +462,39 @@ export function Register({ navigation }: Props) {
               width: '100%',
             }}
           >
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                height: size2,
+                borderRadius: 25,
+                borderColor: '#fb6583',
+                borderWidth: StyleSheet.hairlineWidth,
+                padding: 8,
+              }}
+            >
+              <View style={{ padding: 8 }}>
+                <Entypo name="location" size={22} color="#fb6583" />
+              </View>
+              <Picker
+                /* selectedValue={selectedValue} */
+                style={styles.picker}
+                onValueChange={(itemValue, itemIndex) => {
+                  setSelectedValue(itemValue);
+                  handleConfirmProvince(itemValue);
+                }}
+              >
+                {pickerItems}
+              </Picker>
+            </View>
+          </View>
+          <View
+            style={{
+              paddingHorizontal: 32,
+              marginBottom: 16,
+              width: '100%',
+            }}
+          >
             <TextInput
               size={size2}
               icon="location"
@@ -467,7 +535,7 @@ export function Register({ navigation }: Props) {
               width: '100%',
             }}
           >
-            <View
+            {/* <View
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
@@ -488,20 +556,7 @@ export function Register({ navigation }: Props) {
                 options={province}
                 defaultValue={province[0].value}
               />
-            </View>
-
-            <View style={styles.selectPrueba}>
-              <Picker
-                selectedValue={selectedValue}
-                style={{ height: 50, width: 150 }}
-                onValueChange={(itemValue, itemIndex) =>
-                  setSelectedValue(itemValue)
-                }
-              >
-                <Picker.Item label="Java" value="java" />
-                <Picker.Item label="JavaScript" value="js" />
-              </Picker>
-            </View>
+            </View> */}
           </View>
           {/* {!errors.dni &&
             !errors.phoneNumber &&
@@ -599,6 +654,9 @@ export function Register({ navigation }: Props) {
         colors={[colors.primary, colors.secondary]}
         end={[1, 1]}
       />
+      {userStore.email && userStore.email.length
+        ? navigation.push('Home')
+        : null}
     </View>
   );
 }
