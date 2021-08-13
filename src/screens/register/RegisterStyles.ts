@@ -49,7 +49,6 @@ export const styles = StyleSheet.create({
     height: '10%',
     borderRadius: 999,
     transform: [{ scaleX: 3 }],
-
   },
   header: {
     height: 70,
