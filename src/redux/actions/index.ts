@@ -105,15 +105,18 @@ export function fetchCvu() {
   };
 }
 
-export async function updateBalance(
+export async function addFunds(
+  senderEmail: string,
+  receiverEmail: string,
+  type: 'Recarga',
   value: number,
   token: string,
   dispatch: any,
 ) {
   axios
-    .put(
+    .post(
       `http://localhost:3001/api/account`,
-      { value },
+      { senderEmail, receiverEmail, type, value },
       {
         headers: {
           authorization: `Bearer ${token}`,

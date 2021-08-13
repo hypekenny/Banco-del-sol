@@ -6,10 +6,11 @@ import { styles } from './AddFundsStyles';
 import { updateBalance } from '../../redux/actions';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
-import { Props } from '../../types/Types';
+import { Props, RootState } from '../../types/Types';
 
 export const AddFunds = ({ navigation }: Props) => {
-  const token = useSelector((state: any) => state.token);
+  const token = useSelector((state: RootState) => state.token);
+  const userStore = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
 
@@ -20,7 +21,14 @@ export const AddFunds = ({ navigation }: Props) => {
   };
 
   const handleSubmit = () => {
-    updateBalance(value, token, dispatch);
+    updateBalance(
+      userStore.email,
+      userStore.email,
+      'Recarga',
+      value,
+      token,
+      dispatch,
+    );
     setValue(0);
     navigation.push('Home');
   };

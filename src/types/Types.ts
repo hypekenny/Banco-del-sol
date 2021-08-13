@@ -74,12 +74,13 @@ interface balanceType {
   history: Array<transactionType>;
 }
 
-interface transactionType {
-  email: string;
+export type transactionType = {
+  sender_email: string;
+  receiver_email: string;
   type: string;
   value: number;
   date: Date;
-}
+};
 
 /* OJO que toque el account */
 export type resFromBack = {
@@ -90,4 +91,5 @@ export type resFromBack = {
 export interface RootState {
   account: accountType;
   user: userType;
+  token: string;
 }
