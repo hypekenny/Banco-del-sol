@@ -49,7 +49,6 @@ function HomeScreen({ navigation }: Props) {
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <View style={styles.view1}>
-        {/* updateAccount(accountStore.email.toLowerCase(), token, dispatch) */}
         <Text style={{ fontSize: 20, fontWeight: '100', color: '#3b3b3b' }}>
           Balance
         </Text>
@@ -57,11 +56,17 @@ function HomeScreen({ navigation }: Props) {
           <Text style={{ fontSize: 40, fontWeight: '900' }}>
             ${accountStore.balance.amount}
           </Text>
-          <Ionicons
-            style={styles.styleIcon}
-            name="reload-circle-sharp"
-            size={28}
-          />
+          <TouchableOpacity
+            onPress={() =>
+              updateAccount(accountStore.email.toLowerCase(), token, dispatch)
+            }
+          >
+            <Ionicons
+              style={styles.styleIcon}
+              name="reload-circle-sharp"
+              size={28}
+            />
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.box}>
