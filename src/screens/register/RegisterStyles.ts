@@ -283,27 +283,12 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     marginTop: '-3%',
   },
-  view: {
+  selectPrueba: {
     flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
-  view1: {
-    backgroundColor: 'red',
-    height: 200,
-    width: 200,
-  },
-  view2: {
-    backgroundColor: 'blue',
-    height: 200,
-    width: 200,
-  },
-  view3: {
-    backgroundColor: 'yellow',
-    height: 200,
-    width: 200,
-  },
+    paddingTop: 40,
+    alignItems: "center"
+  }
+  
   footer: {
     height: 150,
     width: 200,
