@@ -14,6 +14,7 @@ import { logout } from '../../redux/actions';
 import { Props, RootState } from '../../types/Types';
 import { Account } from '../account/Account';
 import { Statistics } from '../statistics/Statistics';
+import { Contact } from '../contact/Contact';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();
@@ -39,8 +40,8 @@ const theme = {
 };
 
 function HomeScreen({ navigation }: Props) {
-  const [ing, setIng] = useState<string>('0');
-  const [gast, setGast] = useState<string>('0');
+  const [ing, setIng] = useState(0);
+  const [gast, setGast] = useState(0);
 
   const accountStore = useSelector((state: RootState) => state.account);
 
@@ -210,6 +211,21 @@ export const Home = ({ navigation }: Props) => {
         component={Account}
         options={{
           headerTintColor: 'white',
+          headerBackground: () => (
+            <LinearGradient
+              colors={['#ff4b6e', '#ff9349']}
+              style={{ flex: 1 }}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Contact"
+        component={Contact}
+        options={{
+          headerTintColor: 'black',
           headerBackground: () => (
             <LinearGradient
               colors={['#ff4b6e', '#ff9349']}
