@@ -39,8 +39,8 @@ const theme = {
 };
 
 function HomeScreen({ navigation }: Props) {
-  const [ing, setIng] = useState<string>('0');
-  const [gast, setGast] = useState<string>('0');
+  const [ing, setIng] = useState(0);
+  const [gast, setGast] = useState(0);
 
   const accountStore = useSelector((state: RootState) => state.account);
 
