@@ -108,34 +108,7 @@ export function fetchCvu() {
 export async function addFunds(
   senderEmail: string,
   receiverEmail: string,
-  type: 'Recarga',
-  value: number,
-  token: string,
-  dispatch: any,
-) {
-  axios
-    .post(
-      `http://localhost:3001/api/account`,
-      { senderEmail, receiverEmail, type, value },
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      },
-    )
-    .then(response => {
-      dispatch({
-        type: SET_ACCOUNT,
-        payload: response.data.account,
-      });
-    })
-    .catch(error => console.log(error));
-}
-
-export async function transferFunds(
-  senderEmail: string,
-  receiverEmail: string,
-  type: 'Transfer',
+  type: string,
   value: number,
   token: string,
   dispatch: any,

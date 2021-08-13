@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { styles } from './TransferStyles';
 import { RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
-import { transferFunds } from '../../redux/actions';
+import { addFunds } from '../../redux/actions';
 
 export const Transfer = () => {
   const accountStore = useSelector((state: RootState) => state.account);
@@ -44,7 +44,7 @@ export const Transfer = () => {
         <TouchableOpacity
           style={ButtonPrimaryStyle.button}
           onPress={() =>
-            transferFunds(
+            addFunds(
               userStore.email,
               data.email,
               'Transfer',
