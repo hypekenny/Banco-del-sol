@@ -3,7 +3,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { View, Text, TouchableOpacity, LogBox } from 'react-native';
 import { ThemeProvider, Button, Icon } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
@@ -12,7 +11,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './HomeStyles';
 import { Transactions } from '../transacciones/Transactions';
 import { logout } from '../../redux/actions';
-import { loginStackParamList, resFromBack } from '../../types/Types';
+import { Props, RootState } from '../../types/Types';
 import { Account } from '../account/Account';
 import { Statistics } from '../statistics/Statistics';
 
@@ -39,14 +38,11 @@ const theme = {
   },
 };
 
-type Props = {
-  navigation: StackNavigationProp<loginStackParamList, 'List'>;
-};
-
 function HomeScreen({ navigation }: Props) {
-  const [ing, setIng] = useState<number>(0);
-  const [gast, setGast] = useState<number>(0);
-  const accountStore = useSelector((state: resFromBack) => state.account);
+  const [ing, setIng] = useState<string>('0');
+  const [gast, setGast] = useState<string>('0');
+
+  const accountStore = useSelector((state: RootState) => state.account);
 
   useEffect(() => {
     setIng(5750);
@@ -60,7 +56,7 @@ function HomeScreen({ navigation }: Props) {
           Balance
         </Text>
         <Text style={{ fontSize: 40, fontWeight: '900' }}>
-          ${accountStore.balance}
+          ${accountStore.balance.amount}
         </Text>
       </View>
       <View style={styles.box}>
@@ -128,7 +124,7 @@ const screensOptions = (route: any, color: string) => {
 
 export const Home = ({ navigation }: Props) => {
   const dispatch = useDispatch();
-  const userStore = useSelector((state: resFromBack) => state.user);
+  const userStore = useSelector((state: RootState) => state.user);
 
   function exit() {
     dispatch(logout());

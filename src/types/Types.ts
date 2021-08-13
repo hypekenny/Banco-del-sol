@@ -65,9 +65,23 @@ export type userType = {
 
 export interface accountType {
   email: string;
-  balance: number;
+  balance: balanceType;
   cvu: string;
 }
+
+interface balanceType {
+  amount: number;
+  history: Array<transactionType>;
+}
+
+export type transactionType = {
+  sender_email: string;
+  receiver_email: string;
+  type: string;
+  value: number;
+  date: Date;
+};
+
 /* OJO que toque el account */
 export type resFromBack = {
   user: userType;
@@ -77,4 +91,5 @@ export type resFromBack = {
 export interface RootState {
   account: accountType;
   user: userType;
+  token: string;
 }
