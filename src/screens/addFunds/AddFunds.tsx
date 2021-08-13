@@ -22,8 +22,8 @@ export const AddFunds = ({ navigation }: Props) => {
 
   const handleSubmit = () => {
     addFunds(
-      userStore.email,
-      userStore.email,
+      userStore.email.toLowerCase(),
+      userStore.email.toLowerCase(),
       'Recarga',
       value,
       token,
