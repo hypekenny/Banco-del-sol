@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 // feat-Cell-phone-compatibility
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity, LogBox } from 'react-native';
 import { ThemeProvider, Button, Icon } from 'react-native-elements';
@@ -10,7 +10,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './HomeStyles';
 import { Transactions } from '../transacciones/Transactions';
-import { logout } from '../../redux/actions';
+import { logout, updateAccount } from '../../redux/actions';
 import { Props, RootState } from '../../types/Types';
 import { Account } from '../account/Account';
 import { Statistics } from '../statistics/Statistics';
@@ -43,21 +43,26 @@ function HomeScreen({ navigation }: Props) {
   const [gast, setGast] = useState(0);
 
   const accountStore = useSelector((state: RootState) => state.account);
-
-  useEffect(() => {
-    setIng(5750);
-    setGast(3100.5);
-  }, []);
+  const token = useSelector((state: RootState) => state.token);
+  const dispatch = useDispatch();
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <View style={styles.view1}>
+        {/* updateAccount(accountStore.email.toLowerCase(), token, dispatch) */}
         <Text style={{ fontSize: 20, fontWeight: '100', color: '#3b3b3b' }}>
           Balance
         </Text>
-        <Text style={{ fontSize: 40, fontWeight: '900' }}>
-          ${accountStore.balance.amount}
-        </Text>
+        <View style={{ flexDirection: 'row' }}>
+          <Text style={{ fontSize: 40, fontWeight: '900' }}>
+            ${accountStore.balance.amount}
+          </Text>
+          <Ionicons
+            style={styles.styleIcon}
+            name="reload-circle-sharp"
+            size={28}
+          />
+        </View>
       </View>
       <View style={styles.box}>
         <View style={styles.boxt}>
