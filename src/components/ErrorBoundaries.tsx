@@ -29,9 +29,7 @@ class ErrorBoundary extends Component<Props, State> {
       return (
         <View>
           <Text>Ocurrio un error </Text>
-          <TouchableOpacity>
-            <Text>Volver al Home</Text>
-          </TouchableOpacity>
+          <TouchableOpacity></TouchableOpacity>
         </View>
       );
     }
