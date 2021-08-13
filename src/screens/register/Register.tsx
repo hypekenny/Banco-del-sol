@@ -195,7 +195,6 @@ export function Register({ navigation }: Props) {
     };
     dispatch(register(user, pass));
   }
-  console.log(values);
 
   return (
     <View style={styles.view}>
