@@ -477,7 +477,7 @@ export function Register({ navigation }: Props) {
                 <Entypo name="location" size={22} color="#fb6583" />
               </View>
               <Picker
-                /* selectedValue={selectedValue} */
+                selectedValue={selectedValue}
                 style={styles.picker}
                 onValueChange={(itemValue, itemIndex) => {
                   setSelectedValue(itemValue);

@@ -194,7 +194,7 @@ export const styles = StyleSheet.create({
   button: {
     borderColor: colors.primary,
     backgroundColor: '#fff',
-    width: '40%',
+    width: '45%',
     alignItems: 'center',
     justifyContent: 'center',
     height: '35%',
@@ -213,7 +213,7 @@ export const styles = StyleSheet.create({
   buttonDisable: {
     borderColor: colors.primary,
     backgroundColor: '#deac98de',
-    width: '40%',
+    width: '45%',
     alignItems: 'center',
     justifyContent: 'center',
     height: '35%',
@@ -290,8 +290,8 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   picker: {
-    color: 'grey',
-    border:'none',
+    color: 'grey' /* 
+    border:'none', */,
     width: '100%',
   },
 
