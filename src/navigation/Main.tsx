@@ -6,10 +6,6 @@ import { firebaseConfig } from '../constants/firebase.config';
 import { loginStackParamList } from '../types/Types';
 import { config } from '../screens/index';
 
-import { View, Button, TouchableOpacity } from 'react-native';
-import { Entypo as Icon } from '@expo/vector-icons';
-
-
 firebase.initializeApp(firebaseConfig);
 
 const {
