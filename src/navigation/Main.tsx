@@ -19,6 +19,7 @@ const {
   Transactions,
   ForgotPassword,
   ContactAdd,
+  Contact,
 } = config;
 
 const LoginStack = createStackNavigator<loginStackParamList>();
@@ -124,6 +125,11 @@ export const Main = () => (
     <LoginStack.Screen
       name="ContactAdd"
       component={ContactAdd}
+      options={{ headerShown: false }}
+    />
+    <LoginStack.Screen
+      name="Contact"
+      component={Contact}
       options={{ headerShown: false }}
     />
   </LoginStack.Navigator>
