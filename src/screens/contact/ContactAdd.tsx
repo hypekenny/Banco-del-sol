@@ -22,7 +22,7 @@ export const ContactAdd = ({ navigation }: Props) => {
   }, [contact]);
 
   return (
-    <View style={styles.containerAdd}>
+    <View style={styles.container}>
       <TextInput
         onChangeText={setEmail}
         value={email}

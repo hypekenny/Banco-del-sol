@@ -1,20 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { styles } from './TransferStyles';
 import { RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
-import { addFunds } from '../../redux/actions';
+import { addFunds, detailContact } from '../../redux/actions';
 
 export const Transfer = () => {
   const accountStore = useSelector((state: RootState) => state.account);
   const userStore = useSelector((state: RootState) => state.user);
   const token = useSelector((state: RootState) => state.token);
+  const ContactDetails = useSelector(state => state.DetailTransfer);
   const dispatch = useDispatch();
   const [data, setData] = useState({
     email: '',
     amount: 0,
   });
+  useEffect(() => {
+    {
+      ContactDetails.email
+        ? setData({ ...data, email: ContactDetails.email })
+        : null;
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
       <TextInput

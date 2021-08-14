@@ -11,6 +11,7 @@ export const LOG_OUT = 'LOG_OUT';
 export const FETCH_CVU = 'FETCH_CVU';
 export const SET_TOKEN = 'SET_TOKEN';
 export const GET_EMAIL = 'GET_EMAIL';
+export const GET_DETAILS = 'GET_DETAILS';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -166,3 +167,10 @@ export const getEmail =
         );
       });
   };
+
+export const detailContact = (email: string, name: string) => dispatch => {
+  dispatch({
+    type: GET_DETAILS,
+    payload: { name: name, email: email },
+  });
+};

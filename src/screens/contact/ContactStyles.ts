@@ -1,10 +1,18 @@
 import { StyleSheet } from 'react-native';
-import colors from '../../constants/colors';
+// import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
-  containerAdd: {
+  container: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: '#fff',
     marginTop: 50,
+  },
+  Box: {
+    flex: 1,
+    backgroundColor: '#000',
+    marginTop: 50,
+  },
+  textBox: {
+    color: '#fff',
   },
 });

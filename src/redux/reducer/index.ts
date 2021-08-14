@@ -6,6 +6,7 @@ import {
   FETCH_CVU,
   SET_TOKEN,
   GET_EMAIL,
+  GET_DETAILS,
 } from '../actions/index';
 
 interface actionType {
@@ -19,6 +20,7 @@ const initialState = {
   token: '',
   cvuAsociate: false,
   Contacts: [],
+  DetailTransfer: {},
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -62,6 +64,15 @@ export default function rootReducer(state = initialState, action: actionType) {
           ...state.Contacts,
           { name: action.payload.name, email: action.payload.email },
         ],
+      };
+    case GET_DETAILS:
+      console.log('GET_DETAILS', action.payload);
+      return {
+        ...state,
+        DetailTransfer: {
+          name: action.payload.name,
+          email: action.payload.email,
+        },
       };
     default:
       return state;
