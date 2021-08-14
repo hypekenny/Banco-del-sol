@@ -56,4 +56,30 @@ export const styles = StyleSheet.create({
   countText: {
     color: '#FF00FF',
   },
+  disabledText: {
+    color: '#BFBFBF',
+    paddingLeft: 5,
+    paddingRight: 5,
+    alignSelf: 'center',
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  disabledButton: {
+    borderColor: '#BFBFBF',
+    backgroundColor: '#ECECEC',
+    width: 250,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 25,
+    borderWidth: 2,
+    padding: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 26,
+    elevation: 14,
+  },
 });
