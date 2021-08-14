@@ -10,6 +10,7 @@ export const SET_ACCOUNT = 'SET_ACCOUNT';
 export const LOG_OUT = 'LOG_OUT';
 export const FETCH_CVU = 'FETCH_CVU';
 export const SET_TOKEN = 'SET_TOKEN';
+export const GET_EMAIL = 'GET_EMAIL';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -138,3 +139,30 @@ export async function addFunds(
     })
     .catch(error => console.log(error));
 }
+
+export const getEmail =
+  (email: string, name: string, idToken: string) => dispatch => {
+    console.log(email, 'ac');
+
+    axios
+      .get(`http://${process.env.IP_ADDRESS}:3001/api/account/${email}`, {
+        headers: {
+          authorization: `Bearer ${idToken}`,
+        },
+      })
+      .then(details => {
+        console.log('details', details);
+
+        dispatch({
+          type: GET_EMAIL,
+          payload: { name: name, email: details.data },
+        });
+      })
+      .catch(error => {
+        console.log('aaaaaaaaaaaaa', error);
+
+        return alert(
+          'Este usuario no se encuentra registrado, proximamente lo podras invitar!',
+        );
+      });
+  };
