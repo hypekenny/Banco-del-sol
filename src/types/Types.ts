@@ -19,6 +19,7 @@ export type loginStackParamList = {
   ForgotPassword: undefined;
   ContactAdd: undefined;
   Contact: undefined;
+  ContactDetails: undefined;
 };
 
 export type loginScreenNavigationProp = StackNavigationProp<
