@@ -64,17 +64,18 @@ export function Account() {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          style={ButtonPrimaryStyle.button}
+          disabled
+          style={styles.disabledButton}
           onPress={() => shareCVU()}
         >
           <View style={styles.ImageAndButton}>
             <MaterialIcons
               name="share"
               size={32}
-              color={colors.primary}
+              color="#BFBFBF"
               style={{ paddingLeft: 5, paddingRight: 5 }}
             />
-            <Text style={ButtonPrimaryStyle.text}>Compartir CVU</Text>
+            <Text style={styles.disabledText}>Compartir CVU</Text>
           </View>
         </TouchableOpacity>
       </View>
