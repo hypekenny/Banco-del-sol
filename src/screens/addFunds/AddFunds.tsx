@@ -6,10 +6,10 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './AddFundsStyles';
 import { addFunds } from '../../redux/actions';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
-import { Props, RootState } from '../../types/Types';
+import { RootState } from '../../types/Types';
 import colors from '../../constants/colors';
 
-export const AddFunds = ({ navigation }: Props) => {
+export const AddFunds = () => {
   const userStore = useSelector((state: RootState) => state.user);
   const token = useSelector((state: RootState) => state.token);
   const dispatch = useDispatch();
