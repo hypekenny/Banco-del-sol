@@ -115,7 +115,7 @@ export function fetchCvu() {
   };
 }
 
-export async function addFunds(
+export function addFunds(
   senderEmail: string,
   receiverEmail: string,
   type: string,

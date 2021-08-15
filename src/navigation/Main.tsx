@@ -126,7 +126,7 @@ export const Main = () => (
     <LoginStack.Screen
       name="ContactAdd"
       component={ContactAdd}
-      options={{ headerShown: true }}
+      options={{ headerShown: false }}
     />
     <LoginStack.Screen
       name="Contact"

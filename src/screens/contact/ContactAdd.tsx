@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { LinearGradient } from 'expo-linear-gradient';
+import { AntDesign } from '@expo/vector-icons';
 import { getEmail, getName } from '../../redux/actions';
 import { styles } from './ContactStyles';
 import { loginStackParamList } from '../../types/Types';
+import colors from '../../constants/colors';
 
 type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
@@ -15,6 +18,7 @@ export const ContactAdd = ({ navigation }: Props) => {
   const [email, setEmail] = React.useState('');
   const [name, onChangeText] = React.useState('');
   const idToken = useSelector(state => state.token);
+  const userEmail = useSelector(state => state.account.email);
   const nameUser = useSelector(state => state.nameDetail);
 
   useEffect(() => {
@@ -24,11 +28,10 @@ export const ContactAdd = ({ navigation }: Props) => {
   function callName() {
     dispatch(getName(email, idToken));
     onChangeText(nameUser);
-    console.log('Name:A', nameUser);
   }
   function AddFriend(email, idToken, name) {
     dispatch(getEmail(email, idToken, name));
-
+    setEmail('');
     onChangeText('');
   }
 
@@ -40,9 +43,32 @@ export const ContactAdd = ({ navigation }: Props) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => BackAndClear()}>
+      <View style={styles.cosa}>
+        <LinearGradient
+          style={styles.header}
+          colors={[colors.primary, colors.secondary]}
+          end={[1, 1]}
+        />
+        <View style={styles.title}>
+          <Text style={styles.textTitle}>Agregar Contactos</Text>
+        </View>
+        <TouchableOpacity
+          style={styles.back}
+          onPress={() => {
+            BackAndClear();
+          }}
+        >
+          <AntDesign
+            name="arrowleft"
+            size={35}
+            color="white"
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+      </View>
+      {/* <TouchableOpacity onPress={() => BackAndClear()}>
         <Text>VOLVER</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <TextInput
         onChangeText={setEmail}
         value={email}
@@ -57,7 +83,7 @@ export const ContactAdd = ({ navigation }: Props) => {
         />
       ) : null}
 
-      {email ? (
+      {email && email !== userEmail ? (
         <TouchableOpacity onPress={() => callName()}>
           <Text>BUSCAR</Text>
         </TouchableOpacity>
@@ -67,7 +93,7 @@ export const ContactAdd = ({ navigation }: Props) => {
         </TouchableOpacity>
       )}
 
-      {nameUser ? (
+      {name.length > 2 ? (
         <TouchableOpacity onPress={() => AddFriend(email, idToken, name)}>
           <Text>AGREGAR A CONTACTOS</Text>
         </TouchableOpacity>

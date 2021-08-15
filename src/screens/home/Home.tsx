@@ -234,6 +234,7 @@ export const Home = ({ navigation }: Props) => {
               end={{ x: 0, y: 1 }}
             />
           ),
+          headerShown: false,
         }}
       />
     </Tab.Navigator>
