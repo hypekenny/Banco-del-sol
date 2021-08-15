@@ -138,3 +138,23 @@ export async function addFunds(
     })
     .catch(error => console.log(error));
 }
+
+export async function updateAccount(
+  email: string,
+  token: string,
+  dispatch: any,
+) {
+  axios
+    .get(`http://${process.env.IP_ADDRESS}:3001/api/account/?${email}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    .then(response => {
+      dispatch({
+        type: SET_ACCOUNT,
+        payload: response.data,
+      });
+    })
+    .catch(error => console.log(error));
+}

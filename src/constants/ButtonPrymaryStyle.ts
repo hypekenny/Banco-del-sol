@@ -49,4 +49,12 @@ export const ButtonPrimaryStyle = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
   },
+  whiteText: {
+    color: 'white',
+    paddingLeft: 5,
+    paddingRight: 5,
+    alignSelf: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
 });
