@@ -30,8 +30,8 @@ export const Transfer = () => {
           style={ButtonPrimaryStyle.input}
         />
         <View>
-          <Text style={{ alignSelf: 'center', color: 'grey', fontSize: 20 }}>
-            ${accountStore.balance.amount}
+          <Text style={styles.maxBalanceText}>
+            SALDO ${accountStore.balance.amount}
           </Text>
           <TextInput
             value={`$${data.amount.toString()}`}
