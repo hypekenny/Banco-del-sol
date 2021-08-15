@@ -17,6 +17,7 @@ export type loginStackParamList = {
   Transfer: undefined;
   Transactions: undefined;
   ForgotPassword: undefined;
+  LoadingFull: undefined;
   ContactAdd: undefined;
   Contact: undefined;
   ContactDetails: undefined;

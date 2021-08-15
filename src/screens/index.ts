@@ -9,9 +9,11 @@ import { AddFunds } from './addFunds/AddFunds';
 import { Transactions } from './transacciones/Transactions';
 import { ForgotPassword } from './forgotPassword/forgotPassword';
 import { Statistics } from './statistics/Statistics';
+import { LoadingFull } from './loading2/LoadingFull';
 import { ContactAdd } from './contact/ContactAdd';
 import { Contact } from './contact/Contact';
 import { ContactDetails } from './contact/ContactDetails';
+
 
 export const config = {
   Start,
@@ -25,6 +27,7 @@ export const config = {
   Transactions,
   ForgotPassword,
   Statistics,
+  LoadingFull,
   ContactAdd,
   Contact,
   ContactDetails,

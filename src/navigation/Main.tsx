@@ -18,9 +18,11 @@ const {
   Account,
   Transactions,
   ForgotPassword,
+  LoadingFull,
   ContactAdd,
   Contact,
   ContactDetails,
+
 } = config;
 
 const LoginStack = createStackNavigator<loginStackParamList>();
@@ -124,6 +126,10 @@ export const Main = () => (
       options={{ headerTitle: 'Cambia tu contraseña' }}
     />
     <LoginStack.Screen
+      name="LoadingFull"
+      component={LoadingFull}
+      options={{ headerShown: false }}
+    />
       name="ContactAdd"
       component={ContactAdd}
       options={{ headerShown: false }}
