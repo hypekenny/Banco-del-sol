@@ -20,40 +20,47 @@ export const Transfer = () => {
   });
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder="Ingresá email..."
-        placeholderTextColor="grey"
-        value={data.email}
-        onChangeText={(text: string) => setData({ ...data, email: text })}
-        keyboardType="email-address"
-        style={ButtonPrimaryStyle.input}
-      />
-      <Text style={{ color: 'grey' }}>${accountStore.balance.amount}</Text>
-      <TextInput
-        value={`$${data.amount.toString()}`}
-        onChangeText={(text: string) => {
-          if (text.substring(1, text.length) === '')
-            setData({ ...data, amount: 0 });
-          else if (
-            parseInt(text.substring(1, text.length), 10) <=
-            accountStore.balance.amount
-          )
-            setData({
-              ...data,
-              amount: parseInt(text.substring(1, text.length), 10),
-            });
-        }}
-        keyboardType="number-pad"
-        style={ButtonPrimaryStyle.amountInput}
-      />
-      <TextInput
-        placeholder="Queres dejar un comentario?..."
-        placeholderTextColor="grey"
-        value={data.comment}
-        onChangeText={(text: string) => setData({ ...data, comment: text })}
-        style={ButtonPrimaryStyle.input}
-      />
-      <View style={{ alignSelf: 'center' }}>
+      <View style={{ justifyContent: 'space-between', height: '50%' }}>
+        <TextInput
+          placeholder="Ingresá email..."
+          placeholderTextColor="grey"
+          value={data.email}
+          onChangeText={(text: string) => setData({ ...data, email: text })}
+          keyboardType="email-address"
+          style={ButtonPrimaryStyle.input}
+        />
+        <View>
+          <Text style={{ alignSelf: 'center', color: 'grey', fontSize: 20 }}>
+            ${accountStore.balance.amount}
+          </Text>
+          <TextInput
+            value={`$${data.amount.toString()}`}
+            onChangeText={(text: string) => {
+              if (text.substring(1, text.length) === '')
+                setData({ ...data, amount: 0 });
+              else if (
+                parseInt(text.substring(1, text.length), 10) <=
+                accountStore.balance.amount
+              )
+                setData({
+                  ...data,
+                  amount: parseInt(text.substring(1, text.length), 10),
+                });
+            }}
+            keyboardType="number-pad"
+            style={ButtonPrimaryStyle.amountInput}
+          />
+        </View>
+
+        <TextInput
+          placeholder="Queres dejar un comentario?..."
+          placeholderTextColor="grey"
+          value={data.comment}
+          onChangeText={(text: string) => setData({ ...data, comment: text })}
+          style={ButtonPrimaryStyle.input}
+        />
+      </View>
+      <View style={{ alignSelf: 'center', marginTop: '20%' }}>
         <TouchableOpacity
           onPress={() =>
             addFunds(
