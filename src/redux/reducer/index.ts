@@ -5,6 +5,9 @@ import {
   LOG_OUT,
   FETCH_CVU,
   SET_TOKEN,
+  GET_EMAIL,
+  GET_DETAILS,
+  GET_NAME,
 } from '../actions/index';
 
 interface actionType {
@@ -17,6 +20,9 @@ const initialState = {
   user: {},
   token: '',
   cvuAsociate: false,
+  Contacts: [],
+  DetailTransfer: {},
+  nameDetail: '',
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -51,6 +57,35 @@ export default function rootReducer(state = initialState, action: actionType) {
       return {
         ...state,
         token: action.payload,
+      };
+    case GET_EMAIL:
+      console.log('Reducer', action.payload);
+      return {
+        ...state,
+        Contacts: [
+          ...state.Contacts,
+          {
+            name: action.payload.name,
+            lastName: action.payload.lastName,
+            email: action.payload.email,
+            cvu: action.payload.cvu,
+          },
+        ],
+      };
+    case GET_DETAILS:
+      console.log('GET_DETAILS', action.payload);
+      return {
+        ...state,
+        DetailTransfer: {
+          name: action.payload.name,
+          email: action.payload.email,
+        },
+      };
+    case GET_NAME:
+      console.log('name', action.payload);
+      return {
+        ...state,
+        nameDetail: action.payload,
       };
     default:
       return state;
