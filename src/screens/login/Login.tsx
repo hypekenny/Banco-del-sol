@@ -15,6 +15,7 @@ export const Login = ({ navigation }: Props) => {
   const [user, setUser] = useState({
     email: '',
     password: '',
+    amount: 0,
   });
 
   return (

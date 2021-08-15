@@ -120,13 +120,14 @@ export function addFunds(
   receiverEmail: string,
   type: string,
   value: number,
+  comment: string,
   token: string,
   dispatch: any,
 ) {
   axios
     .post(
       `http://${process.env.IP_ADDRESS}:3001/api/account`,
-      { senderEmail, receiverEmail, type, value },
+      { senderEmail, receiverEmail, type, value, comment },
       {
         headers: {
           authorization: `Bearer ${token}`,

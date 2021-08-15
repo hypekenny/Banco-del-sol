@@ -15,47 +15,67 @@ export const AddFunds = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
 
-  const handleInputChange = (text: string) => {
-    text.replace(/[^0-9]/g, '');
-    if (text === '') setValue(0);
-    else setValue(parseInt(text, 10));
-  };
-
   return (
     <View style={styles.container}>
-      <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-        <Text>Ingresa el monto a recargar: </Text>
+      <View style={{ alignSelf: 'center' }}>
+        <View>
+          <Text style={styles.text}>
+            Ingresá el monto que querés recargar en tu cuenta:{' '}
+          </Text>
+        </View>
+        <View>
+          <TextInput
+            value={`$${value.toString()}`}
+            onChangeText={(text: string) => {
+              if (text.substring(1, text.length) === '') setValue(0);
+              else setValue(parseInt(text.substring(1, text.length), 10));
+            }}
+            keyboardType="number-pad"
+            style={styles.amountInput}
+          />
+        </View>
       </View>
-      <View style={ButtonPrimaryStyle.input}>
-        <TextInput
-          placeholderTextColor="grey"
-          value={value.toString()}
-          onChangeText={handleInputChange}
-          keyboardType="number-pad"
-        />
-      </View>
-
-      <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-        <TouchableOpacity
-          onPress={() => {
-            addFunds(
-              userStore.email.toLowerCase(),
-              userStore.email.toLowerCase(),
-              'Recarga',
-              value,
-              token,
-              dispatch,
-            );
-            setValue(0);
-          }}
-        >
-          <LinearGradient
-            style={ButtonPrimaryStyle.button}
-            colors={[colors.primary, colors.secondary]}
-          >
-            <Text style={ButtonPrimaryStyle.whiteText}>Confirmar Recarga</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+      <View>
+        {value > 0 ? (
+          <View style={{ alignSelf: 'center', marginTop: '20%' }}>
+            <TouchableOpacity
+              onPress={() => {
+                addFunds(
+                  userStore.email.toLowerCase(),
+                  userStore.email.toLowerCase(),
+                  'Recarga',
+                  value,
+                  '',
+                  token,
+                  dispatch,
+                );
+                setValue(0);
+              }}
+            >
+              <LinearGradient
+                style={ButtonPrimaryStyle.gradientButton}
+                colors={[colors.primary, colors.secondary]}
+              >
+                <Text style={ButtonPrimaryStyle.whiteText}>
+                  CONFIRMAR RECARGA
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={{ alignSelf: 'center', marginTop: '20%' }}>
+            <TouchableOpacity disabled>
+              <LinearGradient
+                style={ButtonPrimaryStyle.gradientButtonDisabled}
+                colors={[colors.disabledPrimary, colors.disabledSecondary]}
+              >
+                <Text style={ButtonPrimaryStyle.whiteText}>
+                  CONFIRMAR RECARGA
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   );
