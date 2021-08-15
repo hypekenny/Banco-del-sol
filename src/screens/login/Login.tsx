@@ -13,8 +13,8 @@ export const Login = ({ navigation }: Props) => {
   const dispatch = useDispatch();
 
   const [user, setUser] = useState({
-    email: '',
-    password: '',
+    email: 'petruza@hotmail.com',
+    password: '123QWE&',
   });
 
   return (
@@ -50,6 +50,7 @@ export const Login = ({ navigation }: Props) => {
           <TouchableOpacity
             onPress={() => {
               dispatch(login(user.email, user.password));
+              navigation.push('LoadingFull');
             }}
             style={styles.button}
           >
@@ -72,9 +73,6 @@ export const Login = ({ navigation }: Props) => {
         colors={[colors.primary, colors.secondary]}
         end={[1, 1]}
       />
-      {userStore.email && userStore.email.length
-        ? navigation.push('Home')
-        : null}
     </View>
   );
 };
