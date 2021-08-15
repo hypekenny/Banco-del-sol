@@ -17,21 +17,24 @@ export const AddFunds = () => {
 
   return (
     <View style={styles.container}>
-      <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-        <Text>Ingresa el monto a recargar: </Text>
+      <View style={{ alignSelf: 'center' }}>
+        <View>
+          <Text style={styles.text}>
+            Ingresá el monto que querés recargar en tu cuenta:{' '}
+          </Text>
+        </View>
+        <View>
+          <TextInput
+            value={`$${value.toString()}`}
+            onChangeText={(text: string) => {
+              if (text.substring(1, text.length) === '') setValue(0);
+              else setValue(parseInt(text.substring(1, text.length), 10));
+            }}
+            keyboardType="number-pad"
+            style={styles.amountInput}
+          />
+        </View>
       </View>
-      <View>
-        <TextInput
-          value={`$${value.toString()}`}
-          onChangeText={(text: string) => {
-            if (text.substring(1, text.length) === '') setValue(0);
-            else setValue(parseInt(text.substring(1, text.length), 10));
-          }}
-          keyboardType="number-pad"
-          style={ButtonPrimaryStyle.amountInput}
-        />
-      </View>
-
       <View style={{ alignSelf: 'center', marginTop: '20%' }}>
         <TouchableOpacity
           onPress={() => {
