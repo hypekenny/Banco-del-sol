@@ -35,28 +35,47 @@ export const AddFunds = () => {
           />
         </View>
       </View>
-      <View style={{ alignSelf: 'center', marginTop: '20%' }}>
-        <TouchableOpacity
-          onPress={() => {
-            addFunds(
-              userStore.email.toLowerCase(),
-              userStore.email.toLowerCase(),
-              'Recarga',
-              value,
-              '',
-              token,
-              dispatch,
-            );
-            setValue(0);
-          }}
-        >
-          <LinearGradient
-            style={styles.button}
-            colors={[colors.primary, colors.secondary]}
-          >
-            <Text style={ButtonPrimaryStyle.whiteText}>CONFIRMAR RECARGA</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+      <View>
+        {value > 0 ? (
+          <View style={{ alignSelf: 'center', marginTop: '20%' }}>
+            <TouchableOpacity
+              onPress={() => {
+                addFunds(
+                  userStore.email.toLowerCase(),
+                  userStore.email.toLowerCase(),
+                  'Recarga',
+                  value,
+                  '',
+                  token,
+                  dispatch,
+                );
+                setValue(0);
+              }}
+            >
+              <LinearGradient
+                style={ButtonPrimaryStyle.gradientButton}
+                colors={[colors.primary, colors.secondary]}
+              >
+                <Text style={ButtonPrimaryStyle.whiteText}>
+                  CONFIRMAR RECARGA
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={{ alignSelf: 'center', marginTop: '20%' }}>
+            <TouchableOpacity disabled>
+              <LinearGradient
+                style={ButtonPrimaryStyle.gradientButtonDisabled}
+                colors={[colors.disabledPrimary, colors.disabledSecondary]}
+              >
+                <Text style={ButtonPrimaryStyle.whiteText}>
+                  CONFIRMAR RECARGA
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   );
