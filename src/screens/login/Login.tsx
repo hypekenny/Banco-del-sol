@@ -15,11 +15,26 @@ export const Login = ({ navigation }: Props) => {
   const [user, setUser] = useState({
     email: '',
     password: '',
+    amount: 0,
   });
 
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
+        <TextInput
+          value={`$${user.amount.toString()}`}
+          onChangeText={(text: string) => {
+            if (text.substring(1, text.length) === '')
+              setUser({ ...user, amount: 0 });
+            else
+              setUser({
+                ...user,
+                amount: parseInt(text.substring(1, text.length), 10),
+              });
+          }}
+          keyboardType="number-pad"
+          style={ButtonPrimaryStyle.amountInput}
+        />
         <TextInput
           placeholder="Email..."
           placeholderTextColor="grey"

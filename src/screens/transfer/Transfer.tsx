@@ -15,6 +15,7 @@ export const Transfer = () => {
   const [data, setData] = useState({
     email: '',
     amount: 0,
+    comment: '',
   });
   return (
     <View style={styles.container}>
@@ -26,21 +27,25 @@ export const Transfer = () => {
         keyboardType="email-address"
         style={styles.inputEmail}
       />
-      <View style={ButtonSecondaryStyle.button}>
-        <Text style={ButtonSecondaryStyle.text}>
-          ${accountStore.balance.amount}
-        </Text>
-      </View>
       <TextInput
-        placeholder="Ingresá monto..."
-        placeholderTextColor="grey"
-        value={data.amount.toString()}
+        value={`$${data.amount.toString()}`}
         onChangeText={(text: string) => {
-          if (text === '') setData({ ...data, amount: 0 });
+          if (text.substring(1, text.length) === '')
+            setData({ ...data, amount: 0 });
           else if (parseInt(text, 10) <= accountStore.balance.amount)
-            setData({ ...data, amount: parseInt(text, 10) });
+            setData({
+              ...data,
+              amount: parseInt(text.substring(1, text.length), 10),
+            });
         }}
         keyboardType="number-pad"
+        style={ButtonPrimaryStyle.amountInput}
+      />
+      <TextInput
+        placeholder="Queres dejar un comentario?..."
+        placeholderTextColor="grey"
+        value={data.comment}
+        onChangeText={(text: string) => setData({ ...data, comment: text })}
         style={styles.inputEmail}
       />
       <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
@@ -52,6 +57,7 @@ export const Transfer = () => {
               data.email.toLowerCase(),
               'Transfer',
               data.amount,
+              comment,
               token,
               dispatch,
             )
