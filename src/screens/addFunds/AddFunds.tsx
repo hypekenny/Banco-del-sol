@@ -20,7 +20,7 @@ export const AddFunds = () => {
       <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
         <Text>Ingresa el monto a recargar: </Text>
       </View>
-      <View style={ButtonPrimaryStyle.input}>
+      <View>
         <TextInput
           value={`$${value.toString()}`}
           onChangeText={(text: string) => {
@@ -48,7 +48,7 @@ export const AddFunds = () => {
           }}
         >
           <LinearGradient
-            style={ButtonPrimaryStyle.button}
+            style={styles.button}
             colors={[colors.primary, colors.secondary]}
           >
             <Text style={ButtonPrimaryStyle.whiteText}>CONFIRMAR RECARGA</Text>
