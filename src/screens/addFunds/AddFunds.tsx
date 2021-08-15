@@ -43,6 +43,7 @@ export const AddFunds = () => {
               userStore.email.toLowerCase(),
               'Recarga',
               value,
+              '',
               token,
               dispatch,
             );
@@ -53,7 +54,7 @@ export const AddFunds = () => {
             style={ButtonPrimaryStyle.button}
             colors={[colors.primary, colors.secondary]}
           >
-            <Text style={ButtonPrimaryStyle.whiteText}>Confirmar Recarga</Text>
+            <Text style={ButtonPrimaryStyle.whiteText}>CONFIRMAR RECARGA</Text>
           </LinearGradient>
         </TouchableOpacity>
       </View>
