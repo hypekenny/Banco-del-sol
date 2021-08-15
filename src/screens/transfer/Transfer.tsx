@@ -60,27 +60,44 @@ export const Transfer = () => {
           style={ButtonPrimaryStyle.input}
         />
       </View>
-      <View style={{ alignSelf: 'center', marginTop: '20%' }}>
-        <TouchableOpacity
-          onPress={() =>
-            addFunds(
-              userStore.email.toLowerCase(),
-              data.email.toLowerCase(),
-              'Transfer',
-              data.amount,
-              data.comment,
-              token,
-              dispatch,
-            )
-          }
-        >
-          <LinearGradient
-            style={ButtonPrimaryStyle.button}
-            colors={[colors.primary, colors.secondary]}
-          >
-            <Text style={ButtonPrimaryStyle.whiteText}>ENVIAR</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+      <View>
+        {data.amount > 0 &&
+        data.email.length > 0 &&
+        data.email !== userStore.email ? (
+          <View style={{ alignSelf: 'center', marginTop: '20%' }}>
+            <TouchableOpacity
+              onPress={() =>
+                addFunds(
+                  userStore.email.toLowerCase(),
+                  data.email.toLowerCase(),
+                  'Transfer',
+                  data.amount,
+                  data.comment,
+                  token,
+                  dispatch,
+                )
+              }
+            >
+              <LinearGradient
+                style={ButtonPrimaryStyle.gradientButton}
+                colors={[colors.primary, colors.secondary]}
+              >
+                <Text style={ButtonPrimaryStyle.whiteText}>ENVIAR</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={{ alignSelf: 'center', marginTop: '20%' }}>
+            <TouchableOpacity disabled>
+              <LinearGradient
+                style={ButtonPrimaryStyle.gradientButtonDisabled}
+                colors={[colors.disabledPrimary, colors.disabledSecondary]}
+              >
+                <Text style={ButtonPrimaryStyle.whiteText}>ENVIAR</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   );
