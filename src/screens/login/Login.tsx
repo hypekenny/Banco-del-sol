@@ -21,7 +21,7 @@ export const Login = ({ navigation }: Props) => {
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
-          placeholder="Email..."
+          placeholder="Email...."
           placeholderTextColor="grey"
           value={user.email}
           onChangeText={(text: string) => setUser({ ...user, email: text })}
