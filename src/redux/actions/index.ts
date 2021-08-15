@@ -117,6 +117,7 @@ export async function addFunds(
   receiverEmail: string,
   type: string,
   value: number,
+  comment: string,
   token: string,
   dispatch: any,
 ) {
