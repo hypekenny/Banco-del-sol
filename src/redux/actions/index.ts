@@ -12,6 +12,7 @@ export const FETCH_CVU = 'FETCH_CVU';
 export const SET_TOKEN = 'SET_TOKEN';
 export const GET_EMAIL = 'GET_EMAIL';
 export const GET_DETAILS = 'GET_DETAILS';
+export const GET_NAME = 'GET_NAME';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -142,31 +143,62 @@ export async function addFunds(
 }
 
 export const getEmail =
-  (email: string, name: string, idToken: string) => dispatch => {
-    console.log(email, 'ac');
+  (emailUser: string, idToken: string, nameUser: string) => dispatch => {
+    console.log(emailUser, 'ACTIONS');
 
     axios
-      .get(`http://${process.env.IP_ADDRESS}:3001/api/account/${email}`, {
+      .get(`http://${process.env.IP_ADDRESS}:3001/api/contacts/${emailUser}`, {
         headers: {
           authorization: `Bearer ${idToken}`,
         },
       })
       .then(details => {
-        console.log('details', details);
+        console.log('details', details.data);
+        const { email, cvu } = details.data;
 
         dispatch({
           type: GET_EMAIL,
-          payload: { name: name, email: details.data },
+          payload: { name: nameUser, email: email, cvu: cvu },
+        });
+        dispatch({
+          type: GET_NAME,
+          payload: ``,
         });
       })
       .catch(error => {
-        console.log('aaaaaaaaaaaaa', error);
-
         return alert(
           'Este usuario no se encuentra registrado, proximamente lo podras invitar!',
         );
       });
   };
+
+export const getName = (emailUser: string, idToken: string) => dispatch => {
+  console.log(emailUser, 'ACTIONS');
+
+  axios
+    .get(`http://${process.env.IP_ADDRESS}:3001/api/contacts/${emailUser}`, {
+      headers: {
+        authorization: `Bearer ${idToken}`,
+      },
+    })
+    .then(details => {
+      const { name, lastName } = details.data;
+
+      dispatch({
+        type: GET_NAME,
+        payload: `${name} ${lastName}`,
+      });
+    })
+    .catch(error => {
+      dispatch({
+        type: GET_NAME,
+        payload: ``,
+      });
+      return alert(
+        'Este usuario no se encuentra registrado, proximamente lo podras invitar!',
+      );
+    });
+};
 
 export const detailContact = (email: string, name: string) => dispatch => {
   dispatch({
