@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './TransferStyles';
 import { RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import { addFunds } from '../../redux/actions';
-import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
+import colors from '../../constants/colors';
 
 export const Transfer = () => {
   const accountStore = useSelector((state: RootState) => state.account);
@@ -25,7 +26,7 @@ export const Transfer = () => {
         value={data.email}
         onChangeText={(text: string) => setData({ ...data, email: text })}
         keyboardType="email-address"
-        style={styles.inputEmail}
+        style={ButtonPrimaryStyle.input}
       />
       <TextInput
         value={`$${data.amount.toString()}`}
@@ -46,24 +47,28 @@ export const Transfer = () => {
         placeholderTextColor="grey"
         value={data.comment}
         onChangeText={(text: string) => setData({ ...data, comment: text })}
-        style={styles.inputEmail}
+        style={ButtonPrimaryStyle.input}
       />
       <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
         <TouchableOpacity
-          style={ButtonPrimaryStyle.button}
           onPress={() =>
             addFunds(
               userStore.email.toLowerCase(),
               data.email.toLowerCase(),
               'Transfer',
               data.amount,
-              comment,
+              data.comment,
               token,
               dispatch,
             )
           }
         >
-          <Text style={ButtonSecondaryStyle.text}>enviar</Text>
+          <LinearGradient
+            style={ButtonPrimaryStyle.button}
+            colors={[colors.primary, colors.secondary]}
+          >
+            <Text style={ButtonPrimaryStyle.whiteText}>ENVIAR</Text>
+          </LinearGradient>
         </TouchableOpacity>
       </View>
     </View>
