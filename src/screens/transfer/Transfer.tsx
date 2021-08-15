@@ -28,12 +28,16 @@ export const Transfer = () => {
         keyboardType="email-address"
         style={ButtonPrimaryStyle.input}
       />
+      <Text style={{ color: 'grey' }}>${accountStore.balance.amount}</Text>
       <TextInput
         value={`$${data.amount.toString()}`}
         onChangeText={(text: string) => {
           if (text.substring(1, text.length) === '')
             setData({ ...data, amount: 0 });
-          else if (parseInt(text, 10) <= accountStore.balance.amount)
+          else if (
+            parseInt(text.substring(1, text.length), 10) <=
+            accountStore.balance.amount
+          )
             setData({
               ...data,
               amount: parseInt(text.substring(1, text.length), 10),
@@ -49,7 +53,7 @@ export const Transfer = () => {
         onChangeText={(text: string) => setData({ ...data, comment: text })}
         style={ButtonPrimaryStyle.input}
       />
-      <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+      <View style={{ alignSelf: 'center' }}>
         <TouchableOpacity
           onPress={() =>
             addFunds(
