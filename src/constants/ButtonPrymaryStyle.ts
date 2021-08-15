@@ -70,8 +70,6 @@ export const ButtonPrimaryStyle = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 26,
     elevation: 14,
-    marginTop: 30,
-    marginBottom: 10,
     textAlign: 'center',
     fontSize: 40,
     fontWeight: 'bold',
