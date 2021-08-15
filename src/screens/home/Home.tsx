@@ -14,6 +14,7 @@ import { logout, updateAccount } from '../../redux/actions';
 import { Props, RootState } from '../../types/Types';
 import { Account } from '../account/Account';
 import { Statistics } from '../statistics/Statistics';
+import { Contact } from '../contact/Contact';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();
@@ -228,6 +229,22 @@ export const Home = ({ navigation }: Props) => {
               end={{ x: 0, y: 1 }}
             />
           ),
+        }}
+      />
+      <Tab.Screen
+        name="Contact"
+        component={Contact}
+        options={{
+          headerTintColor: 'black',
+          headerBackground: () => (
+            <LinearGradient
+              colors={['#ff4b6e', '#ff9349']}
+              style={{ flex: 1 }}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+            />
+          ),
+          headerShown: false,
         }}
       />
     </Tab.Navigator>

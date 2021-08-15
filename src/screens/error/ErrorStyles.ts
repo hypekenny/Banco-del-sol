@@ -3,7 +3,7 @@ import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 3,
     backgroundColor: colors.white,
     justifyContent: 'center',
     padding: 10,
@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
   textHeader: {
     fontSize: 25,
     color: 'white',
-    fontWeight: 600,
+    fontWeight: '600',
     width: '45%',
     marginTop: '-9.5%',
     marginLeft: 'auto',
@@ -256,5 +256,13 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     marginTop: '-3%',
+  },
+  text1: {
+    marginTop: '65%',
+    alignItems: 'center',
+  },
+  text2: {
+    fontWeight: '700',
+    fontSize: 18,
   },
 });
