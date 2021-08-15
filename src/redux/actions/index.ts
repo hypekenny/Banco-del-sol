@@ -10,6 +10,9 @@ export const SET_ACCOUNT = 'SET_ACCOUNT';
 export const LOG_OUT = 'LOG_OUT';
 export const FETCH_CVU = 'FETCH_CVU';
 export const SET_TOKEN = 'SET_TOKEN';
+export const GET_EMAIL = 'GET_EMAIL';
+export const GET_DETAILS = 'GET_DETAILS';
+export const GET_NAME = 'GET_NAME';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -112,7 +115,7 @@ export function fetchCvu() {
   };
 }
 
-export async function addFunds(
+export function addFunds(
   senderEmail: string,
   receiverEmail: string,
   type: string,
@@ -139,6 +142,80 @@ export async function addFunds(
     .catch(error => console.log(error));
 }
 
+
+export const getEmail =
+  (emailUser: string, idToken: string, nameUser: string) => dispatch => {
+    console.log(emailUser, 'ACTIONS');
+
+    axios
+      .get(`http://${process.env.IP_ADDRESS}:3001/api/contacts/${emailUser}`, {
+        headers: {
+          authorization: `Bearer ${idToken}`,
+        },
+      })
+      .then(details => {
+        console.log('details', details.data);
+        const { email, cvu } = details.data;
+
+        dispatch({
+          type: GET_EMAIL,
+          payload: { name: nameUser, email: email, cvu: cvu },
+        });
+      
+        dispatch({
+          type: GET_NAME,
+          payload: ``,
+        });
+      
+      })
+      .catch(error => {
+        return alert(
+          'Este usuario no se encuentra registrado, proximamente lo podras invitar!',
+        );
+      });
+    
+  };
+
+export const getName = (emailUser: string, idToken: string) => dispatch => {
+  console.log(emailUser, 'ACTIONS');
+
+  axios
+    .get(`http://${process.env.IP_ADDRESS}:3001/api/contacts/${emailUser}`, {
+      headers: {
+        authorization: `Bearer ${idToken}`,
+      },
+    })
+    .then(details => {
+      const { name, lastName } = details.data;
+
+      dispatch({
+        type: GET_NAME,
+        payload: `${name} ${lastName}`,
+      });
+    })
+  
+    .catch(error => {
+      dispatch({
+        type: GET_NAME,
+        payload: ``,
+      });
+    
+      return alert(
+        'Este usuario no se encuentra registrado, proximamente lo podras invitar!',
+      );
+    
+    });
+  
+};
+
+export const detailContact = (email: string, name: string) => dispatch => {
+  
+  dispatch({
+    type: GET_DETAILS,
+    payload: { name: name, email: email },
+  });
+  
+};
 export async function updateAccount(
   email: string,
   token: string,
@@ -151,10 +228,13 @@ export async function updateAccount(
       },
     })
     .then(response => {
+    
       dispatch({
         type: SET_ACCOUNT,
         payload: response.data,
       });
+    
     })
+  
     .catch(error => console.log(error));
 }
