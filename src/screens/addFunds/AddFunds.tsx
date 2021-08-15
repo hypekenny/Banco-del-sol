@@ -15,12 +15,6 @@ export const AddFunds = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
 
-  const handleInputChange = (text: string) => {
-    text.replace(/[^0-9]/g, '');
-    if (text === '') setValue(0);
-    else setValue(parseInt(text, 10));
-  };
-
   return (
     <View style={styles.container}>
       <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
@@ -28,14 +22,17 @@ export const AddFunds = () => {
       </View>
       <View style={ButtonPrimaryStyle.input}>
         <TextInput
-          placeholderTextColor="grey"
-          value={value.toString()}
-          onChangeText={handleInputChange}
+          value={`$${value.toString()}`}
+          onChangeText={(text: string) => {
+            if (text.substring(1, text.length) === '') setValue(0);
+            else setValue(parseInt(text.substring(1, text.length), 10));
+          }}
           keyboardType="number-pad"
+          style={ButtonPrimaryStyle.amountInput}
         />
       </View>
 
-      <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+      <View style={{ alignSelf: 'center', marginTop: '20%' }}>
         <TouchableOpacity
           onPress={() => {
             addFunds(
