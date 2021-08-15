@@ -142,6 +142,7 @@ export function addFunds(
     .catch(error => console.log(error));
 }
 
+
 export const getEmail =
   (emailUser: string, idToken: string, nameUser: string) => dispatch => {
     console.log(emailUser, 'ACTIONS');
@@ -160,16 +161,19 @@ export const getEmail =
           type: GET_EMAIL,
           payload: { name: nameUser, email: email, cvu: cvu },
         });
+      
         dispatch({
           type: GET_NAME,
           payload: ``,
         });
+      
       })
       .catch(error => {
         return alert(
           'Este usuario no se encuentra registrado, proximamente lo podras invitar!',
         );
       });
+    
   };
 
 export const getName = (emailUser: string, idToken: string) => dispatch => {
@@ -189,20 +193,48 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
         payload: `${name} ${lastName}`,
       });
     })
+  
     .catch(error => {
       dispatch({
         type: GET_NAME,
         payload: ``,
       });
+    
       return alert(
         'Este usuario no se encuentra registrado, proximamente lo podras invitar!',
       );
+    
     });
+  
 };
 
 export const detailContact = (email: string, name: string) => dispatch => {
+  
   dispatch({
     type: GET_DETAILS,
     payload: { name: name, email: email },
   });
+  
 };
+export async function updateAccount(
+  email: string,
+  token: string,
+  dispatch: any,
+) {
+  axios
+    .get(`http://${process.env.IP_ADDRESS}:3001/api/account/?${email}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    .then(response => {
+    
+      dispatch({
+        type: SET_ACCOUNT,
+        payload: response.data,
+      });
+    
+    })
+  
+    .catch(error => console.log(error));
+}
