@@ -61,7 +61,7 @@ export function login(email: string, password: string) {
           .then(idToken => {
             axios
               .get<resFromBack>(
-                `http://${process.env.IP_ADDRESS}:3001/api/user/?email:${email}`,
+                `http://${process.env.IP_ADDRESS}:3001/api/user/?email=${email}`,
                 {
                   headers: {
                     authorization: `Bearer ${idToken}`,
