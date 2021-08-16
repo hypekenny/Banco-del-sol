@@ -130,6 +130,7 @@ export const Main = () => (
       component={LoadingFull}
       options={{ headerShown: false }}
     />
+    <LoginStack.Screen
       name="ContactAdd"
       component={ContactAdd}
       options={{ headerShown: false }}
