@@ -8,7 +8,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from '../src/screens/error/ErrorStyles';
 import colors from '../src/constants/colors';
 import store from './redux/store';
-import { logout } from '../../Banco-del-sol/src/redux/actions/index';
+import { logout } from './redux/actions/index';
 import { Main } from './navigation/Main';
 import { ButtonPrimaryStyle } from '../src/constants/ButtonPrymaryStyle';
 import { ButtonSecondaryStyle } from '../src/constants/ButtonSecondaryStyle';
