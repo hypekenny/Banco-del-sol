@@ -1,8 +1,13 @@
 import React , { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { LineChart,YAxis, XAxis, Grid, BarChart } from 'react-native-svg-charts'
-import { ButtonPrimaryStyle } from './StatisticsStyles';
+import { ButtonPrimaryStyle, styles } from './StatisticsStyles';
 import colors from '../../constants/colors';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Dimensions } from 'react-native';
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 const fill = 'rgb(134, 65, 244)'
 const contentInset = { top: 20, bottom: 20 }
 
@@ -13,14 +18,48 @@ interface tDatosY {
 interface tDatosX {
  [key: string]: string[];
 }
+interface Pressed {
+  [key: string]: any;
+ }
 export const Statistics= () =>{
     const [muestro, setMuestro]= useState <string>('Nothing')
-    const handleButton= (elec:string)=>{setMuestro(elec)}
+    const handleButton= (elec:string)=>{
+      setMuestro(elec)
+      var buttons: Pressed={Diario:{...ButtonPrimaryStyle},Mensual:{...ButtonPrimaryStyle},Semanal:{...ButtonPrimaryStyle}}
+      buttons[elec].button={flex:1,
+        height:0.05*height,
+        alignItems: 'center',
+        margin: 10,
+        borderRadius: 25,
+        borderWidth: 2,
+        borderColor: colors.primary,
+        backgroundColor: colors.secondary,
+        padding: 5,
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 7,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 26,
+        elevation: 14, }
+      buttons[elec].text={
+        color: colors.white,
+        paddingLeft: 5,
+        paddingRight: 5,
+        alignSelf: 'center',
+        fontSize: 18,
+        fontWeight: '700',
+      }
+      setPress(buttons)
+    }
 
     const [datosX, setDatosX]= useState <tDatosX>({Diario:[],Semanal:[],Mensual:[]})
     const [datosY, setDatosY]= useState <tDatosY>({Diario:[],Semanal:[],Mensual:[]})
 
     const [comp, setComp]= useState <any>(<Text>Nothing</Text>)
+
+    const [press,setPress]= useState <Pressed> ({Diario:{...ButtonPrimaryStyle},Mensual:{...ButtonPrimaryStyle},Semanal:{...ButtonPrimaryStyle}})
     useEffect(()=>{
       //ACA SE CARGA EL GRAFICO DENTRO DE COMP
       if (muestro!== 'Nothing') 
@@ -101,33 +140,34 @@ export const Statistics= () =>{
       setDatosX({...datosX,Diario:diario,Semanal:semanal,Mensual:mensual})
     }
     return (
-      <View >
-          <View style={{ flex:1, flexDirection: 'row' }}>
+      <View style={styles.containerall}>
+        <View style={styles.container}>
+          {comp}
+        </View>
+        <View style={{ flex:1, flexDirection: 'row' }}>
             <TouchableOpacity
-                style={{...ButtonPrimaryStyle.button,flex:1}}
+                style={press.Diario.button}
                 onPress={() => handleButton('Diario')}
             >
-                <Text style={ButtonPrimaryStyle.text}>Diario</Text>
+              
+                <Text style={press.Diario.text}>Diario</Text>
+                
             </TouchableOpacity>
 
             <TouchableOpacity
-                style={{...ButtonPrimaryStyle.button,flex:1}}
+                style={press.Semanal.button}
                 onPress={() => handleButton('Semanal')}
             >
-                <Text style={ButtonPrimaryStyle.text}>Semanal</Text>
+                <Text style={press.Semanal.text}>Semanal</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-                style={{...ButtonPrimaryStyle.button,flex:1}}
+                style={press.Mensual.button}
                 onPress={() => handleButton('Mensual')}
             >
-                <Text style={ButtonPrimaryStyle.text}>Mensual</Text>
+                <Text style={press.Mensual.text}>Mensual</Text>
             </TouchableOpacity>
           </View>
-
-
-
-        {comp}
       </View>
     );
   }

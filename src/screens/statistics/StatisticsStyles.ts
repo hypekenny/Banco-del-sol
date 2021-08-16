@@ -1,17 +1,21 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
+import { Dimensions } from 'react-native';
 
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 export const ButtonPrimaryStyle = StyleSheet.create({
   button: {
-    width: 250,
+    
+    flex:1,
+    height:0.05*height,
     alignItems: 'center',
-    marginTop: 20,
-    marginBottom: 20,
+    margin: 10,
     borderRadius: 25,
     borderWidth: 2,
     borderColor: colors.primary,
     backgroundColor: '#ffffff',
-    padding: 15,
+    padding: 5,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -20,6 +24,12 @@ export const ButtonPrimaryStyle = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 26,
     elevation: 14,
+  },
+  buttoncolor1:{
+    backgroundColor: '#ffffff',
+  },
+  buttoncolor2:{
+    backgroundColor: '#ffffff',
   },
   input: {
     width: '90%',
@@ -52,10 +62,16 @@ export const ButtonPrimaryStyle = StyleSheet.create({
 });
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  containerall: {
+    width: width,
+    height: height,
     backgroundColor: colors.white,
-    padding: 10,
+  },
+  container: {
+    width: width,
+    height: 0.4*height,
+    backgroundColor: colors.white,
+    transform: [{ translateY: 0.1 * height }],
   },
   inputEmail: {
     borderRadius: 50,
