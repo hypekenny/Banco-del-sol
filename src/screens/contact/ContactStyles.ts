@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   header: {
     height: 70,
     width: '100%',
-    marginTop: '-4%',
+    marginTop: '-3%',
   },
   title: {
     height: 70,
@@ -55,10 +55,29 @@ export const styles = StyleSheet.create({
   icon: { marginTop: '-30%' },
 
   button: {
+    // borderRadius: 15,
+    // borderWidth: 1,
+    // width: '40%',
+    // height: '7%',
+    // alignSelf: 'center',
+    // textAlign: 'center',
+    // marginTop: '15%',
+    // borderColor: colors.primary,
+    // backgroundColor: '#ffffff',
+    // shadowColor: '#000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 7,
+    // },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 36,
+    // elevation: 14,
+  },
+  viewbtn: {
     borderRadius: 15,
     borderWidth: 1,
     width: '40%',
-    height: '7%',
+    height: '7.5%',
     alignSelf: 'center',
     textAlign: 'center',
     marginTop: '15%',
@@ -74,10 +93,15 @@ export const styles = StyleSheet.create({
     shadowRadius: 26,
     elevation: 14,
   },
+  iconAdd: { width: '15%', marginTop: '6.5%', marginLeft: '10%' },
   textBtn: {
     color: colors.primary,
     fontSize: 20,
-    marginTop: '5%',
-    fontWeight: 'bold',
+    marginTop: '-16.5%',
+    marginRight: '-8%',
+    fontWeight: '600',
+  },
+  TextDescription: {
+    backgroundColor: '#000',
   },
 });

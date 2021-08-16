@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
-import { getEmail, getName } from '../../redux/actions';
-import { styles } from './ContactStyles';
+import { detailContact, getEmail, getName } from '../../redux/actions';
+import { styles } from './ContactAddStyles';
 import { loginStackParamList } from '../../types/Types';
 import colors from '../../constants/colors';
 
@@ -15,35 +15,59 @@ type Props = {
 
 export const ContactAdd = ({ navigation }: Props) => {
   const dispatch = useDispatch();
-  const [email, setEmail] = React.useState('');
-  const [name, onChangeText] = React.useState('');
+  const [email, setEmail] = useState<String>('');
+  const [name, setName] = useState<String>('');
+  const [step, setStep] = useState<boolean>(false);
+  const [msg, setMsg] = useState<boolean>(false);
   const idToken = useSelector(state => state.token);
   const userEmail = useSelector(state => state.account.email);
   const nameUser = useSelector(state => state.nameDetail);
 
   useEffect(() => {
-    onChangeText(nameUser);
+    if (step) {
+      setName(nameUser);
+      setTimeout(() => {
+        if (nameUser) {
+          setMsg(true);
+        }
+
+        setTimeout(() => {
+          setMsg(false);
+        }, 2000);
+      }, 500);
+    } else {
+      setName('');
+    }
   }, [nameUser]);
+
+  useEffect(() => {
+    setStep(true);
+  }, []);
 
   function callName() {
     dispatch(getName(email, idToken));
-    onChangeText(nameUser);
+    if (!msg) {
+      setName(nameUser);
+    }
   }
   function AddFriend(email, idToken, name) {
     dispatch(getEmail(email, idToken, name));
     setEmail('');
-    onChangeText('');
+    setName('');
   }
 
   function BackAndClear() {
-    onChangeText('');
     setEmail('');
+    dispatch(detailContact('', ''));
+    setName('');
+    setStep(false);
     navigation.push('Contact');
   }
-
+  console.log('Name User', nameUser);
+  console.log('name contact', name);
   return (
     <View style={styles.container}>
-      <View style={styles.cosa}>
+      <View style={styles.headerOne}>
         <LinearGradient
           style={styles.header}
           colors={[colors.primary, colors.secondary]}
@@ -66,42 +90,66 @@ export const ContactAdd = ({ navigation }: Props) => {
           />
         </TouchableOpacity>
       </View>
-      {/* <TouchableOpacity onPress={() => BackAndClear()}>
-        <Text>VOLVER</Text>
-      </TouchableOpacity> */}
+
       <TextInput
         onChangeText={setEmail}
         value={email}
         placeholder="Email de tu contacto"
+        style={styles.input}
       />
-
-      {nameUser ? (
-        <TextInput
-          onChangeText={onChangeText}
-          value={name}
-          placeholder="Nombre de tu contacto"
-        />
-      ) : null}
-
+      {/* BOTON BUSCAR */}
       {email && email !== userEmail ? (
-        <TouchableOpacity onPress={() => callName()}>
-          <Text>BUSCAR</Text>
+        <TouchableOpacity onPress={() => callName()} style={styles.button}>
+          <Text style={styles.search}>BUSCAR</Text>
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity onPress={() => callName()} disabled>
-          <Text>BUSCAR</Text>
+        <TouchableOpacity
+          onPress={() => callName()}
+          style={styles.buttondisabled}
+          disabled
+        >
+          <Text style={styles.searchDisable}>BUSCAR</Text>
         </TouchableOpacity>
       )}
 
+      {/* INPUT NAME */}
+
       {name.length > 2 ? (
-        <TouchableOpacity onPress={() => AddFriend(email, idToken, name)}>
-          <Text>AGREGAR A CONTACTOS</Text>
-        </TouchableOpacity>
+        <TextInput
+          onChangeText={setName}
+          value={name}
+          placeholder="Nombre de tu contacto"
+          style={styles.inputTwo}
+        />
       ) : null}
 
-      <TouchableOpacity onPress={() => navigation.push('Contact')}>
-        <Text>ta</Text>
-      </TouchableOpacity>
+      {msg ? (
+        <View style={styles.msgText}>
+          <Text style={styles.TextAdd}>!Se ha encontrado un usario!</Text>
+        </View>
+      ) : null}
+
+      {name.length > 2 ? (
+        <TouchableOpacity
+          onPress={() => AddFriend(email, idToken, name)}
+          style={styles.buttonAdd}
+        >
+          <Text style={styles.TextAdd}>AGREGAR CONTACTO</Text>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          onPress={() => AddFriend(email, idToken, name)}
+          style={styles.buttonAddDisable}
+          disabled
+        >
+          <Text style={styles.TextAdd}>AGREGAR CONTACTO</Text>
+        </TouchableOpacity>
+      )}
+      <LinearGradient
+        style={styles.ellipse}
+        colors={[colors.primary, colors.secondary]}
+        end={[1, 1]}
+      />
     </View>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Button, Text, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 // import { styles } from './ContactStyles';
 import { useSelector, useDispatch } from 'react-redux';
@@ -53,12 +54,20 @@ export const Contact = ({ navigation }: Props) => {
           />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        onPress={() => navigation.push('ContactAdd')}
-        style={styles.button}
-      >
-        <Text style={styles.textBtn}>AGREGAR</Text>
-      </TouchableOpacity>
+      <View style={styles.viewbtn}>
+        <TouchableOpacity
+          onPress={() => navigation.push('ContactAdd')}
+          style={styles.button}
+        >
+          <Ionicons
+            name="ios-person-add-outline"
+            size={24}
+            color={colors.primary}
+            style={styles.iconAdd}
+          />
+          <Text style={styles.textBtn}>Agregar</Text>
+        </TouchableOpacity>
+      </View>
       {contact.map((contacto, i: number) => {
         return contacto.name ? (
           <View>
@@ -71,8 +80,21 @@ export const Contact = ({ navigation }: Props) => {
               </View>
             </TouchableOpacity>
           </View>
-        ) : null;
+        ) : (
+          <View style={styles.TextDescription}>
+            <Text style={styles.TextDescription}>
+              Aca podras visualizar tus contactos en el caso de haber agregado.
+            </Text>
+          </View>
+        );
       })}
+      {!contact ? (
+        <View style={styles.TextDescription}>
+          <Text style={styles.TextDescription}>
+            Aca podras visualizar tus contactos en el caso de haber agregado.
+          </Text>
+        </View>
+      ) : null}
     </View>
   );
 };

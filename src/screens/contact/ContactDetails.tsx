@@ -20,7 +20,7 @@ export const ContactDetails = ({ navigation }: Props) => {
     <View>
       <Text>{details.name}</Text>
       <Text>{details.email}</Text>
-      <Button title="Press button" onPress={() => toTransfer()} />
+      <Button title="TRANSFERIR" onPress={() => toTransfer()} />
     </View>
   );
 };
