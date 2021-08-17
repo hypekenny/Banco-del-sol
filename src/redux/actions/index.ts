@@ -45,19 +45,26 @@ export function register(user: userType, password: string) {
                 });
               });
           })
-          .catch(error => console.error(error));
+          .catch(error => {
+            dispatch({
+              type: SET_ERROR,
+              payload: 'Ocurió un error de autenticación',
+            });
+            console.error(error);
+          });
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
           dispatch({
             type: SET_ERROR,
-            payload: 'El mail ingresado ya está registrado',
+            payload: 'El email ingresado ya está registrado',
+          });
+        } else {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'Ocurrió un error con el servidor de registro',
           });
         }
-        dispatch({
-          type: SET_ERROR,
-          payload: 'Ocurrió un error con el servidor de registro',
-        });
         console.error(error);
       });
   };
