@@ -78,7 +78,6 @@ export function login(email: string, password: string) {
         response.user
           ?.getIdToken()
           .then(idToken => {
-            console.log(idToken);
             axios
               .get<resFromBack>(
                 `http://localhost:3001/api/user/?email=${email}`,
@@ -212,9 +211,11 @@ export const getEmail =
         });
       })
       .catch(error => {
-        return alert(
-          'En este momento no se encuentra disponible la posibilidad de agregar a personas a tu lista.',
-        );
+        dispatch({
+          type: SET_ERROR,
+          payload: 'Ocurrió un error, intenta nuevamente',
+        });
+        console.error(error);
       });
   };
 
@@ -238,9 +239,11 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
         type: GET_NAME,
         payload: ``,
       });
-      return alert(
-        'Este usuario no se encuentra registrado, proximamente lo podras invitar!',
-      );
+      dispatch({
+        type: SET_ERROR,
+        payload: 'El usuario no se encuentra registrado',
+      });
+      console.error(error);
     });
 };
 
