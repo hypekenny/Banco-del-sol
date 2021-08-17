@@ -103,7 +103,13 @@ export function login(email: string, password: string) {
                 });
               });
           })
-          .catch(error => console.error(error));
+          .catch(error => {
+            dispatch({
+              type: SET_ERROR,
+              payload: 'Ocurió un error de autenticación',
+            });
+            console.error(error);
+          });
       })
       .catch(error => {
         if (error.code === 'auth/user-not-found') {
