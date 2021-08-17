@@ -105,7 +105,15 @@ export function login(email: string, password: string) {
           })
           .catch(error => console.error(error));
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        if (error.code === 'auth/user-not-found') {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'El email no está registrado',
+          });
+        }
+        console.error(error);
+      });
   };
 }
 
