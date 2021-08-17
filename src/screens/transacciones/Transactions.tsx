@@ -9,7 +9,8 @@ import { Card } from '../../components/TransactionCard';
 
 export function Transactions() {
   const account = useSelector((state: RootState) => state.account);
-  console.log(account.balance.history[0]);
+  // console.log(account.balance.history[0]);
+  // console.log(account);
 
   const renderItem = ({ item }) => (
     <Card
@@ -17,6 +18,9 @@ export function Transactions() {
       value={item.value}
       date={new Date(item.date)}
       styles={styles}
+      sender={item.senderEmail}
+      receiver={item.receiverEmail}
+      user={account.email}
     />
   );
 
