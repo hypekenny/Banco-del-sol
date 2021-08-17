@@ -8,6 +8,7 @@ import { ThemeProvider, Button, Icon } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LinearGradient } from 'expo-linear-gradient';
+import { MaterialIcons } from '@expo/vector-icons';
 import { styles } from './HomeStyles';
 import { Transactions } from '../transacciones/Transactions';
 import { logout, updateAccount } from '../../redux/actions';
@@ -15,7 +16,6 @@ import { Props, RootState } from '../../types/Types';
 import { Account } from '../account/Account';
 import { Statistics } from '../statistics/Statistics';
 import { Contact } from '../contact/Contact';
-
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();
 
@@ -123,6 +123,9 @@ const screensOptions = (route: any, color: string) => {
       break;
     case 'Mi Cuenta':
       iconName = 'bank';
+      break;
+    case 'Contact':
+      iconName = 'contacts';
       break;
     default:
       iconName = '';

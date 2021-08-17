@@ -70,26 +70,21 @@ export const Contact = ({ navigation }: Props) => {
       </View>
       {contact.map((contacto, i: number) => {
         return contacto.name ? (
-          <View>
+          <View style={styles.Card}>
             <TouchableOpacity
               onPress={() => detailsfn(contacto.email, contacto.name)}
+              style={styles.BTNBox}
             >
               <View key={i} style={styles.Box}>
-                <Text style={styles.textBox}>{contacto.email}</Text>
-                <Text style={styles.textBox}>{contacto.name}</Text>
+                <Text style={styles.textBoxName}>{contacto.name}</Text>
+                <Text style={styles.textBoxEmail}>{contacto.email}</Text>
               </View>
             </TouchableOpacity>
           </View>
-        ) : (
-          <View style={styles.TextDescription}>
-            <Text style={styles.TextDescription}>
-              Aca podras visualizar tus contactos en el caso de haber agregado.
-            </Text>
-          </View>
-        );
+        ) : null;
       })}
-      {!contact ? (
-        <View style={styles.TextDescription}>
+      {!contact[0] ? (
+        <View style={styles.ViewDescription}>
           <Text style={styles.TextDescription}>
             Aca podras visualizar tus contactos en el caso de haber agregado.
           </Text>
