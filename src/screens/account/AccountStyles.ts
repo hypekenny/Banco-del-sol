@@ -25,6 +25,17 @@ export const styles = StyleSheet.create({
 
     elevation: 14,
   },
+  titleContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  header: {
+    fontSize: 29,
+    fontWeight: 'bold',
+    color: 'white',
+    justifyContent: 'center',
+  },
   h1: {
     fontSize: 25,
     fontWeight: 'bold',
@@ -45,6 +56,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  editButton: {
+    marginBottom: 0,
+    justifyContent: 'flex-end',
   },
   ImageAndButton: {
     flex: 1,

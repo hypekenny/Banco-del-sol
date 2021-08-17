@@ -16,6 +16,10 @@ export function Account() {
     alert('CVU copiado al portapapeles');
   }
 
+  function editAccount() {
+    alert('editar datos');
+  }
+
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -23,6 +27,21 @@ export function Account() {
         style={styles.container2}
       >
         <View>
+          <View style={styles.titleContainer}>
+            <View />
+            <Text style={styles.header}>Datos</Text>
+            <TouchableOpacity
+              style={styles.editButton}
+              onPress={() => editAccount()}
+            >
+              <MaterialIcons
+                name="edit"
+                size={28}
+                color="white"
+                style={{ paddingLeft: 5 }}
+              />
+            </TouchableOpacity>
+          </View>
           <View style={styles.block}>
             <Text style={styles.h1}>Titular</Text>
             <Text
