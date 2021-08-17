@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   //  #FF6F91
@@ -28,16 +29,14 @@ export const styles = StyleSheet.create({
   // bfbfbf
   box: {
     marginTop: 20,
-    // borderWidth: 2,
-    // borderColor: '#babdbe',
+    padding: 5,
+    borderWidth: 2,
+    borderColor: colors.primary,
     height: 134,
     width: 275,
     marginRight: 'auto',
     marginLeft: 'auto',
-    // borderRadius: 15,
-    // backgroundColor: '#00000030',
-
-    // marginTop,
+    borderRadius: 15,
   },
 
   boxin: {
@@ -86,19 +85,36 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 10,
   },
-  text: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    marginTop: 35,
-    marginBottom: 20,
-  },
-  textgastn: {
+  texttype: {
     fontSize: 20,
     fontWeight: 'bold',
     marginRight: 'auto',
     marginLeft: 'auto',
-    marginTop: 10,
+    marginTop: 'auto',
+    marginBottom: 'auto',
+  },
+  textheader: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    marginTop: 'auto',
+    marginBottom: 'auto',
+  },
+  text: {
+    fontSize: 17,
+    fontWeight: '100',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    marginTop: 'auto',
+    marginBottom: 'auto',
+  },
+  textb: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    marginTop: 'auto',
+    marginBottom: 'auto',
   },
 });
