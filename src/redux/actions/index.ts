@@ -45,9 +45,21 @@ export function register(user: userType, password: string) {
                 });
               });
           })
-          .catch(error => console.error(error, 'error'));
+          .catch(error => console.error(error));
       })
-      .catch(error => console.error(error, 'error'));
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'El mail ingresado ya está registrado',
+          });
+        }
+        dispatch({
+          type: SET_ERROR,
+          payload: 'Ocurrió un error con el servidor de registro',
+        });
+        console.error(error);
+      });
   };
 }
 export function login(email: string, password: string) {
