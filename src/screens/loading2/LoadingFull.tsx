@@ -30,7 +30,7 @@ export function LoadingFull({ navigation }: Props) {
         source={require('../../../assets/Banco-del-Sol-Logo sol.png')}
       />
       {userStore.email && userStore.email.length
-        ? navigation.push('Home')
+        ? navigation.push('HomeTab')
         : null}
     </View>
   );
