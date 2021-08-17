@@ -37,6 +37,10 @@ export function Account() {
             <Text style={styles.h1}>Mail</Text>
             <Text style={styles.h2}>{accountDetails.email}</Text>
           </View>
+          <View style={styles.block}>
+            <Text style={styles.h1}>Telefono</Text>
+            <Text style={styles.h2}>{userDetails.phoneNumber}</Text>
+          </View>
         </View>
       </LinearGradient>
       <TouchableOpacity
