@@ -13,21 +13,17 @@ export const SET_TOKEN = 'SET_TOKEN';
 export const GET_EMAIL = 'GET_EMAIL';
 export const GET_DETAILS = 'GET_DETAILS';
 export const GET_NAME = 'GET_NAME';
+export const SET_ERROR = 'SET_ERROR';
 
 export function register(user: userType, password: string) {
-  console.log('user, password', user, password);
-
   return (dispatch: any) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(user.email.toLowerCase(), password)
       .then(response => {
-        console.log('response', response);
-        console.log('process.env.IP_ADDRESS', process.env.IP_ADDRESS);
         response.user
           ?.getIdToken()
           .then(idToken => {
-            console.log('idtoken', idToken);
             axios
               .post<resFromBack>(`http://localhost:3001/api/user/`, user, {
                 headers: {
@@ -35,7 +31,6 @@ export function register(user: userType, password: string) {
                 },
               })
               .then(responseAgain => {
-                console.log('responseAgain', responseAgain);
                 dispatch({
                   type: SET_ACCOUNT,
                   payload: responseAgain.data.account,
@@ -64,6 +59,7 @@ export function login(email: string, password: string) {
         response.user
           ?.getIdToken()
           .then(idToken => {
+            console.log(idToken);
             axios
               .get<resFromBack>(
                 `http://localhost:3001/api/user/?email=${email}`,
@@ -144,14 +140,12 @@ export function addFunds(
     })
     .catch(error => {
       alert('El usuario no existe');
-      console.log(error);
+      console.error(error);
     });
 }
 
 export const getEmail =
   (emailUser: string, idToken: string, nameUser: string) => dispatch => {
-    console.log(emailUser, 'ACTIONS');
-
     axios
       .get(`http://localhost:3001/api/contacts/${emailUser}`, {
         headers: {
@@ -159,7 +153,6 @@ export const getEmail =
         },
       })
       .then(details => {
-        console.log('details', details.data);
         const { email, cvu } = details.data;
 
         dispatch({
@@ -217,7 +210,7 @@ export async function updateAccount(
   dispatch: any,
 ) {
   axios
-    .get(`http://${process.env.IP_ADDRESS}:3001/api/account/?email=${email}`, {
+    .get(`http://localhost:3001/api/account/?email=${email}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -228,5 +221,5 @@ export async function updateAccount(
         payload: response.data,
       });
     })
-    .catch(error => console.log(error));
+    .catch(error => console.error(error));
 }

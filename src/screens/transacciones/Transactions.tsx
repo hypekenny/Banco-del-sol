@@ -9,8 +9,6 @@ import { Card } from '../../components/TransactionCard';
 
 export function Transactions() {
   const account = useSelector((state: RootState) => state.account);
-  // console.log(account.balance.history[0]);
-  // console.log(account);
 
   const renderItem = ({ item }) => (
     <Card
