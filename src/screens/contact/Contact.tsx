@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Button, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
-// import { styles } from './ContactStyles';
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
@@ -23,10 +22,9 @@ export const Contact = ({ navigation }: Props) => {
     dispatch(detailContact('', ''));
   }
 
-  function detailsfn(email, name) {
+  function detailsfn(email: string, name: string) {
     navigation.push('ContactDetails');
     dispatch(detailContact(email, name));
-    console.log(email);
   }
 
   return (
@@ -54,6 +52,7 @@ export const Contact = ({ navigation }: Props) => {
           />
         </TouchableOpacity>
       </View>
+
       <View style={styles.viewbtn}>
         <TouchableOpacity
           onPress={() => navigation.push('ContactAdd')}
@@ -68,30 +67,27 @@ export const Contact = ({ navigation }: Props) => {
           <Text style={styles.textBtn}>Agregar</Text>
         </TouchableOpacity>
       </View>
+
       {contact.map((contacto, i: number) => {
         return contacto.name ? (
-          <View>
+          <View style={styles.Card}>
             <TouchableOpacity
               onPress={() => detailsfn(contacto.email, contacto.name)}
+              style={styles.BTNBox}
             >
               <View key={i} style={styles.Box}>
-                <Text style={styles.textBox}>{contacto.email}</Text>
-                <Text style={styles.textBox}>{contacto.name}</Text>
+                <Text style={styles.textBoxName}>{contacto.name}</Text>
+                <Text style={styles.textBoxEmail}>{contacto.email}</Text>
               </View>
             </TouchableOpacity>
           </View>
-        ) : (
-          <View style={styles.TextDescription}>
-            <Text style={styles.TextDescription}>
-              Aca podras visualizar tus contactos en el caso de haber agregado.
-            </Text>
-          </View>
-        );
+        ) : null;
       })}
-      {!contact ? (
-        <View style={styles.TextDescription}>
+
+      {!contact[0] ? (
+        <View style={styles.ViewDescription}>
           <Text style={styles.TextDescription}>
-            Aca podras visualizar tus contactos en el caso de haber agregado.
+            Aca podras visualizar tus contactos.
           </Text>
         </View>
       ) : null}

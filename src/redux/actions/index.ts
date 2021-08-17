@@ -161,7 +161,7 @@ export const getEmail =
 
         dispatch({
           type: GET_EMAIL,
-          payload: { name: nameUser, email: email, cvu: cvu },
+          payload: { name: nameUser, email, cvu },
         });
 
         dispatch({
@@ -170,16 +170,13 @@ export const getEmail =
         });
       })
       .catch(error => {
-        console.log(error, 'errossssss');
-
         return alert(
-          'Este usuario no se encuentra registrado, proximamente lo podras invitar!',
+          'En este momento no se encuentra disponible la posibilidad de agregar a personas a tu lista.',
         );
       });
   };
 
 export const getName = (emailUser: string, idToken: string) => dispatch => {
-  console.log(emailUser, 'ACTIONS');
   axios
     .get(`http://localhost:3001/api/contacts/${emailUser}`, {
       headers: {
@@ -188,7 +185,6 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
     })
     .then(details => {
       const { name, lastName } = details.data;
-
       dispatch({
         type: GET_NAME,
         payload: `${name} ${lastName}`,
@@ -200,7 +196,6 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
         type: GET_NAME,
         payload: ``,
       });
-
       return alert(
         'Este usuario no se encuentra registrado, proximamente lo podras invitar!',
       );
@@ -210,7 +205,7 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
 export const detailContact = (email: string, name: string) => dispatch => {
   dispatch({
     type: GET_DETAILS,
-    payload: { name: name, email: email },
+    payload: { name, email },
   });
 };
 export async function updateAccount(
@@ -230,6 +225,5 @@ export async function updateAccount(
         payload: response.data,
       });
     })
-
     .catch(error => console.log(error));
 }
