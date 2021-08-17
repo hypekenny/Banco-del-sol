@@ -3,9 +3,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ThemeProvider, Button } from 'react-native-elements';
-import { burgerDrawerParamList, Props, RootState } from '../types/Types';
-import { HomeTab } from '../screens/homeTab/HomeTab';
-import { logout } from '../redux/actions';
+import { burgerDrawerParamList, Props, RootState } from '../../types/Types';
+import { HomeTab } from '../homeTab/HomeTab';
+import { logout } from '../../redux/actions';
 
 const Burger = createDrawerNavigator<burgerDrawerParamList>();
 

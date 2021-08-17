@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { firebaseConfig } from '../constants/firebase.config';
 import { loginStackParamList } from '../types/Types';
 import { config } from '../screens/index';
-import { Drawer } from './drawer';
+import { Drawer } from '../screens/drawer/drawer';
 
 firebase.initializeApp(firebaseConfig);
 
