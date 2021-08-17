@@ -86,6 +86,11 @@ export default function rootReducer(state = initialState, action: actionType) {
         ...state,
         nameDetail: action.payload,
       };
+    case SET_ERROR:
+      return {
+        ...state,
+        errors: action.payload,
+      };
     default:
       return state;
   }
