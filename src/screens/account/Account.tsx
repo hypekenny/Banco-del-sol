@@ -24,18 +24,18 @@ export function Account() {
       >
         <View>
           <View style={styles.block}>
-            <Text style={styles.h1}>CVU</Text>
-            <Text style={styles.h2}>{accountDetails.cvu}</Text>
-          </View>
-          <View style={styles.block}>
-            <Text style={styles.h1}>Nombre del Banco</Text>
-            <Text style={styles.h2}>Banco del Sol</Text>
-          </View>
-          <View style={styles.block}>
             <Text style={styles.h1}>Titular</Text>
             <Text
               style={styles.h2}
             >{`${userDetails.name} ${userDetails.lastName}`}</Text>
+          </View>
+          <View style={styles.block}>
+            <Text style={styles.h1}>CVU</Text>
+            <Text style={styles.h2}>{accountDetails.cvu}</Text>
+          </View>
+          <View style={styles.block}>
+            <Text style={styles.h1}>Mail</Text>
+            <Text style={styles.h2}>{accountDetails.email}</Text>
           </View>
         </View>
       </LinearGradient>
