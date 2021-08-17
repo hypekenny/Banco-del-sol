@@ -10,12 +10,50 @@ export const styles = StyleSheet.create({
   },
   Box: {
     flex: 1,
-    backgroundColor: '#000',
+    // backgroundColor: '#000',
+    marginTop: 25,
+    marginBottom: 25,
+    borderRadius: 10,
+    alignSelf: 'center',
+    textAlign: 'center',
+    width: '80%',
+
+    // shadowColor: 'red',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 7,
+    // },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 26,
+    // elevation: 14,
+  },
+  BTNBox: {
+    flex: 1,
+    backgroundColor: '#FFFFF',
+    borderColor: `${colors.primary}`,
+    borderWidth: 1,
     marginTop: 50,
+    borderRadius: 15,
+    alignSelf: 'center',
+    textAlign: 'center',
+    width: '80%',
+    height: '30%',
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 26,
+    elevation: 14,
   },
-  textBox: {
-    color: '#fff',
+  textBoxName: {
+    color: '#000',
+    fontSize: 25,
+    fontWeight: '600',
   },
+  textBoxEmail: { color: '#000', fontSize: 20, fontWeight: '100' },
   header: {
     height: 70,
     width: '100%',
@@ -54,25 +92,6 @@ export const styles = StyleSheet.create({
   headerOne: { backgroundColor: '#000', marginTop: '-10%' },
   icon: { marginTop: '-30%' },
 
-  button: {
-    // borderRadius: 15,
-    // borderWidth: 1,
-    // width: '40%',
-    // height: '7%',
-    // alignSelf: 'center',
-    // textAlign: 'center',
-    // marginTop: '15%',
-    // borderColor: colors.primary,
-    // backgroundColor: '#ffffff',
-    // shadowColor: '#000',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 7,
-    // },
-    // shadowOpacity: 0.25,
-    // shadowRadius: 36,
-    // elevation: 14,
-  },
   viewbtn: {
     borderRadius: 15,
     borderWidth: 1,
@@ -102,6 +121,17 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
   },
   TextDescription: {
-    backgroundColor: '#000',
+    // backgroundColor: '#76767680',
+    textAlign: 'justify',
+    color: '#767676de',
+    fontSize: 25,
+    fontWeight: '100',
+  },
+  ViewDescription: {
+    // backgroundColor: '#000',
+    width: '90%',
+    // position: 'absolute',
+    alignSelf: 'center',
+    marginTop: '50%',
   },
 });
