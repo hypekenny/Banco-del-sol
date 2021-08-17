@@ -6,6 +6,7 @@ import { ThemeProvider, Button } from 'react-native-elements';
 import { burgerDrawerParamList, Props, RootState } from '../../types/Types';
 import { HomeTab } from '../homeTab/HomeTab';
 import { logout } from '../../redux/actions';
+import { Contact } from './drawerScreens/contact/Contact';
 
 const Burger = createDrawerNavigator<burgerDrawerParamList>();
 
@@ -39,8 +40,34 @@ export function Drawer({ navigation }: Props) {
   return (
     <Burger.Navigator>
       <Burger.Screen
-        name="main"
+        name="home"
         component={HomeTab}
+        options={{
+          headerBackground: () => (
+            <LinearGradient
+              colors={['#ff4b6e', '#ff9349']}
+              style={{ flex: 1 }}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+            />
+          ),
+          headerRight: () => (
+            <ThemeProvider theme={theme}>
+              <Button
+                onPress={() => exit()}
+                title="Cerrar Sesion"
+                type="clear"
+              />
+            </ThemeProvider>
+          ),
+          headerTintColor: '#fff',
+          headerTitle: `Hola ${userStore.name}`,
+          headerShown: true,
+        }}
+      />
+      <Burger.Screen
+        name="contacts"
+        component={Contact}
         options={{
           headerBackground: () => (
             <LinearGradient

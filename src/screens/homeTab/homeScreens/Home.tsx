@@ -81,7 +81,7 @@ export const Home = ({ navigation }: Props) => {
           </View>
         </View>
       </View>
-
+      {/* style={styles.view3} */}
       <View style={styles.view3}>
         <View>
           <TouchableOpacity

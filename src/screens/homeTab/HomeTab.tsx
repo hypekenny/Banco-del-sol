@@ -10,7 +10,7 @@ import { Transactions } from '../transacciones/Transactions';
 import { Account } from '../account/Account';
 import { Statistics } from '../statistics/Statistics';
 import { Home } from './homeScreens/Home';
-import { Contact } from '../contact/Contact';
+import { Contact } from '../drawer/drawerScreens/contact/Contact';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();

@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
-import { detailContact, getEmail, getName } from '../../redux/actions';
+import { detailContact, getEmail, getName } from '../../../../redux/actions';
 import { styles } from './ContactAddStyles';
-import { loginStackParamList } from '../../types/Types';
-import colors from '../../constants/colors';
+import { loginStackParamList, RootState } from '../../../../types/Types';
+import colors from '../../../../constants/colors';
 
 type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
@@ -19,8 +19,8 @@ export const ContactAdd = ({ navigation }: Props) => {
   const [name, setName] = useState<String>('');
   const [step, setStep] = useState<boolean>(false);
   const [msg, setMsg] = useState<boolean>(false);
-  const idToken = useSelector(state => state.token);
-  const userEmail = useSelector(state => state.account.email);
+  const idToken = useSelector<RootState>(state => state.token);
+  const userEmail = useSelector<RootState>(state => state.account.email);
   const nameUser = useSelector(state => state.nameDetail);
 
   useEffect(() => {

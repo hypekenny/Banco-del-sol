@@ -136,7 +136,7 @@ export const styles = StyleSheet.create({
     padding: 30,
     borderRadius: 25,
     borderWidth: 2,
-    borderColor: '#ffffff',
+    borderColor: colors.white,
     backgroundColor: colors.primary,
     shadowColor: '#000',
     shadowOffset: {

@@ -4,10 +4,10 @@ import { Ionicons, AntDesign } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
-import { loginStackParamList } from '../../types/Types';
+import { loginStackParamList } from '../../../../types/Types';
 import { styles } from './ContactStyles';
-import { detailContact } from '../../redux/actions';
-import colors from '../../constants/colors';
+import { detailContact } from '../../../../redux/actions';
+import colors from '../../../../constants/colors';
 
 type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;

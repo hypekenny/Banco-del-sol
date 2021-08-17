@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import colors from '../../constants/colors';
+import colors from '../../../../constants/colors';
 // import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
   },
   BTNBox: {
     flex: 1,
-    backgroundColor: '#FFFFF',
+    backgroundColor: '#f0f',
     borderColor: `${colors.primary}`,
     borderWidth: 1,
     marginTop: 50,
