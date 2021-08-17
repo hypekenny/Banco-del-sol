@@ -111,6 +111,16 @@ export function login(email: string, password: string) {
             type: SET_ERROR,
             payload: 'El email no está registrado',
           });
+        } else if (error.code === 'auth/wrong-password') {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'La contraseña es incorrecta',
+          });
+        } else {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'Ocurrió un error con el servidor de autenticación',
+          });
         }
         console.error(error);
       });
