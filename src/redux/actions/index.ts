@@ -217,7 +217,7 @@ export async function updateAccount(
   dispatch: any,
 ) {
   axios
-    .get(`http://${process.env.IP_ADDRESS}:3001/api/account/?email=${email}`, {
+    .get(`http://localhost:3001:3001/api/account/?email=${email}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
