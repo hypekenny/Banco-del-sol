@@ -9,6 +9,7 @@ import { Card } from '../../components/TransactionCard';
 
 export function Transactions() {
   const account = useSelector((state: RootState) => state.account);
+  console.log(account.balance.history[0]);
 
   const renderItem = ({ item }) => (
     <Card
@@ -39,7 +40,7 @@ export function Transactions() {
       <FlatList
         ListHeaderComponent={header}
         ListEmptyComponent={emptyList}
-        data={account.balance.history}
+        data={account.balance.history.reverse()}
         renderItem={renderItem}
       />
     </View>
