@@ -99,3 +99,7 @@ export interface RootState {
   user: userType;
   token: string;
 }
+
+export type errors = {
+  errors: string;
+};

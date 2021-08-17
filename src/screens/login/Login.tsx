@@ -13,8 +13,8 @@ export const Login = ({ navigation }: Props) => {
   const dispatch = useDispatch();
 
   const [user, setUser] = useState({
-    email: '',
-    password: '',
+    email: 'ferro@hotmail.com',
+    password: '123QWE&',
     amount: 0,
   });
 
