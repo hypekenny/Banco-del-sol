@@ -44,17 +44,24 @@ export const ContactAdd = ({ navigation }: Props) => {
     setStep(true);
   }, []);
 
+  // CallName manda a buscar un email  si lo encuentra te da su nombre.
+
   function callName() {
     dispatch(getName(email, idToken));
     if (!msg) {
       setName(nameUser);
     }
   }
+
+  // AddFriend se encarga de guardar en "REDUX" los contactos que fueron agregados.
+
   function AddFriend(email, idToken, name) {
     dispatch(getEmail(email, idToken, name));
     setEmail('');
     setName('');
   }
+
+  // BackAndClear se encarga de volver a "Contact" y limpiar todos los estados
 
   function BackAndClear() {
     setEmail('');
@@ -63,19 +70,21 @@ export const ContactAdd = ({ navigation }: Props) => {
     setStep(false);
     navigation.push('Contact');
   }
-  console.log('Name User', nameUser);
-  console.log('name contact', name);
+
   return (
     <View style={styles.container}>
+      {/* HEADER */}
       <View style={styles.headerOne}>
         <LinearGradient
           style={styles.header}
           colors={[colors.primary, colors.secondary]}
           end={[1, 1]}
         />
+
         <View style={styles.title}>
           <Text style={styles.textTitle}>Agregar Contactos</Text>
         </View>
+
         <TouchableOpacity
           style={styles.back}
           onPress={() => {
@@ -90,7 +99,7 @@ export const ContactAdd = ({ navigation }: Props) => {
           />
         </TouchableOpacity>
       </View>
-
+      {/* FIN HEADER */}
       <TextInput
         onChangeText={setEmail}
         value={email}
@@ -103,11 +112,7 @@ export const ContactAdd = ({ navigation }: Props) => {
           <Text style={styles.search}>BUSCAR</Text>
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity
-          onPress={() => callName()}
-          style={styles.buttondisabled}
-          disabled
-        >
+        <TouchableOpacity style={styles.buttondisabled} disabled>
           <Text style={styles.searchDisable}>BUSCAR</Text>
         </TouchableOpacity>
       )}
@@ -137,11 +142,7 @@ export const ContactAdd = ({ navigation }: Props) => {
           <Text style={styles.TextAdd}>AGREGAR CONTACTO</Text>
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity
-          onPress={() => AddFriend(email, idToken, name)}
-          style={styles.buttonAddDisable}
-          disabled
-        >
+        <TouchableOpacity style={styles.buttonAddDisable} disabled>
           <Text style={styles.TextAdd}>AGREGAR CONTACTO</Text>
         </TouchableOpacity>
       )}
