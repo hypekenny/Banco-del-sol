@@ -1,84 +1,47 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState, useEffect } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import React from 'react';
+import { View, Text, FlatList } from 'react-native';
+import { useSelector } from 'react-redux';
+import { Divider } from 'react-native-elements';
+import { RootState } from '../../types/Types';
 import { styles } from './TransactionsStyles';
+import { Card } from '../../components/TransactionCard';
 
 export function Transactions() {
-  const [money, setMoney] = useState<number>(0);
-  const [moneyd, setMoneyd] = useState<number>(0);
+  const account = useSelector((state: RootState) => state.account);
 
-  useEffect(() => {
-    setMoney(3532.5);
-    setMoneyd(3342.5);
-  }, []);
+  const renderItem = ({ item }) => (
+    <Card
+      type={item.type}
+      value={item.value}
+      date={new Date(item.date)}
+      styles={styles}
+    />
+  );
+
+  const header = () => {
+    return (
+      <View>
+        <Text style={styles.textheader}>Ultimas Transacciones: </Text>
+        <Divider orientation="vertical" />
+      </View>
+    );
+  };
+
+  const emptyList = () => {
+    return (
+      <Text style={styles.texttype}>Aun no tienes ninguna transaccion.</Text>
+    );
+  };
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.box}>
-          <View style={styles.boxin}>
-            <Text style={styles.boxt}>21 Jun</Text>
-            <Image
-              style={styles.img}
-              source={require('../../../assets/profile.jpg')}
-            />
-            <View style={styles.boxdetailsin}>
-              <View style={styles.boxdetails}>
-                <Text style={styles.textgast}>Mac Donalds</Text>
-                <Text style={styles.textgastn}>+${money}</Text>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.box}>
-          <View style={styles.boxin}>
-            <Text style={styles.boxt}>21 Jun</Text>
-            <Image
-              style={styles.img}
-              source={require('../../../assets/profile.jpg')}
-            />
-            <View style={styles.boxdetailsin}>
-              <View style={styles.boxdetails}>
-                <Text style={styles.textgast}>Mac Donalds</Text>
-                <Text style={styles.textgastn}>-${moneyd}</Text>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.box}>
-          <View style={styles.boxin}>
-            <Text style={styles.boxt}>21 Jun</Text>
-            <Image
-              style={styles.img}
-              source={require('../../../assets/profile.jpg')}
-            />
-            <View style={styles.boxdetailsin}>
-              <View style={styles.boxdetails}>
-                <Text style={styles.textgast}>Mac Donalds</Text>
-                <Text style={styles.textgastn}>-${moneyd}</Text>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.box}>
-          <View style={styles.boxin}>
-            <Text style={styles.boxt}>21 Jun</Text>
-            <Image
-              style={styles.img}
-              source={require('../../../assets/profile.jpg')}
-            />
-            <View style={styles.boxdetailsin}>
-              <View style={styles.boxdetails}>
-                <Text style={styles.textgast}>Mac Donalds</Text>
-                <Text style={styles.textgastn}>-${moneyd}</Text>
-              </View>
-            </View>
-          </View>
-        </View>
-      </ScrollView>
+      <FlatList
+        ListHeaderComponent={header}
+        ListEmptyComponent={emptyList}
+        data={account.balance.history}
+        renderItem={renderItem}
+      />
     </View>
   );
 }
