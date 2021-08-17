@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     padding: 5,
     borderWidth: 2,
     borderColor: colors.primary,
-    height: 134,
+    height: 'auto',
     width: 275,
     marginRight: 'auto',
     marginLeft: 'auto',

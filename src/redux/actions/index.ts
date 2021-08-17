@@ -142,7 +142,10 @@ export function addFunds(
         payload: response.data,
       });
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      alert('El usuario no existe');
+      console.log(error);
+    });
 }
 
 export const getEmail =
