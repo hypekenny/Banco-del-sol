@@ -253,11 +253,8 @@ export const detailContact = (email: string, name: string) => dispatch => {
     payload: { name, email },
   });
 };
-export async function updateAccount(
-  email: string,
-  token: string,
-  dispatch: any,
-) {
+
+export function updateAccount(email: string, token: string, dispatch: any) {
   axios
     .get(`http://localhost:3001/api/account/?email=${email}`, {
       headers: {
@@ -270,5 +267,11 @@ export async function updateAccount(
         payload: response.data,
       });
     })
-    .catch(error => console.error(error));
+    .catch(error => {
+      dispatch({
+        type: SET_ERROR,
+        payload: 'Ocurrió un error, intenta nuevamente',
+      });
+      console.error(error);
+    });
 }
