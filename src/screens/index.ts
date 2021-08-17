@@ -2,7 +2,7 @@ import { Start } from './start/Start';
 import { StartView } from './start/StartView';
 import { Login } from './login/Login';
 import { Register } from './register/Register';
-import { Home } from './home/Home';
+import { HomeTab } from './homeTab/HomeTab';
 import { Transfer } from './transfer/Transfer';
 import { Account } from './account/Account';
 import { AddFunds } from './addFunds/AddFunds';
@@ -20,7 +20,7 @@ export const config = {
   StartView,
   Login,
   Register,
-  Home,
+  HomeTab,
   AddFunds,
   Transfer,
   Account,

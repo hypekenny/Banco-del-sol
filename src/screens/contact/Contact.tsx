@@ -1,10 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
-import { AntDesign } from '@expo/vector-icons';
 import { loginStackParamList } from '../../types/Types';
 import { styles } from './ContactStyles';
 import { detailContact } from '../../redux/actions';
@@ -18,7 +17,7 @@ export const Contact = ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const contact = useSelector(state => state.Contacts);
   function clear() {
-    navigation.push('Home');
+    navigation.push('HomeTab');
     dispatch(detailContact('', ''));
   }
 
