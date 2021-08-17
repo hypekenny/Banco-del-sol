@@ -36,16 +36,6 @@ export function Drawer({ navigation }: Props) {
     navigation.popToTop();
   }
 
-  // headerRight: () => (
-  //   <ThemeProvider theme={theme}>
-  //     <Button
-  //       onPress={() => exit()}
-  //       title="Cerrar Sesion"
-  //       type="clear"
-  //     />
-  //   </ThemeProvider>
-  // ),
-
   return (
     <Burger.Navigator>
       <Burger.Screen
@@ -59,6 +49,15 @@ export function Drawer({ navigation }: Props) {
               start={{ x: 0, y: 0 }}
               end={{ x: 0, y: 1 }}
             />
+          ),
+          headerRight: () => (
+            <ThemeProvider theme={theme}>
+              <Button
+                onPress={() => exit()}
+                title="Cerrar Sesion"
+                type="clear"
+              />
+            </ThemeProvider>
           ),
           headerTintColor: '#fff',
           headerTitle: `Hola ${userStore.name}`,

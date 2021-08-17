@@ -9,7 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Transactions } from '../transacciones/Transactions';
 import { Account } from '../account/Account';
 import { Statistics } from '../statistics/Statistics';
-import { Home } from './homeScreens/home';
+import { Home } from './homeScreens/Home';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();
@@ -57,6 +57,7 @@ export const HomeTab = () => {
             end={{ x: 0, y: 0 }}
           />
         ),
+        headerShown: false,
       })}
     >
       <Tab.Screen
@@ -77,6 +78,7 @@ export const HomeTab = () => {
               end={{ x: 0, y: 1 }}
             />
           ),
+          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -92,6 +94,7 @@ export const HomeTab = () => {
               end={{ x: 0, y: 1 }}
             />
           ),
+          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -107,6 +110,7 @@ export const HomeTab = () => {
               end={{ x: 0, y: 1 }}
             />
           ),
+          headerShown: false,
         }}
       />
     </Tab.Navigator>
