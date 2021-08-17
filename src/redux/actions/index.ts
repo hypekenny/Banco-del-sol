@@ -182,7 +182,10 @@ export function addFunds(
       });
     })
     .catch(error => {
-      alert('El usuario no existe');
+      dispatch({
+        type: SET_ERROR,
+        payload: 'El usuario no se ha encontrado',
+      });
       console.error(error);
     });
 }
