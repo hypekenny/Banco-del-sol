@@ -4,11 +4,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './AccountStyles';
-import { resFromBack } from '../../types/Types';
+import { Props, resFromBack } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
 
-export function Account() {
+export function Account({ navigation }: Props) {
   const accountDetails = useSelector((state: resFromBack) => state.account);
   const userDetails = useSelector((state: resFromBack) => state.user);
 
@@ -17,7 +17,7 @@ export function Account() {
   }
 
   function editAccount() {
-    alert('editar datos');
+    navigation.push('AccountEdit');
   }
 
   return (
