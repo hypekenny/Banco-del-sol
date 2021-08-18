@@ -46,12 +46,19 @@ export function register(user: userType, password: string) {
                   type: SET_TOKEN,
                   payload: idToken,
                 });
+              })
+              .catch(error => {
+                dispatch({
+                  type: SET_ERROR,
+                  payload: 'Ocurrió un error en los servidores',
+                });
+                console.error(error);
               });
           })
           .catch(error => {
             dispatch({
               type: SET_ERROR,
-              payload: 'Ocurió un error de autenticación',
+              payload: 'Ocurrió un error de autenticación',
             });
             console.error(error);
           });
@@ -104,6 +111,13 @@ export function login(email: string, password: string) {
                   type: SET_TOKEN,
                   payload: idToken,
                 });
+              })
+              .catch(error => {
+                dispatch({
+                  type: SET_ERROR,
+                  payload: 'Ocurrió un error con el servidor de autenticación',
+                });
+                console.error(error);
               });
           })
           .catch(error => {
@@ -120,22 +134,26 @@ export function login(email: string, password: string) {
             type: SET_ERROR,
             payload: 'El email no está registrado',
           });
-        } else if (error.code === 'auth/wrong-password') {
+          return;
+        }
+        if (error.code === 'auth/wrong-password') {
           dispatch({
             type: SET_ERROR,
             payload: 'La contraseña es incorrecta',
           });
-        } else if (error.code === 'auth/invalid-email') {
+          return;
+        }
+        if (error.code === 'auth/invalid-email') {
           dispatch({
             type: SET_ERROR,
             payload: 'Ingrese un mail válido',
           });
-        } else {
-          dispatch({
-            type: SET_ERROR,
-            payload: 'Ocurrió un error con el servidor de autenticación',
-          });
+          return;
         }
+        dispatch({
+          type: SET_ERROR,
+          payload: 'Ocurrió un error con el servidor de autenticación',
+        });
         console.error(error);
       });
   };
@@ -151,6 +169,9 @@ export function logout() {
           type: LOG_OUT,
           payload: {},
         });
+      })
+      .catch(error => {
+        console.error(error);
       });
   };
 }
