@@ -100,6 +100,7 @@ export interface RootState {
   user: userType;
   token: string;
   loading: boolean;
+  errors: string;
 }
 
 export type errors = {
