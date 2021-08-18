@@ -305,6 +305,7 @@ export function updateAccount(email: string, token: string, dispatch: any) {
 }
 
 export const RemoveContact = (email: string) => dispatch => {
+  console.log('RemoveContact', email);
   dispatch({
     type: REMOVE_CONTACT,
     payload: email,
