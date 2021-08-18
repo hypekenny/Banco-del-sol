@@ -8,6 +8,9 @@ import {
   GET_EMAIL,
   GET_DETAILS,
   GET_NAME,
+  SET_ERROR,
+  SET_LOADING_TRUE,
+  SET_LOADING_FALSE,
 } from '../actions/index';
 
 interface actionType {
@@ -23,6 +26,8 @@ const initialState = {
   Contacts: [],
   DetailTransfer: {},
   nameDetail: '',
+  errors: {},
+  loading: false,
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -59,7 +64,6 @@ export default function rootReducer(state = initialState, action: actionType) {
         token: action.payload,
       };
     case GET_EMAIL:
-      console.log('Reducer', action.payload);
       return {
         ...state,
         Contacts: [
@@ -73,7 +77,6 @@ export default function rootReducer(state = initialState, action: actionType) {
         ],
       };
     case GET_DETAILS:
-      console.log('GET_DETAILS', action.payload);
       return {
         ...state,
         DetailTransfer: {
@@ -82,10 +85,24 @@ export default function rootReducer(state = initialState, action: actionType) {
         },
       };
     case GET_NAME:
-      console.log('name', action.payload);
       return {
         ...state,
         nameDetail: action.payload,
+      };
+    case SET_ERROR:
+      return {
+        ...state,
+        errors: action.payload,
+      };
+    case SET_LOADING_TRUE:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SET_LOADING_FALSE:
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;

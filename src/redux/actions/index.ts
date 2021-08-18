@@ -13,21 +13,19 @@ export const SET_TOKEN = 'SET_TOKEN';
 export const GET_EMAIL = 'GET_EMAIL';
 export const GET_DETAILS = 'GET_DETAILS';
 export const GET_NAME = 'GET_NAME';
+export const SET_ERROR = 'SET_ERROR';
+export const SET_LOADING_TRUE = 'SET_LOADING_TRUE';
+export const SET_LOADING_FALSE = 'SET_LOADING_FALSE';
 
 export function register(user: userType, password: string) {
-  console.log('user, password', user, password);
-
   return (dispatch: any) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(user.email.toLowerCase(), password)
       .then(response => {
-        console.log('response', response);
-        console.log('process.env.IP_ADDRESS', process.env.IP_ADDRESS);
         response.user
           ?.getIdToken()
           .then(idToken => {
-            console.log('idtoken', idToken);
             axios
               .post<resFromBack>(`http://localhost:3001/api/user/`, user, {
                 headers: {
@@ -35,7 +33,6 @@ export function register(user: userType, password: string) {
                 },
               })
               .then(responseAgain => {
-                console.log('responseAgain', responseAgain);
                 dispatch({
                   type: SET_ACCOUNT,
                   payload: responseAgain.data.account,
@@ -50,9 +47,28 @@ export function register(user: userType, password: string) {
                 });
               });
           })
-          .catch(error => console.error(error, 'error'));
+          .catch(error => {
+            dispatch({
+              type: SET_ERROR,
+              payload: 'Ocurió un error de autenticación',
+            });
+            console.error(error);
+          });
       })
-      .catch(error => console.error(error, 'error'));
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'El email ingresado ya está registrado',
+          });
+        } else {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'Ocurrió un error con el servidor de registro',
+          });
+        }
+        console.error(error);
+      });
   };
 }
 export function login(email: string, password: string) {
@@ -88,9 +104,38 @@ export function login(email: string, password: string) {
                 });
               });
           })
-          .catch(error => console.error(error));
+          .catch(error => {
+            dispatch({
+              type: SET_ERROR,
+              payload: 'Ocurió un error de autenticación',
+            });
+            console.error(error);
+          });
       })
-      .catch(error => console.error(error));
+      .catch(error => {
+        if (error.code === 'auth/user-not-found') {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'El email no está registrado',
+          });
+        } else if (error.code === 'auth/wrong-password') {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'La contraseña es incorrecta',
+          });
+        } else if (error.code === 'auth/invalid-email') {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'Ingrese un mail válido',
+          });
+        } else {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'Ocurrió un error con el servidor de autenticación',
+          });
+        }
+        console.error(error);
+      });
   };
 }
 
@@ -105,6 +150,22 @@ export function logout() {
           payload: {},
         });
       });
+  };
+}
+
+export function setLoadingTrue() {
+  return (dispatch: any) => {
+    dispatch({
+      type: SET_LOADING_TRUE,
+    });
+  };
+}
+
+export function setLoadingFalse() {
+  return (dispatch: any) => {
+    dispatch({
+      type: SET_LOADING_FALSE,
+    });
   };
 }
 
@@ -143,15 +204,16 @@ export function addFunds(
       });
     })
     .catch(error => {
-      alert('El usuario no existe');
-      console.log(error);
+      dispatch({
+        type: SET_ERROR,
+        payload: 'El usuario no se ha encontrado',
+      });
+      console.error(error);
     });
 }
 
 export const getEmail =
   (emailUser: string, idToken: string, nameUser: string) => dispatch => {
-    console.log(emailUser, 'ACTIONS');
-
     axios
       .get(`http://192.168.0.4:3001/api/contacts/${emailUser}`, {
         headers: {
@@ -159,7 +221,6 @@ export const getEmail =
         },
       })
       .then(details => {
-        console.log('details', details.data);
         const { email, cvu } = details.data;
 
         dispatch({
@@ -173,9 +234,11 @@ export const getEmail =
         });
       })
       .catch(error => {
-        return alert(
-          'En este momento no se encuentra disponible la posibilidad de agregar a personas a tu lista.',
-        );
+        dispatch({
+          type: SET_ERROR,
+          payload: 'Ocurrió un error, intenta nuevamente',
+        });
+        console.error(error);
       });
   };
 
@@ -199,9 +262,11 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
         type: GET_NAME,
         payload: ``,
       });
-      return alert(
-        'Este usuario no se encuentra registrado, proximamente lo podras invitar!',
-      );
+      dispatch({
+        type: SET_ERROR,
+        payload: 'El usuario no se encuentra registrado',
+      });
+      console.error(error);
     });
 };
 
@@ -211,13 +276,10 @@ export const detailContact = (email: string, name: string) => dispatch => {
     payload: { name, email },
   });
 };
-export async function updateAccount(
-  email: string,
-  token: string,
-  dispatch: any,
-) {
+
+export function updateAccount(email: string, token: string, dispatch: any) {
   axios
-    .get(`http://192.168.0.4:3001/api/account/?email=${email}`, {
+    .get(`http://localhost:3001/api/account/?email=${email}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -228,5 +290,11 @@ export async function updateAccount(
         payload: response.data,
       });
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      dispatch({
+        type: SET_ERROR,
+        payload: 'Ocurrió un error, intenta nuevamente',
+      });
+      console.error(error);
+    });
 }

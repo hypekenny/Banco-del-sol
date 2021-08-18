@@ -111,7 +111,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   styleIcon: {
-    // marginTop: 40,
+    marginTop: 14,
     marginLeft: 10,
     position: 'absolute',
     color: '#ff4b6e',

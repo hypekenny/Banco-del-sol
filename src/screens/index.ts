@@ -13,6 +13,8 @@ import { LoadingFull } from './loading2/LoadingFull';
 import { ContactAdd } from './contact/ContactAdd';
 import { Contact } from './contact/Contact';
 import { ContactDetails } from './contact/ContactDetails';
+import { Error } from './error/Error';
+
 
 export const config = {
   Start,
@@ -30,4 +32,5 @@ export const config = {
   ContactAdd,
   Contact,
   ContactDetails,
+  Error,
 };
