@@ -105,4 +105,19 @@ export const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+  msgText: {
+    // backgroundColor: '#000',
+    // position: 'absolute',
+    alignSelf: 'center',
+    marginTop: '20%',
+  },
+  TextAdd: {
+    color: colors.primary,
+    paddingLeft: 5,
+    paddingRight: 5,
+    alignSelf: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    // marginTop: '1%',
+  },
 });
