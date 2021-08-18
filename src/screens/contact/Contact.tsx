@@ -52,10 +52,7 @@ export const Contact = ({ navigation }: Props) => {
       </View>
 
       <View style={styles.viewbtn}>
-        <TouchableOpacity
-          onPress={() => navigation.push('ContactAdd')}
-          style={styles.button}
-        >
+        <TouchableOpacity onPress={() => navigation.push('ContactAdd')}>
           <Ionicons
             name="ios-person-add-outline"
             size={24}
@@ -66,9 +63,9 @@ export const Contact = ({ navigation }: Props) => {
         </TouchableOpacity>
       </View>
 
-      {contact.map((contacto, i: number) => {
+      {contact.map((contacto: string, i: number) => {
         return contacto.name ? (
-          <View style={styles.Card}>
+          <View>
             <TouchableOpacity
               onPress={() => detailsfn(contacto.email, contacto.name)}
               style={styles.BTNBox}

@@ -130,7 +130,7 @@ export const ContactAdd = ({ navigation }: Props) => {
 
       {msg ? (
         <View style={styles.msgText}>
-          <Text style={styles.TextAdd}>!Se ha encontrado un usario!</Text>
+          <Text style={styles.TextAdd}>¡Se ha encontrado un usuario!</Text>
         </View>
       ) : null}
 
