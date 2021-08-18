@@ -151,11 +151,13 @@ export const Home = ({ navigation }: Props) => {
           <Ionicons style={styles.icon} name="menu" size={28} color="white" />
         </TouchableOpacity>
       </View>
+
       {error.length ? (
         <View style={ErrorStyle.errorView}>
           <Text style={ErrorStyle.errorText}>{error}</Text>
         </View>
       ) : null}
+
       <View style={styles.view1}>
         <Text style={{ fontSize: 20, fontWeight: '100', color: '#3b3b3b' }}>
           Balance
