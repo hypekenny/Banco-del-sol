@@ -76,7 +76,7 @@ export const Transfer = () => {
         data.email !== userStore.email ? (
           <View style={{ alignSelf: 'center', marginTop: '20%' }}>
             <TouchableOpacity
-              onPress={() =>
+              onPress={() => {
                 addFunds(
                   userStore.email.toLowerCase(),
                   data.email.toLowerCase(),
@@ -85,8 +85,9 @@ export const Transfer = () => {
                   data.comment,
                   token,
                   dispatch,
-                )
-              }
+                );
+                setData({ ...data, amount: 0 });
+              }}
             >
               <LinearGradient
                 style={ButtonPrimaryStyle.gradientButton}
