@@ -5,13 +5,14 @@ import colors from '../../constants/colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0f',
+    backgroundColor: '#fff0',
     marginTop: 50,
     alignSelf: 'center',
+    height: '15%',
   },
   box: {
     borderRadius: 23,
-    backgroundColor: '#f0f',
+    backgroundColor: '#fff',
     borderColor: `${colors.primary}`,
     borderWidth: 1,
     textAlign: 'center',
@@ -62,7 +63,6 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 2,
     borderColor: colors.primary,
-    // backgroundColor: '#ffffff',
     padding: 15,
     shadowColor: '#000',
     shadowOffset: {
