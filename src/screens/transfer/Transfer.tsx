@@ -63,7 +63,7 @@ export const Transfer = () => {
             SALDO ${accountStore.balance.amount}
           </Text>
           <TextInput
-            value={`${data.amount.toString()}`}
+            value={`$${data.amount.toString()}`}
             onChangeText={(text: string) => {
               if (text.substring(1, text.length) === '')
                 setData({ ...data, amount: 0 });
