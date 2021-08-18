@@ -15,6 +15,7 @@ import { Contact } from './contact/Contact';
 import { ContactDetails } from './contact/ContactDetails';
 import { Error } from './error/Error';
 
+
 export const config = {
   Start,
   StartView,

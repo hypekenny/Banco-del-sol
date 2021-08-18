@@ -82,7 +82,7 @@ export function login(email: string, password: string) {
           .then(idToken => {
             axios
               .get<resFromBack>(
-                `http://localhost:3001/api/user/?email=${email}`,
+                `http://192.168.0.4:3001/api/user/?email=${email}`,
                 {
                   headers: {
                     authorization: `Bearer ${idToken}`,
@@ -215,7 +215,7 @@ export function addFunds(
 export const getEmail =
   (emailUser: string, idToken: string, nameUser: string) => dispatch => {
     axios
-      .get(`http://localhost:3001/api/contacts/${emailUser}`, {
+      .get(`http://192.168.0.4:3001/api/contacts/${emailUser}`, {
         headers: {
           authorization: `Bearer ${idToken}`,
         },
@@ -244,7 +244,7 @@ export const getEmail =
 
 export const getName = (emailUser: string, idToken: string) => dispatch => {
   axios
-    .get(`http://localhost:3001/api/contacts/${emailUser}`, {
+    .get(`http://192.168.0.4:3001/api/contacts/${emailUser}`, {
       headers: {
         authorization: `Bearer ${idToken}`,
       },

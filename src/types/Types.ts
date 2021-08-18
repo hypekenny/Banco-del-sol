@@ -31,8 +31,8 @@ export type burgerStackParamList = {
 };
 
 export type burgerDrawerParamList = {
-  main: loginStackParamList;
-  burger: burgerStackParamList;
+  home: loginStackParamList;
+  contacts: undefined;
 };
 
 export type mainStackParamList = {
