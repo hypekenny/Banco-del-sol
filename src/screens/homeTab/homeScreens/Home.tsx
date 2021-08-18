@@ -147,7 +147,7 @@ export const Home = ({ navigation }: Props) => {
           </Text>
           <TouchableOpacity
             onPress={() =>
-              updateAccount(accountStore.email.toLowerCase(), token, dispatch)
+              dispatch(updateAccount(accountStore.email.toLowerCase(), token))
             }
           >
             <Ionicons

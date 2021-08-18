@@ -16,6 +16,7 @@ export const GET_NAME = 'GET_NAME';
 export const SET_ERROR = 'SET_ERROR';
 export const SET_LOADING_TRUE = 'SET_LOADING_TRUE';
 export const SET_LOADING_FALSE = 'SET_LOADING_FALSE';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -169,6 +170,14 @@ export function setLoadingFalse() {
   };
 }
 
+export function cleanErrors() {
+  return (dispatch: any) => {
+    dispatch({
+      type: CLEAR_ERRORS,
+    });
+  };
+}
+
 export function fetchCvu() {
   return (dispatch: any) => {
     dispatch({
@@ -277,24 +286,26 @@ export const detailContact = (email: string, name: string) => dispatch => {
   });
 };
 
-export function updateAccount(email: string, token: string, dispatch: any) {
-  axios
-    .get(`http://localhost:3001/api/account/?email=${email}`, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    })
-    .then(response => {
-      dispatch({
-        type: SET_ACCOUNT,
-        payload: response.data,
+export function updateAccount(email: string, token: string) {
+  return dispatch => {
+    axios
+      .get(`http://localhost:3001/api/account/?email=${email}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then(response => {
+        dispatch({
+          type: SET_ACCOUNT,
+          payload: response.data,
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: SET_ERROR,
+          payload: 'Ocurrió un error, intenta nuevamente',
+        });
+        console.error(error);
       });
-    })
-    .catch(error => {
-      dispatch({
-        type: SET_ERROR,
-        payload: 'Ocurrió un error, intenta nuevamente',
-      });
-      console.error(error);
-    });
+  };
 }

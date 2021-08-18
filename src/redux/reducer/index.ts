@@ -11,6 +11,7 @@ import {
   SET_ERROR,
   SET_LOADING_TRUE,
   SET_LOADING_FALSE,
+  CLEAR_ERRORS,
 } from '../actions/index';
 
 interface actionType {
@@ -26,7 +27,7 @@ const initialState = {
   Contacts: [],
   DetailTransfer: {},
   nameDetail: '',
-  errors: {},
+  errors: '',
   loading: false,
 };
 
@@ -103,6 +104,11 @@ export default function rootReducer(state = initialState, action: actionType) {
       return {
         ...state,
         loading: false,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        errors: '',
       };
     default:
       return state;
