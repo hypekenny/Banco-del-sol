@@ -7,11 +7,13 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     marginTop: 50,
   },
+
   header: {
     height: 70,
     width: '100%',
     marginTop: '-3%',
   },
+
   headerOne: { backgroundColor: '#000', marginTop: '-10%' },
   back: {
     position: 'absolute',
@@ -22,6 +24,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   icon: { marginTop: '-30%' },
   title: {
     height: 70,
@@ -32,8 +35,8 @@ export const styles = StyleSheet.create({
     top: 0,
     marginTop: '-1%',
     width: '30%',
-    // backgroundColor: 'red',
   },
+
   textTitle: {
     position: 'absolute',
     left: 5,
@@ -42,8 +45,8 @@ export const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '500',
     width: '180%',
-    // backgroundColor: 'blue',
   },
+
   input: {
     width: '90%',
     borderRadius: 25,
@@ -149,7 +152,6 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    // marginTop: '1%',
   },
 
   searchDisable: {
@@ -219,9 +221,14 @@ export const styles = StyleSheet.create({
     marginRight: 'auto',
   },
   msgText: {
-    // backgroundColor: '#000',
     position: 'absolute',
     alignSelf: 'center',
+    marginTop: '80%',
+  },
+  msgTextUser: {
+    position: 'absolute',
+    alignSelf: 'center',
+    textAlign: 'center',
     marginTop: '80%',
   },
 });

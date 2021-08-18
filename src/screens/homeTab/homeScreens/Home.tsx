@@ -112,7 +112,7 @@ export const Home = ({ navigation }: Props) => {
                   <Icon
                     type="material-community"
                     name="contacts"
-                    size={27}
+                    size={30}
                     color={colors.primary}
                     style={{ marginLeft: 20 }}
                   />
