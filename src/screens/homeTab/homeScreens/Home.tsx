@@ -62,10 +62,47 @@ export const Home = ({ navigation }: Props) => {
                   color={colors.primary}
                 />
               </TouchableOpacity>
+              <View style={{ marginTop: '40%', justifyContent: 'center' }}>
+                <Icon
+                  type="material-community"
+                  name="account-circle"
+                  size={65}
+                  color={colors.primary}
+                  style={{ marginLeft: 20, alignSelf: 'flex-start' }}
+                />
+              </View>
+              <Text
+                style={{
+                  color: colors.primary,
+                  fontSize: 26,
+                  fontWeight: 'bold',
+                  alignSelf: 'flex-start',
+                  marginLeft: 20,
+                }}
+              >{`${userStore.name} ${userStore.lastName}`}</Text>
+              <TouchableOpacity
+                onPress={() => navigation.push('Account')}
+                style={{ marginTop: '20%', justifyContent: 'center' }}
+              >
+                <View
+                  style={{
+                    flexDirection: 'row',
+                  }}
+                >
+                  <Icon
+                    type="material-community"
+                    name="file-document-outline"
+                    size={27}
+                    color={colors.primary}
+                    style={{ marginLeft: 20 }}
+                  />
+                  <Text style={styles.burgerText}>Mis datos</Text>
+                </View>
+              </TouchableOpacity>
 
               <TouchableOpacity
                 onPress={() => navigation.push('Contact')}
-                style={{ marginTop: '40%', justifyContent: 'center' }}
+                style={{ marginTop: '20%', justifyContent: 'center' }}
               >
                 <View
                   style={{
@@ -147,7 +184,7 @@ export const Home = ({ navigation }: Props) => {
           </Text>
           <TouchableOpacity
             onPress={() =>
-              updateAccount(accountStore.email.toLowerCase(), token, dispatch)
+              dispatch(updateAccount(accountStore.email.toLowerCase(), token))
             }
           >
             <Ionicons

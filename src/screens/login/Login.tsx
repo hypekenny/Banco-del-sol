@@ -2,16 +2,23 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, Text, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
-import { login, setLoadingTrue } from '../../redux/actions';
+import {
+  cleanErrors,
+  login,
+  setLoadingFalse,
+  setLoadingTrue,
+} from '../../redux/actions';
 import { styles } from './LoginStyles';
 import { Props, resFromBack, RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
+import { ErrorStyle } from '../../constants/ErrorStyle';
 import colors from '../../constants/colors';
 import { LoadingFull } from '../loading2/LoadingFull';
 
 export const Login = ({ navigation }: Props) => {
   const userStore = useSelector((state: resFromBack) => state.user);
   const loading = useSelector((state: RootState) => state.loading);
+  const error = useSelector((state: RootState) => state.errors);
   const dispatch = useDispatch();
 
   const [user, setUser] = useState({
@@ -20,9 +27,21 @@ export const Login = ({ navigation }: Props) => {
     amount: 0,
   });
 
+  if (error.length) {
+    dispatch(setLoadingFalse());
+    setTimeout(() => {
+      dispatch(cleanErrors());
+    }, 3000);
+  }
+
   return (
     <View style={styles.container}>
       <LoadingFull show={loading} />
+      {error.length ? (
+        <View style={ErrorStyle.errorView}>
+          <Text style={ErrorStyle.errorText}>{error}</Text>
+        </View>
+      ) : null}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email...."

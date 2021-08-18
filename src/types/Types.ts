@@ -13,6 +13,7 @@ export type loginStackParamList = {
   RegisterV2: undefined;
   HomeTab: undefined;
   Account: undefined;
+  AccountEdit: undefined;
   AddFunds: undefined;
   Transfer: undefined;
   Transactions: undefined;
@@ -100,6 +101,7 @@ export interface RootState {
   user: userType;
   token: string;
   loading: boolean;
+  errors: string;
 }
 
 export type errors = {

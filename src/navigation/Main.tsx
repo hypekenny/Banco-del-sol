@@ -16,6 +16,7 @@ const {
   Transfer,
   AddFunds,
   Account,
+  AccountEdit,
   Transactions,
   ForgotPassword,
   LoadingFull,
@@ -161,6 +162,22 @@ export const Main = () => (
       }}
     />
 
+    <LoginStack.Screen
+      name="AccountEdit"
+      component={AccountEdit}
+      options={{
+        headerTitle: 'Cambiar datos',
+        headerTintColor: 'white',
+        headerBackground: () => (
+          <LinearGradient
+            colors={['#ff4b6e', '#ff9349']}
+            style={{ flex: 1 }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+          />
+        ),
+      }}
+    />
     <LoginStack.Screen
       name="Error"
       component={Error}

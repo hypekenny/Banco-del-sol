@@ -15,12 +15,18 @@ import { Entypo, AntDesign } from '@expo/vector-icons';
 import * as Yup from 'yup';
 //  import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { LinearGradient } from 'expo-linear-gradient';
-import { register, setLoadingTrue } from '../../redux/actions';
+import {
+  cleanErrors,
+  register,
+  setLoadingFalse,
+  setLoadingTrue,
+} from '../../redux/actions';
 import { resFromBack, Props, RootState } from '../../types/Types';
 import TextInput from '../../components/TextInputFormix';
 import colors from '../../constants/colors';
 import { styles } from './RegisterStyles';
 import { LoadingFull } from '../loading2/LoadingFull';
+import { ErrorStyle } from '../../constants/ErrorStyle';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //  Ignore all log notifications
@@ -37,6 +43,7 @@ require('yup-password')(yup);
 export function Register({ navigation }: Props) {
   const userStore = useSelector((state: resFromBack) => state.user);
   const loading = useSelector((state: RootState) => state.loading);
+  const error = useSelector((state: RootState) => state.errors);
 
   const FormSchema = Yup.object().shape({
     name: Yup.string().required('Debe ingresar un nombre!'),
@@ -199,9 +206,21 @@ export function Register({ navigation }: Props) {
     dispatch(setLoadingTrue());
   }
 
+  if (error.length) {
+    dispatch(setLoadingFalse());
+    setTimeout(() => {
+      dispatch(cleanErrors());
+    }, 3000);
+  }
+  console.log(error);
   return (
     <View style={styles.view}>
       <LoadingFull show={loading} />
+      {error.length ? (
+        <View style={ErrorStyle.errorView}>
+          <Text style={ErrorStyle.errorText}>{error}</Text>
+        </View>
+      ) : null}
       <LinearGradient
         style={styles.header}
         colors={[colors.primary, colors.secondary]}
