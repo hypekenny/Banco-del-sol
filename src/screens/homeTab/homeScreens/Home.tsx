@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity, LogBox } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from './HomeStyles';
-import { updateAccount } from '../../../redux/actions';
+import { setLoadingFalse, updateAccount } from '../../../redux/actions';
 import { Props, RootState } from '../../../types/Types';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
@@ -102,6 +102,9 @@ export const Home = ({ navigation }: Props) => {
           </TouchableOpacity>
         </View>
       </View>
+      {accountStore.email && accountStore.email.length
+        ? dispatch(setLoadingFalse())
+        : null}
     </View>
   );
 };
