@@ -40,17 +40,14 @@ const ErrorFallback = ({ resetErrorBoundary }) => {
 export default function App() {
   return (
     <>
-      <Provider store={store}>
-        <StatusBar style="auto" />
-        <NavigationContainer>
-          <ErrorBoundary
-            FallbackComponent={ErrorFallback}
-            onReset={() => logout()}
-          >
+      <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => logout()}>
+        <Provider store={store}>
+          <StatusBar style="auto" />
+          <NavigationContainer>
             <Main />
-          </ErrorBoundary>
-        </NavigationContainer>
-      </Provider>
+          </NavigationContainer>
+        </Provider>
+      </ErrorBoundary>
     </>
   );
 }

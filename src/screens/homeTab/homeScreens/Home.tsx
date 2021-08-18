@@ -14,7 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Icon } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './HomeStyles';
-import { logout, updateAccount } from '../../../redux/actions';
+import { setLoadingFalse, updateAccount, logout } from '../../../redux/actions';
 import { Props, RootState } from '../../../types/Types';
 import colors from '../../../constants/colors';
 
@@ -194,6 +194,9 @@ export const Home = ({ navigation }: Props) => {
           </TouchableOpacity>
         </View>
       </View>
+      {accountStore.email && accountStore.email.length
+        ? dispatch(setLoadingFalse())
+        : null}
     </View>
   );
 };

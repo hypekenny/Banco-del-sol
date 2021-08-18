@@ -22,6 +22,7 @@ const {
   ContactAdd,
   Contact,
   ContactDetails,
+  Error,
 } = config;
 
 const LoginStack = createStackNavigator<loginStackParamList>();
@@ -146,6 +147,12 @@ export const Main = () => (
       name="ContactDetails"
       component={ContactDetails}
       options={{ headerShown: true }}
+    />
+
+    <LoginStack.Screen
+      name="Error"
+      component={Error}
+      options={{ headerShown: false }}
     />
   </LoginStack.Navigator>
 );

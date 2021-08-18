@@ -1,37 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { View, Animated, Easing } from 'react-native';
-import { useSelector } from 'react-redux';
-import { Props, resFromBack } from '../../types/Types';
-import { styles } from './LoadingFullStyles';
+import { LinearGradient } from 'expo-linear-gradient';
+import React from 'react';
+import {
+  ActivityIndicator,
+  Modal,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
-export function LoadingFull({ navigation }: Props) {
-  const userStore = useSelector((state: resFromBack) => state.user);
-  const [spinAnim, setSpinAnim] = useState(new Animated.Value(0));
-  const spin = spinAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '3600deg'],
-  });
-
-  useEffect(() => {
-    Animated.loop(
-      Animated.timing(spinAnim, {
-        toValue: -1,
-        duration: 60000,
-        easing: Easing.linear,
-        useNativeDriver: true,
-      }),
-    ).start();
-  });
+export function LoadingFull(props) {
+  const { show = false } = props;
 
   return (
-    <View style={styles.container}>
-      <Animated.Image
-        style={{ height: 150, width: 150, transform: [{ rotate: spin }] }}
-        source={require('../../../assets/Banco-del-Sol-Logo sol.png')}
-      />
-      {userStore.email && userStore.email.length
-        ? navigation.push('HomeTab')
-        : null}
-    </View>
+    <Modal transparent={true} animationType="none" visible={show}>
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: `rgba(0,0,0,0.6)`,
+        }}
+      >
+        <View
+          style={{
+            padding: 13,
+            borderRadius: 13,
+          }}
+        >
+          <ActivityIndicator animating={show} color="black" size="large" />
+        </View>
+      </View>
+    </Modal>
   );
 }

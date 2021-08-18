@@ -15,11 +15,12 @@ import { Entypo, AntDesign } from '@expo/vector-icons';
 import * as Yup from 'yup';
 //  import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { LinearGradient } from 'expo-linear-gradient';
-import { register } from '../../redux/actions';
-import { resFromBack, Props } from '../../types/Types';
+import { register, setLoadingTrue } from '../../redux/actions';
+import { resFromBack, Props, RootState } from '../../types/Types';
 import TextInput from '../../components/TextInputFormix';
 import colors from '../../constants/colors';
 import { styles } from './RegisterStyles';
+import { LoadingFull } from '../loading2/LoadingFull';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //  Ignore all log notifications
@@ -35,6 +36,7 @@ require('yup-password')(yup);
 
 export function Register({ navigation }: Props) {
   const userStore = useSelector((state: resFromBack) => state.user);
+  const loading = useSelector((state: RootState) => state.loading);
 
   const FormSchema = Yup.object().shape({
     name: Yup.string().required('Debe ingresar un nombre!'),
@@ -194,10 +196,12 @@ export function Register({ navigation }: Props) {
       address,
     };
     dispatch(register(user, pass));
+    dispatch(setLoadingTrue());
   }
 
   return (
     <View style={styles.view}>
+      <LoadingFull show={loading} />
       <LinearGradient
         style={styles.header}
         colors={[colors.primary, colors.secondary]}
@@ -639,7 +643,6 @@ export function Register({ navigation }: Props) {
               ) {
                 console.log(`${values.name} se ha registrado exitosamente`);
                 send(values);
-                navigation.push('LoadingFull');
               } else {
                 console.log('Revise el formulario');
               }
@@ -654,6 +657,9 @@ export function Register({ navigation }: Props) {
         colors={[colors.primary, colors.secondary]}
         end={[1, 1]}
       />
+      {userStore.email && userStore.email.length
+        ? navigation.push('HomeTab')
+        : null}
     </View>
   );
 }
