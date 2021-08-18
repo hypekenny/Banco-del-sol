@@ -1,11 +1,108 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import colors from '../../constants/colors';
 
-export const styles = StyleSheet.create({
-  container: {
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+export const ButtonPrimaryStyle = StyleSheet.create({
+  button: {
     flex: 1,
+    height: 0.05 * height,
+    alignItems: 'center',
+    margin: 10,
+    borderRadius: 25,
+    borderWidth: 2,
+    borderColor: colors.primary,
+    backgroundColor: '#ffffff',
+    padding: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 26,
+    elevation: 14,
+  },
+  buttoncolor1: {
+    backgroundColor: '#ffffff',
+  },
+  buttoncolor2: {
+    backgroundColor: '#ffffff',
+  },
+
+  input: {
+    width: '90%',
+    borderRadius: 25,
+    borderWidth: 2,
+    borderColor: colors.primary,
+    backgroundColor: '#ffffff',
+    padding: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 26,
+    elevation: 14,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 30,
+    marginBottom: 10,
+  },
+  text: {
+    color: colors.primary,
+    paddingLeft: 5,
+    paddingRight: 5,
+    alignSelf: 'center',
+    fontSize: 18,
+    fontWeight: '700',
+  },
+});
+
+export const styles = StyleSheet.create({
+  containerall: {
+    width,
+    height,
     backgroundColor: colors.white,
-    padding: 10,
+  },
+  container: {
+    width: 0.9 * width,
+    height: 0.4 * height,
+    transform: [{ translateY: 0.1 * height }],
+    alignSelf: 'center',
+    alignItems: 'center',
+    margin: 10,
+    borderRadius: 25,
+    borderWidth: 2,
+    borderColor: colors.primary,
+    backgroundColor: '#ffffff',
+    padding: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 26,
+    elevation: 14,
+  },
+  ejey: {
+    width: 20,
+    marginRight: 5,
+    marginLeft: 0,
+  },
+  ejeyconbar: {
+    height: 0.3 * height,
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  bar: {
+    width: 0.7 * width,
+  },
+  ejex: {
+    width: 0.7 * width,
+    alignSelf: 'center',
   },
   inputEmail: {
     borderRadius: 50,
@@ -49,5 +146,13 @@ export const styles = StyleSheet.create({
     height: 80,
     marginLeft: 'auto',
     marginRight: 'auto',
+  },
+  text: {
+    color: 'black',
+    paddingLeft: 5,
+    paddingRight: 5,
+    alignSelf: 'center',
+    fontSize: 18,
+    fontWeight: '700',
   },
 });

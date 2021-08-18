@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { firebaseConfig } from '../constants/firebase.config';
 import { loginStackParamList } from '../types/Types';
 import { config } from '../screens/index';
+import { Drawer } from '../screens/drawer/drawer';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -12,16 +13,18 @@ const {
   StartView,
   Login,
   Register,
-  Home,
   Transfer,
   AddFunds,
   Account,
   Transactions,
   ForgotPassword,
+  LoadingFull,
+  ContactAdd,
+  Contact,
+  ContactDetails,
 } = config;
 
 const LoginStack = createStackNavigator<loginStackParamList>();
-// const MainStack = createStackNavigator<mainStackParamList>();mainStackParamList
 
 export const Main = () => (
   <LoginStack.Navigator>
@@ -42,8 +45,8 @@ export const Main = () => (
       options={{ headerShown: false }}
     />
     <LoginStack.Screen
-      name="Home"
-      component={Home}
+      name="HomeTab"
+      component={Drawer}
       options={{
         headerTitle: 'Inicio',
         headerShown: false,
@@ -119,6 +122,30 @@ export const Main = () => (
       name="ForgotPassword"
       component={ForgotPassword}
       options={{ headerTitle: 'Cambia tu contraseña' }}
+    />
+
+    <LoginStack.Screen
+      name="LoadingFull"
+      component={LoadingFull}
+      options={{ headerShown: false }}
+    />
+
+    <LoginStack.Screen
+      name="ContactAdd"
+      component={ContactAdd}
+      options={{ headerShown: false }}
+    />
+
+    <LoginStack.Screen
+      name="Contact"
+      component={Contact}
+      options={{ headerShown: false }}
+    />
+
+    <LoginStack.Screen
+      name="ContactDetails"
+      component={ContactDetails}
+      options={{ headerShown: true }}
     />
   </LoginStack.Navigator>
 );

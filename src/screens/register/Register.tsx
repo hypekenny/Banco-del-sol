@@ -639,6 +639,7 @@ export function Register({ navigation }: Props) {
               ) {
                 console.log(`${values.name} se ha registrado exitosamente`);
                 send(values);
+                navigation.push('LoadingFull');
               } else {
                 console.log('Revise el formulario');
               }
@@ -653,9 +654,6 @@ export function Register({ navigation }: Props) {
         colors={[colors.primary, colors.secondary]}
         end={[1, 1]}
       />
-      {userStore.email && userStore.email.length
-        ? navigation.push('Home')
-        : null}
     </View>
   );
 }

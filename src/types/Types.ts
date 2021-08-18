@@ -11,22 +11,28 @@ export type loginStackParamList = {
   Login: undefined;
   Register: undefined;
   RegisterV2: undefined;
-  Home: undefined;
+  HomeTab: undefined;
   Account: undefined;
   AddFunds: undefined;
   Transfer: undefined;
   Transactions: undefined;
   ForgotPassword: undefined;
+  LoadingFull: undefined;
+  ContactAdd: undefined;
+  Contact: undefined;
+  ContactDetails: undefined;
 };
 
-export type loginScreenNavigationProp = StackNavigationProp<
-  loginStackParamList,
-  'Start'
->;
+export type burgerStackParamList = {
+  screen1: undefined;
+  screen2: undefined;
+  screen3: undefined;
+};
 
-export interface loginProps {
-  navigation: loginScreenNavigationProp;
-}
+export type burgerDrawerParamList = {
+  main: loginStackParamList;
+  burger: burgerStackParamList;
+};
 
 export type mainStackParamList = {
   List: undefined;
