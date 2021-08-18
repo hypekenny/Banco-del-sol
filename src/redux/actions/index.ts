@@ -55,6 +55,7 @@ export function register(user: userType, password: string) {
       .catch(error => console.error(error, 'error'));
   };
 }
+
 export function login(email: string, password: string) {
   return (dispatch: any) => {
     firebase
@@ -64,6 +65,7 @@ export function login(email: string, password: string) {
         response.user
           ?.getIdToken()
           .then(idToken => {
+            console.log(idToken);
             axios
               .get<resFromBack>(
                 `http://localhost:3001/api/user/?email=${email}`,
@@ -150,8 +152,6 @@ export function addFunds(
 
 export const getEmail =
   (emailUser: string, idToken: string, nameUser: string) => dispatch => {
-    console.log(emailUser, 'ACTIONS');
-
     axios
       .get(`http://localhost:3001/api/contacts/${emailUser}`, {
         headers: {
@@ -211,6 +211,7 @@ export const detailContact = (email: string, name: string) => dispatch => {
     payload: { name, email },
   });
 };
+
 export async function updateAccount(
   email: string,
   token: string,
@@ -226,6 +227,27 @@ export async function updateAccount(
       dispatch({
         type: SET_ACCOUNT,
         payload: response.data,
+      });
+    })
+    .catch(error => console.log(error));
+}
+
+export async function updateUser(user: any, token: string, dispatch: any) {
+  const { phoneNumber, address } = user;
+  axios
+    .put(
+      `http://localhost:3001/api/user/`,
+      { phoneNumber, address },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      },
+    )
+    .then(response => {
+      dispatch({
+        type: SET_USER,
+        payload: response.data.updatedUser,
       });
     })
     .catch(error => console.log(error));
