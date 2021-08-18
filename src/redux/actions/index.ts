@@ -46,12 +46,19 @@ export function register(user: userType, password: string) {
                   type: SET_TOKEN,
                   payload: idToken,
                 });
+              })
+              .catch(error => {
+                dispatch({
+                  type: SET_ERROR,
+                  payload: 'Ocurrió un error en los servidores',
+                });
+                console.error(error);
               });
           })
           .catch(error => {
             dispatch({
               type: SET_ERROR,
-              payload: 'Ocurió un error de autenticación',
+              payload: 'Ocurrió un error de autenticación',
             });
             console.error(error);
           });
@@ -83,7 +90,7 @@ export function login(email: string, password: string) {
           .then(idToken => {
             axios
               .get<resFromBack>(
-                `http://192.168.0.4:3001/api/user/?email=${email}`,
+                `http://localhost:3001/api/user/?email=${email}`,
                 {
                   headers: {
                     authorization: `Bearer ${idToken}`,
@@ -103,6 +110,13 @@ export function login(email: string, password: string) {
                   type: SET_TOKEN,
                   payload: idToken,
                 });
+              })
+              .catch(error => {
+                dispatch({
+                  type: SET_ERROR,
+                  payload: 'Ocurrió un error con el servidor de autenticación',
+                });
+                console.error(error);
               });
           })
           .catch(error => {
@@ -119,22 +133,26 @@ export function login(email: string, password: string) {
             type: SET_ERROR,
             payload: 'El email no está registrado',
           });
-        } else if (error.code === 'auth/wrong-password') {
+          return;
+        }
+        if (error.code === 'auth/wrong-password') {
           dispatch({
             type: SET_ERROR,
             payload: 'La contraseña es incorrecta',
           });
-        } else if (error.code === 'auth/invalid-email') {
+          return;
+        }
+        if (error.code === 'auth/invalid-email') {
           dispatch({
             type: SET_ERROR,
             payload: 'Ingrese un mail válido',
           });
-        } else {
-          dispatch({
-            type: SET_ERROR,
-            payload: 'Ocurrió un error con el servidor de autenticación',
-          });
+          return;
         }
+        dispatch({
+          type: SET_ERROR,
+          payload: 'Ocurrió un error con el servidor de autenticación',
+        });
         console.error(error);
       });
   };
@@ -224,7 +242,7 @@ export function addFunds(
 export const getEmail =
   (emailUser: string, idToken: string, nameUser: string) => dispatch => {
     axios
-      .get(`http://192.168.0.4:3001/api/contacts/${emailUser}`, {
+      .get(`http://localhost:3001/api/contacts/${emailUser}`, {
         headers: {
           authorization: `Bearer ${idToken}`,
         },
@@ -253,7 +271,7 @@ export const getEmail =
 
 export const getName = (emailUser: string, idToken: string) => dispatch => {
   axios
-    .get(`http://192.168.0.4:3001/api/contacts/${emailUser}`, {
+    .get(`http://localhost:3001/api/contacts/${emailUser}`, {
       headers: {
         authorization: `Bearer ${idToken}`,
       },
