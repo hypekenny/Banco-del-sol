@@ -10,9 +10,9 @@ import { Transactions } from './transacciones/Transactions';
 import { ForgotPassword } from './forgotPassword/forgotPassword';
 import { Statistics } from './statistics/Statistics';
 import { LoadingFull } from './loading2/LoadingFull';
-import { ContactAdd } from './drawer/drawerScreens/contact/ContactAdd';
-import { Contact } from './drawer/drawerScreens/contact/Contact';
-import { ContactDetails } from './drawer/drawerScreens/contact/ContactDetails';
+import { ContactAdd } from './contact/ContactAdd';
+import { Contact } from './contact/Contact';
+import { ContactDetails } from './contact/ContactDetails';
 
 export const config = {
   Start,
