@@ -215,31 +215,33 @@ export function addFunds(
   value: number,
   comment: string,
   token: string,
-  dispatch: any,
 ) {
-  axios
-    .post(
-      `http://localhost:3001/api/account`,
-      { senderEmail, receiverEmail, type, value, comment },
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
+  return dispatch => {
+    axios
+      .post(
+        `http://localhost:3001/api/account`,
+        { senderEmail, receiverEmail, type, value, comment },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
         },
-      },
-    )
-    .then(response => {
-      dispatch({
-        type: SET_ACCOUNT,
-        payload: response.data,
+      )
+      .then(response => {
+        dispatch({
+          type: SET_ACCOUNT,
+          payload: response.data,
+        });
+      })
+      .catch(error => {
+        console.log('ACTIONS');
+        dispatch({
+          type: SET_ERROR,
+          payload: 'El usuario no se ha encontrado',
+        });
+        console.error(error);
       });
-    })
-    .catch(error => {
-      dispatch({
-        type: SET_ERROR,
-        payload: 'El usuario no se ha encontrado',
-      });
-      console.error(error);
-    });
+  };
 }
 
 export const getEmail =
