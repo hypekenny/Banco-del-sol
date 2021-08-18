@@ -168,6 +168,9 @@ export function logout() {
           type: LOG_OUT,
           payload: {},
         });
+      })
+      .catch(error => {
+        console.error(error);
       });
   };
 }
