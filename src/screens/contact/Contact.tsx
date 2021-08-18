@@ -4,9 +4,10 @@ import { Ionicons, AntDesign } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Icon } from 'react-native-elements';
 import { loginStackParamList } from '../../types/Types';
 import { styles } from './ContactStyles';
-import { detailContact } from '../../redux/actions';
+import { detailContact, RemoveContact } from '../../redux/actions';
 import colors from '../../constants/colors';
 
 type Props = {
@@ -19,6 +20,10 @@ export const Contact = ({ navigation }: Props) => {
   function clear() {
     navigation.push('HomeTab');
     dispatch(detailContact('', ''));
+  }
+
+  function remove(Email) {
+    console.log(Email);
   }
 
   function detailsfn(email: string, name: string) {
@@ -63,14 +68,26 @@ export const Contact = ({ navigation }: Props) => {
         </TouchableOpacity>
       </View>
 
-      {contact.map((contacto: string, i: number) => {
+      {contact.map((contacto: string) => {
         return contacto.name ? (
           <View>
             <TouchableOpacity
               onPress={() => detailsfn(contacto.email, contacto.name)}
               style={styles.BTNBox}
             >
-              <View key={i} style={styles.Box}>
+              <TouchableOpacity
+                onPress={() => dispatch(RemoveContact(contacto.email))}
+                style={styles.BTNRemove}
+              >
+                <View key={contacto.email}>
+                  <Ionicons
+                    name="ios-trash-outline"
+                    size={24}
+                    color={colors.primary}
+                  />
+                </View>
+              </TouchableOpacity>
+              <View key={contacto.email} style={styles.Box}>
                 <Text style={styles.textBoxName}>{contacto.name}</Text>
                 <Text style={styles.textBoxEmail}>{contacto.email}</Text>
               </View>

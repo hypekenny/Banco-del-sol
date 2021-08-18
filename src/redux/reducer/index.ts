@@ -11,6 +11,7 @@ import {
   SET_ERROR,
   SET_LOADING_TRUE,
   SET_LOADING_FALSE,
+  REMOVE_CONTACT,
 } from '../actions/index';
 
 interface actionType {
@@ -87,7 +88,7 @@ export default function rootReducer(state = initialState, action: actionType) {
     case GET_NAME:
       return {
         ...state,
-        nameDetail: action.payload,
+        nameDetail: action.payload.user,
       };
     case SET_ERROR:
       return {
@@ -103,6 +104,14 @@ export default function rootReducer(state = initialState, action: actionType) {
       return {
         ...state,
         loading: false,
+      };
+    case REMOVE_CONTACT:
+      const newContacts = state.Contacts.filter(
+        contact => contact.email !== action.payload,
+      );
+      return {
+        ...state,
+        Contacts: newContacts,
       };
     default:
       return state;
