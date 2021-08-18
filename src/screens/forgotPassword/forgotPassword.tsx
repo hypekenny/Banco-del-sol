@@ -22,20 +22,37 @@ export function ForgotPassword() {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder="Ingresa tu email..."
-        placeholderTextColor="grey"
-        value={email}
-        style={ButtonPrimaryStyle.input}
-        onChangeText={(text: string) => setEmail(text)}
-      />
+      {/* <View style={styles.prueba}></View> */}
+      {/* <View style={styles.prueba1}></View> */}
+      <View style={styles.inputContainer}>
+        <Text style={styles.text}>
+          Ingresa el mail con el que te registraste y te enviaremos un correo
+          con un link para recuperar tu contraseña.
+        </Text>
+        <TextInput
+          placeholder="Ingresa tu email..."
+          placeholderTextColor="grey"
+          value={email}
+          style={ButtonPrimaryStyle.input}
+          onChangeText={(text: string) => setEmail(text)}
+        />
+      </View>
       <View style={styles.containerButton}>
-        <TouchableOpacity
-          onPress={() => handlePress(email)}
-          style={ButtonPrimaryStyle.button}
-        >
-          <Text style={ButtonSecondaryStyle.text}>Enviar</Text>
-        </TouchableOpacity>
+        {email.length > 4 ? (
+          <TouchableOpacity
+            onPress={() => handlePress(email)}
+            style={styles.button}
+          >
+            <Text style={ButtonSecondaryStyle.text}>Enviar</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            onPress={() => handlePress(email)}
+            style={styles.buttondisabled}
+          >
+            <Text style={ButtonSecondaryStyle.text}>Enviar</Text>
+          </TouchableOpacity>
+        )}
       </View>
       <LinearGradient
         style={styles.ellipse}

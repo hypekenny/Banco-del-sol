@@ -16,6 +16,7 @@ export const GET_NAME = 'GET_NAME';
 export const SET_ERROR = 'SET_ERROR';
 export const SET_LOADING_TRUE = 'SET_LOADING_TRUE';
 export const SET_LOADING_FALSE = 'SET_LOADING_FALSE';
+export const REMOVE_CONTACT = 'REMOVE_CONTACT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 export function register(user: userType, password: string) {
@@ -79,8 +80,10 @@ export function register(user: userType, password: string) {
       });
   };
 }
+
 export function login(email: string, password: string) {
   return (dispatch: any) => {
+    console.log(email);
     firebase
       .auth()
       .signInWithEmailAndPassword(email.toLowerCase(), password)
@@ -98,6 +101,7 @@ export function login(email: string, password: string) {
                 },
               )
               .then(responseFromBack => {
+                console.log(responseFromBack);
                 dispatch({
                   type: SET_ACCOUNT,
                   payload: responseFromBack.data.account,
@@ -282,10 +286,12 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
       },
     })
     .then(details => {
+      console.log('details', details);
+
       const { name, lastName } = details.data;
       dispatch({
         type: GET_NAME,
-        payload: `${name} ${lastName}`,
+        payload: { user: `${name} ${lastName}` },
       });
     })
 
@@ -332,3 +338,32 @@ export function updateAccount(email: string, token: string) {
       });
   };
 }
+
+export async function updateUser(user: any, token: string, dispatch: any) {
+  const { phoneNumber, address } = user;
+  axios
+    .put(
+      `http://localhost:3001/api/user/`,
+      { phoneNumber, address },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      },
+    )
+    .then(response => {
+      dispatch({
+        type: SET_USER,
+        payload: response.data.updatedUser,
+      });
+    })
+    .catch(error => console.log(error));
+}
+
+export const RemoveContact = (email: string) => dispatch => {
+  console.log('RemoveContact', email);
+  dispatch({
+    type: REMOVE_CONTACT,
+    payload: email,
+  });
+};

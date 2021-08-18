@@ -13,6 +13,7 @@ export type loginStackParamList = {
   RegisterV2: undefined;
   HomeTab: undefined;
   Account: undefined;
+  AccountEdit: undefined;
   AddFunds: undefined;
   Transfer: undefined;
   Transactions: undefined;

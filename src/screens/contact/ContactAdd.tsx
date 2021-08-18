@@ -19,10 +19,25 @@ export const ContactAdd = ({ navigation }: Props) => {
   const [name, setName] = useState<String>('');
   const [step, setStep] = useState<boolean>(false);
   const [msg, setMsg] = useState<boolean>(false);
+  const [showInput, setShowInput] = useState<boolean>(false);
+  const [msgContact, setMsgContact] = useState<boolean>(false);
+  const contacts = useSelector<RootState>(state => state.Contacts);
   const idToken = useSelector<RootState>(state => state.token);
   const userEmail = useSelector<RootState>(state => state.account.email);
   const nameUser = useSelector(state => state.nameDetail);
 
+  function askName() {
+    for (let i = 0; i < contacts.length; i++) {
+      contacts[i].email === email ? setMsgContact(true) : null;
+    }
+  }
+  if (msgContact) {
+    setTimeout(() => {
+      setMsgContact(false);
+      setMsg(false);
+      setName('');
+    }, 3000);
+  }
   useEffect(() => {
     if (step) {
       setName(nameUser);
@@ -47,7 +62,12 @@ export const ContactAdd = ({ navigation }: Props) => {
   // CallName manda a buscar un email  si lo encuentra te da su nombre.
 
   function callName() {
-    dispatch(getName(email, idToken));
+    setShowInput(false);
+    askName();
+    if (!msgContact) {
+      dispatch(getName(email, idToken));
+      setShowInput(true);
+    }
     if (!msg) {
       setName(nameUser);
     }
@@ -67,6 +87,7 @@ export const ContactAdd = ({ navigation }: Props) => {
     setEmail('');
     dispatch(detailContact('', ''));
     setName('');
+    setShowInput(false);
     setStep(false);
     navigation.push('Contact');
   }
@@ -119,7 +140,7 @@ export const ContactAdd = ({ navigation }: Props) => {
 
       {/* INPUT NAME */}
 
-      {name.length > 2 ? (
+      {name && msgContact === false ? (
         <TextInput
           onChangeText={setName}
           value={name}
@@ -128,13 +149,21 @@ export const ContactAdd = ({ navigation }: Props) => {
         />
       ) : null}
 
-      {msg ? (
+      {msg && msgContact === false ? (
         <View style={styles.msgText}>
-          <Text style={styles.TextAdd}>!Se ha encontrado un usario!</Text>
+          <Text style={styles.TextAdd}>¡Se ha encontrado un usuario!</Text>
         </View>
       ) : null}
 
-      {name.length > 2 ? (
+      {msgContact ? (
+        <View style={styles.msgTextUser}>
+          <Text style={styles.TextAdd}>
+            ¡Este usuario se encuentra en tus contactos!
+          </Text>
+        </View>
+      ) : null}
+
+      {name && msgContact === false ? (
         <TouchableOpacity
           onPress={() => AddFriend(email, idToken, name)}
           style={styles.buttonAdd}
