@@ -99,6 +99,7 @@ export interface RootState {
   account: accountType;
   user: userType;
   token: string;
+  loading: boolean;
 }
 
 export type errors = {
