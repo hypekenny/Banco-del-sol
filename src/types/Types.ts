@@ -22,6 +22,7 @@ export type loginStackParamList = {
   ContactAdd: undefined;
   Contact: undefined;
   ContactDetails: undefined;
+  Error: undefined;
 };
 
 export type burgerStackParamList = {
@@ -31,8 +32,8 @@ export type burgerStackParamList = {
 };
 
 export type burgerDrawerParamList = {
-  main: loginStackParamList;
-  burger: burgerStackParamList;
+  home: loginStackParamList;
+  contacts: undefined;
 };
 
 export type mainStackParamList = {
@@ -99,4 +100,10 @@ export interface RootState {
   account: accountType;
   user: userType;
   token: string;
+  loading: boolean;
+  errors: string;
 }
+
+export type errors = {
+  errors: string;
+};
