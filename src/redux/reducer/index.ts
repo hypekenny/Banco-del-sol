@@ -90,7 +90,6 @@ export default function rootReducer(state = initialState, action: actionType) {
         nameDetail: action.payload,
       };
     case SET_ERROR:
-      console.log('PAYLOAD', action.payload);
       return {
         ...state,
         errors: action.payload,
