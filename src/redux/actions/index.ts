@@ -121,6 +121,11 @@ export function login(email: string, password: string) {
             type: SET_ERROR,
             payload: 'La contraseña es incorrecta',
           });
+        } else if (error.code === 'auth/invalid-email') {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'Ingrese un mail válido',
+          });
         } else {
           dispatch({
             type: SET_ERROR,
