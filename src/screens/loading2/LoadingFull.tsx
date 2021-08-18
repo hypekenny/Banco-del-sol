@@ -3,6 +3,7 @@ import { View, Animated, Easing } from 'react-native';
 import { useSelector } from 'react-redux';
 import { errors, Props, resFromBack } from '../../types/Types';
 import { styles } from './LoadingFullStyles';
+import { Error } from '../error/Error';
 
 export function LoadingFull({ navigation }: Props) {
   const userStore = useSelector((state: resFromBack) => state.user);
@@ -23,9 +24,10 @@ export function LoadingFull({ navigation }: Props) {
       }),
     ).start();
   });
-  if (!message.length) {
+
     return (
-      <View style={styles.container}>
+      {!message.length ?
+      (<View style={styles.container}>
         <Animated.Image
           style={{ height: 150, width: 150, transform: [{ rotate: spin }] }}
           source={require('../../../assets/Banco-del-Sol-Logo sol.png')}
@@ -33,9 +35,8 @@ export function LoadingFull({ navigation }: Props) {
         {userStore.email && userStore.email.length
           ? navigation.push('HomeTab')
           : null}
-      </View>
+      </View>) :navigation.push('Error') }
     );
-  } else {
-    return <Error />;
-  }
+  
+  
 }
