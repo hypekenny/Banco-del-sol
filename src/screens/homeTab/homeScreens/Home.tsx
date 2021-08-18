@@ -59,7 +59,7 @@ export const Home = ({ navigation }: Props) => {
                   style={styles.icon}
                   name="menu"
                   size={28}
-                  color="black"
+                  color={colors.primary}
                 />
               </TouchableOpacity>
 
@@ -96,12 +96,12 @@ export const Home = ({ navigation }: Props) => {
                 >
                   <Icon
                     type="material-community"
-                    name="close"
+                    name="logout"
                     size={27}
-                    color={colors.primary}
+                    color="red"
                     style={{ marginLeft: 20 }}
                   />
-                  <Text style={styles.burgerText}>Cerrar sesion</Text>
+                  <Text style={styles.burgerTextLogout}>Cerrar sesion</Text>
                 </View>
               </TouchableOpacity>
             </View>

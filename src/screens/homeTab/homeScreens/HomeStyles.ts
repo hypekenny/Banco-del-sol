@@ -214,4 +214,11 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     marginLeft: 10,
   },
+  burgerTextLogout: {
+    color: 'red',
+    fontSize: 20,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    marginLeft: 10,
+  },
 });
