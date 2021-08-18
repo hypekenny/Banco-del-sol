@@ -14,6 +14,8 @@ export const GET_EMAIL = 'GET_EMAIL';
 export const GET_DETAILS = 'GET_DETAILS';
 export const GET_NAME = 'GET_NAME';
 export const SET_ERROR = 'SET_ERROR';
+export const SET_LOADING_TRUE = 'SET_LOADING_TRUE';
+export const SET_LOADING_FALSE = 'SET_LOADING_FALSE';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -148,6 +150,22 @@ export function logout() {
           payload: {},
         });
       });
+  };
+}
+
+export function setLoadingTrue() {
+  return (dispatch: any) => {
+    dispatch({
+      type: SET_LOADING_TRUE,
+    });
+  };
+}
+
+export function setLoadingFalse() {
+  return (dispatch: any) => {
+    dispatch({
+      type: SET_LOADING_FALSE,
+    });
   };
 }
 
