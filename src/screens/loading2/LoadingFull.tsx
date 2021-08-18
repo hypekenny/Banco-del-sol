@@ -24,10 +24,9 @@ export function LoadingFull({ navigation }: Props) {
       }),
     ).start();
   });
-
+  if (!message.length) {
     return (
-      {!message.length ?
-      (<View style={styles.container}>
+      <View style={styles.container}>
         <Animated.Image
           style={{ height: 150, width: 150, transform: [{ rotate: spin }] }}
           source={require('../../../assets/Banco-del-Sol-Logo sol.png')}
@@ -35,8 +34,10 @@ export function LoadingFull({ navigation }: Props) {
         {userStore.email && userStore.email.length
           ? navigation.push('HomeTab')
           : null}
-      </View>) :navigation.push('Error') }
+      </View>
     );
-  
-  
+  }
+  if (message.length) {
+    return <Error />;
+  }
 }
