@@ -5,6 +5,7 @@ import { Register } from './register/Register';
 import { HomeTab } from './homeTab/HomeTab';
 import { Transfer } from './transfer/Transfer';
 import { Account } from './account/Account';
+import { AccountEdit } from './account/AccountEdit';
 import { AddFunds } from './addFunds/AddFunds';
 import { Transactions } from './transacciones/Transactions';
 import { ForgotPassword } from './forgotPassword/forgotPassword';
@@ -15,7 +16,6 @@ import { Contact } from './contact/Contact';
 import { ContactDetails } from './contact/ContactDetails';
 import { Error } from './error/Error';
 
-
 export const config = {
   Start,
   StartView,
@@ -25,6 +25,7 @@ export const config = {
   AddFunds,
   Transfer,
   Account,
+  AccountEdit,
   Transactions,
   ForgotPassword,
   Statistics,
