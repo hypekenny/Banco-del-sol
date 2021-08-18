@@ -11,6 +11,7 @@ import {
 import { styles } from './LoginStyles';
 import { Props, resFromBack, RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
+import { ErrorStyle } from '../../constants/ErrorStyle';
 import colors from '../../constants/colors';
 import { LoadingFull } from '../loading2/LoadingFull';
 
@@ -37,8 +38,8 @@ export const Login = ({ navigation }: Props) => {
     <View style={styles.container}>
       <LoadingFull show={loading} />
       {error.length ? (
-        <View style={styles.msgText}>
-          <Text style={styles.TextAdd}>{error}</Text>
+        <View style={ErrorStyle.errorView}>
+          <Text style={ErrorStyle.errorText}>{error}</Text>
         </View>
       ) : null}
       <View style={styles.inputContainer}>
