@@ -9,6 +9,8 @@ import {
   GET_DETAILS,
   GET_NAME,
   SET_ERROR,
+  SET_LOADING_TRUE,
+  SET_LOADING_FALSE,
 } from '../actions/index';
 
 interface actionType {
@@ -25,6 +27,7 @@ const initialState = {
   DetailTransfer: {},
   nameDetail: '',
   errors: {},
+  loading: false,
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -91,6 +94,16 @@ export default function rootReducer(state = initialState, action: actionType) {
       return {
         ...state,
         errors: action.payload,
+      };
+    case SET_LOADING_TRUE:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SET_LOADING_FALSE:
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;
