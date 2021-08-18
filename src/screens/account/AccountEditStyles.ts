@@ -4,8 +4,8 @@ import colors from '../../constants/colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
-    marginTop: 50,
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
   input: {
     width: '90%',
@@ -26,5 +26,9 @@ export const styles = StyleSheet.create({
     marginRight: 'auto',
     marginTop: 30,
     marginBottom: 10,
+  },
+  ImageAndButton: {
+    flex: 1,
+    flexDirection: 'row',
   },
 });
