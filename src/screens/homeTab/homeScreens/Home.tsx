@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 // feat-Cell-phone-compatibility
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   View,
@@ -22,14 +22,29 @@ LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();
 
 export const Home = ({ navigation }: Props) => {
-  const [ing, setIng] = useState(0);
-  const [gast, setGast] = useState(0);
-
   const accountStore = useSelector((state: RootState) => state.account);
   const userStore = useSelector((state: RootState) => state.user);
   const token = useSelector((state: RootState) => state.token);
   const dispatch = useDispatch();
   const [burger, setBurger] = useState(false);
+
+  const [ing, setIng] = useState(0);
+  const [gast, setGast] = useState(0);
+
+  useEffect(() => {
+    if (accountStore.balance.history.length === 0) {
+      return setIng(0);
+    }
+    let totalIncomings: number = 0;
+    accountStore.balance.history.map(e => {
+      /* si el receptor es igual al email del user loggeado, significa que fue un ingreso (ya sea recarga o recepcion de transferencia) */
+      if (e.receiverEmail === userStore.email) {
+        totalIncomings += e.value;
+      }
+      return;
+    });
+    return setIng(totalIncomings);
+  }, [accountStore, userStore.email]);
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
