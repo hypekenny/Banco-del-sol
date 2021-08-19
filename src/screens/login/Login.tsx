@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
+import { AntDesign } from '@expo/vector-icons';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import {
   cleanErrors,
   login,
@@ -21,27 +23,78 @@ export const Login = ({ navigation }: Props) => {
   const error = useSelector((state: RootState) => state.errors);
   const dispatch = useDispatch();
 
+  const [state, setState] = useState(false);
+
   const [user, setUser] = useState({
-    email: '',
-    password: '',
+    email: 'ferro@hotmail.com',
+    password: '123QWE&',
     amount: 0,
   });
 
+  useEffect(() => {
+    if (error.length) {
+      setState(true);
+    }
+  }, [error.length]);
+
   if (error.length) {
     dispatch(setLoadingFalse());
-    setTimeout(() => {
-      dispatch(cleanErrors());
-    }, 3000);
   }
 
   return (
     <View style={styles.container}>
+      <View style={styles.headerOne}>
+        <LinearGradient
+          style={styles.header}
+          colors={[colors.secondary, colors.primary]}
+        />
+        <View style={styles.title}>
+          <Text style={styles.textTitle}>Ingresar</Text>
+        </View>
+        <TouchableOpacity
+          style={styles.back}
+          onPress={() => {
+            navigation.popToTop();
+          }}
+        >
+          <AntDesign
+            name="arrowleft"
+            size={35}
+            color="white"
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+      </View>
       <LoadingFull show={loading} />
-      {error.length ? (
+      <View
+        style={{
+          alignSelf: 'center',
+          zIndex: 100,
+          position: 'absolute',
+          width: '100%',
+        }}
+      >
+        <AwesomeAlert
+          show={state}
+          showProgress={false}
+          title={error}
+          closeOnTouchOutside={false}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton={true}
+          confirmText="Aceptar"
+          confirmButtonColor="#ff4b6e"
+          onConfirmPressed={() => {
+            setState(false);
+            dispatch(cleanErrors());
+          }}
+        />
+      </View>
+      {/*    {error.length ? (
         <View style={ErrorStyle.errorView}>
           <Text style={ErrorStyle.errorText}>{error}</Text>
         </View>
-      ) : null}
+      ) : null} */}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email...."
