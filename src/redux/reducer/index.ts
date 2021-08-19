@@ -13,6 +13,7 @@ import {
   SET_LOADING_FALSE,
   REMOVE_CONTACT,
   CLEAR_ERRORS,
+  SET_MESSAGE,
 } from '../actions/index';
 
 interface actionType {
@@ -30,6 +31,7 @@ const initialState = {
   nameDetail: '',
   errors: '',
   loading: false,
+  message: '',
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -70,7 +72,6 @@ export default function rootReducer(state = initialState, action: actionType) {
         ...state,
         token: action.payload,
       };
-
     case GET_EMAIL:
       return {
         ...state,
@@ -131,6 +132,12 @@ export default function rootReducer(state = initialState, action: actionType) {
       return {
         ...state,
         errors: '',
+      };
+
+    case SET_MESSAGE:
+      return {
+        ...state,
+        message: action.payload,
       };
     default:
       return state;
