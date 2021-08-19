@@ -85,8 +85,10 @@ export const styles = StyleSheet.create({
     elevation: 14,
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: '5%',
+    marginTop: '50%',
     marginBottom: 10,
+    position: 'absolute',
+    alignSelf: 'center',
   },
   button: {
     zIndex: 80,
@@ -136,15 +138,7 @@ export const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
-  search: {
-    color: colors.primary,
-    paddingLeft: 5,
-    paddingRight: 5,
-    alignSelf: 'center',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: '-8%',
-  },
+
   TextAdd: {
     color: colors.primary,
     paddingLeft: 5,
@@ -152,6 +146,17 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',
+    marginTop: '-2.5%',
+  },
+
+  search: {
+    color: colors.primary,
+    paddingLeft: 5,
+    paddingRight: 5,
+    alignSelf: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: '-10%',
   },
 
   searchDisable: {
@@ -161,13 +166,14 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: '-8%',
+    marginTop: '-10%',
   },
   ellipse: {
     position: 'absolute',
     zIndex: 20,
-    bottom: '-25%',
-    marginTop: '35%',
+    // bottom: '-35%',
+    marginTop: '110%',
+    // marginBottom: '-1111111111111150%',
     left: '20%',
     width: '60%',
     height: '60%',
@@ -199,10 +205,12 @@ export const styles = StyleSheet.create({
   },
   buttonAddDisable: {
     zIndex: 80,
+
     width: '70%',
     height: '8%',
     alignItems: 'center',
-    marginTop: '110%',
+    marginTop: '90%',
+    // marginBottom: '-90%',
     borderRadius: 20,
     borderWidth: 2,
     borderColor: colors.primary,

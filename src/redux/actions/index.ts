@@ -18,6 +18,7 @@ export const SET_LOADING_TRUE = 'SET_LOADING_TRUE';
 export const SET_LOADING_FALSE = 'SET_LOADING_FALSE';
 export const REMOVE_CONTACT = 'REMOVE_CONTACT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const SET_MESSAGE = 'SET_MESSAGE';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -246,6 +247,8 @@ export function addFunds(
 
 export const getEmail =
   (emailUser: string, idToken: string, nameUser: string) => dispatch => {
+    // Esta accion lo que hace es guardarme dentro de mi estado re redux "Contact" , el emailUser,nombre y cvu
+
     axios
       .get(`http://localhost:3001/api/contacts/${emailUser}`, {
         headers: {
@@ -266,15 +269,14 @@ export const getEmail =
         });
       })
       .catch(error => {
-        dispatch({
-          type: SET_ERROR,
-          payload: 'Ocurrió un error, intenta nuevamente',
-        });
+        // alert('Este usuario no se encuentra registrado');
         console.error(error);
       });
   };
 
 export const getName = (emailUser: string, idToken: string) => dispatch => {
+  // Esta accion lo que hace es irme a buscar a la DB el email del usuario que quiero agregar, en el caso de existir me guarda su nombre.
+
   axios
     .get(`http://localhost:3001/api/contacts/${emailUser}`, {
       headers: {
@@ -286,25 +288,38 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
 
       const { name, lastName } = details.data;
       dispatch({
+        type: SET_MESSAGE,
+        payload: '',
+      });
+      dispatch({
         type: GET_NAME,
         payload: { user: `${name} ${lastName}` },
       });
     })
 
-    .catch(error => {
+    .catch(() => {
       dispatch({
         type: GET_NAME,
         payload: ``,
       });
       dispatch({
-        type: SET_ERROR,
-        payload: 'El usuario no se encuentra registrado',
+        type: SET_MESSAGE,
+        payload: 'Este usuario se encuentra registrado',
       });
-      console.error(error);
     });
 };
 
+export const RemoveError = () => dispatch => {
+  // esta action se encarga de remover el mensaje de error establecido.
+  dispatch({
+    type: SET_MESSAGE,
+    payload: '',
+  });
+};
+
 export const detailContact = (email: string, name: string) => dispatch => {
+  // Esta accion lo la funcion que cumple es guardarme provisoriamente el nombre del contacto que presione, para ver sus detalles y/o transferir.
+
   dispatch({
     type: GET_DETAILS,
     payload: { name, email },
