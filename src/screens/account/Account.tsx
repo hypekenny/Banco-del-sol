@@ -3,6 +3,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native';
+import Clipboard from '@react-native-clipboard/clipboard';
 import { styles } from './AccountStyles';
 import { Props, resFromBack } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
@@ -12,7 +13,8 @@ export function Account({ navigation }: Props) {
   const accountDetails = useSelector((state: resFromBack) => state.account);
   const userDetails = useSelector((state: resFromBack) => state.user);
 
-  function shareCVU() {
+  function copyToClipboard() {
+    Clipboard.setString(accountDetails.cvu);
     alert('CVU copiado al portapapeles');
   }
 
@@ -64,16 +66,16 @@ export function Account({ navigation }: Props) {
       </LinearGradient>
       <TouchableOpacity
         style={ButtonPrimaryStyle.button}
-        onPress={() => shareCVU()}
+        onPress={() => copyToClipboard()}
       >
         <View style={styles.ImageAndButton}>
           <MaterialIcons
-            name="share"
+            name="content-copy"
             size={32}
             color={colors.primary}
             style={{ paddingLeft: 5, paddingRight: 5 }}
           />
-          <Text style={ButtonPrimaryStyle.text}>Compartir CVU</Text>
+          <Text style={ButtonPrimaryStyle.text}>Copiar CVU</Text>
         </View>
       </TouchableOpacity>
       <View />
