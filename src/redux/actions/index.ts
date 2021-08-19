@@ -18,6 +18,7 @@ export const SET_LOADING_TRUE = 'SET_LOADING_TRUE';
 export const SET_LOADING_FALSE = 'SET_LOADING_FALSE';
 export const REMOVE_CONTACT = 'REMOVE_CONTACT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const SET_MESSAGE = 'SET_MESSAGE';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -268,10 +269,7 @@ export const getEmail =
         });
       })
       .catch(error => {
-        dispatch({
-          type: SET_ERROR,
-          payload: 'Ocurrió un error, intenta nuevamente',
-        });
+        // alert('Este usuario no se encuentra registrado');
         console.error(error);
       });
   };
@@ -298,11 +296,7 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
         type: GET_NAME,
         payload: ``,
       });
-      dispatch({
-        type: SET_ERROR,
-        payload: 'El usuario no se encuentra registrado',
-      });
-      console.error(error);
+      alert('Este usuario no se encuentra registrado');
     });
 };
 
