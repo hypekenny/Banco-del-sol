@@ -249,6 +249,8 @@ export function addFunds(
 
 export const getEmail =
   (emailUser: string, idToken: string, nameUser: string) => dispatch => {
+    // Esta accion lo que hace es guardarme dentro de mi estado re redux "Contact" , el emailUser,nombre y cvu
+
     axios
       .get(`http://localhost:3001/api/contacts/${emailUser}`, {
         headers: {
@@ -275,6 +277,8 @@ export const getEmail =
   };
 
 export const getName = (emailUser: string, idToken: string) => dispatch => {
+  // Esta accion lo que hace es irme a buscar a la DB el email del usuario que quiero agregar, en el caso de existir me guarda su nombre.
+
   axios
     .get(`http://localhost:3001/api/contacts/${emailUser}`, {
       headers: {
@@ -295,7 +299,7 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
       });
     })
 
-    .catch(error => {
+    .catch(() => {
       dispatch({
         type: GET_NAME,
         payload: ``,
@@ -304,11 +308,20 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
         type: SET_MESSAGE,
         payload: 'Este usuario se encuentra registrado',
       });
-      // alert('Este usuario no se encuentra registrado');
     });
 };
 
+export const RemoveError = () => dispatch => {
+  // esta action se encarga de remover el mensaje de error establecido.
+  dispatch({
+    type: SET_MESSAGE,
+    payload: '',
+  });
+};
+
 export const detailContact = (email: string, name: string) => dispatch => {
+  // Esta accion lo la funcion que cumple es guardarme provisoriamente el nombre del contacto que presione, para ver sus detalles y/o transferir.
+
   dispatch({
     type: GET_DETAILS,
     payload: { name, email },
@@ -365,13 +378,5 @@ export const RemoveContact = (email: string) => dispatch => {
   dispatch({
     type: REMOVE_CONTACT,
     payload: email,
-  });
-};
-
-export const RemoveError = () => dispatch => {
-  // console.log('RemoveContact', email);
-  dispatch({
-    type: SET_MESSAGE,
-    payload: '',
   });
 };

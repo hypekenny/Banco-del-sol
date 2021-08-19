@@ -23,7 +23,6 @@ export const ContactAdd = ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState<String>('');
   const [name, setName] = useState<String>('');
-  const [error, setError] = useState<String>('');
   const [step, setStep] = useState<boolean>(false);
   const [msg, setMsg] = useState<boolean>(false);
   const [showInput, setShowInput] = useState<boolean>(false);
@@ -67,12 +66,13 @@ export const ContactAdd = ({ navigation }: Props) => {
   }, [nameUser]);
 
   useEffect(() => {
-    // En el caso  de el email no se encuentre el msg error se coloca true , de esta forma muestra el msg y el input pasa a false para no mostrarse
+    // En el caso  de el email no se encuentre en la DB el estado MsgError se coloca true , de esta forma muestra el msg y el input pasa a false para no ser visible i/o utilizable
     if (errorEmail.length > 5) {
       setMsgError(true);
       setShowInput(false);
 
       setTimeout(() => {
+        //  Despues de dos segundos el mensaje se quita pasando el estado a false
         setMsgError(false);
         dispatch(RemoveError());
       }, 2000);
