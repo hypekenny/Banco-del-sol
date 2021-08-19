@@ -208,11 +208,11 @@ export function Register({ navigation }: Props) {
 
   if (error.length) {
     dispatch(setLoadingFalse());
-    setTimeout(() => {
+    /*  setTimeout(() => {
       dispatch(cleanErrors());
-    }, 3000);
+    }, 3000); */
   }
-  console.log(error);
+
   return (
     <View style={styles.view}>
       <LoadingFull show={loading} />
