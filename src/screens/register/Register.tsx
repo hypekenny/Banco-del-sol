@@ -212,7 +212,6 @@ export function Register({ navigation }: Props) {
       dispatch(cleanErrors());
     }, 3000);
   }
-  console.log(error);
   return (
     <View style={styles.view}>
       <LoadingFull show={loading} />

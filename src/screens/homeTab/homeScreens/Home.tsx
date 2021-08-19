@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 // feat-Cell-phone-compatibility
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   View,
@@ -22,14 +22,41 @@ LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();
 
 export const Home = ({ navigation }: Props) => {
-  const [ing, setIng] = useState(0);
-  const [gast, setGast] = useState(0);
-
   const accountStore = useSelector((state: RootState) => state.account);
   const userStore = useSelector((state: RootState) => state.user);
   const token = useSelector((state: RootState) => state.token);
   const dispatch = useDispatch();
   const [burger, setBurger] = useState(false);
+
+  const [ing, setIng] = useState(0);
+  const [gast, setGast] = useState(0);
+
+  useEffect(() => {
+    /*  Al mes hay que sumarle 1 porque por default en react native Enero es 0 */
+    const date = new Date();
+    const month = date.toLocaleString('default', { month: 'short' });
+
+    if (accountStore.balance.history.length === 0) {
+      return setIng(0);
+    }
+    let totalIncomings: number = 0;
+    let totalOutgoings: number = 0;
+
+    accountStore.balance.history.map(e => {
+      const transactionMonthString = e.date.toString().split(' ')[1];
+      if (transactionMonthString === month) {
+        if (e.receiverEmail === userStore.email) {
+          /* si el receptor es igual al email del user loggeado, significa que fue un ingreso (ya sea recarga o recepcion de transferencia) */
+          totalIncomings += e.value;
+        } else {
+          totalOutgoings += e.value;
+        }
+      }
+    });
+    setIng(totalIncomings);
+    setGast(totalOutgoings);
+    return;
+  }, [accountStore, userStore.email]);
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -197,7 +224,7 @@ export const Home = ({ navigation }: Props) => {
       </View>
       <View style={styles.box}>
         <View style={styles.boxt}>
-          <Text style={styles.textGeneral}>General</Text>
+          <Text style={styles.textGeneral}>Este mes</Text>
           <View
             style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}
           >
