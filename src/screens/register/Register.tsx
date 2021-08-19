@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
   Picker,
 } from 'react-native';
 import Select from 'react-select-native';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { Entypo, AntDesign } from '@expo/vector-icons';
@@ -44,6 +45,8 @@ export function Register({ navigation }: Props) {
   const userStore = useSelector((state: resFromBack) => state.user);
   const loading = useSelector((state: RootState) => state.loading);
   const error = useSelector((state: RootState) => state.errors);
+
+  const [state, setState] = useState(false);
 
   const FormSchema = Yup.object().shape({
     name: Yup.string().required('Debe ingresar un nombre!'),
@@ -206,11 +209,14 @@ export function Register({ navigation }: Props) {
     dispatch(setLoadingTrue());
   }
 
+  useEffect(() => {
+    if (error.length) {
+      setState(true);
+    }
+  }, [error.length]);
+
   if (error.length) {
     dispatch(setLoadingFalse());
-    /*  setTimeout(() => {
-      dispatch(cleanErrors());
-    }, 3000); */
   }
 
   return (
