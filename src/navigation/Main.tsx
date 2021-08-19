@@ -38,7 +38,7 @@ export const Main = () => (
     <LoginStack.Screen
       name="Login"
       component={Login}
-      options={{ headerTitle: 'Ingresar' }}
+      options={{ headerTitle: 'Ingresar', headerShown: false }}
     />
 
     <LoginStack.Screen
@@ -123,7 +123,18 @@ export const Main = () => (
     <LoginStack.Screen
       name="ForgotPassword"
       component={ForgotPassword}
-      options={{ headerTitle: 'Cambia tu contraseña' }}
+      options={{
+        headerTitle: 'Cambia tu contraseña',
+        headerBackground: () => (
+          <LinearGradient
+            colors={['#ff9349', '#ff4b6e']}
+            style={{ flex: 1 }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+          />
+        ),
+        headerTintColor: 'white',
+      }}
     />
 
     <LoginStack.Screen
