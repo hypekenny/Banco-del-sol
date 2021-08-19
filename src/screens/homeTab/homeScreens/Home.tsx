@@ -193,8 +193,8 @@ export const Home = ({ navigation }: Props) => {
         <LinearGradient
           style={styles.header}
           colors={[colors.primary, colors.secondary]}
-          start={{ x: 0, y: 1 }}
-          end={{ x: 0, y: 0 }}
+          // start={{ x: 0, y: 1 }}
+          // end={{ x: 0, y: 0 }}
         />
         <View style={styles.title}>
           <Text style={styles.textTitle}>Hola {userStore.name}</Text>
