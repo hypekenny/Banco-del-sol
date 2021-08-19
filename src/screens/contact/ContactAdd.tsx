@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
-import { detailContact, getEmail, getName } from '../../redux/actions';
+import {
+  detailContact,
+  getEmail,
+  getName,
+  RemoveError,
+} from '../../redux/actions';
 import { styles } from './ContactAddStyles';
 import { loginStackParamList, RootState } from '../../types/Types';
 import colors from '../../constants/colors';
@@ -18,14 +23,17 @@ export const ContactAdd = ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState<String>('');
   const [name, setName] = useState<String>('');
+  const [error, setError] = useState<String>('');
   const [step, setStep] = useState<boolean>(false);
   const [msg, setMsg] = useState<boolean>(false);
   const [showInput, setShowInput] = useState<boolean>(false);
   const [msgContact, setMsgContact] = useState<boolean>(false);
+  const [msgError, setMsgError] = useState<boolean>(false);
   const contacts = useSelector<RootState>(state => state.Contacts);
   const idToken = useSelector<RootState>(state => state.token);
   const userEmail = useSelector<RootState>(state => state.account.email);
-  const nameUser = useSelector(state => state.nameDetail);
+  const nameUser = useSelector<RootState>(state => state.nameDetail);
+  const errorEmail = useSelector<RootState>(state => state.message);
 
   function askName() {
     for (let i = 0; i < contacts.length; i++) {
@@ -45,6 +53,7 @@ export const ContactAdd = ({ navigation }: Props) => {
       setName(nameUser);
       setTimeout(() => {
         if (nameUser) {
+          setShowInput(true);
           setMsg(true);
         }
 
@@ -58,21 +67,29 @@ export const ContactAdd = ({ navigation }: Props) => {
   }, [nameUser]);
 
   useEffect(() => {
+    // En el caso  de el email no se encuentre el msg error se coloca true , de esta forma muestra el msg y el input pasa a false para no mostrarse
+    if (errorEmail.length > 5) {
+      setMsgError(true);
+      setShowInput(false);
+
+      setTimeout(() => {
+        setMsgError(false);
+        dispatch(RemoveError());
+      }, 2000);
+    }
+  }, [errorEmail]);
+
+  useEffect(() => {
     setStep(true);
   }, []);
-
-  // CallName manda a buscar un email  si lo encuentra te da su nombre.
 
   function callName() {
     askName();
     setShowInput(false);
     if (!msgContact) {
       dispatch(getName(email, idToken));
-      setShowInput(true);
     }
-    // if (name.length < 2) {
-    //   setShowInput(false);
-    // }
+
     if (!msg) {
       setName(nameUser);
     }
@@ -94,6 +111,7 @@ export const ContactAdd = ({ navigation }: Props) => {
     dispatch(detailContact('', ''));
     setName('');
     setStep(false);
+    setMsgError(false);
     navigation.push('Contact');
   }
 
@@ -165,6 +183,14 @@ export const ContactAdd = ({ navigation }: Props) => {
           <View style={styles.msgTextUser}>
             <Text style={styles.TextAdd}>
               ¡Este usuario se encuentra en tus contactos!
+            </Text>
+          </View>
+        ) : null}
+
+        {msgError ? (
+          <View style={styles.msgTextUser}>
+            <Text style={styles.TextAdd}>
+              ¡Este usuario no se encuentra registrado!
             </Text>
           </View>
         ) : null}

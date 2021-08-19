@@ -135,10 +135,9 @@ export default function rootReducer(state = initialState, action: actionType) {
       };
 
     case SET_MESSAGE:
-      console.log(action.payload);
       return {
         ...state,
-        mesagge: action.payload,
+        message: action.payload,
       };
     default:
       return state;

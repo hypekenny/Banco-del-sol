@@ -286,6 +286,10 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
 
       const { name, lastName } = details.data;
       dispatch({
+        type: SET_MESSAGE,
+        payload: '',
+      });
+      dispatch({
         type: GET_NAME,
         payload: { user: `${name} ${lastName}` },
       });
@@ -296,7 +300,11 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
         type: GET_NAME,
         payload: ``,
       });
-      alert('Este usuario no se encuentra registrado');
+      dispatch({
+        type: SET_MESSAGE,
+        payload: 'Este usuario se encuentra registrado',
+      });
+      // alert('Este usuario no se encuentra registrado');
     });
 };
 
@@ -357,5 +365,13 @@ export const RemoveContact = (email: string) => dispatch => {
   dispatch({
     type: REMOVE_CONTACT,
     payload: email,
+  });
+};
+
+export const RemoveError = () => dispatch => {
+  // console.log('RemoveContact', email);
+  dispatch({
+    type: SET_MESSAGE,
+    payload: '',
   });
 };

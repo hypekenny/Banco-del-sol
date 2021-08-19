@@ -102,6 +102,9 @@ export interface RootState {
   token: string;
   loading: boolean;
   errors: string;
+  Contacts: Object;
+  nameDetail: string;
+  message: string;
 }
 
 export type errors = {
