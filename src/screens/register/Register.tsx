@@ -222,15 +222,14 @@ export function Register({ navigation }: Props) {
   return (
     <View style={styles.view}>
       <LoadingFull show={loading} />
-      {error.length ? (
+      {/* {error.length ? (
         <View style={ErrorStyle.errorView}>
           <Text style={ErrorStyle.errorText}>{error}</Text>
         </View>
-      ) : null}
+      ) : null} */}
       <LinearGradient
         style={styles.header}
         colors={[colors.primary, colors.secondary]}
-        end={[1, 1]}
       />
       <View style={styles.title}>
         <Text style={styles.textTitle}>Registro</Text>
@@ -247,6 +246,30 @@ export function Register({ navigation }: Props) {
       >
         <AntDesign name="arrowleft" size={35} color="white" />
       </TouchableOpacity>
+      <View
+        style={{
+          marginTop: '100%',
+          zIndex: 100,
+          position: 'absolute',
+          width: '100%',
+        }}
+      >
+        <AwesomeAlert
+          show={state}
+          showProgress={false}
+          title={error}
+          closeOnTouchOutside={false}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton={true}
+          confirmText="Aceptar"
+          confirmButtonColor="#ff4b6e"
+          onConfirmPressed={() => {
+            setState(false);
+            dispatch(cleanErrors());
+          }}
+        />
+      </View>
       {/* <View style={styles.linea1}></View>
       <View style={!step ? styles.linea2 : styles.linea2s}></View> */}
       {!step ? (
