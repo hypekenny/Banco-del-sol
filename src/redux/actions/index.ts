@@ -83,7 +83,6 @@ export function register(user: userType, password: string) {
 
 export function login(email: string, password: string) {
   return (dispatch: any) => {
-    console.log(email);
     firebase
       .auth()
       .signInWithEmailAndPassword(email.toLowerCase(), password)
@@ -101,7 +100,6 @@ export function login(email: string, password: string) {
                 },
               )
               .then(responseFromBack => {
-                console.log(responseFromBack);
                 dispatch({
                   type: SET_ACCOUNT,
                   payload: responseFromBack.data.account,
