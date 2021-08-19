@@ -29,7 +29,7 @@ export function register(user: userType, password: string) {
           ?.getIdToken()
           .then(idToken => {
             axios
-              .post<resFromBack>(`http://localhost:3001/api/user/`, user, {
+              .post<resFromBack>(`http://192.168.0.112:3001/api/user/`, user, {
                 headers: {
                   authorization: `Bearer ${idToken}`,
                 },
@@ -93,7 +93,7 @@ export function login(email: string, password: string) {
           .then(idToken => {
             axios
               .get<resFromBack>(
-                `http://localhost:3001/api/user/?email=${email}`,
+                `http://192.168.0.112:3001/api/user/?email=${email}`,
                 {
                   headers: {
                     authorization: `Bearer ${idToken}`,
@@ -148,7 +148,7 @@ export function login(email: string, password: string) {
         if (error.code === 'auth/invalid-email') {
           dispatch({
             type: SET_ERROR,
-            payload: 'Ingrese un mail válido',
+            payload: 'Ingrese un email válido',
           });
           return;
         }
@@ -226,7 +226,7 @@ export function addFunds(
   return dispatch => {
     axios
       .post(
-        `http://localhost:3001/api/account`,
+        `http://192.168.0.112:3001/api/account`,
         { senderEmail, receiverEmail, type, value, comment },
         {
           headers: {
@@ -253,7 +253,7 @@ export function addFunds(
 export const getEmail =
   (emailUser: string, idToken: string, nameUser: string) => dispatch => {
     axios
-      .get(`http://localhost:3001/api/contacts/${emailUser}`, {
+      .get(`http://192.168.0.112:3001/api/contacts/${emailUser}`, {
         headers: {
           authorization: `Bearer ${idToken}`,
         },
@@ -282,7 +282,7 @@ export const getEmail =
 
 export const getName = (emailUser: string, idToken: string) => dispatch => {
   axios
-    .get(`http://localhost:3001/api/contacts/${emailUser}`, {
+    .get(`http://192.168.0.112:3001/api/contacts/${emailUser}`, {
       headers: {
         authorization: `Bearer ${idToken}`,
       },
@@ -320,7 +320,7 @@ export const detailContact = (email: string, name: string) => dispatch => {
 export function updateAccount(email: string, token: string) {
   return dispatch => {
     axios
-      .get(`http://localhost:3001/api/account/?email=${email}`, {
+      .get(`http://192.168.0.112:3001/api/account/?email=${email}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -345,7 +345,7 @@ export async function updateUser(user: any, token: string, dispatch: any) {
   const { phoneNumber, address } = user;
   axios
     .put(
-      `http://localhost:3001/api/user/`,
+      `http://192.168.0.112:3001/api/user/`,
       { phoneNumber, address },
       {
         headers: {

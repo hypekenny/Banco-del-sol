@@ -99,7 +99,6 @@ export const ContactAdd = ({ navigation }: Props) => {
         <LinearGradient
           style={styles.header}
           colors={[colors.primary, colors.secondary]}
-          end={[1, 1]}
         />
 
         <View style={styles.title}>
