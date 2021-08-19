@@ -127,7 +127,7 @@ export const Main = () => (
         headerTitle: 'Cambia tu contraseña',
         headerBackground: () => (
           <LinearGradient
-            colors={['#ff9349', '#ff4b6e']}
+            colors={['#ff4b6e', '#ff9349']}
             style={{ flex: 1 }}
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}
