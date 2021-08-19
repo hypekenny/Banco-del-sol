@@ -32,19 +32,26 @@ export const Home = ({ navigation }: Props) => {
   const [gast, setGast] = useState(0);
 
   useEffect(() => {
+    /*  Al mes hay que sumarle 1 porque por default en react native Enero es 0 */
+    const date = new Date();
+    const month = date.toLocaleString('default', { month: 'short' });
+
     if (accountStore.balance.history.length === 0) {
       return setIng(0);
     }
     let totalIncomings: number = 0;
     let totalOutgoings: number = 0;
+
     accountStore.balance.history.map(e => {
-      /* si el receptor es igual al email del user loggeado, significa que fue un ingreso (ya sea recarga o recepcion de transferencia) */
-      if (e.receiverEmail === userStore.email) {
-        totalIncomings += e.value;
-      } else {
-        totalOutgoings += e.value;
+      const transactionMonthString = e.date.toString().split(' ')[1];
+      if (transactionMonthString === month) {
+        if (e.receiverEmail === userStore.email) {
+          /* si el receptor es igual al email del user loggeado, significa que fue un ingreso (ya sea recarga o recepcion de transferencia) */
+          totalIncomings += e.value;
+        } else {
+          totalOutgoings += e.value;
+        }
       }
-      return;
     });
     setIng(totalIncomings);
     setGast(totalOutgoings);
@@ -217,7 +224,7 @@ export const Home = ({ navigation }: Props) => {
       </View>
       <View style={styles.box}>
         <View style={styles.boxt}>
-          <Text style={styles.textGeneral}>Tu último mes</Text>
+          <Text style={styles.textGeneral}>Este mes</Text>
           <View
             style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}
           >
