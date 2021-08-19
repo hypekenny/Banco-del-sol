@@ -36,14 +36,19 @@ export const Home = ({ navigation }: Props) => {
       return setIng(0);
     }
     let totalIncomings: number = 0;
+    let totalOutgoings: number = 0;
     accountStore.balance.history.map(e => {
       /* si el receptor es igual al email del user loggeado, significa que fue un ingreso (ya sea recarga o recepcion de transferencia) */
       if (e.receiverEmail === userStore.email) {
         totalIncomings += e.value;
+      } else {
+        totalOutgoings += e.value;
       }
       return;
     });
-    return setIng(totalIncomings);
+    setIng(totalIncomings);
+    setGast(totalOutgoings);
+    return;
   }, [accountStore, userStore.email]);
 
   return (
@@ -212,7 +217,7 @@ export const Home = ({ navigation }: Props) => {
       </View>
       <View style={styles.box}>
         <View style={styles.boxt}>
-          <Text style={styles.textGeneral}>General</Text>
+          <Text style={styles.textGeneral}>Tu último mes</Text>
           <View
             style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}
           >
