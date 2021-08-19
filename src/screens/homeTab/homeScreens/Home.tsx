@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 // feat-Cell-phone-compatibility
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   View,
@@ -13,6 +13,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { Icon } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import { styles } from './HomeStyles';
 import {
   setLoadingFalse,
@@ -37,14 +38,32 @@ export const Home = ({ navigation }: Props) => {
   const error = useSelector((state: RootState) => state.errors);
   const dispatch = useDispatch();
   const [burger, setBurger] = useState(false);
+  const [state, setState] = useState(false);
 
-  if (error.length) {
+  /*   if (error.length) {
     dispatch(setLoadingFalse());
-    setTimeout(() => {
+    setState(true);
+    /*   setTimeout(() => {
       dispatch(cleanErrors());
-    }, 3000);
-  }
+    }, 3000); 
+  } */
 
+  useEffect(() => {
+    if (error.length) {
+      dispatch(setLoadingFalse());
+      setState(true);
+    }
+  }, [error.length]);
+  /* 
+  const hideAlert = () => {
+    setState(false);
+    dispatch(cleanErrors());
+  };
+
+  function errorPress() {
+    dispatch(cleanErrors());
+  }
+ */
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       {burger ? (
@@ -168,7 +187,6 @@ export const Home = ({ navigation }: Props) => {
               }}
             />
           </TouchableWithoutFeedback>
-          ;
         </View>
       ) : null}
       <View>
@@ -189,11 +207,38 @@ export const Home = ({ navigation }: Props) => {
         </TouchableOpacity>
       </View>
 
-      {error.length ? (
+      <View
+        style={{
+          marginTop: '100%',
+          zIndex: 100,
+          position: 'absolute',
+          width: '100%',
+        }}
+      >
+        <AwesomeAlert
+          show={state}
+          showProgress={false}
+          title={error}
+          closeOnTouchOutside={false}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton={true}
+          confirmText="Aceptar"
+          confirmButtonColor="#ff4b6e"
+          onConfirmPressed={() => {
+            setState(false);
+            dispatch(cleanErrors());
+          }}
+        />
+      </View>
+
+      {/* {error.length ? (
         <View style={ErrorStyle.errorView}>
-          <Text style={ErrorStyle.errorText}>{error}</Text>
+          <TouchableOpacity onPress={errorPress}>
+            <Text style={ErrorStyle.errorText}>{error}</Text>
+          </TouchableOpacity>
         </View>
-      ) : null}
+      ) : null} */}
 
       <View style={styles.view1}>
         <Text style={{ fontSize: 20, fontWeight: '100', color: '#3b3b3b' }}>
