@@ -46,7 +46,7 @@ export const Login = ({ navigation }: Props) => {
       <View style={styles.headerOne}>
         <LinearGradient
           style={styles.header}
-          colors={[colors.secondary, colors.primary]}
+          colors={[colors.primary, colors.secondary]}
         />
         <View style={styles.title}>
           <Text style={styles.textTitle}>Ingresar</Text>
