@@ -117,7 +117,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     left: 70,
     top: 0,
-    marginTop: '0.5%',
+    marginTop: '-0.3%',
     width: '30%',
   },
 
@@ -125,7 +125,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     left: 5,
     top: 15,
-    fontSize: 18,
+    fontSize: 20,
     color: 'white',
     fontWeight: '500',
     width: '180%',
