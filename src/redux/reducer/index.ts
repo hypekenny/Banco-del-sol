@@ -39,38 +39,38 @@ export default function rootReducer(state = initialState, action: actionType) {
         ...state,
         user: action.payload,
       };
-      
+
     case SET_USER:
       return {
         ...state,
         user: action.payload,
       };
-      
+
     case SET_ACCOUNT:
       return {
         ...state,
         account: action.payload,
       };
-      
+
     case LOG_OUT:
       return {
         ...state,
         account: action.payload,
         user: action.payload,
       };
-      
+
     case FETCH_CVU:
       return {
         ...state,
         cvuAsociate: action.payload,
       };
-      
+
     case SET_TOKEN:
       return {
         ...state,
         token: action.payload,
       };
-      
+
     case GET_EMAIL:
       return {
         ...state,
@@ -84,7 +84,7 @@ export default function rootReducer(state = initialState, action: actionType) {
           },
         ],
       };
-      
+
     case GET_DETAILS:
       return {
         ...state,
@@ -93,31 +93,31 @@ export default function rootReducer(state = initialState, action: actionType) {
           email: action.payload.email,
         },
       };
-      
+
     case GET_NAME:
       return {
         ...state,
         nameDetail: action.payload.user,
       };
-      
+
     case SET_ERROR:
       return {
         ...state,
         errors: action.payload,
       };
-      
+
     case SET_LOADING_TRUE:
       return {
         ...state,
         loading: true,
       };
-      
+
     case SET_LOADING_FALSE:
       return {
         ...state,
         loading: false,
       };
-      
+
     case REMOVE_CONTACT:
       const newContacts = state.Contacts.filter(
         contact => contact.email !== action.payload,
@@ -125,7 +125,7 @@ export default function rootReducer(state = initialState, action: actionType) {
       return {
         ...state,
         Contacts: newContacts,
-      }
+      };
 
     case CLEAR_ERRORS:
       return {
