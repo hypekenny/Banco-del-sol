@@ -68,7 +68,7 @@ export function register(user: userType, password: string) {
         if (error.code === 'auth/email-already-in-use') {
           dispatch({
             type: SET_ERROR,
-            payload: 'El email ingresado ya está registrado',
+            payload: 'El email ya está registrado',
           });
         } else {
           dispatch({
@@ -101,7 +101,6 @@ export function login(email: string, password: string) {
                 },
               )
               .then(responseFromBack => {
-                console.log(responseFromBack);
                 dispatch({
                   type: SET_ACCOUNT,
                   payload: responseFromBack.data.account,
@@ -118,7 +117,7 @@ export function login(email: string, password: string) {
               .catch(error => {
                 dispatch({
                   type: SET_ERROR,
-                  payload: 'Ocurrió un error con el servidor de autenticación',
+                  payload: 'Ocurrió un error con el servidor',
                 });
                 console.error(error);
               });
@@ -155,7 +154,7 @@ export function login(email: string, password: string) {
         }
         dispatch({
           type: SET_ERROR,
-          payload: 'Ocurrió un error con el servidor de autenticación',
+          payload: 'Ocurrió un error de red',
         });
         console.error(error);
       });
@@ -174,6 +173,10 @@ export function logout() {
         });
       })
       .catch(error => {
+        dispatch({
+          type: SET_ERROR,
+          payload: 'No se pudo cerrar sesión',
+        });
         console.error(error);
       });
   };
@@ -238,7 +241,6 @@ export function addFunds(
         });
       })
       .catch(error => {
-        console.log('ACTIONS');
         dispatch({
           type: SET_ERROR,
           payload: 'El usuario no se ha encontrado',
