@@ -13,10 +13,17 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { Icon } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import { styles } from './HomeStyles';
-import { setLoadingFalse, updateAccount, logout } from '../../../redux/actions';
+import {
+  setLoadingFalse,
+  updateAccount,
+  logout,
+  cleanErrors,
+} from '../../../redux/actions';
 import { Props, RootState } from '../../../types/Types';
 import colors from '../../../constants/colors';
+import { ErrorStyle } from '../../../constants/ErrorStyle';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();
@@ -25,8 +32,36 @@ export const Home = ({ navigation }: Props) => {
   const accountStore = useSelector((state: RootState) => state.account);
   const userStore = useSelector((state: RootState) => state.user);
   const token = useSelector((state: RootState) => state.token);
+  const error = useSelector((state: RootState) => state.errors);
   const dispatch = useDispatch();
   const [burger, setBurger] = useState(false);
+  const [state, setState] = useState(false);
+
+  /*   if (error.length) {
+    dispatch(setLoadingFalse());
+    setState(true);
+    /*   setTimeout(() => {
+      dispatch(cleanErrors());
+    }, 3000); 
+  } */
+
+  useEffect(() => {
+    if (error.length) {
+      dispatch(setLoadingFalse());
+      setState(true);
+    }
+  }, [error.length]);
+  /* 
+  const hideAlert = () => {
+    setState(false);
+    dispatch(cleanErrors());
+  };
+
+
+  function errorPress() {
+    dispatch(cleanErrors());
+  }
+ */
 
   const [ing, setIng] = useState(0);
   const [gast, setGast] = useState(0);
@@ -57,6 +92,7 @@ export const Home = ({ navigation }: Props) => {
     setGast(totalOutgoings);
     return;
   }, [accountStore, userStore.email]);
+
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -181,15 +217,14 @@ export const Home = ({ navigation }: Props) => {
               }}
             />
           </TouchableWithoutFeedback>
-          ;
         </View>
       ) : null}
       <View>
         <LinearGradient
           style={styles.header}
           colors={[colors.primary, colors.secondary]}
-          start={{ x: 0, y: 1 }}
-          end={{ x: 0, y: 0 }}
+          // start={{ x: 0, y: 1 }}
+          // end={{ x: 0, y: 0 }}
         />
         <View style={styles.title}>
           <Text style={styles.textTitle}>Hola {userStore.name}</Text>
@@ -201,6 +236,40 @@ export const Home = ({ navigation }: Props) => {
           <Ionicons style={styles.icon} name="menu" size={28} color="white" />
         </TouchableOpacity>
       </View>
+
+      <View
+        style={{
+          marginTop: '100%',
+          zIndex: 100,
+          position: 'absolute',
+          width: '100%',
+        }}
+      >
+        <AwesomeAlert
+          show={state}
+          showProgress={false}
+          title={error}
+          closeOnTouchOutside={false}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton={true}
+          confirmText="Aceptar"
+          confirmButtonColor="#ff4b6e"
+          onConfirmPressed={() => {
+            setState(false);
+            dispatch(cleanErrors());
+          }}
+        />
+      </View>
+
+      {/* {error.length ? (
+        <View style={ErrorStyle.errorView}>
+          <TouchableOpacity onPress={errorPress}>
+            <Text style={ErrorStyle.errorText}>{error}</Text>
+          </TouchableOpacity>
+        </View>
+      ) : null} */}
+
       <View style={styles.view1}>
         <Text style={{ fontSize: 20, fontWeight: '100', color: '#3b3b3b' }}>
           Balance
@@ -244,7 +313,7 @@ export const Home = ({ navigation }: Props) => {
             onPress={() => navigation.push('AddFunds')}
             style={styles.bottonRecargar}
           >
-            <Ionicons style={styles.styleIcon} name="add-circle" size={28} />
+            <Ionicons style={styles.styleIcon1} name="add-circle" size={28} />
             <Text style={styles.bottonTextR}>Recargar Dinero</Text>
           </TouchableOpacity>
         </View>

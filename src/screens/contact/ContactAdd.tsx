@@ -210,7 +210,6 @@ export const ContactAdd = ({ navigation }: Props) => {
         <LinearGradient
           style={styles.ellipse}
           colors={[colors.primary, colors.secondary]}
-          end={[1, 1]}
         />
       </View>
     </ScrollView>

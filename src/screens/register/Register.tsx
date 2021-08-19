@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
   Picker,
 } from 'react-native';
 import Select from 'react-select-native';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { Entypo, AntDesign } from '@expo/vector-icons';
@@ -44,6 +45,8 @@ export function Register({ navigation }: Props) {
   const userStore = useSelector((state: resFromBack) => state.user);
   const loading = useSelector((state: RootState) => state.loading);
   const error = useSelector((state: RootState) => state.errors);
+
+  const [state, setState] = useState(false);
 
   const FormSchema = Yup.object().shape({
     name: Yup.string().required('Debe ingresar un nombre!'),
@@ -206,24 +209,30 @@ export function Register({ navigation }: Props) {
     dispatch(setLoadingTrue());
   }
 
+  useEffect(() => {
+    if (error.length) {
+      setState(true);
+    }
+  }, [error.length]);
+
   if (error.length) {
     dispatch(setLoadingFalse());
-    setTimeout(() => {
-      dispatch(cleanErrors());
-    }, 3000);
   }
+
+
+
+
   return (
     <View style={styles.view}>
       <LoadingFull show={loading} />
-      {error.length ? (
+      {/* {error.length ? (
         <View style={ErrorStyle.errorView}>
           <Text style={ErrorStyle.errorText}>{error}</Text>
         </View>
-      ) : null}
+      ) : null} */}
       <LinearGradient
         style={styles.header}
         colors={[colors.primary, colors.secondary]}
-        end={[1, 1]}
       />
       <View style={styles.title}>
         <Text style={styles.textTitle}>Registro</Text>
@@ -240,6 +249,30 @@ export function Register({ navigation }: Props) {
       >
         <AntDesign name="arrowleft" size={35} color="white" />
       </TouchableOpacity>
+      <View
+        style={{
+          marginTop: '100%',
+          zIndex: 100,
+          position: 'absolute',
+          width: '100%',
+        }}
+      >
+        <AwesomeAlert
+          show={state}
+          showProgress={false}
+          title={error}
+          closeOnTouchOutside={false}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton={true}
+          confirmText="Aceptar"
+          confirmButtonColor="#ff4b6e"
+          onConfirmPressed={() => {
+            setState(false);
+            dispatch(cleanErrors());
+          }}
+        />
+      </View>
       {/* <View style={styles.linea1}></View>
       <View style={!step ? styles.linea2 : styles.linea2s}></View> */}
       {!step ? (

@@ -6,30 +6,45 @@ import { styles } from './TransferStyles';
 import { RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
-import { addFunds, detailContact } from '../../redux/actions';
-import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
+import {
+  addFunds,
+  cleanErrors,
+  detailContact,
+  setLoadingFalse,
+} from '../../redux/actions';
+import { ErrorStyle } from '../../constants/ErrorStyle';
+import { LoadingFull } from '../loading2/LoadingFull';
 
 export const Transfer = () => {
   const accountStore = useSelector((state: RootState) => state.account);
   const userStore = useSelector((state: RootState) => state.user);
   const token = useSelector((state: RootState) => state.token);
+  // const error = useSelector((state: RootState) => state.errors);
+  const loading = useSelector((state: RootState) => state.loading);
   const ContactDetails = useSelector(state => state.DetailTransfer);
   const dispatch = useDispatch();
+  // const [state, setState] = useState(false);
   const [data, setData] = useState({
     email: '',
     amount: 0,
     comment: '',
   });
+
   useEffect(() => {
-    {
-      ContactDetails.email
-        ? setData({ ...data, email: ContactDetails.email })
-        : null;
+    if (ContactDetails.email) {
+      setData({ ...data, email: ContactDetails.email });
     }
   }, []);
 
   return (
     <View style={styles.container}>
+      <LoadingFull show={loading} />
+      {/*   {error.length ? (
+        <View style={ErrorStyle.errorView}>
+          <Text style={ErrorStyle.errorText}>{error}</Text>
+        </View>
+      ) : null} */}
+
       <View style={{ justifyContent: 'space-between', height: '50%' }}>
         <TextInput
           placeholder="Ingresá email..."
@@ -76,17 +91,22 @@ export const Transfer = () => {
         data.email !== userStore.email ? (
           <View style={{ alignSelf: 'center', marginTop: '20%' }}>
             <TouchableOpacity
-              onPress={() =>
-                addFunds(
-                  userStore.email.toLowerCase(),
-                  data.email.toLowerCase(),
-                  'Transfer',
-                  data.amount,
-                  data.comment,
-                  token,
-                  dispatch,
-                )
-              }
+              onPress={() => {
+                dispatch(
+                  addFunds(
+                    userStore.email.toLowerCase(),
+                    data.email.toLowerCase(),
+                    'Transfer',
+                    data.amount,
+                    data.comment,
+                    token,
+                  ),
+                );
+                setData({
+                  ...data,
+                  amount: 0,
+                });
+              }}
             >
               <LinearGradient
                 style={ButtonPrimaryStyle.gradientButton}

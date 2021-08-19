@@ -69,7 +69,7 @@ export function register(user: userType, password: string) {
         if (error.code === 'auth/email-already-in-use') {
           dispatch({
             type: SET_ERROR,
-            payload: 'El email ingresado ya está registrado',
+            payload: 'El email ya está registrado',
           });
         } else {
           dispatch({
@@ -117,7 +117,7 @@ export function login(email: string, password: string) {
               .catch(error => {
                 dispatch({
                   type: SET_ERROR,
-                  payload: 'Ocurrió un error con el servidor de autenticación',
+                  payload: 'Ocurrió un error con el servidor',
                 });
                 console.error(error);
               });
@@ -154,7 +154,7 @@ export function login(email: string, password: string) {
         }
         dispatch({
           type: SET_ERROR,
-          payload: 'Ocurrió un error con el servidor de autenticación',
+          payload: 'Ocurrió un error de red',
         });
         console.error(error);
       });
@@ -173,6 +173,10 @@ export function logout() {
         });
       })
       .catch(error => {
+        dispatch({
+          type: SET_ERROR,
+          payload: 'No se pudo cerrar sesión',
+        });
         console.error(error);
       });
   };
@@ -218,31 +222,32 @@ export function addFunds(
   value: number,
   comment: string,
   token: string,
-  dispatch: any,
 ) {
-  axios
-    .post(
-      `http://localhost:3001/api/account`,
-      { senderEmail, receiverEmail, type, value, comment },
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
+  return dispatch => {
+    axios
+      .post(
+        `http://localhost:3001/api/account`,
+        { senderEmail, receiverEmail, type, value, comment },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
         },
-      },
-    )
-    .then(response => {
-      dispatch({
-        type: SET_ACCOUNT,
-        payload: response.data,
+      )
+      .then(response => {
+        dispatch({
+          type: SET_ACCOUNT,
+          payload: response.data,
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: SET_ERROR,
+          payload: 'El usuario no se ha encontrado',
+        });
+        console.error(error);
       });
-    })
-    .catch(error => {
-      dispatch({
-        type: SET_ERROR,
-        payload: 'El usuario no se ha encontrado',
-      });
-      console.error(error);
-    });
+  };
 }
 
 export const getEmail =
