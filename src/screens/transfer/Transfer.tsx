@@ -19,36 +19,32 @@ export const Transfer = () => {
   const accountStore = useSelector((state: RootState) => state.account);
   const userStore = useSelector((state: RootState) => state.user);
   const token = useSelector((state: RootState) => state.token);
-  const error = useSelector((state: RootState) => state.errors);
+  // const error = useSelector((state: RootState) => state.errors);
   const loading = useSelector((state: RootState) => state.loading);
   const ContactDetails = useSelector(state => state.DetailTransfer);
   const dispatch = useDispatch();
+  // const [state, setState] = useState(false);
   const [data, setData] = useState({
     email: '',
     amount: 0,
     comment: '',
   });
+
   useEffect(() => {
     if (ContactDetails.email) {
       setData({ ...data, email: ContactDetails.email });
     }
   }, []);
 
-  if (error.length) {
-    dispatch(setLoadingFalse());
-    setTimeout(() => {
-      dispatch(cleanErrors());
-    }, 3000);
-  }
-
   return (
     <View style={styles.container}>
       <LoadingFull show={loading} />
-      {error.length ? (
+      {/*   {error.length ? (
         <View style={ErrorStyle.errorView}>
           <Text style={ErrorStyle.errorText}>{error}</Text>
         </View>
-      ) : null}
+      ) : null} */}
+
       <View style={{ justifyContent: 'space-between', height: '50%' }}>
         <TextInput
           placeholder="Ingresá email..."
