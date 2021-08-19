@@ -148,7 +148,7 @@ export function login(email: string, password: string) {
         if (error.code === 'auth/invalid-email') {
           dispatch({
             type: SET_ERROR,
-            payload: 'Ingrese un mail válido',
+            payload: 'Ingrese un email válido',
           });
           return;
         }
