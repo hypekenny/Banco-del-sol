@@ -26,8 +26,8 @@ export const Login = ({ navigation }: Props) => {
   const [state, setState] = useState(false);
 
   const [user, setUser] = useState({
-    email: 'ferro@hotmail.com',
-    password: '123QWE&',
+    email: '',
+    password: '',
     amount: 0,
   });
 
