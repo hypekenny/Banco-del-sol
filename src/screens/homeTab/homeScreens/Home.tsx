@@ -93,7 +93,6 @@ export const Home = ({ navigation }: Props) => {
     return;
   }, [accountStore, userStore.email]);
 
-
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       {burger ? (
