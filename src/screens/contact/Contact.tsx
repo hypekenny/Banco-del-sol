@@ -35,8 +35,8 @@ export const Contact = ({ navigation }: Props) => {
   function filterSearch(text) {
     setText(text);
     const newData = contact.filter(function (item) {
-      const itemData = item.name;
-      const textData = text;
+      const itemData = item.name.toUpperCase();
+      const textData = text.toUpperCase();
       console.log('itemData', itemData, 'textData', textData);
 
       return itemData.indexOf(textData) > -1;
@@ -73,6 +73,7 @@ export const Contact = ({ navigation }: Props) => {
       </View>
       <TextInput
         style={styles.textInput}
+        placeholder="Nombre del tu contacto"
         onChangeText={search => filterSearch(search)}
         value={text}
       />
