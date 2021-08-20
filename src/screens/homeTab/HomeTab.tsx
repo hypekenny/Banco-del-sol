@@ -7,7 +7,6 @@ import { Icon } from 'react-native-elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Transactions } from '../transacciones/Transactions';
-import { Account } from '../account/Account';
 import { Statistics } from '../statistics/Statistics';
 import { Home } from './homeScreens/Home';
 
@@ -27,9 +26,6 @@ const screensOptions = (route: any, color: string) => {
       break;
     case 'Estadisticas':
       iconName = 'trending-up';
-      break;
-    case 'Mi Cuenta':
-      iconName = 'bank';
       break;
     default:
       iconName = '';
@@ -82,21 +78,6 @@ export const HomeTab = () => {
       <Tab.Screen
         name="Estadisticas"
         component={Statistics}
-        options={{
-          headerTintColor: 'white',
-          headerBackground: () => (
-            <LinearGradient
-              colors={['#ff4b6e', '#ff9349']}
-              style={{ flex: 1 }}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Mi Cuenta"
-        component={Account}
         options={{
           headerTintColor: 'white',
           headerBackground: () => (
