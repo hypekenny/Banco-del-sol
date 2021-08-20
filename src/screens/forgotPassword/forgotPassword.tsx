@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { AntDesign } from '@expo/vector-icons';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import { styles } from './ForgotPasswordStyles';
@@ -14,10 +15,10 @@ import {
   setLoadingFalse,
   setLoadingTrue,
 } from '../../redux/actions';
-import { RootState } from '../../types/Types';
+import { Props, RootState } from '../../types/Types';
 import { LoadingFull } from '../loading2/LoadingFull';
 
-export function ForgotPassword() {
+export function ForgotPassword({ navigation }: Props) {
   const [email, setEmail] = useState('');
 
   const error = useSelector((state: RootState) => state.errors);
@@ -38,7 +39,6 @@ export function ForgotPassword() {
 
   function handlePress(e: string) {
     dispatch(resetPass(e));
-    dispatch(setLoadingTrue());
   }
 
   if (error.length || succeed) {
@@ -47,6 +47,28 @@ export function ForgotPassword() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.headerOne}>
+        <LinearGradient
+          style={styles.header}
+          colors={[colors.primary, colors.secondary]}
+        />
+        <View style={styles.title}>
+          <Text style={styles.textTitle}>Resetear contraseña</Text>
+        </View>
+        <TouchableOpacity
+          style={styles.back}
+          onPress={() => {
+            navigation.push('Login');
+          }}
+        >
+          <AntDesign
+            name="arrowleft"
+            size={35}
+            color="white"
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+      </View>
       {/* <View style={styles.prueba}></View> */}
       {/* <View style={styles.prueba1}></View> */}
       <LoadingFull show={loading} />
