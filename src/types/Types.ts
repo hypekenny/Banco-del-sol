@@ -13,6 +13,7 @@ export type loginStackParamList = {
   RegisterV2: undefined;
   HomeTab: undefined;
   Account: undefined;
+  AccountEdit: undefined;
   AddFunds: undefined;
   Transfer: undefined;
   Transactions: undefined;
@@ -82,8 +83,8 @@ interface balanceType {
 }
 
 export type transactionType = {
-  sender_email: string;
-  receiver_email: string;
+  senderEmail: string;
+  receiverEmail: string;
   type: string;
   value: number;
   date: Date;
@@ -100,6 +101,11 @@ export interface RootState {
   user: userType;
   token: string;
   loading: boolean;
+  errors: string;
+  Contacts: Object;
+  nameDetail: string;
+  message: string;
+  succeed: boolean;
 }
 
 export type errors = {
