@@ -19,7 +19,6 @@ export function Account({ navigation }: Props) {
   function copyToClipboard() {
     Clipboard.setString(accountDetails.cvu);
     setState(true);
-    //alert('CVU copiado al portapapeles');
   }
 
   function editAccount() {
