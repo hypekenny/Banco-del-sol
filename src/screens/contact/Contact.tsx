@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -15,20 +15,36 @@ type Props = {
 };
 
 export const Contact = ({ navigation }: Props) => {
+  const [contactos, setContactos] = useState<Object>([{ name: '', email: '' }]);
+
+  const [text, setText] = useState<String>('');
   const dispatch = useDispatch();
   const contact = useSelector(state => state.Contacts);
   function clear() {
     navigation.push('HomeTab');
     dispatch(detailContact('', ''));
   }
-
-  function remove(Email) {
-    console.log(Email);
-  }
+  useEffect(() => {
+    setContactos(contact);
+  }, [contact]);
 
   function detailsfn(email: string, name: string) {
     navigation.push('ContactDetails');
     dispatch(detailContact(email, name));
+  }
+  function filterSearch(text) {
+    setText(text);
+    const newData = contact.filter(function (item) {
+      const itemData = item.name;
+      const textData = text;
+      console.log('itemData', itemData, 'textData', textData);
+
+      return itemData.indexOf(textData) > -1;
+    });
+    setContactos(newData);
+    if (text.length === 0) {
+      setContactos(contact);
+    }
   }
 
   return (
@@ -55,7 +71,11 @@ export const Contact = ({ navigation }: Props) => {
           />
         </TouchableOpacity>
       </View>
-      <TextInput style={styles.textInput} />
+      <TextInput
+        style={styles.textInput}
+        onChangeText={search => filterSearch(search)}
+        value={text}
+      />
       <View style={styles.viewbtn}>
         <TouchableOpacity onPress={() => navigation.push('ContactAdd')}>
           <Ionicons
@@ -68,7 +88,7 @@ export const Contact = ({ navigation }: Props) => {
         </TouchableOpacity>
       </View>
 
-      {contact.map((contacto: string) => {
+      {contactos.map((contacto: string) => {
         return contacto.name ? (
           <View>
             <TouchableOpacity
