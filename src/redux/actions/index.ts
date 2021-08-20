@@ -182,6 +182,27 @@ export function logout() {
   };
 }
 
+export function resetPass(email: string) {
+  return (dispatch: any) => {
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        dispatch({
+          type: SET_USER,
+          payload: {},
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: SET_ERROR,
+          payload: 'Debes ingresar un email válido',
+        });
+        console.error(error);
+      });
+  };
+}
+
 export function setLoadingTrue() {
   return (dispatch: any) => {
     dispatch({
