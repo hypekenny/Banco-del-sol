@@ -19,6 +19,7 @@ export const SET_LOADING_FALSE = 'SET_LOADING_FALSE';
 export const REMOVE_CONTACT = 'REMOVE_CONTACT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const SET_MESSAGE = 'SET_MESSAGE';
+export const SET_SUCCEED = 'SET_SUCCEED';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -189,17 +190,38 @@ export function resetPass(email: string) {
       .sendPasswordResetEmail(email)
       .then(() => {
         dispatch({
-          type: SET_USER,
-          payload: {},
+          type: SET_SUCCEED,
+          payload: true,
         });
       })
       .catch(error => {
-        dispatch({
-          type: SET_ERROR,
-          payload: 'Debes ingresar un email válido',
-        });
+        if (error.code === 'auth/invalid-email') {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'Ingrese un email válido',
+          });
+        } else if (error.code === 'auth/user-not-found') {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'El email no está registrado',
+          });
+        } else {
+          dispatch({
+            type: SET_ERROR,
+            payload: 'Ocurrió un error con el servidor',
+          });
+        }
         console.error(error);
       });
+  };
+}
+
+export function resetSucceed() {
+  return (dispatch: any) => {
+    dispatch({
+      type: SET_SUCCEED,
+      payload: false,
+    });
   };
 }
 
