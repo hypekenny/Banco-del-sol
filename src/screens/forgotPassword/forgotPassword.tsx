@@ -1,23 +1,20 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import firebase from 'firebase';
 import React, { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import { styles } from './ForgotPasswordStyles';
 import colors from '../../constants/colors';
+import { resetPass } from '../../redux/actions';
 
 export function ForgotPassword() {
   const [email, setEmail] = useState('');
 
-  async function handlePress(e: string) {
-    try {
-      await firebase.auth().sendPasswordResetEmail(e);
-      alert('Revisa tu email para resetear tu contraseña');
-    } catch (error) {
-      alert('Debes ingresar un email válido');
-      console.error(error);
-    }
+  const dispatch = useDispatch();
+
+  function handlePress(e: string) {
+    dispatch(resetPass(e));
   }
 
   return (
