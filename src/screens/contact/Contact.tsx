@@ -9,6 +9,7 @@ import { loginStackParamList } from '../../types/Types';
 import { styles } from './ContactStyles';
 import { detailContact, RemoveContact } from '../../redux/actions';
 import colors from '../../constants/colors';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
@@ -16,6 +17,8 @@ type Props = {
 
 export const Contact = ({ navigation }: Props) => {
   const [contactos, setContactos] = useState<Object>([{ name: '', email: '' }]);
+  const [state, setState] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
 
   const [text, setText] = useState<String>('');
   const dispatch = useDispatch();
@@ -26,12 +29,14 @@ export const Contact = ({ navigation }: Props) => {
   }
   useEffect(() => {
     setContactos(contact);
+    setShowAlert(false);
   }, [contact]);
 
   function detailsfn(email: string, name: string) {
     navigation.push('ContactDetails');
     dispatch(detailContact(email, name));
   }
+
   function filterSearch(text) {
     setText(text);
     const newData = contact.filter(function (item) {
@@ -45,6 +50,15 @@ export const Contact = ({ navigation }: Props) => {
     if (text.length === 0) {
       setContactos(contact);
     }
+  }
+
+  function deleteContact(email: string) {
+    if (!showAlert) {
+      setShowAlert(true);
+      setState(email);
+      return;
+    }
+    dispatch(RemoveContact(state));
   }
 
   return (
@@ -88,7 +102,36 @@ export const Contact = ({ navigation }: Props) => {
           <Text style={styles.textBtn}>Agregar</Text>
         </TouchableOpacity>
       </View>
-
+      <View
+        style={{
+          alignSelf: 'center',
+          zIndex: 100,
+          position: 'absolute',
+          width: '100%',
+        }}
+      >
+        <AwesomeAlert
+          show={showAlert}
+          showProgress={false}
+          title="¿Estas seguro/a que quieres eliminar este contacto?"
+          closeOnTouchOutside={false}
+          closeOnHardwareBackPress={false}
+          showCancelButton={true}
+          showConfirmButton={true}
+          confirmText="Aceptar"
+          cancelText="Cancelar"
+          confirmButtonColor="#4ca64c"
+          cancelButtonColor="#ff4b6e"
+          onConfirmPressed={() => {
+            deleteContact();
+            setState('');
+          }}
+          onCancelPressed={() => {
+            setShowAlert(false);
+            setState('');
+          }}
+        />
+      </View>
       {contactos.map((contacto: string) => {
         return contacto.name ? (
           <View>
@@ -97,7 +140,10 @@ export const Contact = ({ navigation }: Props) => {
               style={styles.BTNBox}
             >
               <TouchableOpacity
-                onPress={() => dispatch(RemoveContact(contacto.email))}
+                onPress={
+                  () => deleteContact(contacto.email)
+                  // dispatch(RemoveContact(contacto.email))
+                }
                 style={styles.BTNRemove}
               >
                 <View key={contacto.email}>
