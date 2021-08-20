@@ -124,6 +124,7 @@ export const Main = () => (
       name="ForgotPassword"
       component={ForgotPassword}
       options={{
+        headerShown: false,
         headerTitle: 'Cambia tu contraseña',
         headerBackground: () => (
           <LinearGradient
