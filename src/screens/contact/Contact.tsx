@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useSelector, useDispatch } from 'react-redux';
@@ -55,7 +55,7 @@ export const Contact = ({ navigation }: Props) => {
           />
         </TouchableOpacity>
       </View>
-
+      <TextInput style={styles.textInput} />
       <View style={styles.viewbtn}>
         <TouchableOpacity onPress={() => navigation.push('ContactAdd')}>
           <Ionicons

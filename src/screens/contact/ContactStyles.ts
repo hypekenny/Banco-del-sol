@@ -139,4 +139,12 @@ export const styles = StyleSheet.create({
     marginTop: 15,
     alignItems: 'flex-start',
   },
+  textInput: {
+    height: 30,
+    borderWidth: 1,
+    borderColor: '#cecece',
+    marginTop: 5,
+    marginBottom: 10,
+    marginHorizontal: 10,
+  },
 });
