@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, Dimensions } from 'react-native';
 import { YAxis, XAxis, Grid, BarChart } from 'react-native-svg-charts';
 import * as scale from 'd3-scale';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../types/Types';
 import { ButtonPrimaryStyle, styles } from './StatisticsStyles';
 import colors from '../../constants/colors';
 
@@ -18,7 +20,48 @@ interface tDatosX {
 interface Pressed {
   [key: string]: any;
 }
+interface transactionType {
+  sender_email: string;
+  receiver_email: string;
+  type: string;
+  value: number;
+  date: Date;
+}
+
+interface balanceType {
+  amount: number;
+  history: Array<transactionType>;
+}
+const EJEMPLO: balanceType = {
+  amount: 50,
+  history: [
+    {
+      sender_email: 'pepe@mail.com',
+      receiver_email: 'yo@mail.com',
+      type: 'algo',
+      value: 15,
+      date: new Date(2021, 7, 18),
+    },
+    {
+      sender_email: 'pepe@mail.com',
+      receiver_email: 'yo@mail.com',
+      type: 'algo',
+      value: -35,
+      date: new Date(2021, 6, 31).toString(),
+    },
+    {
+      sender_email: 'pepe@mail.com',
+      receiver_email: 'yo@mail.com',
+      type: 'algo',
+      value: -25,
+      date: new Date(2021, 5, 30).toString(),
+    },
+  ],
+};
 export const Statistics = () => {
+  const userAccount: balanceType = useSelector(
+    (state: RootState) => state.account.balance,
+  );
   const [muestro, setMuestro] = useState<string>('Nothing');
   const handleButton = (elec: string) => {
     setMuestro(elec);
@@ -118,21 +161,182 @@ export const Statistics = () => {
   useEffect(() => {
     // CARGO LOS DATOS DESDE LA API Y PROCESO PARA GUARDAR EN DATOSX Y DATOSY.
     // PROVISORIAMENTE SE INVENTAN ESTOS DATOS
-    setDatosY({
-      ...datosY,
-      Diario: [13, 23, 10, 25, 1, 13, 17],
-      Mensual: [20, 10, 11, 7, 10, 24],
-      Semanal: [12, 29, 28, 7, 29, 9, 22],
-    });
+    // setDatosY({
+    //   ...datosY,
+    //   Diario: [13, 23, 10, 25, 1, 13, 17],
+    //   Mensual: [20, 10, 11, 7, 10, 24],
+    //   Semanal: [12, 29, 28, 7, 29, 9, 22],
+    // });
     // setDatosX({...datosX,
     // Diario:['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'],
     // Mensual:['ENE','FEB','MAR','ABR','MAY','JUN'],
     // Semanal:['10/12','17/12','24/12','29/12','30/12','5/12','12/11','10/12','17/12','24/12','29/12','30/12']})
 
     getX();
+    getY(userAccount);
+    // getY(EJEMPLO);
     handleButton('Diario');
   }, []);
+  const getY = (userAccountF: balanceType) => {
+    let moves: transactionType[] = [];
+    let diarioBalance = [];
+    let semBalance = [];
+    let mesBalance = [];
+    let timeMove;
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const diarioMoves = [0, 0, 0, 0, 0, 0];
+    const semMoves = [0, 0, 0, 0, 0, 0];
+    const mesMoves = [0, 0, 0, 0, 0];
 
+    // ----Esto es para sacar la fecha del último lunes con hora 00
+    let dlun = now.getDay() - 1;
+    if (dlun < 0) dlun = 6;
+    const t2 = new Date(now.getTime() - dlun * 24 * 3600 * 1000);
+    const ultLunes = new Date(t2.getFullYear(), t2.getMonth(), t2.getDate());
+
+    // Esto es para sacar la fecha del primer dia de hace 6 meses con hora 00
+    let mesZero = now.getMonth() - 5;
+    let AniomesZero = now.getFullYear();
+    if (mesZero < 0) {
+      mesZero = 12 + mesZero;
+      AniomesZero -= 1;
+    }
+    const comienzoMes = new Date(AniomesZero, mesZero, 1);
+    const arrFechasMeses = [new Date(AniomesZero, mesZero, 1)];
+    // eslint-disable-next-line no-plusplus
+    for (let i = 1; i < 6; i++) {
+      let mesArr = arrFechasMeses[arrFechasMeses.length - 1].getMonth() + i;
+      let AnArr = arrFechasMeses[arrFechasMeses.length - 1].getFullYear();
+      if (mesArr > 11) {
+        mesArr = 0;
+        AnArr += 1;
+      }
+      arrFechasMeses.unshift(new Date(AnArr, mesArr, 1));
+    }
+    arrFechasMeses.reverse();
+
+    if (userAccountF !== undefined) {
+      moves = userAccountF.history.filter(
+        el => Date.parse(el.date.toString()) >= comienzoMes.getTime(),
+      );
+      diarioBalance = [userAccountF.amount];
+      semBalance = [userAccountF.amount];
+      mesBalance = [userAccountF.amount];
+    } else {
+      moves = [];
+      diarioBalance = [0];
+      semBalance = [0];
+      mesBalance = [0];
+    }
+    while (moves.length > 0) {
+      const el = moves.pop();
+      if (el !== undefined) {
+        if (el.date instanceof Date) timeMove = el.date.getTime();
+        else timeMove = Date.parse(el.date);
+        // Obtengo los movimientos diarios
+        const difDiario: number = timeMove - today.getTime();
+        if (difDiario >= 0 && difDiario < 24 * 3600 * 1000) {
+          diarioMoves[5] += el.value;
+        } else if (difDiario >= -24 * 3600 * 1000 && difDiario < 0) {
+          diarioMoves[4] += el.value;
+        } else if (
+          difDiario >= -2 * 24 * 3600 * 1000 &&
+          difDiario < -24 * 3600 * 1000
+        ) {
+          diarioMoves[3] += el.value;
+        } else if (
+          difDiario >= -3 * 24 * 3600 * 1000 &&
+          difDiario < -2 * 24 * 3600 * 1000
+        ) {
+          diarioMoves[2] += el.value;
+        } else if (
+          difDiario >= -4 * 24 * 3600 * 1000 &&
+          difDiario < -3 * 24 * 3600 * 1000
+        ) {
+          diarioMoves[1] += el.value;
+        } else if (
+          difDiario >= -5 * 24 * 3600 * 1000 &&
+          difDiario < -4 * 24 * 3600 * 1000
+        ) {
+          diarioMoves[0] += el.value;
+        }
+
+        // Obtengo los movimientos semanales
+        const difSem: number = timeMove - ultLunes.getTime();
+        if (difSem >= 0 && difSem < 7 * 24 * 3600 * 1000) {
+          semMoves[5] += el.value;
+        } else if (difSem >= -7 * 24 * 3600 * 1000 && difSem < 0) {
+          semMoves[4] += el.value;
+        } else if (
+          difSem >= -2 * 7 * 24 * 3600 * 1000 &&
+          difSem < -7 * 24 * 3600 * 1000
+        ) {
+          semMoves[3] += el.value;
+        } else if (
+          difSem >= -3 * 7 * 24 * 3600 * 1000 &&
+          difSem < -2 * 7 * 24 * 3600 * 1000
+        ) {
+          semMoves[2] += el.value;
+        } else if (
+          difSem >= -4 * 7 * 24 * 3600 * 1000 &&
+          difSem < -3 * 7 * 24 * 3600 * 1000
+        ) {
+          semMoves[1] += el.value;
+        } else if (
+          difSem >= -5 * 7 * 24 * 3600 * 1000 &&
+          difSem < -4 * 7 * 24 * 3600 * 1000
+        ) {
+          semMoves[0] += el.value;
+        }
+
+        // Obtengo los movimientos mensuales
+        if (timeMove - arrFechasMeses[5].getTime() >= 0) {
+          mesMoves[4] += el.value;
+        } else if (
+          timeMove - arrFechasMeses[4].getTime() >= 0 &&
+          timeMove - arrFechasMeses[5].getTime() < 0
+        ) {
+          mesMoves[3] += el.value;
+        } else if (
+          timeMove - arrFechasMeses[3].getTime() >= 0 &&
+          timeMove - arrFechasMeses[4].getTime() < 0
+        ) {
+          mesMoves[2] += el.value;
+        } else if (
+          timeMove - arrFechasMeses[2].getTime() >= 0 &&
+          timeMove - arrFechasMeses[3].getTime() < 0
+        ) {
+          mesMoves[1] += el.value;
+        } else if (
+          timeMove - arrFechasMeses[1].getTime() >= 0 &&
+          timeMove - arrFechasMeses[2].getTime() < 0
+        ) {
+          mesMoves[0] += el.value;
+        }
+      }
+    }
+
+    // eslint-disable-next-line no-plusplus
+    for (let i = 5; i >= 0; i--) {
+      diarioBalance.push(
+        -diarioMoves[i] + diarioBalance[diarioBalance.length - 1],
+      );
+      semBalance.push(-semMoves[i] + semBalance[semBalance.length - 1]);
+      if (i < 5)
+        mesBalance.push(-mesMoves[i] + mesBalance[mesBalance.length - 1]);
+    }
+
+    diarioBalance.reverse();
+    semBalance.reverse();
+    mesBalance.reverse();
+    setDatosY({
+      ...datosY,
+      Diario: diarioBalance,
+      Mensual: mesBalance,
+      Semanal: semBalance,
+    });
+  };
   const getX = () => {
     const MENSUAL = [
       'ENE',
