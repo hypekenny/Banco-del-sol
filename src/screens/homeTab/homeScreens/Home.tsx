@@ -23,7 +23,6 @@ import {
 } from '../../../redux/actions';
 import { Props, RootState } from '../../../types/Types';
 import colors from '../../../constants/colors';
-import { ErrorStyle } from '../../../constants/ErrorStyle';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();
@@ -37,37 +36,17 @@ export const Home = ({ navigation }: Props) => {
   const [burger, setBurger] = useState(false);
   const [state, setState] = useState(false);
 
-  /*   if (error.length) {
-    dispatch(setLoadingFalse());
-    setState(true);
-    /*   setTimeout(() => {
-      dispatch(cleanErrors());
-    }, 3000); 
-  } */
-
   useEffect(() => {
     if (error.length) {
       dispatch(setLoadingFalse());
       setState(true);
     }
   }, [error.length]);
-  /* 
-  const hideAlert = () => {
-    setState(false);
-    dispatch(cleanErrors());
-  };
-
-
-  function errorPress() {
-    dispatch(cleanErrors());
-  }
- */
 
   const [ing, setIng] = useState(0);
   const [gast, setGast] = useState(0);
 
   useEffect(() => {
-    /*  Al mes hay que sumarle 1 porque por default en react native Enero es 0 */
     const date = new Date();
     const month = date.toLocaleString('default', { month: 'short' });
 
@@ -92,7 +71,6 @@ export const Home = ({ navigation }: Props) => {
     setGast(totalOutgoings);
     return;
   }, [accountStore, userStore.email]);
-
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -252,7 +230,7 @@ export const Home = ({ navigation }: Props) => {
           closeOnTouchOutside={false}
           closeOnHardwareBackPress={false}
           showCancelButton={false}
-          showConfirmButton={true}
+          showConfirmButton
           confirmText="Aceptar"
           confirmButtonColor="#ff4b6e"
           onConfirmPressed={() => {
@@ -261,15 +239,6 @@ export const Home = ({ navigation }: Props) => {
           }}
         />
       </View>
-
-      {/* {error.length ? (
-        <View style={ErrorStyle.errorView}>
-          <TouchableOpacity onPress={errorPress}>
-            <Text style={ErrorStyle.errorText}>{error}</Text>
-          </TouchableOpacity>
-        </View>
-      ) : null} */}
-
       <View style={styles.view1}>
         <Text style={{ fontSize: 20, fontWeight: '100', color: '#3b3b3b' }}>
           Balance
