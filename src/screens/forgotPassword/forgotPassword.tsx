@@ -8,15 +8,8 @@ import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import { styles } from './ForgotPasswordStyles';
 import colors from '../../constants/colors';
-import {
-  cleanErrors,
-  resetPass,
-  resetSucceed,
-  setLoadingFalse,
-  setLoadingTrue,
-} from '../../redux/actions';
+import { cleanErrors, resetPass, resetSucceed } from '../../redux/actions';
 import { Props, RootState } from '../../types/Types';
-import { LoadingFull } from '../loading2/LoadingFull';
 
 export function ForgotPassword({ navigation }: Props) {
   const [email, setEmail] = useState('');
@@ -24,8 +17,6 @@ export function ForgotPassword({ navigation }: Props) {
   const error = useSelector((state: RootState) => state.errors);
 
   const succeed = useSelector((state: RootState) => state.succeed);
-
-  const loading = useSelector((state: RootState) => state.loading);
 
   const [state, setState] = useState(false);
 
@@ -39,10 +30,6 @@ export function ForgotPassword({ navigation }: Props) {
 
   function handlePress(e: string) {
     dispatch(resetPass(e));
-  }
-
-  if (error.length || succeed) {
-    dispatch(setLoadingFalse());
   }
 
   return (
@@ -71,7 +58,6 @@ export function ForgotPassword({ navigation }: Props) {
       </View>
       {/* <View style={styles.prueba}></View> */}
       {/* <View style={styles.prueba1}></View> */}
-      <LoadingFull show={loading} />
       <View
         style={{
           alignSelf: 'center',
