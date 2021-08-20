@@ -47,7 +47,6 @@ export function Account({ navigation }: Props) {
           confirmButtonColor="#ff4b6e"
           onConfirmPressed={() => {
             setState(false);
-            setState(false);
           }}
         />
       </View>
