@@ -14,6 +14,7 @@ import {
   REMOVE_CONTACT,
   CLEAR_ERRORS,
   SET_MESSAGE,
+  SET_SUCCEED,
 } from '../actions/index';
 
 interface actionType {
@@ -32,6 +33,7 @@ const initialState = {
   errors: '',
   loading: false,
   message: '',
+  succeed: false,
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -138,6 +140,11 @@ export default function rootReducer(state = initialState, action: actionType) {
       return {
         ...state,
         message: action.payload,
+      };
+    case SET_SUCCEED:
+      return {
+        ...state,
+        succeed: action.payload,
       };
     default:
       return state;
