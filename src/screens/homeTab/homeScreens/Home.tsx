@@ -57,7 +57,7 @@ export const Home = ({ navigation }: Props) => {
     let totalIncomings: number = 0;
     let totalOutgoings: number = 0;
 
-    accountStore.balance.history.map(e => {
+    accountStore.balance.history.forEach(e => {
       const transactionMonthString = e.date.toString().split(' ')[1];
       if (transactionMonthString === month) {
         if (e.receiverEmail === userStore.email) {
@@ -70,7 +70,6 @@ export const Home = ({ navigation }: Props) => {
     });
     setIng(totalIncomings);
     setGast(totalOutgoings);
-    return;
   }, [accountStore, userStore.email]);
 
   return (
