@@ -31,7 +31,7 @@ export const ContactAdd = ({ navigation }: Props) => {
   const contacts = useSelector<RootState>(state => state.Contacts);
   const idToken = useSelector<RootState>(state => state.token);
   const userEmail = useSelector<RootState>(state => state.account.email);
-  const nameUser = useSelector<RootState>(state => state.nameDetail);
+  let nameUser = useSelector<RootState>(state => state.nameDetail);
   const errorEmail = useSelector<RootState>(state => state.message);
 
   function askName() {
@@ -39,6 +39,7 @@ export const ContactAdd = ({ navigation }: Props) => {
       if (contacts[i].email === email) setMsgContact(true);
     }
   }
+
   if (msgContact) {
     setTimeout(() => {
       setMsgContact(false);
@@ -81,11 +82,25 @@ export const ContactAdd = ({ navigation }: Props) => {
 
   useEffect(() => {
     setStep(true);
+    // dispatch(getName('', ''));
+    nameUser = '';
   }, []);
-
   function callName() {
     askName();
     setShowInput(false);
+    if (nameUser) {
+      setName(nameUser);
+      setTimeout(() => {
+        if (nameUser) {
+          setShowInput(true);
+          setMsg(true);
+        }
+
+        setTimeout(() => {
+          setMsg(false);
+        }, 2000);
+      }, 500);
+    }
     if (!msgContact) {
       dispatch(getName(email, idToken));
     }
@@ -105,21 +120,14 @@ export const ContactAdd = ({ navigation }: Props) => {
   }
 
   // BackAndClear se encarga de volver a "Contact" y limpiar todos los estados
-  // console.log(nameUser, 'nameUser');
-  // console.log(name, 'name');
-  // console.log(email, 'email');
+
   function BackAndClear() {
     setEmail('');
-    dispatch(detailContact('', ''));
     setName('');
+    dispatch(detailContact('', ''));
     setStep(false);
     setMsgError(false);
     dispatch(RemoveError());
-    // console.log(nameUser, 'nameUser');
-    // console.log(name, 'name');
-    // console.log(email, 'email');
-    // console.log();
-    // console.log();
     navigation.push('Contact');
   }
 

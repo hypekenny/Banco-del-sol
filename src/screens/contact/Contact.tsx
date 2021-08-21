@@ -42,7 +42,6 @@ export const Contact = ({ navigation }: Props) => {
     const newData = contact.filter(function (item) {
       const itemData = item.name.toUpperCase();
       const textData = text.toUpperCase();
-      console.log('itemData', itemData, 'textData', textData);
 
       return itemData.indexOf(textData) > -1;
     });
@@ -102,36 +101,42 @@ export const Contact = ({ navigation }: Props) => {
           <Text style={styles.textBtn}>Agregar</Text>
         </TouchableOpacity>
       </View>
-      <View
-        style={{
-          alignSelf: 'center',
-          zIndex: 100,
-          position: 'absolute',
-          width: '100%',
-        }}
-      >
-        <AwesomeAlert
-          show={showAlert}
-          showProgress={false}
-          title="¿Estas seguro/a que quieres eliminar este contacto?"
-          closeOnTouchOutside={false}
-          closeOnHardwareBackPress={false}
-          showCancelButton={true}
-          showConfirmButton={true}
-          confirmText="Aceptar"
-          cancelText="Cancelar"
-          confirmButtonColor="#4ca64c"
-          cancelButtonColor="#ff4b6e"
-          onConfirmPressed={() => {
-            deleteContact();
-            setState('');
+
+      {showAlert ? (
+        <View
+          style={{
+            alignSelf: 'center',
+            zIndex: 100,
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            // marginTop: '87.9%',
+            // background:
           }}
-          onCancelPressed={() => {
-            setShowAlert(false);
-            setState('');
-          }}
-        />
-      </View>
+        >
+          <AwesomeAlert
+            show={showAlert}
+            showProgress={false}
+            title="¿Estas seguro/a que quieres eliminar este contacto?"
+            closeOnTouchOutside={false}
+            closeOnHardwareBackPress={false}
+            showCancelButton={true}
+            showConfirmButton={true}
+            confirmText="Aceptar"
+            cancelText="Cancelar"
+            confirmButtonColor="#4ca64c"
+            cancelButtonColor="#ff4b6e"
+            onConfirmPressed={() => {
+              deleteContact();
+              setState('');
+            }}
+            onCancelPressed={() => {
+              setShowAlert(false);
+              setState('');
+            }}
+          />
+        </View>
+      ) : null}
       {contactos.map((contacto: string) => {
         return contacto.name ? (
           <View>

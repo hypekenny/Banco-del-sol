@@ -332,8 +332,6 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
       },
     })
     .then(details => {
-      console.log('details', details);
-
       const { name, lastName } = details.data;
       dispatch({
         type: SET_MESSAGE,
