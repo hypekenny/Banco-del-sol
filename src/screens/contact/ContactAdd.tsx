@@ -4,10 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
-import { detailContact, getEmail, getName } from '../../redux/actions';
+import {
+  detailContact,
+  getEmail,
+  getName,
+  RemoveError,
+} from '../../redux/actions';
 import { styles } from './ContactAddStyles';
-import { loginStackParamList } from '../../types/Types';
+import { loginStackParamList, RootState } from '../../types/Types';
 import colors from '../../constants/colors';
+import { ScrollView } from 'react-native-gesture-handler';
 
 type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
@@ -19,15 +25,34 @@ export const ContactAdd = ({ navigation }: Props) => {
   const [name, setName] = useState<String>('');
   const [step, setStep] = useState<boolean>(false);
   const [msg, setMsg] = useState<boolean>(false);
-  const idToken = useSelector(state => state.token);
-  const userEmail = useSelector(state => state.account.email);
-  const nameUser = useSelector(state => state.nameDetail);
+  const [showInput, setShowInput] = useState<boolean>(false);
+  const [msgContact, setMsgContact] = useState<boolean>(false);
+  const [msgError, setMsgError] = useState<boolean>(false);
+  const contacts = useSelector<RootState>(state => state.Contacts);
+  const idToken = useSelector<RootState>(state => state.token);
+  const userEmail = useSelector<RootState>(state => state.account.email);
+  const nameUser = useSelector<RootState>(state => state.nameDetail);
+  const errorEmail = useSelector<RootState>(state => state.message);
 
+  function askName() {
+    for (let i = 0; i < contacts.length; i++) {
+      if (contacts[i].email === email) setMsgContact(true);
+    }
+  }
+  if (msgContact) {
+    setTimeout(() => {
+      setMsgContact(false);
+      setShowInput(false);
+      setMsg(false);
+      setName('');
+    }, 3000);
+  }
   useEffect(() => {
     if (step) {
       setName(nameUser);
       setTimeout(() => {
         if (nameUser) {
+          setShowInput(true);
           setMsg(true);
         }
 
@@ -41,13 +66,30 @@ export const ContactAdd = ({ navigation }: Props) => {
   }, [nameUser]);
 
   useEffect(() => {
+    // En el caso  de el email no se encuentre en la DB el estado MsgError se coloca true , de esta forma muestra el msg y el input pasa a false para no ser visible i/o utilizable
+    if (errorEmail.length > 5) {
+      setMsgError(true);
+      setShowInput(false);
+
+      setTimeout(() => {
+        //  Despues de dos segundos el mensaje se quita pasando el estado a false
+        setMsgError(false);
+        dispatch(RemoveError());
+      }, 2000);
+    }
+  }, [errorEmail]);
+
+  useEffect(() => {
     setStep(true);
   }, []);
 
-  // CallName manda a buscar un email  si lo encuentra te da su nombre.
-
   function callName() {
-    dispatch(getName(email, idToken));
+    askName();
+    setShowInput(false);
+    if (!msgContact) {
+      dispatch(getName(email, idToken));
+    }
+
     if (!msg) {
       setName(nameUser);
     }
@@ -59,98 +101,125 @@ export const ContactAdd = ({ navigation }: Props) => {
     dispatch(getEmail(email, idToken, name));
     setEmail('');
     setName('');
+    setShowInput(false);
   }
 
   // BackAndClear se encarga de volver a "Contact" y limpiar todos los estados
-
+  // console.log(nameUser, 'nameUser');
+  // console.log(name, 'name');
+  // console.log(email, 'email');
   function BackAndClear() {
     setEmail('');
     dispatch(detailContact('', ''));
     setName('');
     setStep(false);
+    setMsgError(false);
+    dispatch(RemoveError());
+    // console.log(nameUser, 'nameUser');
+    // console.log(name, 'name');
+    // console.log(email, 'email');
+    // console.log();
+    // console.log();
     navigation.push('Contact');
   }
 
   return (
-    <View style={styles.container}>
-      {/* HEADER */}
-      <View style={styles.headerOne}>
-        <LinearGradient
-          style={styles.header}
-          colors={[colors.primary, colors.secondary]}
-          end={[1, 1]}
-        />
-
-        <View style={styles.title}>
-          <Text style={styles.textTitle}>Agregar Contactos</Text>
-        </View>
-
-        <TouchableOpacity
-          style={styles.back}
-          onPress={() => {
-            BackAndClear();
-          }}
-        >
-          <AntDesign
-            name="arrowleft"
-            size={35}
-            color="white"
-            style={styles.icon}
+    <ScrollView scrollEnabled={false}>
+      <View style={styles.container}>
+        {/* HEADER */}
+        <View style={styles.headerOne}>
+          <LinearGradient
+            style={styles.header}
+            colors={[colors.primary, colors.secondary]}
+            end={[1, 1]}
           />
-        </TouchableOpacity>
-      </View>
-      {/* FIN HEADER */}
-      <TextInput
-        onChangeText={setEmail}
-        value={email}
-        placeholder="Email de tu contacto"
-        style={styles.input}
-      />
-      {/* BOTON BUSCAR */}
-      {email && email !== userEmail ? (
-        <TouchableOpacity onPress={() => callName()} style={styles.button}>
-          <Text style={styles.search}>BUSCAR</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity style={styles.buttondisabled} disabled>
-          <Text style={styles.searchDisable}>BUSCAR</Text>
-        </TouchableOpacity>
-      )}
 
-      {/* INPUT NAME */}
+          <View style={styles.title}>
+            <Text style={styles.textTitle}>Agregar Contactos</Text>
+          </View>
 
-      {name.length > 2 ? (
-        <TextInput
-          onChangeText={setName}
-          value={name}
-          placeholder="Nombre de tu contacto"
-          style={styles.inputTwo}
-        />
-      ) : null}
-
-      {msg ? (
-        <View style={styles.msgText}>
-          <Text style={styles.TextAdd}>!Se ha encontrado un usario!</Text>
+          <TouchableOpacity
+            style={styles.back}
+            onPress={() => {
+              BackAndClear();
+            }}
+          >
+            <AntDesign
+              name="arrowleft"
+              size={35}
+              color="white"
+              style={styles.icon}
+            />
+          </TouchableOpacity>
         </View>
-      ) : null}
+        {/* FIN HEADER */}
+        <TextInput
+          onChangeText={setEmail}
+          value={email}
+          placeholder="Email de tu contacto"
+          style={styles.input}
+        />
+        {/* BOTON BUSCAR */}
+        {email && email !== userEmail ? (
+          <TouchableOpacity onPress={() => callName()} style={styles.button}>
+            <Text style={styles.search}>BUSCAR</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.buttondisabled} disabled>
+            <Text style={styles.searchDisable}>BUSCAR</Text>
+          </TouchableOpacity>
+        )}
 
-      {name.length > 2 ? (
-        <TouchableOpacity
-          onPress={() => AddFriend(email, idToken, name)}
-          style={styles.buttonAdd}
-        >
-          <Text style={styles.TextAdd}>AGREGAR CONTACTO</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity style={styles.buttonAddDisable} disabled>
-          <Text style={styles.TextAdd}>AGREGAR CONTACTO</Text>
-        </TouchableOpacity>
-      )}
-      <LinearGradient
-        style={styles.ellipse}
-        colors={[colors.primary, colors.secondary]}
-        end={[1, 1]}
-      />
-    </View>
+        {/* INPUT NAME */}
+
+        {showInput === true && msgContact === false ? (
+          <TextInput
+            onChangeText={setName}
+            value={name}
+            placeholder="Nombre de tu contacto"
+            style={styles.inputTwo}
+          />
+        ) : null}
+
+        {msg && msgContact === false ? (
+          <View style={styles.msgText}>
+            <Text style={styles.TextAdd}>¡Se ha encontrado un usuario!</Text>
+          </View>
+        ) : null}
+
+        {msgContact ? (
+          <View style={styles.msgTextUser}>
+            <Text style={styles.TextAdd}>
+              ¡Este usuario se encuentra en tus contactos!
+            </Text>
+          </View>
+        ) : null}
+
+        {msgError ? (
+          <View style={styles.msgTextUser}>
+            <Text style={styles.TextAdd}>
+              ¡Este usuario no se encuentra registrado!
+            </Text>
+          </View>
+        ) : null}
+
+        {name && msgContact === false ? (
+          <TouchableOpacity
+            onPress={() => AddFriend(email, idToken, name)}
+            style={styles.buttonAdd}
+          >
+            <Text style={styles.TextAdd}>AGREGAR CONTACTO</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.buttonAddDisable} disabled>
+            <Text style={styles.TextAdd}>AGREGAR CONTACTO</Text>
+          </TouchableOpacity>
+        )}
+        <LinearGradient
+          style={styles.ellipse}
+          colors={[colors.primary, colors.secondary]}
+        />
+      </View>
+    </ScrollView>
   );
 };

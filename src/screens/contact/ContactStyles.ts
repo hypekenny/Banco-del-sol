@@ -8,28 +8,20 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginTop: 50,
   },
+
   Box: {
     flex: 1,
-    // backgroundColor: '#000',
-    marginTop: 25,
-    marginBottom: 25,
+    // marginTop: 15,
+    marginBottom: 40,
     borderRadius: 10,
     alignSelf: 'center',
     textAlign: 'center',
     width: '80%',
-
-    // shadowColor: 'red',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 7,
-    // },
-    // shadowOpacity: 0.25,
-    // shadowRadius: 26,
-    // elevation: 14,
   },
+
   BTNBox: {
     flex: 1,
-    backgroundColor: '#FFFFF',
+    backgroundColor: '#fff',
     borderColor: `${colors.primary}`,
     borderWidth: 1,
     marginTop: 50,
@@ -48,17 +40,20 @@ export const styles = StyleSheet.create({
     shadowRadius: 26,
     elevation: 14,
   },
+
   textBoxName: {
     color: '#000',
     fontSize: 25,
     fontWeight: '600',
   },
+
   textBoxEmail: { color: '#000', fontSize: 20, fontWeight: '100' },
   header: {
     height: 70,
     width: '100%',
     marginTop: '-3%',
   },
+
   title: {
     height: 70,
     justifyContent: 'center',
@@ -68,8 +63,8 @@ export const styles = StyleSheet.create({
     top: 0,
     marginTop: '-1%',
     width: '30%',
-    // backgroundColor: 'red',
   },
+
   textTitle: {
     position: 'absolute',
     left: 5,
@@ -78,8 +73,8 @@ export const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '500',
     width: '180%',
-    // backgroundColor: 'blue',
   },
+
   back: {
     position: 'absolute',
     height: 70,
@@ -89,14 +84,16 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   headerOne: { backgroundColor: '#000', marginTop: '-10%' },
+
   icon: { marginTop: '-30%' },
 
   viewbtn: {
     borderRadius: 15,
     borderWidth: 1,
     width: '40%',
-    height: '7.5%',
+    height: 60,
     alignSelf: 'center',
     textAlign: 'center',
     marginTop: '15%',
@@ -112,6 +109,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 26,
     elevation: 14,
   },
+
   iconAdd: { width: '15%', marginTop: '6.5%', marginLeft: '10%' },
   textBtn: {
     color: colors.primary,
@@ -120,18 +118,35 @@ export const styles = StyleSheet.create({
     marginRight: '-8%',
     fontWeight: '600',
   },
+
   TextDescription: {
-    // backgroundColor: '#76767680',
     textAlign: 'justify',
     color: '#767676de',
     fontSize: 25,
     fontWeight: '100',
   },
+
   ViewDescription: {
-    // backgroundColor: '#000',
     width: '90%',
-    // position: 'absolute',
     alignSelf: 'center',
     marginTop: '50%',
+  },
+
+  BTNRemove: {
+    // backgroundColor: '#000',
+    width: '10%',
+    marginLeft: 15,
+    marginTop: 15,
+    alignItems: 'flex-start',
+  },
+  textInput: {
+    height: 40,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: colors.primary,
+    marginTop: 10,
+    marginBottom: 10,
+    marginHorizontal: 10,
+    paddingHorizontal: 10,
   },
 });
