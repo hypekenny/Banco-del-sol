@@ -2,12 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
-import {
-  Divider,
-  SearchBar,
-  ListItem,
-  ButtonGroup,
-} from 'react-native-elements';
+import { Divider, ButtonGroup } from 'react-native-elements';
 import { RootState } from '../../types/Types';
 import { styles } from './TransactionsStyles';
 import { Card } from '../../components/TransactionCard';
