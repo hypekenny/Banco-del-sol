@@ -105,6 +105,7 @@ export interface RootState {
   Contacts: Object;
   nameDetail: string;
   message: string;
+  succeed: boolean;
 }
 
 export type errors = {

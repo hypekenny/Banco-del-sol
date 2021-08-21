@@ -105,13 +105,21 @@ export const ContactAdd = ({ navigation }: Props) => {
   }
 
   // BackAndClear se encarga de volver a "Contact" y limpiar todos los estados
-
+  // console.log(nameUser, 'nameUser');
+  // console.log(name, 'name');
+  // console.log(email, 'email');
   function BackAndClear() {
     setEmail('');
     dispatch(detailContact('', ''));
     setName('');
     setStep(false);
     setMsgError(false);
+    dispatch(RemoveError());
+    // console.log(nameUser, 'nameUser');
+    // console.log(name, 'name');
+    // console.log(email, 'email');
+    // console.log();
+    // console.log();
     navigation.push('Contact');
   }
 

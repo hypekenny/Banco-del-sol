@@ -35,6 +35,8 @@ export const Home = ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const [burger, setBurger] = useState(false);
   const [state, setState] = useState(false);
+  const [ing, setIng] = useState(0);
+  const [gast, setGast] = useState(0);
 
   useEffect(() => {
     if (error.length) {
@@ -43,12 +45,11 @@ export const Home = ({ navigation }: Props) => {
     }
   }, [error.length]);
 
-  const [ing, setIng] = useState(0);
-  const [gast, setGast] = useState(0);
-
   useEffect(() => {
     const date = new Date();
-    const month = date.toLocaleString('default', { month: 'short' });
+    const month = date.toLocaleString('default', {
+      month: 'short',
+    }); /* Con esto consigo el nombre del mes actual abreviado. Ej: Jan, Feb, March... */
 
     if (accountStore.balance.history.length === 0) {
       return setIng(0);
@@ -201,8 +202,6 @@ export const Home = ({ navigation }: Props) => {
         <LinearGradient
           style={styles.header}
           colors={[colors.primary, colors.secondary]}
-          // start={{ x: 0, y: 1 }}
-          // end={{ x: 0, y: 0 }}
         />
         <View style={styles.title}>
           <Text style={styles.textTitle}>Hola {userStore.name}</Text>
@@ -275,7 +274,6 @@ export const Home = ({ navigation }: Props) => {
           </View>
         </View>
       </View>
-      {/* style={styles.view3} */}
       <View style={styles.view3}>
         <View>
           <TouchableOpacity
