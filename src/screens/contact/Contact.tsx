@@ -93,7 +93,7 @@ export const Contact = ({ navigation }: Props) => {
       />
       <TextInput
         style={styles.textInput}
-        placeholder="Nombre del tu contacto"
+        placeholder="Nombre de tu contacto"
         onChangeText={search => filterSearch(search)}
         value={text}
       />

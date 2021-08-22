@@ -93,7 +93,7 @@ export const styles = StyleSheet.create({
   button: {
     zIndex: 80,
     width: '40%',
-    height: '5%',
+    height: '8%',
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 20,
@@ -117,7 +117,7 @@ export const styles = StyleSheet.create({
   buttondisabled: {
     zIndex: 80,
     width: '40%',
-    height: '5%',
+    height: '8%',
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 20,
@@ -156,7 +156,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: '-10%',
+    marginTop: '-5%',
   },
 
   searchDisable: {
@@ -166,7 +166,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: '-10%',
+    marginTop: '-5%',
   },
   ellipse: {
     position: 'absolute',

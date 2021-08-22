@@ -215,7 +215,7 @@ export const styles = StyleSheet.create({
     marginLeft: 10,
   },
   burgerTextLogout: {
-    color: 'red',
+    color: '#F53D3D',
     fontSize: 20,
     fontWeight: 'bold',
     alignSelf: 'center',

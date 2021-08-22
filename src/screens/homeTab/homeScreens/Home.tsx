@@ -177,7 +177,7 @@ export const Home = ({ navigation }: Props) => {
                     type="material-community"
                     name="logout"
                     size={27}
-                    color="red"
+                    color="#F53D3D"
                     style={{ marginLeft: 20 }}
                   />
                   <Text style={styles.burgerTextLogout}>Cerrar sesion</Text>
