@@ -1,22 +1,52 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { Divider, ButtonGroup } from 'react-native-elements';
 import { RootState } from '../../types/Types';
 import { styles } from './TransactionsStyles';
-import { Card } from '../../components/TransactionCard';
+import { Card } from './TransactionCard';
+import { TransactionList } from './TransactionList';
 
-export function Transactions() {
+export function Transactions(props) {
   const account = useSelector((state: RootState) => state.account);
   const [state, setState] = useState([]);
   const [buttonFilterIndex, setButtonFilterIndex] = useState(0);
   const [buttonOrderIndex, setButtonOrderIndex] = useState(0);
 
+  useEffect(
+    () =>
+      props.navigation.addListener('focus', () => {
+        if (account) {
+          console.log('focused');
+          console.log('ESTO ES HISTORY 0', account.balance.history[0]);
+          // setState(account.balance.history);
+          setButtonFilterIndex(0);
+          setButtonOrderIndex(0);
+          filterAndOrder();
+        }
+      }),
+    [],
+  );
+
+  useEffect(
+    () =>
+      props.navigation.addListener('blur', () => {
+        if (account) {
+          console.log('blur');
+          setState([]);
+          setButtonFilterIndex(0);
+          setButtonOrderIndex(0);
+        }
+      }),
+    [],
+  );
+
   useEffect(() => {
+    console.log('entre al use effect');
     if (account) {
-      console.log('account useeffect');
-      setState(account.balance.history);
+      console.log('focused');
+      // setState(account.balance.history);
       setButtonFilterIndex(0);
       setButtonOrderIndex(0);
       filterAndOrder();
@@ -35,10 +65,13 @@ export function Transactions() {
       buttonFilterIndex,
       'order index ',
       buttonOrderIndex,
+      'state lenght',
+      state.length,
     );
     if (buttonFilterIndex === 0) {
       if (buttonOrderIndex === 0) {
         const aux = [...account.balance.history].reverse();
+        console.log('entre correctamente');
         setState(aux);
       }
       if (buttonOrderIndex === 1) {
@@ -70,57 +103,62 @@ export function Transactions() {
         setState(filteredAux);
       }
     }
+    // if (state.length > 0) {
+
+    // }
   };
 
-  const renderItem = ({ item }) => (
-    <Card
-      type={item.type}
-      value={item.value}
-      date={new Date(item.date)}
-      styles={styles}
-      sender={item.senderEmail}
-      receiver={item.receiverEmail}
-      user={account.email}
-    />
-  );
+  // const renderItem = ({ item }) => (
+  //   <Card
+  //     type={item.type}
+  //     value={item.value}
+  //     date={new Date(item.date)}
+  //     styles={styles}
+  //     sender={item.senderEmail}
+  //     receiver={item.receiverEmail}
+  //     user={account.email}
+  //     expanded={false}
+  //   />
+  // );
 
-  const header = () => {
-    return (
-      <View>
-        <Text style={styles.textheader}>Ultimas Transacciones: </Text>
-        <Divider orientation="vertical" />
-      </View>
-    );
-  };
+  // const header = () => {
+  //   return (
+  //     <View>
+  //       <Text style={styles.textheader}>Ultimas Transacciones: </Text>
+  //       <Divider orientation="vertical" />
+  //     </View>
+  //   );
+  // };
 
-  const emptyList = () => {
-    return (
-      <Text style={styles.texttype}>Aun no tienes ninguna transaccion.</Text>
-    );
-  };
+  // const emptyList = () => {
+  //   return (
+  //     <Text style={styles.texttype}>Aun no tienes ninguna transaccion.</Text>
+  //   );
+  // };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      <Text style={styles.textGeneral}>Filtrar por: </Text>
       <ButtonGroup
         onPress={setButtonFilterIndex}
         selectedIndex={buttonFilterIndex}
         buttons={['Todo', 'Recarga', 'Transfer']}
         containerStyle={{ height: 'auto', padding: 2 }}
         buttonContainerStyle={{ backgroundColor: '#ff9349' }}
+        selectedButtonStyle={{ backgroundColor: '#ff4b6e' }}
+        textStyle={{ color: 'white' }}
       />
+      <Text style={styles.textGeneral}>Ordenar por: </Text>
       <ButtonGroup
         onPress={setButtonOrderIndex}
         selectedIndex={buttonOrderIndex}
         buttons={['Mas recientes', 'Mas antiguos']}
         containerStyle={{ height: 'auto', padding: 2 }}
         buttonContainerStyle={{ backgroundColor: '#ff9349' }}
+        selectedButtonStyle={{ backgroundColor: '#ff4b6e' }}
+        textStyle={{ color: 'white' }}
       />
-      <FlatList
-        ListHeaderComponent={header}
-        ListEmptyComponent={emptyList}
-        data={state}
-        renderItem={renderItem}
-      />
-    </View>
+      <TransactionList data={state} email={account.email} />
+    </ScrollView>
   );
 }

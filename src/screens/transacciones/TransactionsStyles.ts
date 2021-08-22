@@ -117,4 +117,11 @@ export const styles = StyleSheet.create({
     marginTop: 'auto',
     marginBottom: 'auto',
   },
+  textGeneral: {
+    fontSize: 20,
+    fontWeight: '800',
+    textAlign: 'center',
+    marginTop: 5,
+    marginBottom: 2,
+  },
 });
