@@ -71,7 +71,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     left: 5,
     top: 15,
-    fontSize: 18,
+    fontSize: 20,
     color: 'white',
     fontWeight: '500',
     width: '180%',
@@ -79,17 +79,18 @@ export const styles = StyleSheet.create({
 
   back: {
     position: 'absolute',
-    height: 70,
+    height: 40,
     width: 70,
     left: 0,
-    top: 0,
+    top: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    // backgroundColor: '#000',
   },
 
   headerOne: { backgroundColor: '#000', marginTop: '-10%' },
 
-  icon: { marginTop: '-30%' },
+  // icon: { marginTop: '-30%' },
 
   viewbtn: {
     zIndex: 80,
