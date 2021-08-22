@@ -5,6 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Icon } from 'react-native-elements';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { loginStackParamList } from '../../types/Types';
 import { styles } from './ContactStyles';
 import { detailContact, RemoveContact } from '../../redux/actions';
@@ -37,13 +38,20 @@ export const Contact = ({ navigation }: Props) => {
     const newData = contact.filter(function (item) {
       const itemData = item.name.toUpperCase();
       const textData = text.toUpperCase();
-      console.log('itemData', itemData, 'textData', textData);
 
       return itemData.indexOf(textData) > -1;
     });
     setContactos(newData);
     if (text.length === 0) {
       setContactos(contact);
+    }
+  }
+
+  function alertremove(email: email) {
+    let info = confirm('¿Estas seguro/a que quieres eliminar este contacto?');
+    if (info) {
+      dispatch(RemoveContact(email));
+      return;
     }
   }
 
@@ -71,21 +79,33 @@ export const Contact = ({ navigation }: Props) => {
           />
         </TouchableOpacity>
       </View>
+      {/* <AntDesign
+        name="search"
+        size={28}
+        color={colors.primary}
+        style={styles.searchIcon}
+      /> */}
+      <FontAwesome5
+        name="search"
+        size={24}
+        color={colors.primary}
+        style={styles.searchIcon}
+      />
       <TextInput
         style={styles.textInput}
-        placeholder="Nombre del tu contacto"
+        placeholder="Nombre de tu contacto"
         onChangeText={search => filterSearch(search)}
         value={text}
       />
       <View style={styles.viewbtn}>
         <TouchableOpacity onPress={() => navigation.push('ContactAdd')}>
           <Ionicons
-            name="ios-person-add-outline"
+            name="ios-person-add-sharp"
             size={24}
             color={colors.primary}
             style={styles.iconAdd}
           />
-          <Text style={styles.textBtn}>Agregar</Text>
+          {/* <Text style={styles.textBtn}>Agregar</Text> */}
         </TouchableOpacity>
       </View>
 
@@ -97,7 +117,11 @@ export const Contact = ({ navigation }: Props) => {
               style={styles.BTNBox}
             >
               <TouchableOpacity
-                onPress={() => dispatch(RemoveContact(contacto.email))}
+                onPress={
+                  () => alertremove(contacto.email)
+                  // deleteContact(contacto.email)
+                  // dispatch(RemoveContact(contacto.email))
+                }
                 style={styles.BTNRemove}
               >
                 <View key={contacto.email}>

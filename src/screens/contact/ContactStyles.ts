@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
   },
 
   Box: {
+    zIndex: 70,
     flex: 1,
     // marginTop: 15,
     marginBottom: 40,
@@ -20,6 +21,7 @@ export const styles = StyleSheet.create({
   },
 
   BTNBox: {
+    zIndex: 70,
     flex: 1,
     backgroundColor: '#fff',
     borderColor: `${colors.primary}`,
@@ -69,7 +71,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     left: 5,
     top: 15,
-    fontSize: 18,
+    fontSize: 20,
     color: 'white',
     fontWeight: '500',
     width: '180%',
@@ -77,25 +79,32 @@ export const styles = StyleSheet.create({
 
   back: {
     position: 'absolute',
-    height: 70,
+    height: 40,
     width: 70,
     left: 0,
-    top: 0,
+    top: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    // backgroundColor: '#000',
   },
 
   headerOne: { backgroundColor: '#000', marginTop: '-10%' },
 
-  icon: { marginTop: '-30%' },
+  // icon: { marginTop: '-30%' },
 
   viewbtn: {
-    borderRadius: 15,
+    zIndex: 80,
+    position: 'fixed',
+    // top: 0,
+    // left: 0,
+    right: 20,
+    bottom: 20,
+    borderRadius: 100,
     borderWidth: 1,
-    width: '40%',
+    width: 60,
     height: 60,
-    alignSelf: 'center',
-    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginTop: '15%',
 
     borderColor: colors.primary,
@@ -110,7 +119,11 @@ export const styles = StyleSheet.create({
     elevation: 14,
   },
 
-  iconAdd: { width: '15%', marginTop: '6.5%', marginLeft: '10%' },
+  iconAdd: {
+    width: '15%',
+    // marginTop: '6.5%',
+    // marginLeft: '10%',
+  },
   textBtn: {
     color: colors.primary,
     fontSize: 20,
@@ -141,12 +154,21 @@ export const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
+    width: '75%',
+    marginLeft: 55,
     borderRadius: 15,
     borderWidth: 1,
     borderColor: colors.primary,
-    marginTop: 10,
+    marginTop: -30,
     marginBottom: 10,
     marginHorizontal: 10,
     paddingHorizontal: 10,
+  },
+  searchIcon: {
+    marginTop: 15,
+    width: 50,
+    marginLeft: 15,
+    // alignSelf: 'center',
+    // backgroundColor: '#000',
   },
 });
