@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { styles } from './TransactionsStyles';
 
 export const Colors = {
   PRIMARY: '#1abc9c',
@@ -21,13 +22,13 @@ export const Colors = {
 };
 
 export function Card(props) {
-  // if (Platform.OS === 'android') {
-  //   UIManager.setLayoutAnimationEnabledExperimental(true);
-  // }
+  if (Platform.OS === 'android') {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
   const [expanded, setExpanded] = useState(props.expanded);
 
   const toggleExpand = () => {
-    // LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setExpanded(!expanded);
   };
 
@@ -62,13 +63,13 @@ export function Card(props) {
             }}
           >
             <View style={styles.row}>
-              <Text style={styles.textb}>Monto: </Text>
-              <Text style={styles.text}>{props.value} </Text>
+              <Text style={styles.text2}>Monto: </Text>
+              <Text style={styles.text2}>{props.value} </Text>
             </View>
 
             <View style={styles.row}>
-              <Text style={styles.textb}>Fecha: </Text>
-              <Text style={styles.text}>
+              <Text style={styles.text2}>Fecha: </Text>
+              <Text style={styles.text2}>
                 {`${props.date.getDate()}/${props.date.getMonth()}/${props.date.getFullYear()}`}{' '}
               </Text>
             </View>
@@ -79,8 +80,8 @@ export function Card(props) {
             props.sender !== props.receiver &&
             props.type === 'Transfer' ? (
               <View style={styles.row}>
-                <Text style={styles.textb}> Recibido de: </Text>
-                <Text style={styles.text}> {props.sender} </Text>
+                <Text style={styles.text2}> Recibido de: </Text>
+                <Text style={styles.text2}> {props.sender} </Text>
               </View>
             ) : null}
 
@@ -88,8 +89,8 @@ export function Card(props) {
             props.sender !== props.receiver &&
             props.type === 'Transfer' ? (
               <View style={styles.row}>
-                <Text style={styles.textb}> Enviado a: </Text>
-                <Text style={styles.text}> {props.receiver} </Text>
+                <Text style={styles.text2}> Enviado a: </Text>
+                <Text style={styles.text2}> {props.receiver} </Text>
               </View>
             ) : null}
           </View>
@@ -98,45 +99,3 @@ export function Card(props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: Colors.WHITE,
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    height: 56,
-    paddingLeft: 25,
-    paddingRight: 18,
-    alignItems: 'center',
-    // backgroundColor: '#ff4b6e',
-  },
-  parentHr: {
-    height: 2,
-    color: Colors.DARKGRAY,
-    width: '100%',
-  },
-  child: {
-    backgroundColor: Colors.WHITE,
-    padding: 16,
-  },
-  text: {
-    fontSize: 17,
-    fontWeight: '100',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    marginTop: 'auto',
-    marginBottom: 'auto',
-  },
-  textb: {
-    fontSize: 17,
-    fontWeight: 'bold',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    marginTop: 'auto',
-    marginBottom: 'auto',
-  },
-});

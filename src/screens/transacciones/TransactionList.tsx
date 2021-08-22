@@ -1,24 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, FlatList, Text } from 'react-native';
-import { Divider } from 'react-native-elements';
 import { Card } from './TransactionCard';
 import { styles } from './TransactionsStyles';
 
 export function TransactionList(props) {
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  const header = () => {
-    return (
-      <View>
-        <Text style={styles.textGeneral}>Ultimas Transacciones: </Text>
-        <Divider orientation="vertical" />
-      </View>
-    );
-  };
-
   const emptyList = () => {
     return (
-      <Text style={styles.texttype}>Aun no tienes ninguna transaccion.</Text>
+      <Text style={styles.textGeneral}>
+        Aun no tienes ninguna transaccion para mostrar.
+      </Text>
     );
   };
 
@@ -39,7 +29,6 @@ export function TransactionList(props) {
   return (
     <View>
       <FlatList
-        // ListHeaderComponent={header}
         ListEmptyComponent={emptyList}
         data={props.data}
         renderItem={renderItem}
