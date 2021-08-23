@@ -8,6 +8,13 @@ import {
   GET_EMAIL,
   GET_DETAILS,
   GET_NAME,
+  SET_ERROR,
+  SET_LOADING_TRUE,
+  SET_LOADING_FALSE,
+  REMOVE_CONTACT,
+  CLEAR_ERRORS,
+  SET_MESSAGE,
+  SET_SUCCEED,
 } from '../actions/index';
 
 interface actionType {
@@ -15,7 +22,7 @@ interface actionType {
   payload: Object;
 }
 
-const initialState = {
+export const initialState = {
   account: {},
   user: {},
   token: '',
@@ -23,6 +30,10 @@ const initialState = {
   Contacts: [],
   DetailTransfer: {},
   nameDetail: '',
+  errors: '',
+  loading: false,
+  message: '',
+  succeed: false,
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -32,34 +43,38 @@ export default function rootReducer(state = initialState, action: actionType) {
         ...state,
         user: action.payload,
       };
+
     case SET_USER:
       return {
         ...state,
         user: action.payload,
       };
+
     case SET_ACCOUNT:
       return {
         ...state,
         account: action.payload,
       };
+
     case LOG_OUT:
       return {
         ...state,
         account: action.payload,
         user: action.payload,
       };
+
     case FETCH_CVU:
       return {
         ...state,
         cvuAsociate: action.payload,
       };
+
     case SET_TOKEN:
       return {
         ...state,
         token: action.payload,
       };
     case GET_EMAIL:
-      console.log('Reducer', action.payload);
       return {
         ...state,
         Contacts: [
@@ -72,8 +87,8 @@ export default function rootReducer(state = initialState, action: actionType) {
           },
         ],
       };
+
     case GET_DETAILS:
-      console.log('GET_DETAILS', action.payload);
       return {
         ...state,
         DetailTransfer: {
@@ -81,11 +96,55 @@ export default function rootReducer(state = initialState, action: actionType) {
           email: action.payload.email,
         },
       };
+
     case GET_NAME:
-      console.log('name', action.payload);
       return {
         ...state,
-        nameDetail: action.payload,
+        nameDetail: action.payload.user,
+      };
+
+    case SET_ERROR:
+      return {
+        ...state,
+        errors: action.payload,
+      };
+
+    case SET_LOADING_TRUE:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case SET_LOADING_FALSE:
+      return {
+        ...state,
+        loading: false,
+      };
+
+    case REMOVE_CONTACT:
+      const newContacts = state.Contacts.filter(
+        contact => contact.email !== action.payload,
+      );
+      return {
+        ...state,
+        Contacts: newContacts,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        errors: '',
+      };
+
+    case SET_MESSAGE:
+      return {
+        ...state,
+        message: action.payload,
+      };
+    case SET_SUCCEED:
+      return {
+        ...state,
+        succeed: action.payload,
       };
     default:
       return state;

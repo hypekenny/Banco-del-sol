@@ -7,10 +7,8 @@ import { Icon } from 'react-native-elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Transactions } from '../transacciones/Transactions';
-import { Account } from '../account/Account';
 import { Statistics } from '../statistics/Statistics';
 import { Home } from './homeScreens/Home';
-import { Contact } from '../contact/Contact';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();
@@ -28,12 +26,6 @@ const screensOptions = (route: any, color: string) => {
       break;
     case 'Estadisticas':
       iconName = 'trending-up';
-      break;
-    case 'Mi Cuenta':
-      iconName = 'bank';
-      break;
-    case 'Contact':
-      iconName = 'contacts';
       break;
     default:
       iconName = '';
@@ -61,7 +53,6 @@ export const HomeTab = () => {
             end={{ x: 0, y: 0 }}
           />
         ),
-        headerShown: false,
       })}
     >
       <Tab.Screen
@@ -82,7 +73,6 @@ export const HomeTab = () => {
               end={{ x: 0, y: 1 }}
             />
           ),
-          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -98,39 +88,6 @@ export const HomeTab = () => {
               end={{ x: 0, y: 1 }}
             />
           ),
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="Mi Cuenta"
-        component={Account}
-        options={{
-          headerTintColor: 'white',
-          headerBackground: () => (
-            <LinearGradient
-              colors={['#ff4b6e', '#ff9349']}
-              style={{ flex: 1 }}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-            />
-          ),
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="Contact"
-        component={Contact}
-        options={{
-          headerTintColor: 'black',
-          headerBackground: () => (
-            <LinearGradient
-              colors={['#ff4b6e', '#ff9349']}
-              style={{ flex: 1 }}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-            />
-          ),
-          headerShown: false,
         }}
       />
     </Tab.Navigator>

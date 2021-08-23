@@ -8,28 +8,22 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginTop: 50,
   },
+
   Box: {
+    zIndex: 70,
     flex: 1,
-    // backgroundColor: '#000',
-    marginTop: 25,
-    marginBottom: 25,
+    // marginTop: 15,
+    marginBottom: 40,
     borderRadius: 10,
     alignSelf: 'center',
     textAlign: 'center',
     width: '80%',
-
-    // shadowColor: 'red',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 7,
-    // },
-    // shadowOpacity: 0.25,
-    // shadowRadius: 26,
-    // elevation: 14,
   },
+
   BTNBox: {
+    zIndex: 70,
     flex: 1,
-    backgroundColor: '#FFFFF',
+    backgroundColor: '#fff',
     borderColor: `${colors.primary}`,
     borderWidth: 1,
     marginTop: 50,
@@ -48,17 +42,20 @@ export const styles = StyleSheet.create({
     shadowRadius: 26,
     elevation: 14,
   },
+
   textBoxName: {
     color: '#000',
     fontSize: 25,
     fontWeight: '600',
   },
+
   textBoxEmail: { color: '#000', fontSize: 20, fontWeight: '100' },
   header: {
     height: 70,
     width: '100%',
     marginTop: '-3%',
   },
+
   title: {
     height: 70,
     justifyContent: 'center',
@@ -68,37 +65,46 @@ export const styles = StyleSheet.create({
     top: 0,
     marginTop: '-1%',
     width: '30%',
-    // backgroundColor: 'red',
   },
+
   textTitle: {
     position: 'absolute',
     left: 5,
     top: 15,
-    fontSize: 18,
+    fontSize: 20,
     color: 'white',
     fontWeight: '500',
     width: '180%',
-    // backgroundColor: 'blue',
   },
+
   back: {
     position: 'absolute',
-    height: 70,
+    height: 40,
     width: 70,
     left: 0,
-    top: 0,
+    top: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    // backgroundColor: '#000',
   },
+
   headerOne: { backgroundColor: '#000', marginTop: '-10%' },
-  icon: { marginTop: '-30%' },
+
+  // icon: { marginTop: '-30%' },
 
   viewbtn: {
-    borderRadius: 15,
+    zIndex: 80,
+    position: 'fixed',
+    // top: 0,
+    // left: 0,
+    right: 20,
+    bottom: 20,
+    borderRadius: 100,
     borderWidth: 1,
-    width: '40%',
-    height: '7.5%',
-    alignSelf: 'center',
-    textAlign: 'center',
+    width: 60,
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
     marginTop: '15%',
 
     borderColor: colors.primary,
@@ -112,7 +118,12 @@ export const styles = StyleSheet.create({
     shadowRadius: 26,
     elevation: 14,
   },
-  iconAdd: { width: '15%', marginTop: '6.5%', marginLeft: '10%' },
+
+  iconAdd: {
+    width: '15%',
+    // marginTop: '6.5%',
+    // marginLeft: '10%',
+  },
   textBtn: {
     color: colors.primary,
     fontSize: 20,
@@ -120,18 +131,44 @@ export const styles = StyleSheet.create({
     marginRight: '-8%',
     fontWeight: '600',
   },
+
   TextDescription: {
-    // backgroundColor: '#76767680',
     textAlign: 'justify',
     color: '#767676de',
     fontSize: 25,
     fontWeight: '100',
   },
+
   ViewDescription: {
-    // backgroundColor: '#000',
     width: '90%',
-    // position: 'absolute',
     alignSelf: 'center',
     marginTop: '50%',
+  },
+
+  BTNRemove: {
+    // backgroundColor: '#000',
+    width: '10%',
+    marginLeft: 15,
+    marginTop: 15,
+    alignItems: 'flex-start',
+  },
+  textInput: {
+    height: 40,
+    width: '75%',
+    marginLeft: 55,
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: colors.primary,
+    marginTop: -30,
+    marginBottom: 10,
+    marginHorizontal: 10,
+    paddingHorizontal: 10,
+  },
+  searchIcon: {
+    marginTop: 15,
+    width: 50,
+    marginLeft: 15,
+    // alignSelf: 'center',
+    // backgroundColor: '#000',
   },
 });

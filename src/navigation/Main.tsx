@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { firebaseConfig } from '../constants/firebase.config';
 import { loginStackParamList } from '../types/Types';
 import { config } from '../screens/index';
-import { Drawer } from '../screens/drawer/drawer';
+import { HomeTab } from '../screens/homeTab/HomeTab';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -16,12 +16,14 @@ const {
   Transfer,
   AddFunds,
   Account,
+  AccountEdit,
   Transactions,
   ForgotPassword,
   LoadingFull,
   ContactAdd,
   Contact,
   ContactDetails,
+  Error,
 } = config;
 
 const LoginStack = createStackNavigator<loginStackParamList>();
@@ -36,7 +38,7 @@ export const Main = () => (
     <LoginStack.Screen
       name="Login"
       component={Login}
-      options={{ headerTitle: 'Ingresar' }}
+      options={{ headerTitle: 'Ingresar', headerShown: false }}
     />
 
     <LoginStack.Screen
@@ -46,7 +48,7 @@ export const Main = () => (
     />
     <LoginStack.Screen
       name="HomeTab"
-      component={Drawer}
+      component={HomeTab}
       options={{
         headerTitle: 'Inicio',
         headerShown: false,
@@ -121,7 +123,19 @@ export const Main = () => (
     <LoginStack.Screen
       name="ForgotPassword"
       component={ForgotPassword}
-      options={{ headerTitle: 'Cambia tu contraseña' }}
+      options={{
+        headerShown: false,
+        headerTitle: 'Cambia tu contraseña',
+        headerBackground: () => (
+          <LinearGradient
+            colors={['#ff4b6e', '#ff9349']}
+            style={{ flex: 1 }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+          />
+        ),
+        headerTintColor: 'white',
+      }}
     />
 
     <LoginStack.Screen
@@ -145,7 +159,41 @@ export const Main = () => (
     <LoginStack.Screen
       name="ContactDetails"
       component={ContactDetails}
-      options={{ headerShown: true }}
+      options={{
+        headerShown: true,
+        headerTitle: 'Contacto',
+        headerTintColor: 'white',
+        headerBackground: () => (
+          <LinearGradient
+            colors={['#ff4b6e', '#ff9349']}
+            style={{ flex: 1 }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+          />
+        ),
+      }}
+    />
+
+    <LoginStack.Screen
+      name="AccountEdit"
+      component={AccountEdit}
+      options={{
+        headerTitle: 'Cambiar datos',
+        headerTintColor: 'white',
+        headerBackground: () => (
+          <LinearGradient
+            colors={['#ff4b6e', '#ff9349']}
+            style={{ flex: 1 }}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+          />
+        ),
+      }}
+    />
+    <LoginStack.Screen
+      name="Error"
+      component={Error}
+      options={{ headerShown: false }}
     />
   </LoginStack.Navigator>
 );

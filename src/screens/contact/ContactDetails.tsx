@@ -14,7 +14,6 @@ type Props = {
 
 export const ContactDetails = ({ navigation }: Props) => {
   const details = useSelector(state => state.DetailTransfer);
-  console.log(details);
 
   function toTransfer() {
     navigation.push('Transfer');

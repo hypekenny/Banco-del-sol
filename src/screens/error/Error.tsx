@@ -7,7 +7,10 @@ import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import { styles } from './ErrorStyles';
 import colors from '../../constants/colors';
 
-export function Error({ navigation }: Props) {
+export const Error = ({ navigation }: Props) => {
+  const pepe = () => {
+    navigation.push('Login');
+  };
   return (
     <View style={styles.container}>
       <View>
@@ -15,7 +18,7 @@ export function Error({ navigation }: Props) {
       </View>
       <View style={styles.containerButton}>
         <TouchableOpacity
-          onPress={() => navigation.popToTop()}
+          onPress={() => pepe()}
           style={ButtonPrimaryStyle.button}
         >
           <Text style={ButtonSecondaryStyle.text}>Volver</Text>
@@ -28,4 +31,4 @@ export function Error({ navigation }: Props) {
       />
     </View>
   );
-}
+};

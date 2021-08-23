@@ -13,6 +13,7 @@ export type loginStackParamList = {
   RegisterV2: undefined;
   HomeTab: undefined;
   Account: undefined;
+  AccountEdit: undefined;
   AddFunds: undefined;
   Transfer: undefined;
   Transactions: undefined;
@@ -21,6 +22,7 @@ export type loginStackParamList = {
   ContactAdd: undefined;
   Contact: undefined;
   ContactDetails: undefined;
+  Error: undefined;
 };
 
 export type burgerStackParamList = {
@@ -30,8 +32,8 @@ export type burgerStackParamList = {
 };
 
 export type burgerDrawerParamList = {
-  main: loginStackParamList;
-  burger: burgerStackParamList;
+  home: loginStackParamList;
+  contacts: undefined;
 };
 
 export type mainStackParamList = {
@@ -81,8 +83,8 @@ interface balanceType {
 }
 
 export type transactionType = {
-  sender_email: string;
-  receiver_email: string;
+  senderEmail: string;
+  receiverEmail: string;
   type: string;
   value: number;
   date: Date;
@@ -98,4 +100,20 @@ export interface RootState {
   account: accountType;
   user: userType;
   token: string;
+  loading: boolean;
+  errors: string;
+  Contacts: Array<contacts>;
+  nameDetail: string;
+  message: string;
+  succeed: boolean;
 }
+
+export type errors = {
+  errors: string;
+};
+
+export type contacts = {
+  name: string;
+  email: string;
+  cvu: string;
+};

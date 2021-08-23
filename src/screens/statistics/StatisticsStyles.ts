@@ -87,6 +87,13 @@ export const styles = StyleSheet.create({
     shadowRadius: 26,
     elevation: 14,
   },
+  container2: {
+    height: 0.1 * height,
+    transform: [{ translateY: 0.1 * height }],
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   ejey: {
     width: 20,
     marginRight: 5,
@@ -98,7 +105,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   bar: {
-    width: 0.7 * width,
+    width: 0.7 * width + 30,
   },
   ejex: {
     width: 0.7 * width,
@@ -154,5 +161,36 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 18,
     fontWeight: '700',
+  },
+  ejexbtn: {
+    marginLeft: 25 + 15,
+    width: 0.7 * width,
+    flexDirection: 'row',
+    flex: 1,
+  },
+  buttonejex: {
+    flex: 1,
+    height: 0.04 * height,
+    alignItems: 'center',
+    margin: 1.5,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: colors.primary,
+    backgroundColor: '#ffffff',
+    padding: 2,
+    paddingTop: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+    elevation: 14,
+  },
+  textejex: {
+    fontSize: 11.5,
+    fontWeight: '700',
+    alignSelf: 'center',
   },
 });

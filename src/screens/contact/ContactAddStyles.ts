@@ -7,11 +7,13 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     marginTop: 50,
   },
+
   header: {
     height: 70,
     width: '100%',
     marginTop: '-3%',
   },
+
   headerOne: { backgroundColor: '#000', marginTop: '-10%' },
   back: {
     position: 'absolute',
@@ -22,6 +24,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   icon: { marginTop: '-30%' },
   title: {
     height: 70,
@@ -32,8 +35,8 @@ export const styles = StyleSheet.create({
     top: 0,
     marginTop: '-1%',
     width: '30%',
-    // backgroundColor: 'red',
   },
+
   textTitle: {
     position: 'absolute',
     left: 5,
@@ -42,8 +45,8 @@ export const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '500',
     width: '180%',
-    // backgroundColor: 'blue',
   },
+
   input: {
     width: '90%',
     borderRadius: 25,
@@ -82,13 +85,15 @@ export const styles = StyleSheet.create({
     elevation: 14,
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: '5%',
+    marginTop: '50%',
     marginBottom: 10,
+    position: 'absolute',
+    alignSelf: 'center',
   },
   button: {
     zIndex: 80,
     width: '40%',
-    height: '5%',
+    height: '8%',
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 20,
@@ -112,7 +117,7 @@ export const styles = StyleSheet.create({
   buttondisabled: {
     zIndex: 80,
     width: '40%',
-    height: '5%',
+    height: '8%',
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 20,
@@ -133,15 +138,7 @@ export const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
-  search: {
-    color: colors.primary,
-    paddingLeft: 5,
-    paddingRight: 5,
-    alignSelf: 'center',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: '-8%',
-  },
+
   TextAdd: {
     color: colors.primary,
     paddingLeft: 5,
@@ -149,7 +146,17 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    // marginTop: '1%',
+    marginTop: '-2.5%',
+  },
+
+  search: {
+    color: colors.primary,
+    paddingLeft: 5,
+    paddingRight: 5,
+    alignSelf: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: '-5%',
   },
 
   searchDisable: {
@@ -159,13 +166,14 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: '-8%',
+    marginTop: '-5%',
   },
   ellipse: {
     position: 'absolute',
     zIndex: 20,
-    bottom: '-25%',
-    marginTop: '35%',
+    // bottom: '-35%',
+    marginTop: '110%',
+    // marginBottom: '-1111111111111150%',
     left: '20%',
     width: '60%',
     height: '60%',
@@ -197,10 +205,12 @@ export const styles = StyleSheet.create({
   },
   buttonAddDisable: {
     zIndex: 80,
+
     width: '70%',
     height: '8%',
     alignItems: 'center',
-    marginTop: '110%',
+    marginTop: '90%',
+    // marginBottom: '-90%',
     borderRadius: 20,
     borderWidth: 2,
     borderColor: colors.primary,
@@ -219,9 +229,14 @@ export const styles = StyleSheet.create({
     marginRight: 'auto',
   },
   msgText: {
-    // backgroundColor: '#000',
     position: 'absolute',
     alignSelf: 'center',
+    marginTop: '80%',
+  },
+  msgTextUser: {
+    position: 'absolute',
+    alignSelf: 'center',
+    textAlign: 'center',
     marginTop: '80%',
   },
 });

@@ -4,8 +4,8 @@ import colors from '../../constants/colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#fff',
   },
   container2: {
     marginTop: 55,
@@ -23,6 +23,17 @@ export const styles = StyleSheet.create({
     shadowRadius: 26,
 
     elevation: 14,
+  },
+  titleContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  header: {
+    fontSize: 29,
+    fontWeight: 'bold',
+    color: 'white',
+    justifyContent: 'center',
   },
   h1: {
     fontSize: 25,
@@ -44,6 +55,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  editButton: {
+    marginBottom: 0,
+    justifyContent: 'flex-end',
   },
   ImageAndButton: {
     flex: 1,

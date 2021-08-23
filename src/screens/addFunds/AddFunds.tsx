@@ -40,14 +40,15 @@ export const AddFunds = () => {
           <View style={{ alignSelf: 'center', marginTop: '20%' }}>
             <TouchableOpacity
               onPress={() => {
-                addFunds(
-                  userStore.email.toLowerCase(),
-                  userStore.email.toLowerCase(),
-                  'Recarga',
-                  value,
-                  '',
-                  token,
-                  dispatch,
+                dispatch(
+                  addFunds(
+                    userStore.email.toLowerCase(),
+                    userStore.email.toLowerCase(),
+                    'Recarga',
+                    value,
+                    '',
+                    token,
+                  ),
                 );
                 setValue(0);
               }}

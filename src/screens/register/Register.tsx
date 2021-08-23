@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -9,17 +9,25 @@ import {
   Picker,
 } from 'react-native';
 import Select from 'react-select-native';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { Entypo, AntDesign } from '@expo/vector-icons';
 import * as Yup from 'yup';
 //  import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { LinearGradient } from 'expo-linear-gradient';
-import { register } from '../../redux/actions';
-import { resFromBack, Props } from '../../types/Types';
+import {
+  cleanErrors,
+  register,
+  setLoadingFalse,
+  setLoadingTrue,
+} from '../../redux/actions';
+import { resFromBack, Props, RootState } from '../../types/Types';
 import TextInput from '../../components/TextInputFormix';
 import colors from '../../constants/colors';
 import { styles } from './RegisterStyles';
+import { LoadingFull } from '../loading2/LoadingFull';
+import { ErrorStyle } from '../../constants/ErrorStyle';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //  Ignore all log notifications
@@ -35,6 +43,10 @@ require('yup-password')(yup);
 
 export function Register({ navigation }: Props) {
   const userStore = useSelector((state: resFromBack) => state.user);
+  const loading = useSelector((state: RootState) => state.loading);
+  const error = useSelector((state: RootState) => state.errors);
+
+  const [state, setState] = useState(false);
 
   const FormSchema = Yup.object().shape({
     name: Yup.string().required('Debe ingresar un nombre!'),
@@ -194,14 +206,33 @@ export function Register({ navigation }: Props) {
       address,
     };
     dispatch(register(user, pass));
+    dispatch(setLoadingTrue());
   }
+
+  useEffect(() => {
+    if (error.length) {
+      setState(true);
+    }
+  }, [error.length]);
+
+  if (error.length) {
+    dispatch(setLoadingFalse());
+  }
+
+
+
 
   return (
     <View style={styles.view}>
+      <LoadingFull show={loading} />
+      {/* {error.length ? (
+        <View style={ErrorStyle.errorView}>
+          <Text style={ErrorStyle.errorText}>{error}</Text>
+        </View>
+      ) : null} */}
       <LinearGradient
         style={styles.header}
         colors={[colors.primary, colors.secondary]}
-        end={[1, 1]}
       />
       <View style={styles.title}>
         <Text style={styles.textTitle}>Registro</Text>
@@ -218,6 +249,30 @@ export function Register({ navigation }: Props) {
       >
         <AntDesign name="arrowleft" size={35} color="white" />
       </TouchableOpacity>
+      <View
+        style={{
+          marginTop: '100%',
+          zIndex: 100,
+          position: 'absolute',
+          width: '100%',
+        }}
+      >
+        <AwesomeAlert
+          show={state}
+          showProgress={false}
+          title={error}
+          closeOnTouchOutside={false}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton={true}
+          confirmText="Aceptar"
+          confirmButtonColor="#ff4b6e"
+          onConfirmPressed={() => {
+            setState(false);
+            dispatch(cleanErrors());
+          }}
+        />
+      </View>
       {/* <View style={styles.linea1}></View>
       <View style={!step ? styles.linea2 : styles.linea2s}></View> */}
       {!step ? (
@@ -639,7 +694,6 @@ export function Register({ navigation }: Props) {
               ) {
                 console.log(`${values.name} se ha registrado exitosamente`);
                 send(values);
-                navigation.push('LoadingFull');
               } else {
                 console.log('Revise el formulario');
               }
@@ -654,6 +708,9 @@ export function Register({ navigation }: Props) {
         colors={[colors.primary, colors.secondary]}
         end={[1, 1]}
       />
+      {userStore.email && userStore.email.length
+        ? navigation.push('HomeTab')
+        : null}
     </View>
   );
 }
