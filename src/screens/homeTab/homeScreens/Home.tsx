@@ -47,9 +47,7 @@ export const Home = ({ navigation }: Props) => {
 
   useEffect(() => {
     const date = new Date();
-    const month = date.toLocaleString('default', {
-      month: 'short',
-    }); /* Con esto consigo el nombre del mes actual abreviado. Ej: Jan, Feb, March... */
+    const month = date.toString().split(' ')[1];
 
     if (accountStore.balance.history.length === 0) {
       return setIng(0);
