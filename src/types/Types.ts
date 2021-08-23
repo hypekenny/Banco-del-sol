@@ -102,7 +102,7 @@ export interface RootState {
   token: string;
   loading: boolean;
   errors: string;
-  Contacts: Object;
+  Contacts: Array<contacts>;
   nameDetail: string;
   message: string;
   succeed: boolean;
@@ -110,4 +110,10 @@ export interface RootState {
 
 export type errors = {
   errors: string;
+};
+
+export type contacts = {
+  name: string;
+  email: string;
+  cvu: string;
 };
