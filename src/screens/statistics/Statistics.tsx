@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, Dimensions } from 'react-native';
-import { YAxis, XAxis, Grid, BarChart } from 'react-native-svg-charts';
-import * as scale from 'd3-scale';
+import { YAxis, Grid, BarChart } from 'react-native-svg-charts';
 import { useSelector } from 'react-redux';
+import { Circle, G, Line, Rect, Text as SvgText } from 'react-native-svg';
 import { RootState } from '../../types/Types';
 import { ButtonPrimaryStyle, styles } from './StatisticsStyles';
 import colors from '../../constants/colors';
 
+const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 const fill = colors.primary;
-const contentInset = { top: 20, bottom: 20 };
+const contentInset = { top: 50, bottom: 20, left: -35 };
 
 interface tDatosY {
   [key: string]: number[];
@@ -33,7 +34,7 @@ interface balanceType {
   history: Array<transactionType>;
 }
 const EJEMPLO: balanceType = {
-  amount: 50,
+  amount: 500000,
   history: [
     {
       sender_email: 'pepe@mail.com',
@@ -63,6 +64,7 @@ export const Statistics = () => {
     (state: RootState) => state.account.balance,
   );
   const [muestro, setMuestro] = useState<string>('Nothing');
+  const [muestroDecorator, setMuestroDecorator] = useState<number>(-1);
   const handleButton = (elec: string) => {
     setMuestro(elec);
     const buttons: Pressed = {
@@ -97,9 +99,44 @@ export const Statistics = () => {
       fontSize: 18,
       fontWeight: '700',
     };
-    setPress(buttons);
+    setPress({ ...buttons });
+    handleButtonDate(0);
   };
-
+  const handleButtonDate = (elec: number) => {
+    setMuestroDecorator(elec);
+    const buttonsD: Pressed = {
+      EjeX: [
+        { ...styles },
+        { ...styles },
+        { ...styles },
+        { ...styles },
+        { ...styles },
+        { ...styles },
+        { ...styles },
+      ],
+    };
+    buttonsD.EjeX[elec].buttonejex = {
+      flex: 1,
+      height: 0.04 * height,
+      alignItems: 'center',
+      margin: 1.5,
+      borderRadius: 10,
+      borderWidth: 2,
+      borderColor: colors.primary,
+      backgroundColor: colors.secondary,
+      padding: 2,
+      paddingTop: 5,
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 7,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 10,
+      elevation: 14,
+    };
+    setPress2({ ...buttonsD });
+  };
   const [datosX, setDatosX] = useState<tDatosX>({
     Diario: [],
     Semanal: [],
@@ -118,7 +155,60 @@ export const Statistics = () => {
     Mensual: { ...ButtonPrimaryStyle },
     Semanal: { ...ButtonPrimaryStyle },
   });
+
+  const [press2, setPress2] = useState<Pressed>({
+    EjeX: [
+      { ...styles },
+      { ...styles },
+      { ...styles },
+      { ...styles },
+      { ...styles },
+      { ...styles },
+      { ...styles },
+    ],
+  });
   useEffect(() => {
+    const wt = 60;
+    const Tooltip = ({ x, y }) => (
+      <G x={x(muestroDecorator) - wt / 2 + 0.05 * width} key="tooltip">
+        <G y={0}>
+          <Rect
+            height={40}
+            width={wt}
+            stroke="grey"
+            fill="white"
+            ry={10}
+            rx={10}
+          />
+          <SvgText
+            x={wt / 2}
+            dy={20}
+            fontSize="15"
+            fontWeight="bold"
+            alignmentBaseline="middle"
+            textAnchor="middle"
+            stroke="rgb(0, 0, 0)"
+          >
+            {`$${datosY[muestro][muestroDecorator]}`}
+          </SvgText>
+        </G>
+        <G x={wt / 2}>
+          <Line
+            y1={0 + 40}
+            y2={y(datosY[muestro][muestroDecorator])}
+            stroke="grey"
+            strokeWidth={2}
+          />
+          <Circle
+            cy={y(datosY[muestro][muestroDecorator])}
+            r={4}
+            stroke={colors.primary}
+            strokeWidth={2}
+            fill="white"
+          />
+        </G>
+      </G>
+    );
     // ACA SE CARGA EL GRAFICO DENTRO DE COMP
     if (muestro !== 'Nothing') {
       setComp(
@@ -128,8 +218,8 @@ export const Statistics = () => {
               style={styles.ejey}
               data={datosY[muestro]}
               svg={{
-                fill: 'grey',
-                fontSize: 15,
+                fill: 'white',
+                fontSize: 25,
               }}
               numberOfTicks={5}
               formatLabel={(value: number) => `$${value}`}
@@ -139,25 +229,31 @@ export const Statistics = () => {
               style={styles.bar}
               data={datosY[muestro]}
               svg={{ fill }}
-              contentInset={{ top: 30, bottom: 20 }}
+              contentInset={{ top: 50, bottom: 20, left: 15, right: 15 }}
             >
               <Grid />
+              <Tooltip />
             </BarChart>
           </View>
-          <XAxis
-            style={styles.ejex}
-            data={datosY[muestro]}
-            formatLabel={(value: number, index: number) =>
-              datosX[muestro][index]
-            }
-            scale={scale.scaleBand}
-            contentInset={{ left: 15, right: 0 }}
-            svg={{ fontSize: 15, fill: 'black' }}
-          />
+          <View style={styles.ejexbtn}>
+            {datosX[muestro].map((element, index) => {
+              return (
+                <TouchableOpacity
+                  key={`D${index.toString()}`}
+                  style={press2.EjeX[index].buttonejex}
+                  onPress={() => {
+                    handleButtonDate(index);
+                  }}
+                >
+                  <Text style={styles.textejex}>{element}</Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
         </View>,
       );
     }
-  }, [muestro, datosX, datosY]);
+  }, [muestro, muestroDecorator, datosX, datosY]);
   useEffect(() => {
     // CARGO LOS DATOS DESDE LA API Y PROCESO PARA GUARDAR EN DATOSX Y DATOSY.
     // PROVISORIAMENTE SE INVENTAN ESTOS DATOS
@@ -176,6 +272,7 @@ export const Statistics = () => {
     getY(userAccount);
     // getY(EJEMPLO);
     handleButton('Diario');
+    handleButtonDate(0);
   }, []);
   const getY = (userAccountF: balanceType) => {
     let moves: transactionType[] = [];
@@ -385,7 +482,7 @@ export const Statistics = () => {
         <Text style={styles.text}>Evolución de tu balance</Text>
         {comp}
       </View>
-      <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+      <View style={styles.container2}>
         <TouchableOpacity
           style={press.Diario.button}
           onPress={() => handleButton('Diario')}
