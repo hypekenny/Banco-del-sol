@@ -106,6 +106,7 @@ export interface RootState {
   nameDetail: string;
   message: string;
   succeed: boolean;
+  DetailTransfer: { name: string; email: string };
 }
 
 export type errors = {
