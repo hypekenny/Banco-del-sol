@@ -1,9 +1,10 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import { styles } from './AccountStyles';
 import { Props, resFromBack } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
@@ -13,9 +14,11 @@ export function Account({ navigation }: Props) {
   const accountDetails = useSelector((state: resFromBack) => state.account);
   const userDetails = useSelector((state: resFromBack) => state.user);
 
+  const [state, setState] = useState(false);
+
   function copyToClipboard() {
     Clipboard.setString(accountDetails.cvu);
-    alert('CVU copiado al portapapeles');
+    setState(true);
   }
 
   function editAccount() {
@@ -24,6 +27,29 @@ export function Account({ navigation }: Props) {
 
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: '100%',
+          zIndex: 100,
+          position: 'absolute',
+          width: '100%',
+        }}
+      >
+        <AwesomeAlert
+          show={state}
+          showProgress={false}
+          title="CVU copiado al portapapeles"
+          closeOnTouchOutside={false}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton
+          confirmText="Aceptar"
+          confirmButtonColor="#ff4b6e"
+          onConfirmPressed={() => {
+            setState(false);
+          }}
+        />
+      </View>
       <LinearGradient
         colors={[colors.primary, colors.secondary]}
         style={styles.container2}
