@@ -2,104 +2,27 @@ import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
-  //  #FF6F91
-  // DOU #FA8072
-  // #FF8882
-  // F39189
-
-  // ch
-
-  // 949CDF
-  // A685E2
-  // 6155A6
-
-  container: {
-    // backgroundColor: '#FA8072',
-    backgroundColor: '#fff',
-    height: '100%',
+  title: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#ffffff',
   },
-  img: {
-    borderRadius: 10,
-    width: 50,
-    height: 50,
-    marginLeft: 20,
-    marginTop: 10,
-  },
-
-  // bfbfbf
-  box: {
-    marginTop: 20,
-    padding: 5,
-    borderWidth: 2,
-    borderColor: colors.primary,
-    height: 'auto',
-    width: 275,
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    borderRadius: 15,
-  },
-
-  boxin: {
-    backgroundColor: '#fff',
-    // borderWidth: 1,
-    // borderColor: '#ff4b6e',
-    height: 130,
-    width: 270,
-    // marginTop: 1,
-    marginRight: 1,
-    // marginLeft: 1,
-    borderRadius: 15,
-
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 26,
-
-    elevation: 14,
-  },
-
-  boxdetailsin: {
-    // backgroundColor: 'red',
-    width: 150,
-    height: 70,
-    alignSelf: 'flex-end',
-    marginTop: -50,
-  },
-
-  boxdetails: {
-    width: 110,
-    height: 50,
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 56,
+    paddingLeft: 25,
+    paddingRight: 18,
     alignItems: 'center',
-    alignSelf: 'flex-end',
-    marginRight: 35,
   },
-
-  // Texts
-  textgast: { fontSize: 16, fontWeight: 'normal' },
-  boxt: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 20,
-    marginTop: 10,
+  parentHr: {
+    height: 2,
+    color: '#5E5E5E',
+    width: '100%',
   },
-  texttype: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    marginTop: 'auto',
-    marginBottom: 'auto',
-  },
-  textheader: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    marginTop: 'auto',
-    marginBottom: 'auto',
+  child: {
+    backgroundColor: '#ffffff',
+    padding: 16,
   },
   text: {
     fontSize: 17,
@@ -116,5 +39,24 @@ export const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginTop: 'auto',
     marginBottom: 'auto',
+  },
+  text2: {
+    color: colors.primary,
+    paddingLeft: 5,
+    paddingRight: 5,
+    alignSelf: 'center',
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  container: {
+    backgroundColor: '#fff',
+    height: '100%',
+  },
+  textGeneral: {
+    fontSize: 20,
+    fontWeight: '800',
+    textAlign: 'center',
+    marginTop: 5,
+    marginBottom: 2,
   },
 });
