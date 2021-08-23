@@ -74,6 +74,7 @@ export default function rootReducer(state = initialState, action: actionType) {
         ...state,
         token: action.payload,
       };
+
     case GET_EMAIL:
       return {
         ...state,

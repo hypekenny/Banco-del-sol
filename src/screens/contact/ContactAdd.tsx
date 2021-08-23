@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
+import { ScrollView } from 'react-native-gesture-handler';
 import {
   detailContact,
   getEmail,
@@ -13,7 +14,6 @@ import {
 import { styles } from './ContactAddStyles';
 import { loginStackParamList, RootState } from '../../types/Types';
 import colors from '../../constants/colors';
-import { ScrollView } from 'react-native-gesture-handler';
 
 type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
@@ -21,21 +21,21 @@ type Props = {
 
 export const ContactAdd = ({ navigation }: Props) => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState<String>('');
-  const [name, setName] = useState<String>('');
+  const [email, setEmail] = useState<string>('');
+  const [name, setName] = useState<string>('');
   const [step, setStep] = useState<boolean>(false);
   const [msg, setMsg] = useState<boolean>(false);
   const [showInput, setShowInput] = useState<boolean>(false);
   const [msgContact, setMsgContact] = useState<boolean>(false);
   const [msgError, setMsgError] = useState<boolean>(false);
-  const contacts = useSelector<RootState>(state => state.Contacts);
-  const idToken = useSelector<RootState>(state => state.token);
-  const userEmail = useSelector<RootState>(state => state.account.email);
-  let nameUser = useSelector<RootState>(state => state.nameDetail);
-  const errorEmail = useSelector<RootState>(state => state.message);
+  const contacts = useSelector((state: RootState) => state.Contacts);
+  const idToken = useSelector((state: RootState) => state.token);
+  const userEmail = useSelector((state: RootState) => state.account.email);
+  let nameUser = useSelector((state: RootState) => state.nameDetail);
+  const errorEmail = useSelector((state: RootState) => state.message);
 
   function askName() {
-    for (let i = 0; i < contacts.length; i++) {
+    for (let i: number = 0; i < contacts.length; i++) {
       if (contacts[i].email === email) setMsgContact(true);
     }
   }
@@ -82,7 +82,6 @@ export const ContactAdd = ({ navigation }: Props) => {
 
   useEffect(() => {
     setStep(true);
-    // dispatch(getName('', ''));
     nameUser = '';
   }, []);
   function callName() {
@@ -112,8 +111,12 @@ export const ContactAdd = ({ navigation }: Props) => {
 
   // AddFriend se encarga de guardar en "REDUX" los contactos que fueron agregados.
 
-  function AddFriend(email, idToken, name) {
-    dispatch(getEmail(email, idToken, name));
+  function AddFriend(
+    emailFriend: string,
+    idTokenUser: string,
+    nameFriend: string,
+  ) {
+    dispatch(getEmail(emailFriend, idTokenUser, nameFriend));
     setEmail('');
     setName('');
     setShowInput(false);
