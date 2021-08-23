@@ -22,7 +22,7 @@ interface actionType {
   payload: Object;
 }
 
-const initialState = {
+export const initialState = {
   account: {},
   user: {},
   token: '',

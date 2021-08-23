@@ -7,10 +7,10 @@ import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import { styles } from './ErrorStyles';
 import colors from '../../constants/colors';
 
-export function Error({ navigation }: Props) {
-  function pepe() {
+export const Error = ({ navigation }: Props) => {
+  const pepe = () => {
     navigation.push('Login');
-  }
+  };
   return (
     <View style={styles.container}>
       <View>
@@ -31,4 +31,4 @@ export function Error({ navigation }: Props) {
       />
     </View>
   );
-}
+};

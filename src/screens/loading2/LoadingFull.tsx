@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 
-export function LoadingFull(props) {
+export function LoadingFull(props: any) {
   const { show = false } = props;
 
   return (
