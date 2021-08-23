@@ -1,3 +1,4 @@
+/* eslint-disable no-throw-literal */
 import axios from 'axios';
 import firebase from 'firebase';
 import { resFromBack, userType } from '../../types/Types';
@@ -102,6 +103,8 @@ export function login(email: string, password: string) {
                 },
               )
               .then(responseFromBack => {
+                if (responseFromBack.data.user.condition === 'disabled')
+                  throw { error: 'disabled' };
                 dispatch({
                   type: SET_ACCOUNT,
                   payload: responseFromBack.data.account,
@@ -116,10 +119,18 @@ export function login(email: string, password: string) {
                 });
               })
               .catch(error => {
-                dispatch({
-                  type: SET_ERROR,
-                  payload: 'Ocurrió un error con el servidor',
-                });
+                if (error.error === 'disabled') {
+                  dispatch({
+                    type: SET_ERROR,
+                    payload: 'El usuario se encuentra deshabilitado',
+                  });
+                } else {
+                  dispatch({
+                    type: SET_ERROR,
+                    payload: 'Ocurrió un error con el servidor',
+                  });
+                }
+
                 console.error(error);
               });
           })
