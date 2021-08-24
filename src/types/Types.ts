@@ -69,6 +69,7 @@ export type userType = {
   birthdate: string;
   phoneNumber: string;
   address: addressType;
+  condition: string;
 };
 
 export interface accountType {
