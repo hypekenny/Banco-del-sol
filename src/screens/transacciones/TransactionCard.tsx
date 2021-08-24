@@ -75,7 +75,7 @@ export function Card(props) {
             <View style={styles.row}>
               <Text style={styles.textCardBold}>Monto: </Text>
               {sender ? (
-                <Text style={styles.textCardR}>{`${props.value}`}</Text>
+                <Text style={styles.textCardR}>{`-${props.value}`}</Text>
               ) : (
                 <Text style={styles.textCardG}>{`+${props.value}`} </Text>
               )}
