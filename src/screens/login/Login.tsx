@@ -149,7 +149,9 @@ export const Login = ({ navigation }: Props) => {
         colors={[colors.primary, colors.secondary]}
         end={[1, 1]}
       />
-      {userStore.email && userStore.email.length
+      {userStore.email &&
+      userStore.email.length &&
+      userStore.condition === 'active'
         ? navigation.push('HomeTab')
         : null}
     </View>

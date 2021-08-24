@@ -69,6 +69,7 @@ export type userType = {
   birthdate: string;
   phoneNumber: string;
   address: addressType;
+  condition: string;
 };
 
 export interface accountType {
@@ -107,6 +108,7 @@ export interface RootState {
   message: string;
   succeed: boolean;
   updatedAccount: boolean;
+  DetailTransfer: { name: string; email: string };
 }
 
 export type errors = {

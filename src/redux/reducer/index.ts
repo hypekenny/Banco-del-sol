@@ -21,7 +21,13 @@ import {
 
 interface actionType {
   type: string;
-  payload: Object;
+  payload: {
+    name: string;
+    email: string;
+    lastName: string;
+    cvu: string;
+    user: string;
+  };
 }
 
 export const initialState = {
@@ -77,6 +83,7 @@ export default function rootReducer(state = initialState, action: actionType) {
         ...state,
         token: action.payload,
       };
+
     case GET_EMAIL:
       return {
         ...state,
@@ -124,7 +131,7 @@ export default function rootReducer(state = initialState, action: actionType) {
         loading: false,
       };
 
-    case REMOVE_CONTACT:
+    case REMOVE_CONTACT: {
       const newContacts = state.Contacts.filter(
         contact => contact.email !== action.payload,
       );
@@ -132,7 +139,7 @@ export default function rootReducer(state = initialState, action: actionType) {
         ...state,
         Contacts: newContacts,
       };
-
+    }
     case CLEAR_ERRORS:
       return {
         ...state,
