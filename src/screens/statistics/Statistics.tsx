@@ -161,7 +161,6 @@ export const Statistics = () => {
     ],
   });
   useEffect(() => {
-    console.log('Amount', userAccount.amount);
     const wt = 60;
     const Tooltip = ({ x, y }) => (
       <G x={x(muestroDecorator) - wt / 2 + 0.05 * width} key="tooltip">
@@ -265,7 +264,7 @@ export const Statistics = () => {
     // Semanal:['10/12','17/12','24/12','29/12','30/12','5/12','12/11','10/12','17/12','24/12','29/12','30/12']})
 
     getX();
-    getY(userAccount);
+    getY({ ...userAccount });
     // getY(EJEMPLO);
     handleButton('Diario');
     handleButtonDate(0);
@@ -413,7 +412,6 @@ export const Statistics = () => {
       }
     }
 
-    console.log(diarioMoves);
     // eslint-disable-next-line no-plusplus
     for (let i = 5; i >= 0; i--) {
       diarioBalance.push(
