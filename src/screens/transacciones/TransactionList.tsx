@@ -6,7 +6,16 @@ import { styles } from './TransactionsStyles';
 export function TransactionList(props) {
   const emptyList = () => {
     return (
-      <Text style={styles.textGeneral}>
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: 'normal',
+          textAlign: 'center',
+          marginTop: 30,
+          marginBottom: 2,
+          color: 'gray',
+        }}
+      >
         Aun no tienes ninguna transaccion para mostrar.
       </Text>
     );
