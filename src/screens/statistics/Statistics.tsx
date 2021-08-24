@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, Dimensions } from 'react-native';
 import { YAxis, Grid, BarChart } from 'react-native-svg-charts';
 import { useSelector } from 'react-redux';
 import { Circle, G, Line, Rect, Text as SvgText } from 'react-native-svg';
-import { RootState } from '../../types/Types';
+import { RootState, transactionType } from '../../types/Types';
 import { ButtonPrimaryStyle, styles } from './StatisticsStyles';
 import colors from '../../constants/colors';
 
@@ -21,14 +21,6 @@ interface tDatosX {
 interface Pressed {
   [key: string]: any;
 }
-interface transactionType {
-  sender_email: string;
-  receiver_email: string;
-  type: string;
-  value: number;
-  date: Date;
-}
-
 interface balanceType {
   amount: number;
   history: Array<transactionType>;
@@ -37,22 +29,22 @@ const EJEMPLO: balanceType = {
   amount: 500000,
   history: [
     {
-      sender_email: 'pepe@mail.com',
-      receiver_email: 'yo@mail.com',
+      senderEmail: 'pepe@mail.com',
+      receiverEmail: 'yo@mail.com',
       type: 'algo',
       value: 15,
       date: new Date(2021, 7, 18),
     },
     {
-      sender_email: 'pepe@mail.com',
-      receiver_email: 'yo@mail.com',
+      senderEmail: 'pepe@mail.com',
+      receiverEmail: 'yo@mail.com',
       type: 'algo',
       value: -35,
       date: new Date(2021, 6, 31).toString(),
     },
     {
-      sender_email: 'pepe@mail.com',
-      receiver_email: 'yo@mail.com',
+      senderEmail: 'pepe@mail.com',
+      receiverEmail: 'yo@mail.com',
       type: 'algo',
       value: -25,
       date: new Date(2021, 5, 30).toString(),
@@ -63,6 +55,7 @@ export const Statistics = () => {
   const userAccount: balanceType = useSelector(
     (state: RootState) => state.account.balance,
   );
+  const userMail: string = useSelector((state: RootState) => state.user.email);
   const [muestro, setMuestro] = useState<string>('Nothing');
   const [muestroDecorator, setMuestroDecorator] = useState<number>(-1);
   const handleButton = (elec: string) => {
@@ -168,6 +161,7 @@ export const Statistics = () => {
     ],
   });
   useEffect(() => {
+    console.log('Amount', userAccount.amount);
     const wt = 60;
     const Tooltip = ({ x, y }) => (
       <G x={x(muestroDecorator) - wt / 2 + 0.05 * width} key="tooltip">
@@ -189,7 +183,9 @@ export const Statistics = () => {
             textAnchor="middle"
             stroke="rgb(0, 0, 0)"
           >
-            {`$${datosY[muestro][muestroDecorator]}`}
+            {`$${Intl.NumberFormat('de-DE').format(
+              datosY[muestro][muestroDecorator],
+            )}`}
           </SvgText>
         </G>
         <G x={wt / 2}>
@@ -273,7 +269,7 @@ export const Statistics = () => {
     // getY(EJEMPLO);
     handleButton('Diario');
     handleButtonDate(0);
-  }, []);
+  }, [userAccount.amount, userAccount.history]);
   const getY = (userAccountF: balanceType) => {
     let moves: transactionType[] = [];
     let diarioBalance = [];
@@ -332,6 +328,9 @@ export const Statistics = () => {
         if (el.date instanceof Date) timeMove = el.date.getTime();
         else timeMove = Date.parse(el.date);
         // Obtengo los movimientos diarios
+        if (el.type === 'Transfer' && el.senderEmail === userMail) {
+          el.value = -el.value;
+        }
         const difDiario: number = timeMove - today.getTime();
         if (difDiario >= 0 && difDiario < 24 * 3600 * 1000) {
           diarioMoves[5] += el.value;
@@ -414,6 +413,7 @@ export const Statistics = () => {
       }
     }
 
+    console.log(diarioMoves);
     // eslint-disable-next-line no-plusplus
     for (let i = 5; i >= 0; i--) {
       diarioBalance.push(
