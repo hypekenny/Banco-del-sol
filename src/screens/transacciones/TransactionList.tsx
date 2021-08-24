@@ -16,7 +16,7 @@ export function TransactionList(props) {
           color: 'gray',
         }}
       >
-        Aun no tienes ninguna transaccion para mostrar.
+        Aún no tienes ninguna transacción para mostrar.
       </Text>
     );
   };
