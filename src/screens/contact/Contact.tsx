@@ -42,7 +42,7 @@ export const Contact = ({ navigation }: Props) => {
       return itemData.indexOf(textData) > -1;
     });
     setContactos(newData);
-    if (text.length === 0) {
+    if (searchText.length === 0) {
       setContactos(contact);
     }
   }
