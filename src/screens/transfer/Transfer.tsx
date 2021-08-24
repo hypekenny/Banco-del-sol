@@ -6,24 +6,18 @@ import { styles } from './TransferStyles';
 import { RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
-import {
-  addFunds,
-  cleanErrors,
-  detailContact,
-  setLoadingFalse,
-} from '../../redux/actions';
-import { ErrorStyle } from '../../constants/ErrorStyle';
+import { addFunds } from '../../redux/actions';
 import { LoadingFull } from '../loading2/LoadingFull';
 
 export const Transfer = () => {
   const accountStore = useSelector((state: RootState) => state.account);
   const userStore = useSelector((state: RootState) => state.user);
   const token = useSelector((state: RootState) => state.token);
-  // const error = useSelector((state: RootState) => state.errors);
   const loading = useSelector((state: RootState) => state.loading);
-  const ContactDetails = useSelector(state => state.DetailTransfer);
+  const ContactDetails = useSelector(
+    (state: RootState) => state.DetailTransfer,
+  );
   const dispatch = useDispatch();
-  // const [state, setState] = useState(false);
   const [data, setData] = useState({
     email: '',
     amount: 0,
@@ -39,11 +33,6 @@ export const Transfer = () => {
   return (
     <View style={styles.container}>
       <LoadingFull show={loading} />
-      {/*   {error.length ? (
-        <View style={ErrorStyle.errorView}>
-          <Text style={ErrorStyle.errorText}>{error}</Text>
-        </View>
-      ) : null} */}
 
       <View style={{ justifyContent: 'space-between', height: '50%' }}>
         <TextInput
