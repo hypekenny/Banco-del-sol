@@ -98,7 +98,9 @@ export function Card(props) {
             <View style={styles.row}>
               <Text style={styles.textCardBold}>Fecha: </Text>
               <Text style={styles.textCard}>
-                {`${props.date.getDate()}/${props.date.getMonth()}/${props.date.getFullYear()}`}{' '}
+                {`${props.date.getDate()}/${
+                  props.date.getMonth() + 1
+                }/${props.date.getFullYear()}`}{' '}
               </Text>
             </View>
           </View>
