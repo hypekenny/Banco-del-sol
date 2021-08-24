@@ -3,13 +3,11 @@ import {
   View,
   TouchableOpacity,
   Text,
-  StyleSheet,
   LayoutAnimation,
   Platform,
   UIManager,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './TransactionsStyles';
 
 export const Colors = {
@@ -46,15 +44,7 @@ export function Card(props) {
 
   return (
     <View key={props.id} style={styles.box}>
-      <View
-      // style={styles.boxButton}
-      >
-        {/* <LinearGradient
-          colors={['#ff4b6e', '#ff9349']}
-          style={{ flex: 1, marginLeft: 5, marginRight: 5 }}
-          start={{ x: 0, y: 1 }}
-          end={{ x: 0, y: 0 }}
-        > */}
+      <View>
         <TouchableOpacity style={styles.row} onPress={() => toggleExpand()}>
           <View style={{ flexDirection: 'row' }}>
             <Text style={[styles.textGeneral]}>{props.type}</Text>
@@ -71,14 +61,11 @@ export function Card(props) {
             color="#000"
           />
         </TouchableOpacity>
-        {/* </LinearGradient> */}
       </View>
 
       <View style={styles.parentHr} />
       {expanded && (
-        <View
-        // style={styles.boxBody}
-        >
+        <View>
           <View
             style={{
               flexDirection: 'row',
@@ -92,13 +79,14 @@ export function Card(props) {
               ) : (
                 <Text style={styles.textCardG}>{`+${props.value}`} </Text>
               )}
-              {/* <Text style={styles.textCard}>{props.value} </Text> */}
             </View>
 
             <View style={styles.row}>
               <Text style={styles.textCardBold}>Fecha: </Text>
               <Text style={styles.textCard}>
-                {`${props.date.getDate()}/${props.date.getMonth()}/${props.date.getFullYear()}`}{' '}
+                {`${props.date.getDate()}/${
+                  props.date.getMonth() + 1
+                }/${props.date.getFullYear()}`}{' '}
               </Text>
             </View>
           </View>
