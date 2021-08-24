@@ -322,96 +322,96 @@ export const Statistics = () => {
       mesBalance = [0];
     }
     while (moves.length > 0) {
+      let signo = 1;
       const el = moves.pop();
       if (el !== undefined) {
         if (el.date instanceof Date) timeMove = el.date.getTime();
         else timeMove = Date.parse(el.date);
         // Obtengo los movimientos diarios
         if (el.type === 'Transfer' && el.senderEmail === userMail) {
-          el.value = -el.value;
+          signo = -1;
         }
         const difDiario: number = timeMove - today.getTime();
         if (difDiario >= 0 && difDiario < 24 * 3600 * 1000) {
-          diarioMoves[5] += el.value;
+          diarioMoves[5] += signo * el.value;
         } else if (difDiario >= -24 * 3600 * 1000 && difDiario < 0) {
-          diarioMoves[4] += el.value;
+          diarioMoves[4] += signo * el.value;
         } else if (
           difDiario >= -2 * 24 * 3600 * 1000 &&
           difDiario < -24 * 3600 * 1000
         ) {
-          diarioMoves[3] += el.value;
+          diarioMoves[3] += signo * el.value;
         } else if (
           difDiario >= -3 * 24 * 3600 * 1000 &&
           difDiario < -2 * 24 * 3600 * 1000
         ) {
-          diarioMoves[2] += el.value;
+          diarioMoves[2] += signo * el.value;
         } else if (
           difDiario >= -4 * 24 * 3600 * 1000 &&
           difDiario < -3 * 24 * 3600 * 1000
         ) {
-          diarioMoves[1] += el.value;
+          diarioMoves[1] += signo * el.value;
         } else if (
           difDiario >= -5 * 24 * 3600 * 1000 &&
           difDiario < -4 * 24 * 3600 * 1000
         ) {
-          diarioMoves[0] += el.value;
+          diarioMoves[0] += signo * el.value;
         }
 
         // Obtengo los movimientos semanales
         const difSem: number = timeMove - ultLunes.getTime();
         if (difSem >= 0 && difSem < 7 * 24 * 3600 * 1000) {
-          semMoves[5] += el.value;
+          semMoves[5] += signo * el.value;
         } else if (difSem >= -7 * 24 * 3600 * 1000 && difSem < 0) {
-          semMoves[4] += el.value;
+          semMoves[4] += signo * el.value;
         } else if (
           difSem >= -2 * 7 * 24 * 3600 * 1000 &&
           difSem < -7 * 24 * 3600 * 1000
         ) {
-          semMoves[3] += el.value;
+          semMoves[3] += signo * el.value;
         } else if (
           difSem >= -3 * 7 * 24 * 3600 * 1000 &&
           difSem < -2 * 7 * 24 * 3600 * 1000
         ) {
-          semMoves[2] += el.value;
+          semMoves[2] += signo * el.value;
         } else if (
           difSem >= -4 * 7 * 24 * 3600 * 1000 &&
           difSem < -3 * 7 * 24 * 3600 * 1000
         ) {
-          semMoves[1] += el.value;
+          semMoves[1] += signo * el.value;
         } else if (
           difSem >= -5 * 7 * 24 * 3600 * 1000 &&
           difSem < -4 * 7 * 24 * 3600 * 1000
         ) {
-          semMoves[0] += el.value;
+          semMoves[0] += signo * el.value;
         }
 
         // Obtengo los movimientos mensuales
         if (timeMove - arrFechasMeses[5].getTime() >= 0) {
-          mesMoves[4] += el.value;
+          mesMoves[4] += signo * el.value;
         } else if (
           timeMove - arrFechasMeses[4].getTime() >= 0 &&
           timeMove - arrFechasMeses[5].getTime() < 0
         ) {
-          mesMoves[3] += el.value;
+          mesMoves[3] += signo * el.value;
         } else if (
           timeMove - arrFechasMeses[3].getTime() >= 0 &&
           timeMove - arrFechasMeses[4].getTime() < 0
         ) {
-          mesMoves[2] += el.value;
+          mesMoves[2] += signo * el.value;
         } else if (
           timeMove - arrFechasMeses[2].getTime() >= 0 &&
           timeMove - arrFechasMeses[3].getTime() < 0
         ) {
-          mesMoves[1] += el.value;
+          mesMoves[1] += signo * el.value;
         } else if (
           timeMove - arrFechasMeses[1].getTime() >= 0 &&
           timeMove - arrFechasMeses[2].getTime() < 0
         ) {
-          mesMoves[0] += el.value;
+          mesMoves[0] += signo * el.value;
         }
       }
     }
-
     // eslint-disable-next-line no-plusplus
     for (let i = 5; i >= 0; i--) {
       diarioBalance.push(
