@@ -264,7 +264,7 @@ export const Statistics = () => {
     // Semanal:['10/12','17/12','24/12','29/12','30/12','5/12','12/11','10/12','17/12','24/12','29/12','30/12']})
 
     getX();
-    getY(userAccount);
+    getY({ ...userAccount });
     // getY(EJEMPLO);
     handleButton('Diario');
     handleButtonDate(0);
