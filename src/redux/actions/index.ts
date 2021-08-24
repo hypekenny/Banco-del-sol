@@ -286,7 +286,6 @@ export function addFunds(
     }
   };
 }
-
 export const getEmail =
   (emailUser: string, idToken: string, nameUser: string) => dispatch => {
     // Esta accion lo que hace es guardarme dentro de mi estado re redux "Contact" , el emailUser,nombre y cvu

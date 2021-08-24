@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import {
   REGISTER,
   SET_USER,
@@ -19,7 +20,13 @@ import {
 
 interface actionType {
   type: string;
-  payload: Object;
+  payload: {
+    name: string;
+    email: string;
+    lastName: string;
+    cvu: string;
+    user: string;
+  };
 }
 
 export const initialState = {
