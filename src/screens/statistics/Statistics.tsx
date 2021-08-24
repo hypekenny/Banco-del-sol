@@ -270,7 +270,6 @@ export const Statistics = () => {
     handleButtonDate(0);
   }, [userAccount.amount, userAccount.history]);
   const getY = (userAccountF: balanceType) => {
-    let signo = 1;
     let moves: transactionType[] = [];
     let diarioBalance = [];
     let semBalance = [];
@@ -323,6 +322,7 @@ export const Statistics = () => {
       mesBalance = [0];
     }
     while (moves.length > 0) {
+      let signo = 1;
       const el = moves.pop();
       if (el !== undefined) {
         if (el.date instanceof Date) timeMove = el.date.getTime();
@@ -412,7 +412,6 @@ export const Statistics = () => {
         }
       }
     }
-
     // eslint-disable-next-line no-plusplus
     for (let i = 5; i >= 0; i--) {
       diarioBalance.push(
