@@ -85,6 +85,8 @@ export const ContactAdd = ({ navigation }: Props) => {
     nameUser = '';
   }, []);
   function callName() {
+    // En esta funcion averiguamos si existe el email colocado
+
     askName();
     setShowInput(false);
     if (nameUser) {
