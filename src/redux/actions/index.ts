@@ -280,25 +280,26 @@ export function addFunds(
   token: string,
 ) {
   return (dispatch: any) => {
-    try {
-      axios.post(
-        `http://localhost:3001/api/account`,
+    axios
+      .post(
+        'http://localhost:3001/api/account',
         { senderEmail, receiverEmail, type, value, comment },
         {
           headers: {
             authorization: `Bearer ${token}`,
           },
         },
-      );
-    } catch (error) {
-      console.error(error);
-      dispatch({
-        type: SET_ERROR,
-        payload: 'El usuario no se ha encontrado',
+      )
+      .catch(error => {
+        console.log(error);
+        dispatch({
+          type: SET_ERROR,
+          payload: 'El usuario no se ha encontrado',
+        });
       });
-    }
   };
 }
+
 export const getEmail =
   (emailUser: string, idToken: string, nameUser: string) => (dispatch: any) => {
     // Esta accion lo que hace es guardarme dentro de mi estado re redux "Contact" , el emailUser,nombre y cvu
