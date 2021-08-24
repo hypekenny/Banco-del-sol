@@ -10,12 +10,14 @@ import { TransactionList } from './TransactionList';
 export function Transactions(props) {
   const account = useSelector((state: RootState) => state.account);
   const [state, setState] = useState([]);
+  const [focused, setFocused] = useState(false);
   const [buttonFilterIndex, setButtonFilterIndex] = useState(0);
   const [buttonOrderIndex, setButtonOrderIndex] = useState(0);
 
   useEffect(() => {
     const unsubscribe = props.navigation.addListener('focus', () => {
       if (account) {
+        setFocused(true);
         setButtonFilterIndex(0);
         setButtonOrderIndex(0);
         filterAndOrder();
@@ -25,15 +27,27 @@ export function Transactions(props) {
   }, [props.navigation]);
 
   useEffect(() => {
-    if (account) {
+    const unsubscribe = props.navigation.addListener('blur', () => {
+      if (account) {
+        setFocused(false);
+        setButtonFilterIndex(0);
+        setButtonOrderIndex(0);
+        filterAndOrder();
+      }
+    });
+    return unsubscribe;
+  }, [props.navigation]);
+
+  useEffect(() => {
+    if (account && focused) {
       setButtonFilterIndex(0);
       setButtonOrderIndex(0);
       filterAndOrder();
     }
-  }, [account]);
+  }, [account, focused]);
 
   useEffect(() => {
-    filterAndOrder();
+    if (focused) filterAndOrder();
   }, [buttonOrderIndex, buttonFilterIndex]);
 
   const filterAndOrder = () => {
@@ -80,26 +94,22 @@ export function Transactions(props) {
         onPress={setButtonFilterIndex}
         selectedIndex={buttonFilterIndex}
         buttons={['Todo', 'Recarga', 'Transfer']}
-        containerStyle={{ height: 'auto', padding: 2 }}
-        buttonContainerStyle={{
-          backgroundColor: '#ff9349',
-          marginHorizontal: 3,
-        }}
-        selectedButtonStyle={{ backgroundColor: '#ff4b6e' }}
-        textStyle={{ color: 'white' }}
+        containerStyle={{ height: 'auto', borderWidth: 0 }}
+        buttonContainerStyle={styles.buttonGroupBox}
+        selectedButtonStyle={styles.buttonGroupBoxSelected}
+        textStyle={{ color: 'black' }}
+        selectedTextStyle={{ color: 'white' }}
       />
       <Text style={styles.textGeneral}>Ordenar por: </Text>
       <ButtonGroup
         onPress={setButtonOrderIndex}
         selectedIndex={buttonOrderIndex}
         buttons={['Mas recientes', 'Mas antiguos']}
-        containerStyle={{ height: 'auto', padding: 2 }}
-        buttonContainerStyle={{
-          backgroundColor: '#ff9349',
-          marginHorizontal: 3,
-        }}
-        selectedButtonStyle={{ backgroundColor: '#ff4b6e' }}
-        textStyle={{ color: 'white' }}
+        containerStyle={{ height: 'auto', borderWidth: 0 }}
+        buttonContainerStyle={styles.buttonGroupBox}
+        selectedButtonStyle={styles.buttonGroupBoxSelected}
+        textStyle={{ color: 'black' }}
+        selectedTextStyle={{ color: 'white' }}
       />
       <TransactionList data={state} email={account.email} />
     </ScrollView>
