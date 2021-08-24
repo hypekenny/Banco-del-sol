@@ -302,9 +302,10 @@ export function addFunds(
 export const getEmail =
   (emailUser: string, idToken: string, nameUser: string) => dispatch => {
     // Esta accion lo que hace es guardarme dentro de mi estado re redux "Contact" , el emailUser,nombre y cvu
+    const email = emailUser.toLowerCase();
 
     axios
-      .get(`http://localhost:3001/api/contacts/${emailUser}`, {
+      .get(`http://localhost:3001/api/contacts/${email}`, {
         headers: {
           authorization: `Bearer ${idToken}`,
         },
@@ -330,9 +331,10 @@ export const getEmail =
 
 export const getName = (emailUser: string, idToken: string) => dispatch => {
   // Esta accion lo que hace es irme a buscar a la DB el email del usuario que quiero agregar, en el caso de existir me guarda su nombre.
+  const email = emailUser.toLowerCase();
 
   axios
-    .get(`http://localhost:3001/api/contacts/${emailUser}`, {
+    .get(`http://localhost:3001/api/contacts/${email}`, {
       headers: {
         authorization: `Bearer ${idToken}`,
       },
