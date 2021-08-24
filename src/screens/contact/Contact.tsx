@@ -33,8 +33,8 @@ export const Contact = ({ navigation }: Props) => {
     navigation.push('ContactDetails');
     dispatch(detailContact(email, name));
   }
-  function filterSearch(t: string) {
-    setText(t);
+  function filterSearch(searchText: string) {
+    setText(searchText);
     const newData = contact.filter(function (item) {
       const itemData = item.name.toUpperCase();
       const textData = text.toUpperCase();
@@ -42,7 +42,7 @@ export const Contact = ({ navigation }: Props) => {
       return itemData.indexOf(textData) > -1;
     });
     setContactos(newData);
-    if (text.length === 0) {
+    if (searchText.length === 0) {
       setContactos(contact);
     }
   }
@@ -75,12 +75,6 @@ export const Contact = ({ navigation }: Props) => {
           <AntDesign name="arrowleft" size={35} color="white" />
         </TouchableOpacity>
       </View>
-      {/* <AntDesign
-        name="search"
-        size={28}
-        color={colors.primary}
-        style={styles.searchIcon}
-      /> */}
       <FontAwesome5
         name="search"
         size={24}
@@ -101,7 +95,6 @@ export const Contact = ({ navigation }: Props) => {
             color={colors.primary}
             style={styles.iconAdd}
           />
-          {/* <Text style={styles.textBtn}>Agregar</Text> */}
         </TouchableOpacity>
       </View>
 
@@ -113,11 +106,7 @@ export const Contact = ({ navigation }: Props) => {
               style={styles.BTNBox}
             >
               <TouchableOpacity
-                onPress={
-                  () => alertremove(contacto.email)
-                  // deleteContact(contacto.email)
-                  // dispatch(RemoveContact(contacto.email))
-                }
+                onPress={() => alertremove(contacto.email)}
                 style={styles.BTNRemove}
               >
                 <View key={contacto.email}>
