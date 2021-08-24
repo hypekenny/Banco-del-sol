@@ -279,9 +279,9 @@ export function addFunds(
   comment: string,
   token: string,
 ) {
-  return async (dispatch: any) => {
+  return (dispatch: any) => {
     try {
-      await axios.post(
+      axios.post(
         `http://localhost:3001/api/account`,
         { senderEmail, receiverEmail, type, value, comment },
         {
@@ -300,7 +300,7 @@ export function addFunds(
   };
 }
 export const getEmail =
-  (emailUser: string, idToken: string, nameUser: string) => dispatch => {
+  (emailUser: string, idToken: string, nameUser: string) => (dispatch: any) => {
     // Esta accion lo que hace es guardarme dentro de mi estado re redux "Contact" , el emailUser,nombre y cvu
     const email = emailUser.toLowerCase();
 
@@ -381,9 +381,9 @@ export const detailContact = (email: string, name: string) => dispatch => {
 };
 
 export function updateAccount(email: string, token: string) {
-  return dispatch => {
+  return (dispatch: any) => {
     axios
-      .get(`http://localhost:3001/api/account/?email=${email}`, {
+      .get(`http://localhost:3001/api/account/`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
