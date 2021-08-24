@@ -107,6 +107,7 @@ export interface RootState {
   nameDetail: string;
   message: string;
   succeed: boolean;
+  updatedAccount: boolean;
   DetailTransfer: { name: string; email: string };
 }
 

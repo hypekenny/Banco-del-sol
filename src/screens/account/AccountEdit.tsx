@@ -70,13 +70,12 @@ export function AccountEdit({ navigation }: Props) {
       },
     },
     onSubmit: values => console.log(values),
-    /* alert(`Email: ${values.email}`), */
   });
 
   const [selectedValue, setSelectedValue] = useState(
     userStore.address.province,
   );
-  const handleConfirmProvince = provincia => {
+  const handleConfirmProvince = (provincia: string) => {
     values.address.province = provincia;
   };
 
@@ -124,7 +123,7 @@ export function AccountEdit({ navigation }: Props) {
       <View
         style={{
           paddingHorizontal: 32,
-          marginBottom: 16,
+          paddingBottom: 16,
           width: '100%',
         }}
       >
@@ -268,8 +267,6 @@ export function AccountEdit({ navigation }: Props) {
               !errors.address?.province
             ) {
               send(values);
-              alert('Tus datos fueron actualizados!');
-              navigation.push('Account');
             }
           }}
         >

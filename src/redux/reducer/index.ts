@@ -15,6 +15,8 @@ import {
   CLEAR_ERRORS,
   SET_MESSAGE,
   SET_SUCCEED,
+  SET_UPDATE_ACCOUNT,
+  REMOVE_UPDATED_ACCOUNT,
 } from '../actions/index';
 
 interface actionType {
@@ -40,6 +42,7 @@ export const initialState = {
   loading: false,
   message: '',
   succeed: false,
+  updatedAccount: false,
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -152,6 +155,16 @@ export default function rootReducer(state = initialState, action: actionType) {
       return {
         ...state,
         succeed: action.payload,
+      };
+    case SET_UPDATE_ACCOUNT:
+      return {
+        ...state,
+        updatedAccount: action.payload,
+      };
+    case REMOVE_UPDATED_ACCOUNT:
+      return {
+        ...state,
+        updatedAccount: action.payload,
       };
     default:
       return state;
