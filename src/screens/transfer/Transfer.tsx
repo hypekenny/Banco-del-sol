@@ -88,7 +88,8 @@ export const Transfer = () => {
       <View>
         {data.amount > 0 &&
         data.email.length > 0 &&
-        data.email !== userStore.email ? (
+        data.email !== userStore.email &&
+        data.comment.length < 50 ? (
           <View style={{ alignSelf: 'center', marginTop: '20%' }}>
             <TouchableOpacity
               onPress={() => {
