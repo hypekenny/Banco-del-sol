@@ -80,26 +80,22 @@ export function Transactions(props) {
         onPress={setButtonFilterIndex}
         selectedIndex={buttonFilterIndex}
         buttons={['Todo', 'Recarga', 'Transfer']}
-        containerStyle={{ height: 'auto', padding: 2 }}
-        buttonContainerStyle={{
-          backgroundColor: '#ff9349',
-          marginHorizontal: 3,
-        }}
-        selectedButtonStyle={{ backgroundColor: '#ff4b6e' }}
-        textStyle={{ color: 'white' }}
+        containerStyle={{ height: 'auto', borderWidth: 0 }}
+        buttonContainerStyle={styles.buttonGroupBox}
+        selectedButtonStyle={styles.buttonGroupBoxSelected}
+        textStyle={{ color: 'black' }}
+        selectedTextStyle={{ color: 'white' }}
       />
       <Text style={styles.textGeneral}>Ordenar por: </Text>
       <ButtonGroup
         onPress={setButtonOrderIndex}
         selectedIndex={buttonOrderIndex}
         buttons={['Mas recientes', 'Mas antiguos']}
-        containerStyle={{ height: 'auto', padding: 2 }}
-        buttonContainerStyle={{
-          backgroundColor: '#ff9349',
-          marginHorizontal: 3,
-        }}
-        selectedButtonStyle={{ backgroundColor: '#ff4b6e' }}
-        textStyle={{ color: 'white' }}
+        containerStyle={{ height: 'auto', borderWidth: 0 }}
+        buttonContainerStyle={styles.buttonGroupBox}
+        selectedButtonStyle={styles.buttonGroupBoxSelected}
+        textStyle={{ color: 'black' }}
+        selectedTextStyle={{ color: 'white' }}
       />
       <TransactionList data={state} email={account.email} />
     </ScrollView>
