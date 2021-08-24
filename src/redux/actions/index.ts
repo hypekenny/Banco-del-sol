@@ -20,6 +20,8 @@ export const REMOVE_CONTACT = 'REMOVE_CONTACT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const SET_MESSAGE = 'SET_MESSAGE';
 export const SET_SUCCEED = 'SET_SUCCEED';
+export const SET_UPDATE_ACCOUNT = 'SET_UPDATE_ACCOUNT';
+export const REMOVE_UPDATED_ACCOUNT = 'REMOVE_UPDATED_ACCOUNT';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -407,8 +409,19 @@ export async function updateUser(user: any, token: string, dispatch: any) {
         type: SET_USER,
         payload: response.data.updatedUser,
       });
+      dispatch({
+        type: SET_UPDATE_ACCOUNT,
+        payload: true,
+      });
     })
     .catch(error => console.log(error));
+}
+
+export function RemoveUpdatedAccount(dispatch) {
+  dispatch({
+    type: SET_UPDATE_ACCOUNT,
+    payload: false,
+  });
 }
 
 export const RemoveContact = (email: string) => dispatch => {
