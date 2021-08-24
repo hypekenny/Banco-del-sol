@@ -161,7 +161,6 @@ export const Statistics = () => {
     ],
   });
   useEffect(() => {
-    console.log('Amount', userAccount.amount);
     const wt = 60;
     const Tooltip = ({ x, y }) => (
       <G x={x(muestroDecorator) - wt / 2 + 0.05 * width} key="tooltip">
@@ -413,7 +412,6 @@ export const Statistics = () => {
       }
     }
 
-    console.log(diarioMoves);
     // eslint-disable-next-line no-plusplus
     for (let i = 5; i >= 0; i--) {
       diarioBalance.push(
