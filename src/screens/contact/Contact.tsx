@@ -8,6 +8,7 @@ import { loginStackParamList, RootState } from '../../types/Types';
 import { styles } from './ContactStyles';
 import { detailContact, RemoveContact } from '../../redux/actions';
 import colors from '../../constants/colors';
+import { StylesCon } from '../../constants/Styles';
 
 type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
@@ -57,82 +58,86 @@ export const Contact = ({ navigation }: Props) => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerOne}>
-        <LinearGradient
-          style={styles.header}
-          colors={[colors.primary, colors.secondary]}
-        />
-        <View style={styles.title}>
-          <Text style={styles.textTitle}>Contactos</Text>
-        </View>
-        <TouchableOpacity
-          style={styles.back}
-          onPress={() => {
-            clear();
-          }}
-        >
-          <AntDesign name="arrowleft" size={35} color="white" />
-        </TouchableOpacity>
-      </View>
-      <FontAwesome5
-        name="search"
-        size={24}
-        color={colors.primary}
-        style={styles.searchIcon}
-      />
-      <TextInput
-        style={styles.textInput}
-        placeholder="Nombre de tu contacto"
-        onChangeText={search => filterSearch(search)}
-        value={text}
-      />
-      <View style={styles.viewbtn}>
-        <TouchableOpacity onPress={() => navigation.push('ContactAdd')}>
-          <Ionicons
-            name="ios-person-add-sharp"
-            size={24}
-            color={colors.primary}
-            style={styles.iconAdd}
+    <View style={styles.phone}>
+      <View style={StylesCon.filler} />
+      <View style={styles.container}>
+        <View style={styles.headerOne}>
+          <LinearGradient
+            style={styles.header}
+            colors={[colors.primary, colors.secondary]}
           />
-        </TouchableOpacity>
-      </View>
+          <View style={StylesCon.title}>
+            <Text style={StylesCon.textTitle}>Contactos</Text>
+          </View>
+          <TouchableOpacity
+            style={StylesCon.back}
+            onPress={() => {
+              clear();
+            }}
+          >
+            <AntDesign name="arrowleft" size={35} color="white" />
+          </TouchableOpacity>
+        </View>
+        <FontAwesome5
+          name="search"
+          size={24}
+          color={colors.primary}
+          style={styles.searchIcon}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Nombre de tu contacto"
+          onChangeText={search => filterSearch(search)}
+          value={text}
+        />
+        <View style={styles.viewbtn}>
+          <TouchableOpacity onPress={() => navigation.push('ContactAdd')}>
+            <Ionicons
+              name="ios-person-add-sharp"
+              size={24}
+              color={colors.primary}
+              style={styles.iconAdd}
+            />
+          </TouchableOpacity>
+        </View>
 
-      {contactos.map(contacto => {
-        return contacto.name ? (
-          <View key={contacto.email}>
-            <TouchableOpacity
-              onPress={() => detailsfn(contacto.email, contacto.name)}
-              style={styles.BTNBox}
-            >
+        {contactos.map(contacto => {
+          return contacto.name ? (
+            <View key={contacto.email}>
               <TouchableOpacity
-                onPress={() => alertremove(contacto.email)}
-                style={styles.BTNRemove}
+                onPress={() => detailsfn(contacto.email, contacto.name)}
+                style={styles.BTNBox}
               >
-                <View key={contacto.email}>
-                  <Ionicons
-                    name="ios-trash-outline"
-                    size={24}
-                    color={colors.primary}
-                  />
+                <TouchableOpacity
+                  onPress={() => alertremove(contacto.email)}
+                  style={styles.BTNRemove}
+                >
+                  <View key={contacto.email}>
+                    <Ionicons
+                      name="ios-trash-outline"
+                      size={24}
+                      color={colors.primary}
+                    />
+                  </View>
+                </TouchableOpacity>
+                <View key={contacto.email} style={styles.Box}>
+                  <Text style={styles.textBoxName}>{contacto.name}</Text>
+                  <Text style={styles.textBoxEmail}>{contacto.email}</Text>
                 </View>
               </TouchableOpacity>
-              <View key={contacto.email} style={styles.Box}>
-                <Text style={styles.textBoxName}>{contacto.name}</Text>
-                <Text style={styles.textBoxEmail}>{contacto.email}</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        ) : null;
-      })}
+            </View>
+          ) : null;
+        })}
 
-      {!contact[0] ? (
-        <View style={styles.ViewDescription}>
-          <Text style={styles.TextDescription}>
-            Aca podras visualizar tus contactos.
-          </Text>
-        </View>
-      ) : null}
+        {!contact[0] ? (
+          <View style={styles.ViewDescription}>
+            <Text style={styles.TextDescription}>
+              Aca podras visualizar tus contactos.
+            </Text>
+          </View>
+        ) : null}
+      </View>
+      <View style={StylesCon.filler} />
     </View>
   );
 };

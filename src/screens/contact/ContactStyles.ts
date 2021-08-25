@@ -5,10 +5,33 @@ import colors from '../../constants/colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 50,
+    alignSelf: 'center',
+    minHeight: 750,
+    width: 411,
+
+    borderColor: 'black',
+    borderRadius: 30,
+    borderWidth: 6,
+  },
+  headerOne: {
+    backgroundColor: 'red',
+    height: 60,
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+  },
+  header: {
+    height: 60,
+    width: '100%',
+    borderTopLeftRadius: 22,
+    borderTopRightRadius: 22,
   },
 
+  phone: {
+    height: '100%',
+    width: '100%',
+    justifyContent: 'space-around',
+    backgroundColor: colors.white,
+  },
   Box: {
     zIndex: 70,
     flex: 1,
@@ -50,11 +73,6 @@ export const styles = StyleSheet.create({
   },
 
   textBoxEmail: { color: '#000', fontSize: 20, fontWeight: '100' },
-  header: {
-    height: 70,
-    width: '100%',
-    marginTop: '-3%',
-  },
 
   title: {
     height: 70,
@@ -79,26 +97,21 @@ export const styles = StyleSheet.create({
 
   back: {
     position: 'absolute',
-    height: 40,
+    height: 70,
     width: 70,
     left: 0,
-    top: 5,
+    top: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: '#000',
   },
-
-  headerOne: { backgroundColor: '#000', marginTop: '-10%' },
-
-  // icon: { marginTop: '-30%' },
 
   viewbtn: {
     zIndex: 80,
     position: 'fixed',
     // top: 0,
     // left: 0,
-    right: 20,
-    bottom: 20,
+    right: 780,
+    bottom: 130,
     borderRadius: 100,
     borderWidth: 1,
     width: 60,
@@ -108,7 +121,7 @@ export const styles = StyleSheet.create({
     marginTop: '15%',
 
     borderColor: colors.primary,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#000',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -121,8 +134,6 @@ export const styles = StyleSheet.create({
 
   iconAdd: {
     width: '15%',
-    // marginTop: '6.5%',
-    // marginLeft: '10%',
   },
   textBtn: {
     color: colors.primary,
@@ -133,7 +144,8 @@ export const styles = StyleSheet.create({
   },
 
   TextDescription: {
-    textAlign: 'justify',
+    // textAlign: 'justify',
+    textAlign: 'center',
     color: '#767676de',
     fontSize: 25,
     fontWeight: '100',
