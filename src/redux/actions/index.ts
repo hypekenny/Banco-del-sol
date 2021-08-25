@@ -145,20 +145,6 @@ export function login(email: string, password: string) {
           });
       })
       .catch(error => {
-        if (error.code === 'auth/user-not-found') {
-          dispatch({
-            type: SET_ERROR,
-            payload: 'El email no está registrado',
-          });
-          return;
-        }
-        if (error.code === 'auth/wrong-password') {
-          dispatch({
-            type: SET_ERROR,
-            payload: 'La contraseña es incorrecta',
-          });
-          return;
-        }
         if (error.code === 'auth/invalid-email') {
           dispatch({
             type: SET_ERROR,
@@ -168,7 +154,7 @@ export function login(email: string, password: string) {
         }
         dispatch({
           type: SET_ERROR,
-          payload: 'Ocurrió un error de red',
+          payload: 'Los datos no son válidos',
         });
         console.error(error);
       });
@@ -216,7 +202,7 @@ export function resetPass(email: string) {
         } else if (error.code === 'auth/user-not-found') {
           dispatch({
             type: SET_ERROR,
-            payload: 'El email no está registrado',
+            payload: 'Ocurrió un error',
           });
         } else {
           dispatch({
