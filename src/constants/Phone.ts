@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from 'react-native-elements';
+import colors from './colors';
 
 export const Phone = StyleSheet.create({
   phone: {
