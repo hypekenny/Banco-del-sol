@@ -10,4 +10,5 @@ export default {
   error: '#b55464',
   disabledPrimary: '#757573',
   disabledSecondary: '#b5b5b5',
+  gradient: ['#ff4b6e', '#ff9349'],
 };
