@@ -2,15 +2,6 @@ import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
-  phone: {
-    height: '100%',
-    width: '100%',
-    justifyContent: 'space-around',
-    backgroundColor: 'red',
-  },
-  filler: {
-    height: '10%',
-  },
   container: {
     flex: 1,
     backgroundColor: colors.white,

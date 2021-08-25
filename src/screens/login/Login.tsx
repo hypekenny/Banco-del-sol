@@ -15,6 +15,7 @@ import { Props, resFromBack, RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
 import { LoadingFull } from '../loading2/LoadingFull';
+import { Phone } from '../../constants/phone';
 
 export const Login = ({ navigation }: Props) => {
   const userStore = useSelector((state: resFromBack) => state.user);
@@ -41,8 +42,8 @@ export const Login = ({ navigation }: Props) => {
   }
 
   return (
-    <View style={styles.phone}>
-      <View style={styles.filler} />
+    <View style={Phone.phone}>
+      <View style={Phone.filler} />
       <View style={styles.container}>
         <View style={styles.headerOne}>
           <LinearGradient
@@ -158,7 +159,7 @@ export const Login = ({ navigation }: Props) => {
           ? navigation.push('HomeTab')
           : null}
       </View>
-      <View style={styles.filler} />
+      <View style={Phone.filler} />
     </View>
   );
 };
