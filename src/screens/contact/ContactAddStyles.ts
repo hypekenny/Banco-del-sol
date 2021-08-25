@@ -4,17 +4,40 @@ import colors from '../../constants/colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
-    marginTop: 50,
+    alignSelf: 'center',
+    // minHeight: 750,
+
+    minHeight: 985,
+    maxHeight: 985,
+
+    width: 400,
+
+    borderRadius: 30,
+    // zIndex: 20,
   },
 
+  headerOne: {
+    // alignSelf: 'center',
+    backgroundColor: '#000',
+    height: 63,
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    // width: '100%',
+  },
   header: {
-    height: 70,
-    width: '100%',
-    marginTop: '-3%',
+    alignSelf: 'center',
+    height: 65,
+    width: '97%',
+    borderTopLeftRadius: 22,
+    borderTopRightRadius: 22,
   },
 
-  headerOne: { backgroundColor: '#000', marginTop: '-10%' },
+  phone: {
+    height: '100%',
+    width: '100%',
+    justifyContent: 'space-around',
+    backgroundColor: colors.white,
+  },
   back: {
     position: 'absolute',
     height: 70,
@@ -25,7 +48,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  icon: { marginTop: '-30%' },
+  icon: { marginTop: '-20%' },
   title: {
     height: 70,
     justifyContent: 'center',
@@ -85,7 +108,7 @@ export const styles = StyleSheet.create({
     elevation: 14,
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: '50%',
+    marginTop: '70%',
     marginBottom: 10,
     position: 'absolute',
     alignSelf: 'center',
@@ -93,8 +116,9 @@ export const styles = StyleSheet.create({
   button: {
     zIndex: 80,
     width: '40%',
-    height: '8%',
-    alignItems: 'center',
+    height: '5%',
+    justifyContent: 'center',
+    // alignItems: 'center',
     marginTop: 20,
     marginBottom: 20,
     borderRadius: 25,
@@ -117,7 +141,8 @@ export const styles = StyleSheet.create({
   buttondisabled: {
     zIndex: 80,
     width: '40%',
-    height: '8%',
+    height: '5%',
+    justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 20,
@@ -146,7 +171,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: '-2.5%',
+    // marginTop: '0.7%',
   },
 
   search: {
@@ -156,7 +181,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: '-5%',
+    marginTop: '0.7%',
   },
 
   searchDisable: {
@@ -166,24 +191,25 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: '-5%',
+    marginTop: '0.7%',
   },
   ellipse: {
-    position: 'absolute',
-    zIndex: 20,
-    // bottom: '-35%',
-    marginTop: '110%',
-    // marginBottom: '-1111111111111150%',
-    left: '20%',
-    width: '60%',
-    height: '60%',
-    borderRadius: 999,
+    position: 'relative',
+    alignSelf: 'center',
+    width: '32.2%',
+    height: '27%',
+    marginTop: '-35%',
+    borderTopLeftRadius: 900,
+    borderTopRightRadius: 900,
+    borderBottomLeftRadius: 263,
+    borderBottomRightRadius: 263,
     transform: [{ scaleX: 3 }],
   },
+  // elipseView: { zIndex: 10, },
   buttonAdd: {
     zIndex: 80,
     width: '70%',
-    height: '8%',
+    height: '6%',
     alignItems: 'center',
     marginTop: '90%',
     borderRadius: 20,
@@ -207,10 +233,10 @@ export const styles = StyleSheet.create({
     zIndex: 80,
 
     width: '70%',
-    height: '8%',
+    height: '6%',
     alignItems: 'center',
     marginTop: '90%',
-    // marginBottom: '-90%',
+
     borderRadius: 20,
     borderWidth: 2,
     borderColor: colors.primary,
@@ -231,12 +257,12 @@ export const styles = StyleSheet.create({
   msgText: {
     position: 'absolute',
     alignSelf: 'center',
-    marginTop: '80%',
+    marginTop: '85%',
   },
   msgTextUser: {
     position: 'absolute',
     alignSelf: 'center',
     textAlign: 'center',
-    marginTop: '80%',
+    marginTop: '85%',
   },
 });

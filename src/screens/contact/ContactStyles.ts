@@ -14,7 +14,6 @@ export const styles = StyleSheet.create({
     borderWidth: 6,
   },
   headerOne: {
-    backgroundColor: 'red',
     height: 60,
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
@@ -107,21 +106,24 @@ export const styles = StyleSheet.create({
 
   viewbtn: {
     zIndex: 80,
-    position: 'fixed',
+    // position: 'fixed',
+    position: 'absolute',
+    // position: 'fixed',
     // top: 0,
     // left: 0,
-    right: 780,
-    bottom: 130,
+    right: 10,
+    bottom: 10,
+
     borderRadius: 100,
     borderWidth: 1,
     width: 60,
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '15%',
+    // marginTop: '15%',
+    backgroundColor: '#fff',
 
     borderColor: colors.primary,
-    backgroundColor: '#000',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

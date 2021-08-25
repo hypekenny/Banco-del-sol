@@ -14,11 +14,16 @@ export const StylesCon = StyleSheet.create({
   headerOne: {
     backgroundColor: '#000',
     height: 63,
+
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
   },
   icon: { marginTop: '-18%' },
   header: {
     height: 65,
     width: '100%',
+    borderTopLeftRadius: 22,
+    borderTopRightRadius: 22,
   },
   title: {
     height: 70,
