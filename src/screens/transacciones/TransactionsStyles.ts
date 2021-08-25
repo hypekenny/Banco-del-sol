@@ -50,7 +50,9 @@ export const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: '#fff',
-    height: '100%',
+    width: 411,
+    height: 800,
+    alignSelf: 'center',
   },
   textGeneral: {
     fontSize: 20,

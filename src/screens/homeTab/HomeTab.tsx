@@ -53,12 +53,21 @@ export const HomeTab = () => {
             end={{ x: 0, y: 0 }}
           />
         ),
+        // tabBarBadgeStyle
+        tabBarStyle: {
+          width: 411,
+          height: 48,
+          alignSelf: 'center',
+        },
+        // headerStyle: {},
       })}
     >
       <Tab.Screen
         name="Inicio"
         component={Home}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+        }}
       />
       <Tab.Screen
         name="Transacciones"
@@ -68,11 +77,15 @@ export const HomeTab = () => {
           headerBackground: () => (
             <LinearGradient
               colors={['#ff4b6e', '#ff9349']}
-              style={{ flex: 1 }}
+              style={{ flex: 1, width: 411, alignSelf: 'center' }}
               start={{ x: 0, y: 0 }}
               end={{ x: 0, y: 1 }}
             />
           ),
+          headerTitleStyle: {
+            backgroundColor: '#000',
+            // width:;
+          },
         }}
       />
       <Tab.Screen

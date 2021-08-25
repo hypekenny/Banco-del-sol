@@ -9,6 +9,10 @@ export const styles = StyleSheet.create({
     // padding: 10,
     overflow: 'hidden',
     zIndex: 0,
+    width: 411,
+    height: 800,
+    alignSelf: 'center',
+    // marginLeft: '30%',
   },
   inputContainer: {
     flex: 1,

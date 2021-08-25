@@ -118,6 +118,11 @@ export const Main = () => (
             end={{ x: 0, y: 1 }}
           />
         ),
+        // headerStyle: {
+        //   width: '100%',
+        //   height: 75,
+        //   // alignSelf: 'center',
+        // },
       }}
     />
     <LoginStack.Screen
