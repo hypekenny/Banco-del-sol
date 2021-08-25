@@ -48,9 +48,9 @@ export const Transfer = ({ navigation }: Props) => {
       <View style={styles.container}>
         <LoadingFull show={loading} />
 
-        <View style={StylesCon.headerOne}>
+        <View>
           <LinearGradient
-            style={StylesCon.header}
+            style={styles.header}
             colors={[colors.primary, colors.secondary]}
           />
           <View style={StylesCon.title}>
