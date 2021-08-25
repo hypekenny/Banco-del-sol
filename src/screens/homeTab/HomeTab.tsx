@@ -58,6 +58,10 @@ export const HomeTab = () => {
           width: 411,
           height: 48,
           alignSelf: 'center',
+          marginTop: '-15%',
+          marginBottom: '15%',
+          // borderBottomLeftRadius: 20,
+          // borderBottomRigthRadius: 20,
         },
         // headerStyle: {},
       })}
