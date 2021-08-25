@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
-    overflow: 'hidden',
     zIndex: 0,
     alignSelf: 'center',
     minHeight: 785,
@@ -17,7 +16,12 @@ export const styles = StyleSheet.create({
   maxBalanceText: {
     alignSelf: 'center',
     color: colors.primary,
-    marginBottom: '2%',
     fontSize: 20,
+  },
+  header: {
+    height: 65,
+    width: '100%',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
   },
 });
