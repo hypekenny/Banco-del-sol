@@ -5,7 +5,7 @@ export const StylesCon = StyleSheet.create({
   phone: {
     height: '100%',
     width: '100%',
-    // justifyContent: 'space-around',
+    justifyContent: 'space-around',
     backgroundColor: colors.white,
   },
   filler: {
