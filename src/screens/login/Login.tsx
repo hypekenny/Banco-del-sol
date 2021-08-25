@@ -13,7 +13,6 @@ import {
 import { styles } from './LoginStyles';
 import { Props, resFromBack, RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
-import { ErrorStyle } from '../../constants/ErrorStyle';
 import colors from '../../constants/colors';
 import { LoadingFull } from '../loading2/LoadingFull';
 
