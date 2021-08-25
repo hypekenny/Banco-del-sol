@@ -16,6 +16,8 @@ export const StylesCon = StyleSheet.create({
   header: {
     height: 65,
     width: '100%',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   title: {
     height: 70,
