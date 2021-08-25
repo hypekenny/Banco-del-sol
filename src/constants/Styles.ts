@@ -7,6 +7,7 @@ export const StylesCon = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-around',
     backgroundColor: colors.white,
+    overflow: 'hidden',
   },
   filler: {
     height: '10%',
