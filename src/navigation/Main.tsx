@@ -74,6 +74,7 @@ export const Main = () => (
       name="AddFunds"
       component={AddFunds}
       options={{
+        headerShown: false,
         headerTitle: 'Inicio',
         headerTintColor: 'white',
         headerBackground: () => (
