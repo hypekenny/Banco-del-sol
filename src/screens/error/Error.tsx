@@ -15,7 +15,7 @@ export const Error = ({ navigation }: Props) => {
       </View>
       <View style={styles.containerButton}>
         <TouchableOpacity
-          onPress={navigation.push('HomeTab')}
+https://github.com/SebastianTorres00/Banco-del-sol/pull/148
           style={ButtonPrimaryStyle.button}
         >
           <Text style={ButtonSecondaryStyle.text}>Volver</Text>
