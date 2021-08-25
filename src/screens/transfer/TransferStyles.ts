@@ -5,8 +5,14 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
-    padding: 10,
-    justifyContent: 'center',
+    overflow: 'hidden',
+    zIndex: 0,
+    alignSelf: 'center',
+    minHeight: 750,
+    width: 411,
+    borderColor: 'black',
+    borderRadius: 30,
+    borderWidth: 6,
   },
   maxBalanceText: {
     alignSelf: 'center',
