@@ -80,7 +80,7 @@ export const Login = ({ navigation }: Props) => {
           closeOnTouchOutside={false}
           closeOnHardwareBackPress={false}
           showCancelButton={false}
-          showConfirmButton={true}
+          showConfirmButton
           confirmText="Aceptar"
           confirmButtonColor="#ff4b6e"
           onConfirmPressed={() => {
