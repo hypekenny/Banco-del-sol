@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, TextInput, Image } from 'react-native';
+import React from 'react';
+import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './StartViewStyles';
