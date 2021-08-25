@@ -219,9 +219,6 @@ export function Register({ navigation }: Props) {
     dispatch(setLoadingFalse());
   }
 
-
-
-
   return (
     <View style={styles.view}>
       <LoadingFull show={loading} />

@@ -1,3 +1,4 @@
+/* eslint-disable no-throw-literal */
 import axios from 'axios';
 import firebase from 'firebase';
 import { resFromBack, userType } from '../../types/Types';
@@ -20,6 +21,8 @@ export const REMOVE_CONTACT = 'REMOVE_CONTACT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const SET_MESSAGE = 'SET_MESSAGE';
 export const SET_SUCCEED = 'SET_SUCCEED';
+export const SET_UPDATE_ACCOUNT = 'SET_UPDATE_ACCOUNT';
+export const REMOVE_UPDATED_ACCOUNT = 'REMOVE_UPDATED_ACCOUNT';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -102,6 +105,8 @@ export function login(email: string, password: string) {
                 },
               )
               .then(responseFromBack => {
+                if (responseFromBack.data.user.condition === 'disabled')
+                  throw { error: 'disabled' };
                 dispatch({
                   type: SET_ACCOUNT,
                   payload: responseFromBack.data.account,
@@ -116,10 +121,18 @@ export function login(email: string, password: string) {
                 });
               })
               .catch(error => {
-                dispatch({
-                  type: SET_ERROR,
-                  payload: 'Ocurrió un error con el servidor',
-                });
+                if (error.error === 'disabled') {
+                  dispatch({
+                    type: SET_ERROR,
+                    payload: 'El usuario se encuentra deshabilitado',
+                  });
+                } else {
+                  dispatch({
+                    type: SET_ERROR,
+                    payload: 'Ocurrió un error con el servidor',
+                  });
+                }
+
                 console.error(error);
               });
           })
@@ -266,33 +279,34 @@ export function addFunds(
   comment: string,
   token: string,
 ) {
-  return async (dispatch: any) => {
-    try {
-      await axios.post(
-        `http://localhost:3001/api/account`,
+  return (dispatch: any) => {
+    axios
+      .post(
+        'http://localhost:3001/api/account',
         { senderEmail, receiverEmail, type, value, comment },
         {
           headers: {
             authorization: `Bearer ${token}`,
           },
         },
-      );
-    } catch (error) {
-      console.error(error);
-      dispatch({
-        type: SET_ERROR,
-        payload: 'El usuario no se ha encontrado',
+      )
+      .catch(error => {
+        console.log(error);
+        dispatch({
+          type: SET_ERROR,
+          payload: 'El usuario no se ha encontrado',
+        });
       });
-    }
   };
 }
 
 export const getEmail =
-  (emailUser: string, idToken: string, nameUser: string) => dispatch => {
+  (emailUser: string, idToken: string, nameUser: string) => (dispatch: any) => {
     // Esta accion lo que hace es guardarme dentro de mi estado re redux "Contact" , el emailUser,nombre y cvu
+    const email = emailUser.toLowerCase();
 
     axios
-      .get(`http://localhost:3001/api/contacts/${emailUser}`, {
+      .get(`http://localhost:3001/api/contacts/${email}`, {
         headers: {
           authorization: `Bearer ${idToken}`,
         },
@@ -318,9 +332,10 @@ export const getEmail =
 
 export const getName = (emailUser: string, idToken: string) => dispatch => {
   // Esta accion lo que hace es irme a buscar a la DB el email del usuario que quiero agregar, en el caso de existir me guarda su nombre.
+  const email = emailUser.toLowerCase();
 
   axios
-    .get(`http://localhost:3001/api/contacts/${emailUser}`, {
+    .get(`http://localhost:3001/api/contacts/${email}`, {
       headers: {
         authorization: `Bearer ${idToken}`,
       },
@@ -367,9 +382,9 @@ export const detailContact = (email: string, name: string) => dispatch => {
 };
 
 export function updateAccount(email: string, token: string) {
-  return dispatch => {
+  return (dispatch: any) => {
     axios
-      .get(`http://localhost:3001/api/account/?email=${email}`, {
+      .get(`http://localhost:3001/api/account/`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -407,8 +422,19 @@ export async function updateUser(user: any, token: string, dispatch: any) {
         type: SET_USER,
         payload: response.data.updatedUser,
       });
+      dispatch({
+        type: SET_UPDATE_ACCOUNT,
+        payload: true,
+      });
     })
     .catch(error => console.log(error));
+}
+
+export function RemoveUpdatedAccount(dispatch) {
+  dispatch({
+    type: SET_UPDATE_ACCOUNT,
+    payload: false,
+  });
 }
 
 export const RemoveContact = (email: string) => dispatch => {

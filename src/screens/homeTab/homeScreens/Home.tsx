@@ -20,6 +20,7 @@ import {
   updateAccount,
   logout,
   cleanErrors,
+  RemoveUpdatedAccount,
 } from '../../../redux/actions';
 import { Props, RootState } from '../../../types/Types';
 import colors from '../../../constants/colors';
@@ -30,6 +31,9 @@ LogBox.ignoreAllLogs();
 export const Home = ({ navigation }: Props) => {
   const accountStore = useSelector((state: RootState) => state.account);
   const userStore = useSelector((state: RootState) => state.user);
+  const flagUpdatedAccount = useSelector(
+    (state: RootState) => state.updatedAccount,
+  );
   const token = useSelector((state: RootState) => state.token);
   const error = useSelector((state: RootState) => state.errors);
   const dispatch = useDispatch();
@@ -232,6 +236,29 @@ export const Home = ({ navigation }: Props) => {
           onConfirmPressed={() => {
             setState(false);
             dispatch(cleanErrors());
+          }}
+        />
+      </View>
+      <View
+        style={{
+          marginTop: '100%',
+          zIndex: 100,
+          position: 'absolute',
+          width: '100%',
+        }}
+      >
+        <AwesomeAlert
+          show={flagUpdatedAccount}
+          showProgress={false}
+          title="Tus datos fueron actualizados!"
+          closeOnTouchOutside={false}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton
+          confirmText="Aceptar"
+          confirmButtonColor="#ff4b6e"
+          onConfirmPressed={() => {
+            RemoveUpdatedAccount(dispatch);
           }}
         />
       </View>

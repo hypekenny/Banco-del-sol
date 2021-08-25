@@ -15,11 +15,19 @@ import {
   CLEAR_ERRORS,
   SET_MESSAGE,
   SET_SUCCEED,
+  SET_UPDATE_ACCOUNT,
+  REMOVE_UPDATED_ACCOUNT,
 } from '../actions/index';
 
 interface actionType {
   type: string;
-  payload: Object;
+  payload: {
+    name: string;
+    email: string;
+    lastName: string;
+    cvu: string;
+    user: string;
+  };
 }
 
 export const initialState = {
@@ -34,6 +42,7 @@ export const initialState = {
   loading: false,
   message: '',
   succeed: false,
+  updatedAccount: false,
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -74,6 +83,7 @@ export default function rootReducer(state = initialState, action: actionType) {
         ...state,
         token: action.payload,
       };
+
     case GET_EMAIL:
       return {
         ...state,
@@ -121,7 +131,7 @@ export default function rootReducer(state = initialState, action: actionType) {
         loading: false,
       };
 
-    case REMOVE_CONTACT:
+    case REMOVE_CONTACT: {
       const newContacts = state.Contacts.filter(
         contact => contact.email !== action.payload,
       );
@@ -129,7 +139,7 @@ export default function rootReducer(state = initialState, action: actionType) {
         ...state,
         Contacts: newContacts,
       };
-
+    }
     case CLEAR_ERRORS:
       return {
         ...state,
@@ -145,6 +155,16 @@ export default function rootReducer(state = initialState, action: actionType) {
       return {
         ...state,
         succeed: action.payload,
+      };
+    case SET_UPDATE_ACCOUNT:
+      return {
+        ...state,
+        updatedAccount: action.payload,
+      };
+    case REMOVE_UPDATED_ACCOUNT:
+      return {
+        ...state,
+        updatedAccount: action.payload,
       };
     default:
       return state;

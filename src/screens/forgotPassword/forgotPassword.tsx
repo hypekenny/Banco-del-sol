@@ -99,7 +99,7 @@ export function ForgotPassword({ navigation }: Props) {
           showCancelButton={false}
           showConfirmButton={true}
           confirmText="Aceptar"
-          confirmButtonColor="#4ca64c"
+          confirmButtonColor="#ff4b6e"
           onConfirmPressed={() => {
             dispatch(resetSucceed());
           }}

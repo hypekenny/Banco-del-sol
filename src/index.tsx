@@ -8,7 +8,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from '../src/screens/error/ErrorStyles';
 import colors from '../src/constants/colors';
 import store from './redux/store';
-import { logout } from './redux/actions/index';
 import { Main } from './navigation/Main';
 import { ButtonPrimaryStyle } from '../src/constants/ButtonPrymaryStyle';
 import { ButtonSecondaryStyle } from '../src/constants/ButtonSecondaryStyle';
@@ -40,7 +39,7 @@ const ErrorFallback = ({ resetErrorBoundary }) => {
 export default function App() {
   return (
     <>
-      <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => logout()}>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Provider store={store}>
           <StatusBar style="auto" />
           <NavigationContainer>
