@@ -4,6 +4,7 @@ import { Ionicons, AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useSelector, useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
+import { ScrollView } from 'react-native-gesture-handler';
 import { loginStackParamList, RootState } from '../../types/Types';
 import { styles } from './ContactStyles';
 import { detailContact, RemoveContact } from '../../redux/actions';
@@ -101,33 +102,35 @@ export const Contact = ({ navigation }: Props) => {
           </TouchableOpacity>
         </View>
 
-        {contactos.map(contacto => {
-          return contacto.name ? (
-            <View key={contacto.email}>
-              <TouchableOpacity
-                onPress={() => detailsfn(contacto.email, contacto.name)}
-                style={styles.BTNBox}
-              >
+        <ScrollView>
+          {contactos.map(contacto => {
+            return contacto.name ? (
+              <View key={contacto.email}>
                 <TouchableOpacity
-                  onPress={() => alertremove(contacto.email)}
-                  style={styles.BTNRemove}
+                  onPress={() => detailsfn(contacto.email, contacto.name)}
+                  style={styles.BTNBox}
                 >
-                  <View key={contacto.email}>
-                    <Ionicons
-                      name="ios-trash-outline"
-                      size={24}
-                      color={colors.primary}
-                    />
+                  <TouchableOpacity
+                    onPress={() => alertremove(contacto.email)}
+                    style={styles.BTNRemove}
+                  >
+                    <View key={contacto.email}>
+                      <Ionicons
+                        name="ios-trash-outline"
+                        size={24}
+                        color={colors.primary}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                  <View key={contacto.email} style={styles.Box}>
+                    <Text style={styles.textBoxName}>{contacto.name}</Text>
+                    <Text style={styles.textBoxEmail}>{contacto.email}</Text>
                   </View>
                 </TouchableOpacity>
-                <View key={contacto.email} style={styles.Box}>
-                  <Text style={styles.textBoxName}>{contacto.name}</Text>
-                  <Text style={styles.textBoxEmail}>{contacto.email}</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          ) : null;
-        })}
+              </View>
+            ) : null;
+          })}
+        </ScrollView>
 
         {!contact[0] ? (
           <View style={styles.ViewDescription}>

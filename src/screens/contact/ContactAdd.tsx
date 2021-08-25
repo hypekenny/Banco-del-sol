@@ -14,6 +14,7 @@ import {
 import { styles } from './ContactAddStyles';
 import { loginStackParamList, RootState } from '../../types/Types';
 import colors from '../../constants/colors';
+import { StylesCon } from '../../constants/Styles';
 
 type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
@@ -137,102 +138,119 @@ export const ContactAdd = ({ navigation }: Props) => {
   }
 
   return (
-    <ScrollView scrollEnabled={false}>
-      <View style={styles.container}>
-        {/* HEADER */}
-        <View style={styles.headerOne}>
-          <LinearGradient
-            style={styles.header}
-            colors={[colors.primary, colors.secondary]}
-            end={[1, 1]}
-          />
-
-          <View style={styles.title}>
-            <Text style={styles.textTitle}>Agregar Contactos</Text>
-          </View>
-
-          <TouchableOpacity
-            style={styles.back}
-            onPress={() => {
-              BackAndClear();
-            }}
-          >
-            <AntDesign
-              name="arrowleft"
-              size={35}
-              color="white"
-              style={styles.icon}
+    <View style={StylesCon.phone}>
+      <img
+        style={{
+          width: 411,
+          height: 813,
+          position: 'absolute',
+          alignSelf: 'center',
+          // zIndex: 20,
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880174589605478400/Mockup_-_android_-_BDS_app.png"
+        alt=""
+      />
+      <View style={StylesCon.filler} />
+      <ScrollView scrollEnabled={false}>
+        <View style={styles.container}>
+          {/* HEADER */}
+          <View style={styles.headerOne}>
+            <LinearGradient
+              style={styles.header}
+              colors={[colors.primary, colors.secondary]}
+              end={[1, 1]}
             />
-          </TouchableOpacity>
-        </View>
-        {/* FIN HEADER */}
-        <TextInput
-          onChangeText={setEmail}
-          value={email}
-          placeholder="Email de tu contacto"
-          style={styles.input}
-        />
-        {/* BOTON BUSCAR */}
-        {email && email !== userEmail ? (
-          <TouchableOpacity onPress={() => callName()} style={styles.button}>
-            <Text style={styles.search}>BUSCAR</Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity style={styles.buttondisabled} disabled>
-            <Text style={styles.searchDisable}>BUSCAR</Text>
-          </TouchableOpacity>
-        )}
 
-        {/* INPUT NAME */}
+            <View style={StylesCon.title}>
+              <Text style={StylesCon.textTitle}>Agregar Contactos</Text>
+            </View>
 
-        {showInput === true && msgContact === false ? (
+            <TouchableOpacity
+              style={styles.back}
+              onPress={() => {
+                BackAndClear();
+              }}
+            >
+              <AntDesign
+                name="arrowleft"
+                size={35}
+                color="white"
+                style={styles.icon}
+              />
+            </TouchableOpacity>
+          </View>
+          {/* FIN HEADER */}
           <TextInput
-            onChangeText={setName}
-            value={name}
-            placeholder="Nombre de tu contacto"
-            style={styles.inputTwo}
+            onChangeText={setEmail}
+            value={email}
+            placeholder="Email de tu contacto"
+            style={styles.input}
           />
-        ) : null}
+          {/* BOTON BUSCAR */}
+          {email && email !== userEmail ? (
+            <TouchableOpacity onPress={() => callName()} style={styles.button}>
+              <Text style={styles.search}>BUSCAR</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.buttondisabled} disabled>
+              <Text style={styles.searchDisable}>BUSCAR</Text>
+            </TouchableOpacity>
+          )}
 
-        {msg && msgContact === false ? (
-          <View style={styles.msgText}>
-            <Text style={styles.TextAdd}>¡Se ha encontrado un usuario!</Text>
-          </View>
-        ) : null}
+          {/* INPUT NAME */}
 
-        {msgContact ? (
-          <View style={styles.msgTextUser}>
-            <Text style={styles.TextAdd}>
-              ¡Este usuario se encuentra en tus contactos!
-            </Text>
-          </View>
-        ) : null}
+          {showInput === true && msgContact === false ? (
+            <TextInput
+              onChangeText={setName}
+              value={name}
+              placeholder="Nombre de tu contacto"
+              style={styles.inputTwo}
+            />
+          ) : null}
 
-        {msgError ? (
-          <View style={styles.msgTextUser}>
-            <Text style={styles.TextAdd}>
-              ¡Este usuario no se encuentra registrado!
-            </Text>
-          </View>
-        ) : null}
+          {msg && msgContact === false ? (
+            <View style={styles.msgText}>
+              <Text style={styles.TextAdd}>¡Se ha encontrado un usuario!</Text>
+            </View>
+          ) : null}
 
-        {name && msgContact === false ? (
-          <TouchableOpacity
-            onPress={() => AddFriend(email, idToken, name)}
-            style={styles.buttonAdd}
-          >
-            <Text style={styles.TextAdd}>AGREGAR CONTACTO</Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity style={styles.buttonAddDisable} disabled>
-            <Text style={styles.TextAdd}>AGREGAR CONTACTO</Text>
-          </TouchableOpacity>
-        )}
-        <LinearGradient
-          style={styles.ellipse}
-          colors={[colors.primary, colors.secondary]}
-        />
-      </View>
-    </ScrollView>
+          {msgContact ? (
+            <View style={styles.msgTextUser}>
+              <Text style={styles.TextAdd}>
+                ¡Este usuario se encuentra en tus contactos!
+              </Text>
+            </View>
+          ) : null}
+
+          {msgError ? (
+            <View style={styles.msgTextUser}>
+              <Text style={styles.TextAdd}>
+                ¡Este usuario no se encuentra registrado!
+              </Text>
+            </View>
+          ) : null}
+
+          {name && msgContact === false ? (
+            <TouchableOpacity
+              onPress={() => AddFriend(email, idToken, name)}
+              style={styles.buttonAdd}
+            >
+              <Text style={styles.TextAdd}>AGREGAR CONTACTO</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.buttonAddDisable} disabled>
+              <Text style={styles.TextAdd}>AGREGAR CONTACTO</Text>
+            </TouchableOpacity>
+          )}
+          {/* <View style={styles.elipseView}> */}
+          <LinearGradient
+            style={styles.ellipse}
+            colors={[colors.primary, colors.secondary]}
+          />
+          {/* </View> */}
+        </View>
+      </ScrollView>
+      <View style={StylesCon.filler} />
+    </View>
   );
 };

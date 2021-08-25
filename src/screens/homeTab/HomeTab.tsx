@@ -53,6 +53,7 @@ export const HomeTab = () => {
             end={{ x: 0, y: 0 }}
           />
         ),
+
         // tabBarBadgeStyle
         tabBarStyle: {
           width: 411,
