@@ -1,9 +1,17 @@
-import { StyleSheet } from 'react-native';
-import { Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
 import colors from '../../constants/colors';
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+let width;
+let height;
+
+if (Dimensions.get('window').width < Dimensions.get('window').height) {
+  width = Dimensions.get('window').width;
+  height = Dimensions.get('window').height;
+} else {
+  width = 411;
+  height = 800;
+}
 const radius = width / 2;
 const scaley = (0.3 * width) / height;
 export const styles = StyleSheet.create({
@@ -20,8 +28,9 @@ export const styles = StyleSheet.create({
   },
 
   containerT: {
-    width: width,
-    height: height,
+    width,
+    height,
+    alignSelf: 'center',
   },
   containerButton: {
     transform: [{ translateY: 0.05 * height }],
