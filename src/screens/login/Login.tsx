@@ -25,8 +25,8 @@ export const Login = ({ navigation }: Props) => {
   const [state, setState] = useState(false);
 
   const [user, setUser] = useState({
-    email: 'sebastiantorrescontacto@gmail.com',
-    password: '123456789S*',
+    email: 'aaa@hotmail.com',
+    password: 'ASD123`',
     amount: 0,
   });
 
@@ -41,118 +41,124 @@ export const Login = ({ navigation }: Props) => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerOne}>
-        <LinearGradient
-          style={styles.header}
-          colors={[colors.primary, colors.secondary]}
-        />
-        <View style={styles.title}>
-          <Text style={styles.textTitle}>Ingresar</Text>
+    <View style={styles.phone}>
+      <View style={styles.filler} />
+      <View style={styles.container}>
+        <View style={styles.headerOne}>
+          <LinearGradient
+            style={styles.header}
+            colors={[colors.primary, colors.secondary]}
+          />
+          <View style={styles.title}>
+            <Text style={styles.textTitle}>Ingresar</Text>
+          </View>
+          <TouchableOpacity
+            style={styles.back}
+            onPress={() => {
+              navigation.popToTop();
+            }}
+          >
+            <AntDesign
+              name="arrowleft"
+              size={35}
+              color="white"
+              style={styles.icon}
+            />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={styles.back}
-          onPress={() => {
-            navigation.popToTop();
+        <LoadingFull show={loading} />
+        <View
+          style={{
+            alignSelf: 'center',
+            zIndex: 100,
+            position: 'absolute',
+            width: '100%',
           }}
         >
-          <AntDesign
-            name="arrowleft"
-            size={35}
-            color="white"
-            style={styles.icon}
+          <AwesomeAlert
+            show={state}
+            showProgress={false}
+            title={error}
+            closeOnTouchOutside={false}
+            closeOnHardwareBackPress={false}
+            showCancelButton={false}
+            showConfirmButton={true}
+            confirmText="Aceptar"
+            confirmButtonColor="#ff4b6e"
+            onConfirmPressed={() => {
+              setState(false);
+              dispatch(cleanErrors());
+            }}
           />
-        </TouchableOpacity>
-      </View>
-      <LoadingFull show={loading} />
-      <View
-        style={{
-          alignSelf: 'center',
-          zIndex: 100,
-          position: 'absolute',
-          width: '100%',
-        }}
-      >
-        <AwesomeAlert
-          show={state}
-          showProgress={false}
-          title={error}
-          closeOnTouchOutside={false}
-          closeOnHardwareBackPress={false}
-          showCancelButton={false}
-          showConfirmButton={true}
-          confirmText="Aceptar"
-          confirmButtonColor="#ff4b6e"
-          onConfirmPressed={() => {
-            setState(false);
-            dispatch(cleanErrors());
-          }}
-        />
-      </View>
-      {/*    {error.length ? (
+        </View>
+        {/*    {error.length ? (
         <View style={ErrorStyle.errorView}>
           <Text style={ErrorStyle.errorText}>{error}</Text>
         </View>
       ) : null} */}
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Email...."
-          placeholderTextColor="grey"
-          value={user.email}
-          onChangeText={(text: string) => setUser({ ...user, email: text })}
-          keyboardType="email-address"
-          style={ButtonPrimaryStyle.input}
-        />
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Email...."
+            placeholderTextColor="grey"
+            value={user.email}
+            onChangeText={(text: string) => setUser({ ...user, email: text })}
+            keyboardType="email-address"
+            style={ButtonPrimaryStyle.input}
+          />
 
-        <TextInput
-          placeholder="Contraseña..."
-          placeholderTextColor="grey"
-          value={user.password}
-          onChangeText={(text: string) => setUser({ ...user, password: text })}
-          secureTextEntry
-          style={ButtonPrimaryStyle.input}
-        />
-        <TouchableOpacity
-          style={styles.link}
-          onPress={() => navigation.push('ForgotPassword')}
-        >
-          <Text style={styles.link}>¿Olvidaste tu contraseña?</Text>
-        </TouchableOpacity>
-      </View>
+          <TextInput
+            placeholder="Contraseña..."
+            placeholderTextColor="grey"
+            value={user.password}
+            onChangeText={(text: string) =>
+              setUser({ ...user, password: text })
+            }
+            secureTextEntry
+            style={ButtonPrimaryStyle.input}
+          />
+          <TouchableOpacity
+            style={styles.link}
+            onPress={() => navigation.push('ForgotPassword')}
+          >
+            <Text style={styles.link}>¿Olvidaste tu contraseña?</Text>
+          </TouchableOpacity>
+        </View>
 
-      <View style={styles.btns}>
-        {user.password.length > 6 && user.email.length > 4 ? (
-          <TouchableOpacity
-            onPress={() => {
-              dispatch(login(user.email, user.password));
-              dispatch(setLoadingTrue());
-            }}
-            style={styles.button}
-          >
-            <Text style={styles.text}>INGRESAR</Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            onPress={() => {
-              console.log();
-            }}
-            disabled
-            style={styles.buttondisabled}
-          >
-            <Text style={styles.textlogin}>INGRESAR</Text>
-          </TouchableOpacity>
-        )}
+        <View style={styles.btns}>
+          {user.password.length > 6 && user.email.length > 4 ? (
+            <TouchableOpacity
+              onPress={() => {
+                dispatch(login(user.email, user.password));
+                dispatch(setLoadingTrue());
+              }}
+              style={styles.button}
+            >
+              <Text style={styles.text}>INGRESAR</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              onPress={() => {
+                console.log();
+              }}
+              disabled
+              style={styles.buttondisabled}
+            >
+              <Text style={styles.textlogin}>INGRESAR</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+        <LinearGradient
+          style={styles.ellipse}
+          colors={[colors.primary, colors.secondary]}
+          end={[1, 1]}
+        />
+        {userStore.email &&
+        userStore.email.length &&
+        userStore.condition === 'active'
+          ? navigation.push('HomeTab')
+          : null}
       </View>
-      <LinearGradient
-        style={styles.ellipse}
-        colors={[colors.primary, colors.secondary]}
-        end={[1, 1]}
-      />
-      {userStore.email &&
-      userStore.email.length &&
-      userStore.condition === 'active'
-        ? navigation.push('HomeTab')
-        : null}
+      <View style={styles.filler} />
     </View>
   );
 };

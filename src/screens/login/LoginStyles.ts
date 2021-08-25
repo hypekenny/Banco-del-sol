@@ -2,17 +2,24 @@ import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
+  phone: {
+    height: '100%',
+    width: '100%',
+    justifyContent: 'space-around',
+    backgroundColor: 'red',
+  },
+  filler: {
+    height: '10%',
+  },
   container: {
     flex: 1,
     backgroundColor: colors.white,
     justifyContent: 'center',
-    // padding: 10,
     overflow: 'hidden',
-    zIndex: 0,
-    width: 411,
-    height: 800,
     alignSelf: 'center',
-    // marginLeft: '30%',
+    zIndex: 0,
+    minHeight: 750,
+    width: 411,
   },
   inputContainer: {
     flex: 1,
