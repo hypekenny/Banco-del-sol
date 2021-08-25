@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -19,6 +19,16 @@ export const AddFunds = ({ navigation }: Props) => {
 
   return (
     <View style={StylesCon.phone}>
+      <img
+        style={{
+          width: 411,
+          height: 813,
+          position: 'absolute',
+          alignSelf: 'center',
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880174589605478400/Mockup_-_android_-_BDS_app.png"
+        alt=""
+      />
       <View style={StylesCon.filler} />
       <View style={styles.container}>
         <View style={StylesCon.headerOne}>
