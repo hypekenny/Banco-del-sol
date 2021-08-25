@@ -15,7 +15,7 @@ import { Props, resFromBack, RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
 import { LoadingFull } from '../loading2/LoadingFull';
-import { Phone } from '../../constants/phone';
+import { StylesCon } from '../../constants/Styles';
 
 export const Login = ({ navigation }: Props) => {
   const userStore = useSelector((state: resFromBack) => state.user);
@@ -42,19 +42,19 @@ export const Login = ({ navigation }: Props) => {
   }
 
   return (
-    <View style={Phone.phone}>
-      <View style={Phone.filler} />
+    <View style={StylesCon.phone}>
+      <View style={StylesCon.filler} />
       <View style={styles.container}>
-        <View style={styles.headerOne}>
+        <View style={StylesCon.headerOne}>
           <LinearGradient
-            style={styles.header}
+            style={StylesCon.header}
             colors={[colors.primary, colors.secondary]}
           />
-          <View style={styles.title}>
+          <View style={StylesCon.title}>
             <Text style={styles.textTitle}>Ingresar</Text>
           </View>
           <TouchableOpacity
-            style={styles.back}
+            style={StylesCon.back}
             onPress={() => {
               navigation.popToTop();
             }}
@@ -63,7 +63,7 @@ export const Login = ({ navigation }: Props) => {
               name="arrowleft"
               size={35}
               color="white"
-              style={styles.icon}
+              style={StylesCon.icon}
             />
           </TouchableOpacity>
         </View>
@@ -83,7 +83,7 @@ export const Login = ({ navigation }: Props) => {
             closeOnTouchOutside={false}
             closeOnHardwareBackPress={false}
             showCancelButton={false}
-            showConfirmButton={true}
+            showConfirmButton
             confirmText="Aceptar"
             confirmButtonColor="#ff4b6e"
             onConfirmPressed={() => {
@@ -92,11 +92,6 @@ export const Login = ({ navigation }: Props) => {
             }}
           />
         </View>
-        {/*    {error.length ? (
-        <View style={ErrorStyle.errorView}>
-          <Text style={ErrorStyle.errorText}>{error}</Text>
-        </View>
-      ) : null} */}
         <View style={styles.inputContainer}>
           <TextInput
             placeholder="Email...."
@@ -159,7 +154,7 @@ export const Login = ({ navigation }: Props) => {
           ? navigation.push('HomeTab')
           : null}
       </View>
-      <View style={Phone.filler} />
+      <View style={StylesCon.filler} />
     </View>
   );
 };
