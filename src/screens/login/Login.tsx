@@ -89,11 +89,6 @@ export const Login = ({ navigation }: Props) => {
           }}
         />
       </View>
-      {/*    {error.length ? (
-        <View style={ErrorStyle.errorView}>
-          <Text style={ErrorStyle.errorText}>{error}</Text>
-        </View>
-      ) : null} */}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email...."
