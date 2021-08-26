@@ -8,9 +8,6 @@ import { styles } from './ErrorStyles';
 import colors from '../../constants/colors';
 
 export const Error = ({ navigation }: Props) => {
-  const pepe = () => {
-    navigation.push('Login');
-  };
   return (
     <View style={styles.container}>
       <View>
@@ -18,7 +15,7 @@ export const Error = ({ navigation }: Props) => {
       </View>
       <View style={styles.containerButton}>
         <TouchableOpacity
-          onPress={() => pepe()}
+onPress={() => navigation.push('HomeTab')}
           style={ButtonPrimaryStyle.button}
         >
           <Text style={ButtonSecondaryStyle.text}>Volver</Text>
