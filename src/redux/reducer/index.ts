@@ -44,7 +44,7 @@ export const initialState = {
   message: '',
   succeed: false,
   updatedAccount: false,
-  tabBarItem: 0,
+  tabBarItem: 1,
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
