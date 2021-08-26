@@ -483,6 +483,11 @@ export function Register({ navigation }: Props) {
                 onValueChange={(itemValue, itemIndex) => {
                   setSelectedValue(itemValue);
                   handleConfirmProvince(itemValue);
+                  if (itemValue !== 'Provincia...') {
+                    errors.address.province = undefined;
+                  } else {
+                    errors.address.province = 'Provincia invalida';
+                  }
                 }}
               >
                 {pickerItems}
