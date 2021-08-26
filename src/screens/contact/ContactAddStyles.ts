@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
 
   header: {
-    height: 70,
+    height: 67,
     width: '100%',
     marginTop: '-3%',
   },
@@ -122,9 +122,9 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     borderRadius: 25,
-    borderWidth: 1,
-    borderColor: colors.primary,
-    backgroundColor: '#deac98de',
+    borderWidth: 2,
+    borderColor: '#D8D6CD',
+    backgroundColor: '#F2F0E7',
     padding: 15,
     shadowColor: '#000',
     shadowOffset: {
