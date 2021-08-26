@@ -38,6 +38,5 @@ export const ButtonLowerWhiteStyle = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     alignSelf: 'center',
-    size: 26,
   },
 });
