@@ -25,6 +25,7 @@ import {
 import { Props, RootState } from '../../../types/Types';
 import colors from '../../../constants/colors';
 import { ButtonLowerWhiteStyle } from '../../../constants/ButtonLowerWhiteStyle';
+import formatNumber from '../../../constants/formatNumber';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();
@@ -269,7 +270,7 @@ export const Home = ({ navigation }: Props) => {
         </Text>
         <View style={{ flexDirection: 'row' }}>
           <Text style={{ fontSize: 40, fontWeight: '900' }}>
-            ${accountStore.balance.amount}
+            ${formatNumber(accountStore.balance.amount)}
           </Text>
           <TouchableOpacity
             onPress={() =>
@@ -294,8 +295,8 @@ export const Home = ({ navigation }: Props) => {
             <Text style={styles.text}>Gastos</Text>
           </View>
           <View style={styles.view2}>
-            <Text style={styles.textNum}>${ing}</Text>
-            <Text style={styles.textNum}>${gast}</Text>
+            <Text style={styles.textNum}>${formatNumber(ing)}</Text>
+            <Text style={styles.textNum}>${formatNumber(gast)}</Text>
           </View>
         </View>
       </View>
