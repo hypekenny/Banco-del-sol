@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
+import { AntDesign } from '@expo/vector-icons';
 import { styles } from './TransferStyles';
-import { RootState } from '../../types/Types';
+import { Props, RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
 import { addFunds } from '../../redux/actions';
 import { LoadingFull } from '../loading2/LoadingFull';
+import { StylesCon } from '../../constants/Styles';
 
-export const Transfer = () => {
+export const Transfer = ({ navigation }: Props) => {
   const accountStore = useSelector((state: RootState) => state.account);
   const userStore = useSelector((state: RootState) => state.user);
   const token = useSelector((state: RootState) => state.token);
@@ -31,94 +33,131 @@ export const Transfer = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <LoadingFull show={loading} />
+    <View style={StylesCon.phone}>
+      <img
+        style={{
+          width: 411,
+          height: 813,
+          position: 'absolute',
+          alignSelf: 'center',
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880174589605478400/Mockup_-_android_-_BDS_app.png"
+        alt=""
+      />
+      <View style={StylesCon.filler} />
+      <View style={styles.container}>
+        <LoadingFull show={loading} />
 
-      <View style={{ justifyContent: 'space-between', height: '50%' }}>
-        <TextInput
-          placeholder="Ingresá email..."
-          placeholderTextColor="grey"
-          value={data.email}
-          onChangeText={(text: string) => setData({ ...data, email: text })}
-          keyboardType="email-address"
-          style={ButtonPrimaryStyle.input}
-        />
         <View>
-          <Text style={styles.maxBalanceText}>
-            SALDO ${accountStore.balance.amount}
-          </Text>
-          <TextInput
-            value={`$${data.amount.toString()}`}
-            onChangeText={(text: string) => {
-              if (text.substring(1, text.length) === '')
-                setData({ ...data, amount: 0 });
-              else if (
-                parseInt(text.substring(1, text.length), 10) <=
-                accountStore.balance.amount
-              )
-                setData({
-                  ...data,
-                  amount: parseInt(text.substring(1, text.length), 10),
-                });
-            }}
-            keyboardType="number-pad"
-            style={ButtonPrimaryStyle.amountInput}
+          <LinearGradient
+            style={styles.header}
+            colors={[colors.primary, colors.secondary]}
           />
+          <View style={StylesCon.title}>
+            <Text style={StylesCon.textTitle}>Ingresar</Text>
+          </View>
+          <TouchableOpacity
+            style={StylesCon.back}
+            onPress={() => {
+              navigation.push('HomeTab');
+            }}
+          >
+            <AntDesign
+              name="arrowleft"
+              size={35}
+              color="white"
+              style={StylesCon.icon}
+            />
+          </TouchableOpacity>
         </View>
 
-        <TextInput
-          placeholder="Queres dejar un comentario?..."
-          placeholderTextColor="grey"
-          value={data.comment}
-          onChangeText={(text: string) => setData({ ...data, comment: text })}
-          style={ButtonPrimaryStyle.input}
-        />
-      </View>
-      <View>
-        {data.amount > 0 &&
-        data.email.length > 0 &&
-        data.email !== userStore.email &&
-        data.comment.length < 50 ? (
-          <View style={{ alignSelf: 'center', marginTop: '20%' }}>
-            <TouchableOpacity
-              onPress={() => {
-                dispatch(
-                  addFunds(
-                    userStore.email.toLowerCase(),
-                    data.email.toLowerCase(),
-                    'Transfer',
-                    data.amount,
-                    data.comment,
-                    token,
-                  ),
-                );
-                setData({
-                  ...data,
-                  amount: 0,
-                });
+        <View style={{ justifyContent: 'space-between', height: '50%' }}>
+          <TextInput
+            placeholder="Ingresá email..."
+            placeholderTextColor="grey"
+            value={data.email}
+            onChangeText={(text: string) => setData({ ...data, email: text })}
+            keyboardType="email-address"
+            style={ButtonPrimaryStyle.input}
+          />
+          <View>
+            <Text style={styles.maxBalanceText}>
+              SALDO ${accountStore.balance.amount}
+            </Text>
+            <TextInput
+              value={`$${data.amount.toString()}`}
+              onChangeText={(text: string) => {
+                if (text.substring(1, text.length) === '')
+                  setData({ ...data, amount: 0 });
+                else if (
+                  parseInt(text.substring(1, text.length), 10) <=
+                  accountStore.balance.amount
+                )
+                  setData({
+                    ...data,
+                    amount: parseInt(text.substring(1, text.length), 10),
+                  });
               }}
-            >
-              <LinearGradient
-                style={ButtonPrimaryStyle.gradientButton}
-                colors={[colors.primary, colors.secondary]}
-              >
-                <Text style={ButtonPrimaryStyle.whiteText}>ENVIAR</Text>
-              </LinearGradient>
-            </TouchableOpacity>
+              keyboardType="number-pad"
+              style={ButtonPrimaryStyle.amountInput}
+            />
           </View>
-        ) : (
-          <View style={{ alignSelf: 'center', marginTop: '20%' }}>
-            <TouchableOpacity disabled>
-              <LinearGradient
-                style={ButtonPrimaryStyle.gradientButtonDisabled}
-                colors={[colors.disabledPrimary, colors.disabledSecondary]}
+
+          <TextInput
+            placeholder="Queres dejar un comentario?..."
+            placeholderTextColor="grey"
+            value={data.comment}
+            onChangeText={(text: string) => setData({ ...data, comment: text })}
+            style={ButtonPrimaryStyle.input}
+          />
+        </View>
+        <View>
+          {data.amount > 0 &&
+          data.email.length > 0 &&
+          data.email !== userStore.email &&
+          data.comment.length < 50 ? (
+            <View style={{ alignSelf: 'center', marginTop: '20%' }}>
+              <TouchableOpacity
+                onPress={() => {
+                  dispatch(
+                    addFunds(
+                      userStore.email.toLowerCase(),
+                      data.email.toLowerCase(),
+                      'Transfer',
+                      data.amount,
+                      data.comment,
+                      token,
+                    ),
+                  );
+                  setData({
+                    ...data,
+                    amount: 0,
+                  });
+                }}
               >
-                <Text style={ButtonPrimaryStyle.whiteText}>ENVIAR</Text>
-              </LinearGradient>
-            </TouchableOpacity>
-          </View>
-        )}
+                <LinearGradient
+                  style={ButtonPrimaryStyle.gradientButton}
+                  colors={[colors.primary, colors.secondary]}
+                >
+                  <Text style={ButtonPrimaryStyle.whiteText}>ENVIAR</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View style={{ alignSelf: 'center', marginTop: '20%' }}>
+              <TouchableOpacity disabled>
+                <LinearGradient
+                  style={ButtonPrimaryStyle.gradientButtonDisabled}
+                  colors={[colors.disabledPrimary, colors.disabledSecondary]}
+                >
+                  <Text style={ButtonPrimaryStyle.whiteText}>ENVIAR</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
+          )}
+        </View>
       </View>
+      <View style={StylesCon.filler} />
     </View>
   );
 };

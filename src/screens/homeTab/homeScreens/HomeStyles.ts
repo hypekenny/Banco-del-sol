@@ -5,7 +5,14 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
-    padding: 10,
+    alignSelf: 'center',
+    overflow: 'hidden',
+    zIndex: 0,
+    minHeight: 785,
+    maxHeight: 785,
+    width: 388,
+    marginLeft: -2,
+    borderRadius: 30,
   },
   view1: {
     flex: 1,
@@ -117,13 +124,11 @@ export const styles = StyleSheet.create({
     color: '#ff4b6e',
   },
   styleIcon1: {
-    // marginTop: 40,
     marginLeft: 10,
     position: 'absolute',
     color: '#ff4b6e',
   },
   styleIcon2: {
-    // marginTop: 40,
     marginLeft: 10,
     color: 'white',
   },
@@ -172,30 +177,6 @@ export const styles = StyleSheet.create({
     height: '105%',
     width: '104%',
     borderRadius: 18,
-  },
-
-  header: {
-    height: 75,
-    width: 411,
-    marginTop: '-3%',
-  },
-  title: {
-    height: 70,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    left: 70,
-    top: 0,
-    width: '30%',
-  },
-  textTitle: {
-    position: 'absolute',
-    left: 5,
-    justifyContent: 'center',
-    fontSize: 18,
-    color: 'white',
-    fontWeight: '500',
-    width: '180%',
   },
   back: {
     position: 'absolute',

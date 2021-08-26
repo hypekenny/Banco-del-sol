@@ -24,6 +24,7 @@ import {
 } from '../../../redux/actions';
 import { Props, RootState } from '../../../types/Types';
 import colors from '../../../constants/colors';
+import { StylesCon } from '../../../constants/Styles';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();
@@ -75,260 +76,276 @@ export const Home = ({ navigation }: Props) => {
   }, [accountStore, userStore.email]);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#ffffff',
-        width: 411,
-        height: 300,
-        alignSelf: 'center',
-      }}
-    >
-      {burger ? (
-        <View
-          style={{
-            flexDirection: 'row',
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            zIndex: 200,
-          }}
-        >
+    <View style={StylesCon.phone}>
+      <img
+        style={{
+          width: 411,
+          height: 813,
+          position: 'absolute',
+          alignSelf: 'center',
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880174589605478400/Mockup_-_android_-_BDS_app.png"
+        alt=""
+      />
+      <View style={StylesCon.filler} />
+      <View style={styles.container}>
+        {burger ? (
           <View
             style={{
-              backgroundColor: 'white',
-              width: '60%',
+              flexDirection: 'row',
+              position: 'absolute',
+              width: '100%',
               height: '100%',
+              zIndex: 200,
             }}
           >
-            <View>
-              <TouchableOpacity
-                style={styles.back}
-                onPress={() => setBurger(!burger)}
-              >
-                <Ionicons
-                  style={styles.icon}
-                  name="menu"
-                  size={28}
-                  color={colors.primary}
-                />
-              </TouchableOpacity>
-              <View style={{ marginTop: '40%', justifyContent: 'center' }}>
-                <Icon
-                  type="material-community"
-                  name="account-circle"
-                  size={65}
-                  color={colors.primary}
-                  style={{ marginLeft: 20, alignSelf: 'flex-start' }}
-                />
-              </View>
-              <Text
-                style={{
-                  color: colors.primary,
-                  fontSize: 26,
-                  fontWeight: 'bold',
-                  alignSelf: 'flex-start',
-                  marginLeft: 20,
-                }}
-              >{`${userStore.name} ${userStore.lastName}`}</Text>
-              <TouchableOpacity
-                onPress={() => navigation.push('Account')}
-                style={{ marginTop: '20%', justifyContent: 'center' }}
-              >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                  }}
-                >
-                  <Icon
-                    type="material-community"
-                    name="file-document-outline"
-                    size={27}
-                    color={colors.primary}
-                    style={{ marginLeft: 20 }}
-                  />
-                  <Text style={styles.burgerText}>Mis datos</Text>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={() => navigation.push('Contact')}
-                style={{ marginTop: '20%', justifyContent: 'center' }}
-              >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                  }}
-                >
-                  <Icon
-                    type="material-community"
-                    name="contacts"
-                    size={30}
-                    color={colors.primary}
-                    style={{ marginLeft: 20 }}
-                  />
-                  <Text style={styles.burgerText}>Contactos</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  dispatch(logout());
-                  navigation.popToTop();
-                }}
-                style={{ marginTop: '20%', justifyContent: 'center' }}
-              >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                  }}
-                >
-                  <Icon
-                    type="material-community"
-                    name="logout"
-                    size={27}
-                    color="#F53D3D"
-                    style={{ marginLeft: 20 }}
-                  />
-                  <Text style={styles.burgerTextLogout}>Cerrar sesion</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <TouchableWithoutFeedback onPress={() => setBurger(!burger)}>
             <View
               style={{
-                alignItems: 'flex-end',
-                backgroundColor: 'black',
-                width: '40%',
+                backgroundColor: 'white',
+                width: '60%',
                 height: '100%',
-                opacity: 0.7,
+                borderTopLeftRadius: 20,
+                borderBottomLeftRadius: 20,
               }}
-            />
-          </TouchableWithoutFeedback>
-        </View>
-      ) : null}
-      <View>
-        <LinearGradient
-          style={styles.header}
-          colors={[colors.primary, colors.secondary]}
-        />
-        <View style={styles.title}>
-          <Text style={styles.textTitle}>Hola {userStore.name}</Text>
-        </View>
-        <TouchableOpacity
-          style={styles.back}
-          onPress={() => setBurger(!burger)}
-        >
-          <Ionicons style={styles.icon} name="menu" size={28} color="white" />
-        </TouchableOpacity>
-      </View>
+            >
+              <View>
+                <TouchableOpacity
+                  style={styles.back}
+                  onPress={() => setBurger(!burger)}
+                >
+                  <Ionicons
+                    style={styles.icon}
+                    name="menu"
+                    size={28}
+                    color={colors.primary}
+                  />
+                </TouchableOpacity>
+                <View style={{ marginTop: '40%', justifyContent: 'center' }}>
+                  <Icon
+                    type="material-community"
+                    name="account-circle"
+                    size={65}
+                    color={colors.primary}
+                    style={{ marginLeft: 20, alignSelf: 'flex-start' }}
+                  />
+                </View>
+                <Text
+                  style={{
+                    color: colors.primary,
+                    fontSize: 26,
+                    fontWeight: 'bold',
+                    alignSelf: 'flex-start',
+                    marginLeft: 20,
+                  }}
+                >{`${userStore.name} ${userStore.lastName}`}</Text>
+                <TouchableOpacity
+                  onPress={() => navigation.push('Account')}
+                  style={{ marginTop: '20%', justifyContent: 'center' }}
+                >
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                    }}
+                  >
+                    <Icon
+                      type="material-community"
+                      name="file-document-outline"
+                      size={27}
+                      color={colors.primary}
+                      style={{ marginLeft: 20 }}
+                    />
+                    <Text style={styles.burgerText}>Mis datos</Text>
+                  </View>
+                </TouchableOpacity>
 
-      <View
-        style={{
-          marginTop: '100%',
-          zIndex: 100,
-          position: 'absolute',
-          width: '100%',
-        }}
-      >
-        <AwesomeAlert
-          show={state}
-          showProgress={false}
-          title={error}
-          closeOnTouchOutside={false}
-          closeOnHardwareBackPress={false}
-          showCancelButton={false}
-          showConfirmButton
-          confirmText="Aceptar"
-          confirmButtonColor="#ff4b6e"
-          onConfirmPressed={() => {
-            setState(false);
-            dispatch(cleanErrors());
-          }}
-        />
-      </View>
-      <View
-        style={{
-          marginTop: '100%',
-          zIndex: 100,
-          position: 'absolute',
-          width: '100%',
-        }}
-      >
-        <AwesomeAlert
-          show={flagUpdatedAccount}
-          showProgress={false}
-          title="Tus datos fueron actualizados!"
-          closeOnTouchOutside={false}
-          closeOnHardwareBackPress={false}
-          showCancelButton={false}
-          showConfirmButton
-          confirmText="Aceptar"
-          confirmButtonColor="#ff4b6e"
-          onConfirmPressed={() => {
-            RemoveUpdatedAccount(dispatch);
-          }}
-        />
-      </View>
-      <View style={styles.view1}>
-        <Text style={{ fontSize: 20, fontWeight: '100', color: '#3b3b3b' }}>
-          Balance
-        </Text>
-        <View style={{ flexDirection: 'row' }}>
-          <Text style={{ fontSize: 40, fontWeight: '900' }}>
-            ${accountStore.balance.amount}
-          </Text>
+                <TouchableOpacity
+                  onPress={() => navigation.push('Contact')}
+                  style={{ marginTop: '20%', justifyContent: 'center' }}
+                >
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                    }}
+                  >
+                    <Icon
+                      type="material-community"
+                      name="contacts"
+                      size={30}
+                      color={colors.primary}
+                      style={{ marginLeft: 20 }}
+                    />
+                    <Text style={styles.burgerText}>Contactos</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    dispatch(logout());
+                    navigation.popToTop();
+                  }}
+                  style={{ marginTop: '20%', justifyContent: 'center' }}
+                >
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                    }}
+                  >
+                    <Icon
+                      type="material-community"
+                      name="logout"
+                      size={27}
+                      color="#F53D3D"
+                      style={{ marginLeft: 20 }}
+                    />
+                    <Text style={styles.burgerTextLogout}>Cerrar sesion</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <TouchableWithoutFeedback onPress={() => setBurger(!burger)}>
+              <View
+                style={{
+                  alignItems: 'flex-end',
+                  backgroundColor: 'black',
+                  width: '40%',
+                  height: '100%',
+                  opacity: 0.7,
+                  borderTopRightRadius: 20,
+                  borderBottomRightRadius: 20,
+                }}
+              />
+            </TouchableWithoutFeedback>
+          </View>
+        ) : null}
+
+        <View>
+          <LinearGradient
+            style={StylesCon.header}
+            colors={[colors.primary, colors.secondary]}
+          />
+          <View style={StylesCon.title}>
+            <Text style={StylesCon.textTitle}>Ingresar</Text>
+          </View>
           <TouchableOpacity
-            onPress={() =>
-              dispatch(updateAccount(accountStore.email.toLowerCase(), token))
-            }
+            style={StylesCon.back}
+            onPress={() => setBurger(!burger)}
           >
             <Ionicons
-              style={styles.styleIcon}
-              name="reload-circle-sharp"
+              style={StylesCon.icon}
+              name="menu"
               size={28}
+              color="white"
             />
           </TouchableOpacity>
         </View>
-      </View>
-      <View style={styles.box}>
-        <View style={styles.boxt}>
-          <Text style={styles.textGeneral}>Este mes</Text>
-          <View
-            style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}
-          >
-            <Text style={styles.text}>Ingresos</Text>
-            <Text style={styles.text}>Gastos</Text>
+
+        <View
+          style={{
+            marginTop: '100%',
+            zIndex: 100,
+            position: 'absolute',
+            width: '100%',
+          }}
+        >
+          <AwesomeAlert
+            show={state}
+            showProgress={false}
+            title={error}
+            closeOnTouchOutside={false}
+            closeOnHardwareBackPress={false}
+            showCancelButton={false}
+            showConfirmButton
+            confirmText="Aceptar"
+            confirmButtonColor="#ff4b6e"
+            onConfirmPressed={() => {
+              setState(false);
+              dispatch(cleanErrors());
+            }}
+          />
+        </View>
+        <View
+          style={{
+            marginTop: '100%',
+            zIndex: 100,
+            position: 'absolute',
+            width: '100%',
+          }}
+        >
+          <AwesomeAlert
+            show={flagUpdatedAccount}
+            showProgress={false}
+            title="Tus datos fueron actualizados!"
+            closeOnTouchOutside={false}
+            closeOnHardwareBackPress={false}
+            showCancelButton={false}
+            showConfirmButton
+            confirmText="Aceptar"
+            confirmButtonColor="#ff4b6e"
+            onConfirmPressed={() => {
+              RemoveUpdatedAccount(dispatch);
+            }}
+          />
+        </View>
+        <View style={styles.view1}>
+          <Text style={{ fontSize: 20, fontWeight: '100', color: '#3b3b3b' }}>
+            Balance
+          </Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={{ fontSize: 40, fontWeight: '900' }}>
+              ${accountStore.balance.amount}
+            </Text>
+            <TouchableOpacity
+              onPress={() =>
+                dispatch(updateAccount(accountStore.email.toLowerCase(), token))
+              }
+            >
+              <Ionicons
+                style={styles.styleIcon}
+                name="reload-circle-sharp"
+                size={28}
+              />
+            </TouchableOpacity>
           </View>
-          <View style={styles.view2}>
-            <Text style={styles.textNum}>${ing}</Text>
-            <Text style={styles.textNum}>${gast}</Text>
+        </View>
+        <View style={styles.box}>
+          <View style={styles.boxt}>
+            <Text style={styles.textGeneral}>Este mes</Text>
+            <View
+              style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}
+            >
+              <Text style={styles.text}>Ingresos</Text>
+              <Text style={styles.text}>Gastos</Text>
+            </View>
+            <View style={styles.view2}>
+              <Text style={styles.textNum}>${ing}</Text>
+              <Text style={styles.textNum}>${gast}</Text>
+            </View>
           </View>
         </View>
-      </View>
-      <View style={styles.view3}>
-        <View>
-          <TouchableOpacity
-            onPress={() => navigation.push('AddFunds')}
-            style={styles.bottonRecargar}
-          >
-            <Ionicons style={styles.styleIcon1} name="add-circle" size={28} />
-            <Text style={styles.bottonTextR}>Recargar Dinero</Text>
-          </TouchableOpacity>
+        <View style={styles.view3}>
+          <View>
+            <TouchableOpacity
+              onPress={() => navigation.push('AddFunds')}
+              style={styles.bottonRecargar}
+            >
+              <Ionicons style={styles.styleIcon1} name="add-circle" size={28} />
+              <Text style={styles.bottonTextR}>Recargar Dinero</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity
+              onPress={() => navigation.push('Transfer')}
+              style={styles.bottonEnviar}
+            >
+              <Ionicons style={styles.styleIcon1} name="send" size={28} />
+              <Text style={styles.bottonTextE}>Enviar Dinero</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View>
-          <TouchableOpacity
-            onPress={() => navigation.push('Transfer')}
-            style={styles.bottonEnviar}
-          >
-            <Ionicons style={styles.styleIcon1} name="send" size={28} />
-            <Text style={styles.bottonTextE}>Enviar Dinero</Text>
-          </TouchableOpacity>
-        </View>
+        {accountStore.email && accountStore.email.length
+          ? dispatch(setLoadingFalse())
+          : null}
       </View>
-      {accountStore.email && accountStore.email.length
-        ? dispatch(setLoadingFalse())
-        : null}
+      <View style={StylesCon.filler} />
     </View>
   );
 };

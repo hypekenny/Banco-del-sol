@@ -7,6 +7,7 @@ export const StylesCon = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-around',
     backgroundColor: colors.white,
+    overflow: 'hidden',
   },
   filler: {
     height: '10%',
@@ -23,8 +24,8 @@ export const StylesCon = StyleSheet.create({
   header: {
     height: 65,
     width: '100%',
-    borderTopRightRadius: 22,
-    borderTopLeftRadius: 22,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
   },
   title: {
     height: 70,

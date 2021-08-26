@@ -48,18 +48,26 @@ export const HomeTab = () => {
         tabBarBackground: () => (
           <LinearGradient
             colors={['#ff4b6e', '#ff9349']}
-            style={{ flex: 1 }}
+            style={{
+              flex: 1,
+              borderBottomRightRadius: 20,
+              borderBottomLeftRadius: 20,
+            }}
             start={{ x: 0, y: 1 }}
             end={{ x: 0, y: 0 }}
           />
         ),
-        // tabBarBadgeStyle
-        tabBarStyle: {
-          width: 411,
-          height: 48,
-          alignSelf: 'center',
+        tabBarItemStyle: {
+          borderBottomRightRadius: 19,
+          borderBottomLeftRadius: 19,
         },
-        // headerStyle: {},
+        tabBarStyle: {
+          position: 'absolute',
+          marginLeft: 765,
+          width: 388,
+          height: 49,
+          marginBottom: '4.22%',
+        },
       })}
     >
       <Tab.Screen
