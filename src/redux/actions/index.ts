@@ -23,6 +23,7 @@ export const SET_MESSAGE = 'SET_MESSAGE';
 export const SET_SUCCEED = 'SET_SUCCEED';
 export const SET_UPDATE_ACCOUNT = 'SET_UPDATE_ACCOUNT';
 export const REMOVE_UPDATED_ACCOUNT = 'REMOVE_UPDATED_ACCOUNT';
+export const SET_ITEM = 'SET_ITEM';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -172,6 +173,15 @@ export function login(email: string, password: string) {
         });
         console.error(error);
       });
+  };
+}
+
+export function setTabBarItem(item: number) {
+  return (dispatch: any) => {
+    dispatch({
+      type: SET_ITEM,
+      payload: item,
+    });
   };
 }
 
