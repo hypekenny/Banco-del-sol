@@ -225,7 +225,7 @@ export const Home = ({ navigation }: Props) => {
             colors={[colors.primary, colors.secondary]}
           />
           <View style={StylesCon.title}>
-            <Text style={StylesCon.textTitle}>Ingresar</Text>
+            <Text style={StylesCon.textTitle}>Hola {userStore.name}</Text>
           </View>
           <TouchableOpacity
             style={StylesCon.back}
