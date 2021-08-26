@@ -309,6 +309,10 @@ export const styles = StyleSheet.create({
     border:'none', */,
     width: '100%',
   },
+  pickerSelectStyles: {
+    width: '10%',
+    color: 'red',
+  },
 
   footer: {
     height: 150,

@@ -8,7 +8,6 @@ import {
   LogBox,
   Picker,
 } from 'react-native';
-import Select from 'react-select-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
@@ -27,7 +26,6 @@ import TextInput from '../../components/TextInputFormix';
 import colors from '../../constants/colors';
 import { styles } from './RegisterStyles';
 import { LoadingFull } from '../loading2/LoadingFull';
-import { ErrorStyle } from '../../constants/ErrorStyle';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //  Ignore all log notifications
@@ -49,38 +47,57 @@ export function Register({ navigation }: Props) {
   const [state, setState] = useState(false);
 
   const FormSchema = Yup.object().shape({
-    name: Yup.string().required('Debe ingresar un nombre!'),
-    lastName: Yup.string().required('Debe ingresar un apellido!'),
-    email: Yup.string()
-      .email('E-mail invalido ')
-      .required('Debe ingresar un E-Mail!'),
+    name: Yup.string()
+      .required('Ingrese un nombre')
+      .matches(/^[a-zA-Z ]*$/, 'Nombre inválido'),
+    lastName: Yup.string()
+      .required('Ingrese un apellido')
+      .matches(/^[a-zA-Z ]*$/, 'Apellido inválido'),
+    email: Yup.string().email('Correo inválido').required('Ingrese un correo'),
     pass: yup
       .string()
-      .required('Debe ingresar una contraseña!!')
-      .min(6, 'Minimo 6 caracteres')
-      .minNumbers(3, 'Debe contener 3 numeros')
-      .minUppercase(1, 'Debe contener una mayuscula')
-      .minSymbols(1, 'Debe contener un simbolo'),
+      .required('Ingrese una contraseña')
+      .min(6, 'Mínimo 6 caracteres')
+      .minNumbers(3, 'Debe contener 3 números')
+      .minUppercase(1, 'Debe contener mayúsculas')
+      .minSymbols(1, 'Debe contener símbolos'),
     passConfirm: Yup.string()
-      .required('Debe confirmar la contraseña!')
-      .oneOf([Yup.ref('pass'), null], 'Las contraseñas no coinciden'),
+      .required('Confirme la contraseña')
+      .oneOf([Yup.ref('pass'), null], 'Deben coincidir'),
     dni: Yup.number()
-      .typeError('El DNI debe ser un numero')
-      .required('Debe ingresar un DNI!'),
+      .typeError('Debe ser un número')
+      .required('Ingrese un DNI')
+      .min(99999, 'Mínimo 6 números')
+      .max(9999999999, 'Máximo 10 números'),
     phoneNumber: Yup.number()
-      .typeError('Debe ser un numero')
-      .required('Debe ingresar un telefono!'),
-    birthdate: Yup.string().required('Ingrese fecha de nacimiento!'),
+      .typeError('Debe ser un número')
+      .required('Ingrese un teléfono')
+      .min(999999, 'Mínimo 7 números')
+      .max(999999999999, 'Máximo 12 números'),
+    birthdate: Yup.string()
+      .required('Ingrese una fecha')
+      .matches(
+        /^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/,
+        'Fecha inválida',
+      ),
     address: Yup.object().shape({
-      street: Yup.string().required('Debe ingresar una calle!'),
-      number: Yup.number()
-        .typeError('Debe ser un numero')
-        .required('Debe ingresar un numero!'),
-      zipCode: Yup.number()
-        .typeError('Debe ser un numero')
-        .required('Debe ingresar el codigo postal!'),
-      city: Yup.string().required('Debe ingresar una ciudad!'),
-      province: Yup.string().required('Debe ingresar una provincia!'),
+      street: Yup.string()
+        .required('Ingrese una calle')
+        .max(20, 'Máximo 20 caracteres'),
+      number: Yup.string()
+        .required('Ingrese un número')
+        .max(5, 'Máximo 5 números')
+        .matches(/^[0-9]*$/, 'Debe ser un número'),
+      zipCode: Yup.string()
+        .required('Ingrese codigo postal')
+        .max(5, 'Máximo 5 caracteres')
+        .matches(/^[0-9]*$/, 'Debe ser un número'),
+      city: Yup.string()
+        .required('Ingrese una ciudad')
+        .max(30, 'Máximo 30 caracteres'),
+      province: Yup.string()
+        .required('Ingrese una provincia')
+        .matches(/^[a-zA-Z ]*$/, 'Provincia inválida'),
     }),
   });
 
@@ -104,58 +121,7 @@ export function Register({ navigation }: Props) {
       },
     },
     onSubmit: values => console.log(values),
-    /* alert(`Email: ${values.email}`), */
   });
-
-  const [selectedValue, setSelectedValue] = useState('java');
-  const handleConfirmProvince = provincia => {
-    values.address.province = provincia;
-  };
-
-  const [step, setStep] = useState(false);
-  const dispatch = useDispatch();
-
-  /* const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-  };
-
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
-
-  const handleConfirm = date => {
-    values.birthdate = date;
-    hideDatePicker();
-  }; */
-
-  const province = [
-    { label: 'Provincia...', value: '' },
-    { label: 'CABA', value: 'CABA' },
-    { label: 'Buenos Aires', value: 'Buenos Aires' },
-    { label: 'Catamarca', value: 'Catamarca' },
-    { label: 'Chaco', value: 'Chaco' },
-    { label: 'Chubut', value: 'Chubut' },
-    { label: 'Córdoba', value: 'Córdoba' },
-    { label: 'Corrientes', value: 'Corrientes' },
-    { label: 'Entre Ríos', value: 'Entre Ríos' },
-    { label: 'Jujuy', value: 'Jujuy' },
-    { label: 'La Pampa', value: 'La Pampa' },
-    { label: 'La Rioja', value: 'La Rioja' },
-    { label: 'Mendoza', value: 'Mendoza' },
-    { label: 'Misiones', value: 'Misiones' },
-    { label: 'Neuquén', value: 'Neuquén' },
-    { label: 'Río Negro', value: 'Río Negro' },
-    { label: 'Salta', value: 'Salta' },
-    { label: 'San Juan', value: 'San Juan' },
-    { label: 'San Luis', value: 'San Luis' },
-    { label: 'Santa Cruz', value: 'Santa Cruz' },
-    { label: 'Santa Fe', value: 'Santa Fe' },
-    { label: 'Santiago del Estero', value: 'Santiago del Estero' },
-    { label: 'Tierra del Fuego', value: 'Tierra del Fuego' },
-    { label: 'Tucumán', value: 'Tucumán' },
-  ];
   const provinces = [
     'Provincia...',
     'CABA',
@@ -182,8 +148,15 @@ export function Register({ navigation }: Props) {
     'Tierra del Fuego',
     'Tucumán',
   ];
+  const pickerItems = provinces.map(p => <Picker.Item label={p} value={p} />);
 
-  let pickerItems = provinces.map(p => <Picker.Item label={p} value={p} />);
+  const [selectedValue, setSelectedValue] = useState();
+
+  function handleConfirmProvince(provincia: string) {
+    values.address.province = provincia;
+  }
+  const [step, setStep] = useState(false);
+  const dispatch = useDispatch();
 
   function send(e: any) {
     const {
@@ -222,11 +195,6 @@ export function Register({ navigation }: Props) {
   return (
     <View style={styles.view}>
       <LoadingFull show={loading} />
-      {/* {error.length ? (
-        <View style={ErrorStyle.errorView}>
-          <Text style={ErrorStyle.errorText}>{error}</Text>
-        </View>
-      ) : null} */}
       <LinearGradient
         style={styles.header}
         colors={[colors.primary, colors.secondary]}
@@ -246,6 +214,7 @@ export function Register({ navigation }: Props) {
       >
         <AntDesign name="arrowleft" size={35} color="white" />
       </TouchableOpacity>
+
       <View
         style={{
           marginTop: '100%',
@@ -270,8 +239,6 @@ export function Register({ navigation }: Props) {
           }}
         />
       </View>
-      {/* <View style={styles.linea1}></View>
-      <View style={!step ? styles.linea2 : styles.linea2s}></View> */}
       {!step ? (
         <View style={styles.container1}>
           <View
@@ -328,7 +295,7 @@ export function Register({ navigation }: Props) {
               icon="mail"
               placeholderTextColor="grey"
               value={values.email}
-              placeholder="Email"
+              placeholder="Correo"
               onChangeText={handleChange('email')}
               autoCapitalize="none"
               keyboardType="email-address"
@@ -438,7 +405,7 @@ export function Register({ navigation }: Props) {
               icon="calendar"
               placeholderTextColor="grey"
               value={values.birthdate}
-              placeholder="Nacimiento"
+              placeholder="Nacimiento (DD/MM/AAAA)"
               onChangeText={handleChange('birthdate')}
               autoCapitalize="none"
               onBlur={handleBlur('birthdate')}
@@ -446,26 +413,6 @@ export function Register({ navigation }: Props) {
               touched={touched.birthdate}
             />
           </View>
-          {/*    <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
-              >
-              <TouchableOpacity
-              style={styles.birthdateButton}
-              onPress={showDatePicker}
-              >
-              <View style={{ padding: 8 }}>
-              <Icon name={'calendar'} size={16} />
-              </View>
-              <Text style={styles.birthdateButtonText}>Nacimiento</Text>
-              </TouchableOpacity>
-              <DateTimePickerModal
-              isVisible={isDatePickerVisible}
-              mode="date"
-              onConfirm={handleConfirm}
-              onCancel={hideDatePicker}
-              />
-            </View> */}
-
           <View
             style={{
               paddingHorizontal: 32,
@@ -551,10 +498,10 @@ export function Register({ navigation }: Props) {
               icon="location"
               placeholderTextColor="grey"
               placeholder="Codigo Postal"
-              onChangeText={handleChange('address.zipCode')}
               value={values.address.zipCode}
+              onChangeText={handleChange('address.zipCode')}
               autoCapitalize="none"
-              onBlur={handleBlur('address.zipcode')}
+              onBlur={handleBlur('address.zipCode')}
               error={errors.address?.zipCode}
               touched={touched.address?.zipCode}
             />
@@ -579,59 +526,6 @@ export function Register({ navigation }: Props) {
               touched={touched.address?.city}
             />
           </View>
-          <View
-            style={{
-              paddingHorizontal: 32,
-              marginBottom: 16,
-              width: '100%',
-            }}
-          >
-            {/* <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                height: size2,
-                borderRadius: 25,
-                borderColor: '#fb6583',
-                borderWidth: StyleSheet.hairlineWidth,
-                padding: 8,
-              }}
-            >
-              <View style={{ padding: 8 }}>
-                <Entypo name="location" size={22} color="#fb6583" />
-              </View>
-              <Select
-                style={styles.input}
-                onChange={handleChange('address.province')}
-                value={values.address.province}
-                options={province}
-                defaultValue={province[0].value}
-              />
-            </View> */}
-          </View>
-          {/* {!errors.dni &&
-            !errors.phoneNumber &&
-            !errors.birthdate &&
-            !errors.address?.street &&
-            !errors.address?.number &&
-            !errors.address?.zipCode &&
-            !errors.address?.city &&
-            !errors.address?.province ? (
-              <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-              <TouchableOpacity
-              style={ButtonSecondaryStyle.button}
-              onPress={() => send(values)}
-              >
-              <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
-              </TouchableOpacity>
-              </View>
-              ) : (
-                <View style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-                <TouchableOpacity style={ButtonSecondaryStyle.buttondisabled}>
-                <Text style={ButtonSecondaryStyle.text}>Registrarse</Text>
-                </TouchableOpacity>
-                </View>
-              )} */}
         </View>
       )}
       <View style={styles.btns}>
