@@ -97,7 +97,10 @@ export function Register({ navigation }: Props) {
         .max(30, 'Máximo 30 caracteres'),
       province: Yup.string()
         .required('Ingrese una provincia')
-        .matches(/^[a-zA-Z ]*$/, 'Provincia inválida'),
+        .matches(
+          /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s[a-zA-ZÀ-ÿ\u00f1\u00d1])*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/,
+          'Provincia inválida',
+        ),
     }),
   });
 
