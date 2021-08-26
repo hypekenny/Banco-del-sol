@@ -8,7 +8,6 @@ import {
   LogBox,
   Picker,
 } from 'react-native';
-import Select from 'react-select-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
@@ -27,9 +26,6 @@ import TextInput from '../../components/TextInputFormix';
 import colors from '../../constants/colors';
 import { styles } from './RegisterStyles';
 import { LoadingFull } from '../loading2/LoadingFull';
-import { ErrorStyle } from '../../constants/ErrorStyle';
-
-import RNPickerSelect, { defaultStyles } from 'react-native-picker-select';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //  Ignore all log notifications
@@ -154,28 +150,13 @@ export function Register({ navigation }: Props) {
   ];
   const pickerItems = provinces.map(p => <Picker.Item label={p} value={p} />);
 
-    const [selectedValue, setSelectedValue] = useState();
-  
+  const [selectedValue, setSelectedValue] = useState();
+
   function handleConfirmProvince(provincia: string) {
     values.address.province = provincia;
   }
   const [step, setStep] = useState(false);
   const dispatch = useDispatch();
-
-  /* const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-  };
-
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
-
-  const handleConfirm = date => {
-    values.birthdate = date;
-    hideDatePicker();
-  }; */
 
   function send(e: any) {
     const {
@@ -432,26 +413,6 @@ export function Register({ navigation }: Props) {
               touched={touched.birthdate}
             />
           </View>
-          {/*    <View
-              style={{ paddingHorizontal: 32, marginBottom: 16, width: '100%' }}
-              >
-              <TouchableOpacity
-              style={styles.birthdateButton}
-              onPress={showDatePicker}
-              >
-              <View style={{ padding: 8 }}>
-              <Icon name={'calendar'} size={16} />
-              </View>
-              <Text style={styles.birthdateButtonText}>Nacimiento</Text>
-              </TouchableOpacity>
-              <DateTimePickerModal
-              isVisible={isDatePickerVisible}
-              mode="date"
-              onConfirm={handleConfirm}
-              onCancel={hideDatePicker}
-              />
-            </View> */}
-
           <View
             style={{
               paddingHorizontal: 32,
