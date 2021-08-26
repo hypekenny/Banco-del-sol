@@ -45,28 +45,15 @@ export const HomeTab = () => {
         tabBarActiveTintColor: '#ff4b6e',
         tabBarInactiveTintColor: 'white',
         tabBarActiveBackgroundColor: 'white',
-        tabBarBackground: () => (
-          <LinearGradient
-            colors={['#ff4b6e', '#ff9349']}
-            style={{
-              flex: 1,
-              borderBottomRightRadius: 20,
-              borderBottomLeftRadius: 20,
-            }}
-            start={{ x: 0, y: 1 }}
-            end={{ x: 0, y: 0 }}
-          />
-        ),
         tabBarItemStyle: {
-          borderBottomRightRadius: 19,
-          borderBottomLeftRadius: 19,
+          opacity: 0,
         },
         tabBarStyle: {
           position: 'absolute',
-          marginLeft: 765,
-          width: 388,
-          height: 49,
-          marginBottom: '4.22%',
+          width: 0,
+          height: 0,
+          cursor: 'none',
+          marginBottom: '2%',
         },
       })}
     >
