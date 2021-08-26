@@ -11,6 +11,7 @@ import colors from '../../constants/colors';
 import { cleanErrors, resetPass, resetSucceed } from '../../redux/actions';
 import { Props, RootState } from '../../types/Types';
 import { StylesCon } from '../../constants/Styles';
+import { About } from '../about/About';
 
 export function ForgotPassword({ navigation }: Props) {
   const [email, setEmail] = useState('');
@@ -46,6 +47,7 @@ export function ForgotPassword({ navigation }: Props) {
         alt=""
       />
       <View style={StylesCon.filler} />
+      <About />
       <View style={styles.container}>
         <View style={styles.headerOne}>
           <LinearGradient
