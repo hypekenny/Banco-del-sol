@@ -139,6 +139,7 @@ export const ContactAdd = ({ navigation }: Props) => {
 
   return (
     <View style={StylesCon.phone}>
+      {/* Fix errors */}
       <img
         style={{
           width: 411,
