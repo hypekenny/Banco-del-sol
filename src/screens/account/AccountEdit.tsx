@@ -195,7 +195,7 @@ export function AccountEdit({ navigation }: Props) {
             height: size2,
             borderRadius: 25,
             borderColor: '#fb6583',
-            borderWidth: StyleSheet.hairlineWidth,
+            borderWidth: 2,
             padding: 8,
           }}
         >
