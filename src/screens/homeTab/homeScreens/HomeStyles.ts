@@ -98,7 +98,6 @@ export const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: '800',
     textAlign: 'center',
-    marginTop: 15,
   },
   text: {
     fontSize: 20,
