@@ -6,6 +6,7 @@ import { ButtonGroup } from 'react-native-elements';
 import { RootState } from '../../types/Types';
 import { styles } from './TransactionsStyles';
 import { TransactionList } from './TransactionList';
+import colors from '../../constants/colors';
 
 export function Transactions(props) {
   const account = useSelector((state: RootState) => state.account);
@@ -95,9 +96,10 @@ export function Transactions(props) {
         selectedIndex={buttonFilterIndex}
         buttons={['Todo', 'Recarga', 'Transfer']}
         containerStyle={{ height: 'auto', borderWidth: 0 }}
+        innerBorderStyle={{ color: colors.primary }}
         buttonContainerStyle={styles.buttonGroupBox}
         selectedButtonStyle={styles.buttonGroupBoxSelected}
-        textStyle={{ color: 'black' }}
+        textStyle={{ color: 'black', marginTop: 0 }}
         selectedTextStyle={{ color: 'white' }}
       />
       <Text style={styles.textGeneral}>Ordenar por: </Text>
