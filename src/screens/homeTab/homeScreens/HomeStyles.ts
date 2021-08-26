@@ -174,7 +174,7 @@ export const styles = StyleSheet.create({
   },
 
   header: {
-    height: 75,
+    height: 76,
     width: '100%',
     marginTop: '-3%',
   },
