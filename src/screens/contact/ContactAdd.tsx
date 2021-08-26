@@ -216,7 +216,7 @@ export const ContactAdd = ({ navigation }: Props) => {
           </View>
         ) : null}
 
-        {name && msgContact === false ? (
+        {email && name && msgContact === false ? (
           <TouchableOpacity
             onPress={() => AddFriend(email, idToken, name)}
             style={styles.buttonAdd}
