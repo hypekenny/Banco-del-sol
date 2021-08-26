@@ -17,6 +17,7 @@ import {
   SET_SUCCEED,
   SET_UPDATE_ACCOUNT,
   REMOVE_UPDATED_ACCOUNT,
+  SET_ITEM,
 } from '../actions/index';
 
 interface actionType {
@@ -43,6 +44,7 @@ export const initialState = {
   message: '',
   succeed: false,
   updatedAccount: false,
+  tabBarItem: 0,
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -82,6 +84,12 @@ export default function rootReducer(state = initialState, action: actionType) {
       return {
         ...state,
         token: action.payload,
+      };
+
+    case SET_ITEM:
+      return {
+        ...state,
+        tabBarItem: action.payload,
       };
 
     case GET_EMAIL:
