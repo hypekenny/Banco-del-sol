@@ -3,6 +3,8 @@ import colors from '../constants/colors';
 
 export const ButtonLowerWhiteStyle = StyleSheet.create({
   button: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     width: 140,
     alignItems: 'center',
     marginTop: 20,
@@ -11,7 +13,7 @@ export const ButtonLowerWhiteStyle = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.primary,
     backgroundColor: '#ffffff',
-    padding: 15,
+    padding: 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -22,11 +24,20 @@ export const ButtonLowerWhiteStyle = StyleSheet.create({
     elevation: 14,
   },
   text: {
+    justifyContent: 'space-evenly',
     color: colors.primary,
     paddingLeft: 5,
     paddingRight: 5,
     alignSelf: 'center',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  icon: {
+    justifyContent: 'space-evenly',
+    color: colors.primary,
+    paddingLeft: 5,
+    paddingRight: 5,
+    alignSelf: 'center',
+    size: 26,
   },
 });
