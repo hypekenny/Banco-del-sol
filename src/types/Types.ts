@@ -23,6 +23,7 @@ export type loginStackParamList = {
   Contact: undefined;
   ContactDetails: undefined;
   Error: undefined;
+  Statistics: undefined;
 };
 
 export type burgerStackParamList = {
@@ -109,6 +110,7 @@ export interface RootState {
   succeed: boolean;
   updatedAccount: boolean;
   DetailTransfer: { name: string; email: string };
+  tabBarItem: number;
 }
 
 export type errors = {
