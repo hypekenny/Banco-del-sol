@@ -16,6 +16,7 @@ import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
 import { LoadingFull } from '../loading2/LoadingFull';
 import { StylesCon } from '../../constants/Styles';
+import { About } from '../about/About';
 
 export const Login = ({ navigation }: Props) => {
   const userStore = useSelector((state: resFromBack) => state.user);
@@ -26,8 +27,8 @@ export const Login = ({ navigation }: Props) => {
   const [state, setState] = useState(false);
 
   const [user, setUser] = useState({
-    email: 'aaa@hotmail.com',
-    password: 'ASD123`',
+    email: '',
+    password: '',
     amount: 0,
   });
 
@@ -54,6 +55,7 @@ export const Login = ({ navigation }: Props) => {
         alt=""
       />
       <View style={StylesCon.filler} />
+      <About />
       <View style={styles.container}>
         <View style={StylesCon.headerOne}>
           <LinearGradient
