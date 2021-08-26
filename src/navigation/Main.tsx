@@ -160,12 +160,12 @@ export const Main = () => (
       name="ContactDetails"
       component={ContactDetails}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerTitle: 'Contacto',
         headerTintColor: 'white',
         headerBackground: () => (
           <LinearGradient
-            colors={['#ff4b6e', '#ff9349']}
+            colors={['black', '#ff9349']}
             style={{ flex: 1 }}
             start={{ x: 0, y: 0 }}
             end={{ x: 0, y: 1 }}
