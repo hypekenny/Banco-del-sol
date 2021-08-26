@@ -3,12 +3,7 @@ import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 3,
-    backgroundColor: colors.white,
-    justifyContent: 'center',
-    padding: 10,
-    overflow: 'hidden',
-    zIndex: 0,
+    position: 'absolute',
   },
   containerButton: {
     flex: 1,
@@ -17,7 +12,11 @@ export const styles = StyleSheet.create({
     marginTop: 17,
   },
   text: {
-    position: 'absolute',
-    color: 'blue',
+    color: 'black',
+    fontSize: 20,
+  },
+  title: {
+    color: 'black',
+    fontSize: 40,
   },
 });
