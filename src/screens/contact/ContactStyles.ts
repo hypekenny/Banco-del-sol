@@ -25,9 +25,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     borderColor: `${colors.primary}`,
-    borderWidth: 1,
+    borderWidth: 2,
     marginTop: 50,
-    borderRadius: 15,
+    borderRadius: 25,
     alignSelf: 'center',
     textAlign: 'center',
     width: '80%',
@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
 
   textBoxEmail: { color: '#000', fontSize: 20, fontWeight: '100' },
   header: {
-    height: 70,
+    height: 67,
     width: '100%',
     marginTop: '-3%',
   },
