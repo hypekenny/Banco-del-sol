@@ -4,23 +4,26 @@ import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
+    zIndex: 0,
     flex: 1,
     alignSelf: 'center',
-    minHeight: 750,
-    width: 411,
-
-    borderColor: 'black',
+    minHeight: 785,
+    maxHeight: 785,
+    width: 400,
     borderRadius: 30,
-    borderWidth: 6,
   },
   headerOne: {
-    height: 60,
+    // alignSelf: 'center',
+    backgroundColor: '#000',
+    height: 63,
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
+    // width: '100%',
   },
   header: {
-    height: 60,
-    width: '100%',
+    alignSelf: 'center',
+    height: 65,
+    width: '97%',
     borderTopLeftRadius: 22,
     borderTopRightRadius: 22,
   },
@@ -34,12 +37,11 @@ export const styles = StyleSheet.create({
   Box: {
     zIndex: 70,
     flex: 1,
-    // marginTop: 15,
     marginBottom: 40,
     borderRadius: 10,
     alignSelf: 'center',
     textAlign: 'center',
-    width: '80%',
+    width: '50%',
   },
 
   BTNBox: {
@@ -151,12 +153,15 @@ export const styles = StyleSheet.create({
     color: '#767676de',
     fontSize: 25,
     fontWeight: '100',
+    // justifyContent: 'center',
+    marginTop: '-130%',
   },
 
   ViewDescription: {
     width: '90%',
     alignSelf: 'center',
-    marginTop: '50%',
+    // justifyContent: 'center',
+    // marginTop: '-50%',
   },
 
   BTNRemove: {

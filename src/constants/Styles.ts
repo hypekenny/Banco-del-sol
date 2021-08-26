@@ -32,7 +32,7 @@ export const StylesCon = StyleSheet.create({
     position: 'absolute',
     left: 70,
     top: 0,
-    marginTop: '-0.3%',
+    marginTop: '1%',
     width: '30%',
   },
   textTitle: {

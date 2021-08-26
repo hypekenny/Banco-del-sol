@@ -165,7 +165,7 @@ export const Main = () => (
       name="ContactDetails"
       component={ContactDetails}
       options={{
-        headerShown: true,
+        headerShown: false,
         headerTitle: 'Contacto',
         headerTintColor: 'white',
         headerBackground: () => (

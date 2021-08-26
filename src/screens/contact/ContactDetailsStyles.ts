@@ -3,22 +3,56 @@ import colors from '../../constants/colors';
 // import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
+  headerOne: {
+    // alignSelf: 'center',
+    backgroundColor: '#000',
+    height: 63,
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    // width: '100%',
+    marginTop: '25%',
+  },
+  header: {
+    alignSelf: 'center',
+    height: 65,
+    width: '97%',
+    borderTopLeftRadius: 22,
+    borderTopRightRadius: 22,
+  },
+  back: {
+    position: 'absolute',
+    height: 70,
+    width: 70,
+    left: 0,
+    top: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
   container: {
     flex: 1,
-    backgroundColor: '#fff0',
-    marginTop: 50,
     alignSelf: 'center',
-    height: '15%',
+    // minHeight: 750,
+
+    minHeight: 985,
+    maxHeight: 985,
+
+    width: 400,
+
+    borderRadius: 30,
+    // zIndex: 20,
   },
   box: {
-    borderRadius: 23,
+    // position: 'absolute',
+
     backgroundColor: '#fff',
+    borderRadius: 23,
     borderColor: `${colors.primary}`,
     borderWidth: 1,
     textAlign: 'center',
     alignSelf: 'center',
-    height: '35%',
-    width: '195%',
+    height: '20%',
+    width: '80%',
     marginTop: '50%',
 
     shadowColor: '#000',
@@ -55,9 +89,10 @@ export const styles = StyleSheet.create({
 
   gradientButton: {
     width: '70%',
-    height: '60%',
+    height: '50%',
     alignItems: 'center',
     alignSelf: 'center',
+    justifyContent: 'center',
     marginTop: 30,
     marginBottom: 20,
     borderRadius: 20,
@@ -79,6 +114,12 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '500',
     marginRight: '-20%',
+  },
+
+  iconArrow: {
+    marginLeft: '-10%',
+    marginTop: '-3%',
+    position: 'absolute',
   },
 
   icon: {

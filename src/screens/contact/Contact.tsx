@@ -60,6 +60,17 @@ export const Contact = ({ navigation }: Props) => {
 
   return (
     <View style={styles.phone}>
+      <img
+        style={{
+          width: 411,
+          height: 813,
+          position: 'absolute',
+          alignSelf: 'center',
+          // zIndex: 20,
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880174589605478400/Mockup_-_android_-_BDS_app.png"
+        alt=""
+      />
       <View style={StylesCon.filler} />
       <View style={styles.container}>
         <View style={styles.headerOne}>

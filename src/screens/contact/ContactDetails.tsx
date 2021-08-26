@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import { loginStackParamList, RootState } from '../../types/Types';
 import { styles } from './ContactDetailsStyles';
 import colors from '../../constants/colors';
@@ -22,8 +22,44 @@ export const ContactDetails = ({ navigation }: Props) => {
 
   return (
     <View style={StylesCon.phone}>
+      <img
+        style={{
+          width: 411,
+          height: 813,
+          position: 'absolute',
+          alignSelf: 'center',
+          // zIndex: 20,
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880174589605478400/Mockup_-_android_-_BDS_app.png"
+        alt=""
+      />
       <View style={StylesCon.filler} />
       <View style={styles.container}>
+        <View style={styles.headerOne}>
+          <LinearGradient
+            style={styles.header}
+            colors={[colors.primary, colors.secondary]}
+            end={[1, 1]}
+          />
+
+          <View style={StylesCon.title}>
+            <Text style={StylesCon.textTitle}>Detalles del contacto</Text>
+          </View>
+
+          <TouchableOpacity
+            style={styles.back}
+            onPress={() => {
+              navigation.push('Contact');
+            }}
+          >
+            <AntDesign
+              name="arrowleft"
+              size={35}
+              color="white"
+              style={styles.iconArrow}
+            />
+          </TouchableOpacity>
+        </View>
         <View style={styles.box}>
           <Text style={styles.textBoxName}>{details.name}</Text>
           <Text style={styles.textBoxEmail}>{details.email}</Text>
