@@ -48,4 +48,24 @@ export const StylesCon = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  tabBar: {
+    display: 'flex',
+    flexDirection: 'row',
+    height: 65,
+    width: '100%',
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    justifyContent: 'space-evenly',
+  },
+  tabBarBtn: {
+    width: 130,
+    height: 65,
+    justifyContent: 'center',
+  },
+  tabBarBtnAct: {
+    backgroundColor: 'white',
+    width: 130,
+    height: 65,
+    justifyContent: 'center',
+  },
 });
