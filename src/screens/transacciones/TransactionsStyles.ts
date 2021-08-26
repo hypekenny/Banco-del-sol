@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
     marginBottom: 2,
   },
   box: {
-    borderWidth: 1,
+    borderWidth: 2,
     height: 'auto',
     width: 350,
     marginLeft: 'auto',
