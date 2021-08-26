@@ -58,17 +58,6 @@ export const About = () => {
       </View>
       <View style={{ marginTop: '10%' }}>
         <TouchableOpacity onPress={() => linkSan()}>
-          <img
-            src={image}
-            alt=""
-            style={{
-              width: 60,
-              height: 'auto',
-              borderRadius: 30,
-              border: 'solid',
-              borderColor: '#ddd',
-            }}
-          />
           <Text style={styles.text}>Santiago Ferro</Text>
         </TouchableOpacity>
       </View>
