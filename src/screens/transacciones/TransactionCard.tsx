@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from './TransactionsStyles';
+import formatNumber from '../../constants/formatNumber';
 
 export function Card(props) {
   if (Platform.OS === 'android') {
@@ -68,9 +69,13 @@ export function Card(props) {
             <View style={styles.row}>
               <Text style={styles.textCardBold}>Monto: </Text>
               {sender ? (
-                <Text style={styles.textCardR}>{`-${props.value}$`}</Text>
+                <Text style={styles.textCardR}>{`-$${formatNumber(
+                  props.value,
+                )}`}</Text>
               ) : (
-                <Text style={styles.textCardG}>{`+${props.value}$`} </Text>
+                <Text style={styles.textCardG}>
+                  {`+$${formatNumber(props.value)}`}{' '}
+                </Text>
               )}
             </View>
 
