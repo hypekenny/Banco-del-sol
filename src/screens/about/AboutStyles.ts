@@ -10,10 +10,14 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
     zIndex: 0,
   },
-   containerButton: {
+  containerButton: {
     flex: 1,
-    backgroundColor: colors.white,
-    alignItems: 'center',
+    backgroundColor: 'black',
+    position: 'absolute',
     marginTop: 17,
   },
-}
+  text: {
+    position: 'absolute',
+    color: 'blue',
+  },
+});
