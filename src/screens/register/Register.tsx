@@ -64,11 +64,11 @@ export function Register({ navigation }: Props) {
     passConfirm: Yup.string()
       .required('Confirme la contraseña')
       .oneOf([Yup.ref('pass'), null], 'Deben coincidir'),
-    dni: Yup.number()
-      .typeError('Debe ser un número')
+    dni: Yup.string()
       .required('Ingrese un DNI')
-      .min(99999, 'Mínimo 6 números')
-      .max(9999999999, 'Máximo 10 números'),
+      .min(6, 'Mínimo 6 números')
+      .max(10, 'Máximo 10 números')
+      .matches(/^[0-9]*$/, 'Debe ser un número'),
     phoneNumber: Yup.number()
       .typeError('Debe ser un número')
       .required('Ingrese un teléfono')
@@ -467,7 +467,7 @@ export function Register({ navigation }: Props) {
                 height: size2,
                 borderRadius: 25,
                 borderColor: '#fb6583',
-                borderWidth: StyleSheet.hairlineWidth,
+                borderWidth: 2,
                 padding: 8,
               }}
             >
@@ -551,8 +551,6 @@ export function Register({ navigation }: Props) {
                 values.name
               ) {
                 setStep(!step);
-              } else {
-                console.log('Revise el formulario');
               }
             }}
           >
@@ -583,10 +581,7 @@ export function Register({ navigation }: Props) {
                 !errors.address?.city &&
                 !errors.address?.province
               ) {
-                console.log(`${values.name} se ha registrado exitosamente`);
                 send(values);
-              } else {
-                console.log('Revise el formulario');
               }
             }}
           >
