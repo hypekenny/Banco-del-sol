@@ -50,10 +50,7 @@ export function Account({ navigation }: Props) {
           }}
         />
       </View>
-      <LinearGradient
-        colors={[colors.primary, colors.secondary]}
-        style={styles.container2}
-      >
+      <LinearGradient colors={colors.gradient} style={styles.container2}>
         <View>
           <View style={styles.titleContainer}>
             <View />
@@ -91,7 +88,7 @@ export function Account({ navigation }: Props) {
         </View>
       </LinearGradient>
       <TouchableOpacity
-        style={ButtonPrimaryStyle.button}
+        style={styles.buttonContainer}
         onPress={() => copyToClipboard()}
       >
         <View style={styles.ImageAndButton}>

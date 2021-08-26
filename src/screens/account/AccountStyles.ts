@@ -51,10 +51,24 @@ export const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
   },
-  buttonsContainer: {
-    flex: 1,
-    justifyContent: 'center',
+  buttonContainer: {
+    width: 250,
     alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 20,
+    borderRadius: 25,
+    borderWidth: 2,
+    borderColor: colors.primary,
+    backgroundColor: '#ffffff',
+    padding: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 26,
+    elevation: 14,
   },
   editButton: {
     marginBottom: 0,
