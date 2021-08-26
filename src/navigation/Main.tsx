@@ -6,6 +6,7 @@ import { firebaseConfig } from '../constants/firebase.config';
 import { loginStackParamList } from '../types/Types';
 import { config } from '../screens/index';
 import { HomeTab } from '../screens/homeTab/HomeTab';
+import { Statistics } from '../screens/statistics/Statistics';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -109,11 +110,6 @@ export const Main = () => (
             end={{ x: 0, y: 1 }}
           />
         ),
-        // headerStyle: {
-        //   width: '100%',
-        //   height: 75,
-        //   // alignSelf: 'center',
-        // },
       }}
     />
     <LoginStack.Screen
@@ -189,6 +185,11 @@ export const Main = () => (
     <LoginStack.Screen
       name="Error"
       component={Error}
+      options={{ headerShown: false }}
+    />
+    <LoginStack.Screen
+      name="Statistics"
+      component={Statistics}
       options={{ headerShown: false }}
     />
   </LoginStack.Navigator>
