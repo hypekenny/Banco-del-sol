@@ -66,10 +66,13 @@ export default function rootReducer(state = initialState, action: actionType) {
       };
 
     case LOG_OUT:
+      console.log(state);
+
       return {
         ...state,
         account: action.payload,
         user: action.payload,
+        Contacts: [],
       };
 
     case FETCH_CVU:
@@ -85,6 +88,8 @@ export default function rootReducer(state = initialState, action: actionType) {
       };
 
     case GET_EMAIL:
+      console.log(action.payload);
+
       return {
         ...state,
         Contacts: [
