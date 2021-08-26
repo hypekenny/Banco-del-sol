@@ -21,6 +21,7 @@ import {
   logout,
   cleanErrors,
   RemoveUpdatedAccount,
+  setTabBarItem,
 } from '../../../redux/actions';
 import { Props, RootState } from '../../../types/Types';
 import colors from '../../../constants/colors';
@@ -32,6 +33,7 @@ LogBox.ignoreAllLogs();
 export const Home = ({ navigation }: Props) => {
   const accountStore = useSelector((state: RootState) => state.account);
   const userStore = useSelector((state: RootState) => state.user);
+  const tabBarItem = useSelector((state: RootState) => state.tabBarItem);
   const flagUpdatedAccount = useSelector(
     (state: RootState) => state.updatedAccount,
   );
@@ -344,6 +346,63 @@ export const Home = ({ navigation }: Props) => {
         {accountStore.email && accountStore.email.length
           ? dispatch(setLoadingFalse())
           : null}
+        <View>
+          <LinearGradient
+            style={StylesCon.tabBar}
+            colors={[colors.primary, colors.secondary]}
+            start={{ x: 0, y: 1 }}
+            end={{ x: 0, y: 0 }}
+          >
+            <TouchableOpacity
+              style={
+                tabBarItem === 1 ? StylesCon.tabBarBtnAct : StylesCon.tabBarBtn
+              }
+              onPress={() => {
+                dispatch(setTabBarItem(1));
+                navigation.push('HomeTab');
+              }}
+            >
+              <Icon
+                type="material-community"
+                name="home"
+                size={35}
+                color={tabBarItem === 1 ? colors.primary : 'white'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={
+                tabBarItem === 2 ? StylesCon.tabBarBtnAct : StylesCon.tabBarBtn
+              }
+              onPress={() => {
+                dispatch(setTabBarItem(2));
+                navigation.push('Transactions');
+              }}
+            >
+              <Icon
+                type="material-community"
+                name="swap-horizontal-bold"
+                size={35}
+                color={tabBarItem === 2 ? colors.primary : 'white'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={
+                tabBarItem === 3 ? StylesCon.tabBarBtnAct : StylesCon.tabBarBtn
+              }
+              onPress={() => {
+                dispatch(setTabBarItem(3));
+                navigation.push('Statistics');
+              }}
+            >
+              <Icon
+                type="material-community"
+                name="trending-up"
+                size={35}
+                color={tabBarItem === 3 ? colors.primary : 'white'}
+              />
+            </TouchableOpacity>
+          </LinearGradient>
+        </View>
       </View>
       <View style={StylesCon.filler} />
     </View>
