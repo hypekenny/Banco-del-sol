@@ -66,8 +66,6 @@ export default function rootReducer(state = initialState, action: actionType) {
       };
 
     case LOG_OUT:
-      console.log(state);
-
       return {
         ...state,
         account: action.payload,
