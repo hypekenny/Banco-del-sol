@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './AddFundsStyles';
 import { addFunds } from '../../redux/actions';
-import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
+import { ButtonPrimaryStyle } from '../../constants/ButtonPrimaryStyle';
 import { RootState } from '../../types/Types';
 import colors from '../../constants/colors';
 

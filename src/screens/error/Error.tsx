@@ -2,7 +2,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Props } from '../../types/Types';
-import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
+import { ButtonPrimaryStyle } from '../../constants/ButtonPrimaryStyle';
 import { ButtonSecondaryStyle } from '../../constants/ButtonSecondaryStyle';
 import { styles } from './ErrorStyles';
 import colors from '../../constants/colors';
@@ -15,7 +15,7 @@ export const Error = ({ navigation }: Props) => {
       </View>
       <View style={styles.containerButton}>
         <TouchableOpacity
-onPress={() => navigation.push('HomeTab')}
+          onPress={() => navigation.push('HomeTab')}
           style={ButtonPrimaryStyle.button}
         >
           <Text style={ButtonSecondaryStyle.text}>Volver</Text>

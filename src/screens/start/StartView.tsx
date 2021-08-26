@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './StartViewStyles';
-import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
+import { ButtonPrimaryStyle } from '../../constants/ButtonPrimaryStyle';
 import colors from '../../constants/colors';
 import { loginStackParamList } from '../../types/Types';
 

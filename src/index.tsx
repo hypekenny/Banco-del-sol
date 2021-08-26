@@ -9,7 +9,7 @@ import { styles } from '../src/screens/error/ErrorStyles';
 import colors from '../src/constants/colors';
 import store from './redux/store';
 import { Main } from './navigation/Main';
-import { ButtonPrimaryStyle } from '../src/constants/ButtonPrymaryStyle';
+import { ButtonPrimaryStyle } from './constants/ButtonPrimaryStyle';
 import { ButtonSecondaryStyle } from '../src/constants/ButtonSecondaryStyle';
 
 const ErrorFallback = ({ resetErrorBoundary }) => {

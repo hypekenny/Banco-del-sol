@@ -7,7 +7,7 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { styles } from './AccountStyles';
 import { Props, resFromBack } from '../../types/Types';
-import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
+import { ButtonPrimaryStyle } from '../../constants/ButtonPrimaryStyle';
 import colors from '../../constants/colors';
 
 export function Account({ navigation }: Props) {

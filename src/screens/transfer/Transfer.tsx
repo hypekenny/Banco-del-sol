@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './TransferStyles';
 import { RootState } from '../../types/Types';
-import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
+import { ButtonPrimaryStyle } from '../../constants/ButtonPrimaryStyle';
 import colors from '../../constants/colors';
 import { addFunds } from '../../redux/actions';
 import { LoadingFull } from '../loading2/LoadingFull';
