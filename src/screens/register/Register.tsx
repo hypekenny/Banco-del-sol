@@ -92,10 +92,10 @@ export function Register({ navigation }: Props) {
         .required('Ingrese un número')
         .max(5, 'Máximo 5 números')
         .matches(/^[0-9]*$/, 'Debe ser un número'),
-      zipCode: Yup.number()
-        .typeError('Debe ser un número')
-        .required('Ingrese código postal')
-        .max(9999, 'Máximo 4 números'),
+      zipCode: Yup.string()
+        .required('Ingrese codigo postal')
+        .max(5, 'Máximo 5 caracteres')
+        .matches(/^[0-9]*$/, 'Debe ser un número'),
       city: Yup.string()
         .required('Ingrese una ciudad')
         .max(30, 'Máximo 30 caracteres'),
@@ -154,8 +154,8 @@ export function Register({ navigation }: Props) {
   ];
   const pickerItems = provinces.map(p => <Picker.Item label={p} value={p} />);
 
-  /*   const [selectedValue, setSelectedValue] = useState();
-   */
+    const [selectedValue, setSelectedValue] = useState();
+  
   function handleConfirmProvince(provincia: string) {
     values.address.province = provincia;
   }
@@ -514,15 +514,11 @@ export function Register({ navigation }: Props) {
                 <Entypo name="location" size={22} color="#fb6583" />
               </View>
               <Picker
-                selectedValue={values.address.province}
+                selectedValue={selectedValue}
                 style={styles.picker}
-                onValueChange={itemValue => {
-                  console.log('1- Provincia:', values.address.province);
-                  console.log('1- Error', errors);
-                  /* setSelectedValue(itemValue); */
+                onValueChange={(itemValue, itemIndex) => {
+                  setSelectedValue(itemValue);
                   handleConfirmProvince(itemValue);
-                  console.log('2-Provincia:', values.address.province);
-                  console.log('2- Error', errors);
                 }}
               >
                 {pickerItems}
@@ -541,10 +537,10 @@ export function Register({ navigation }: Props) {
               icon="location"
               placeholderTextColor="grey"
               placeholder="Codigo Postal"
-              onChangeText={handleChange('address.zipCode')}
               value={values.address.zipCode}
+              onChangeText={handleChange('address.zipCode')}
               autoCapitalize="none"
-              onBlur={handleBlur('address.zipcode')}
+              onBlur={handleBlur('address.zipCode')}
               error={errors.address?.zipCode}
               touched={touched.address?.zipCode}
             />
