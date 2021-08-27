@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
     color: 'grey',
     textAlign: 'center',
     fontSize: 20,
+    padding: 15,
   },
   containerButton: {
     alignItems: 'center',

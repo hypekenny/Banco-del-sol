@@ -40,7 +40,7 @@ export function ForgotPassword({ navigation }: Props) {
           colors={[colors.primary, colors.secondary]}
         />
         <View style={styles.title}>
-          <Text style={styles.textTitle}>Resetear contraseña</Text>
+          <Text style={styles.textTitle}>Recuperar contraseña</Text>
         </View>
         <TouchableOpacity
           style={styles.back}
@@ -56,8 +56,6 @@ export function ForgotPassword({ navigation }: Props) {
           />
         </TouchableOpacity>
       </View>
-      {/* <View style={styles.prueba}></View> */}
-      {/* <View style={styles.prueba1}></View> */}
       <View
         style={{
           alignSelf: 'center',
@@ -73,7 +71,7 @@ export function ForgotPassword({ navigation }: Props) {
           closeOnTouchOutside={false}
           closeOnHardwareBackPress={false}
           showCancelButton={false}
-          showConfirmButton={true}
+          showConfirmButton
           confirmText="Aceptar"
           confirmButtonColor="#ff4b6e"
           onConfirmPressed={() => {
@@ -97,7 +95,7 @@ export function ForgotPassword({ navigation }: Props) {
           closeOnTouchOutside={false}
           closeOnHardwareBackPress={false}
           showCancelButton={false}
-          showConfirmButton={true}
+          showConfirmButton
           confirmText="Aceptar"
           confirmButtonColor="#ff4b6e"
           onConfirmPressed={() => {
