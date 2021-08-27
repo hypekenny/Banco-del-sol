@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react';
-import { Text, ScrollView } from 'react-native';
+import { Text, ScrollView, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { ButtonGroup } from 'react-native-elements';
 import { RootState } from '../../types/Types';
@@ -90,30 +90,43 @@ export function Transactions(props) {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.textGeneral}>Filtrar por: </Text>
-      <ButtonGroup
-        onPress={setButtonFilterIndex}
-        selectedIndex={buttonFilterIndex}
-        buttons={['Todo', 'Recarga', 'Transfer']}
-        containerStyle={{ height: 'auto', borderWidth: 0 }}
-        innerBorderStyle={{ color: colors.primary }}
-        buttonContainerStyle={styles.buttonGroupBox}
-        selectedButtonStyle={styles.buttonGroupBoxSelected}
-        textStyle={{ color: 'black', marginTop: 0 }}
-        selectedTextStyle={{ color: 'white' }}
+      <View style={styles.filtersOrder}>
+        <Text style={styles.textGeneral}>Filtrar por: </Text>
+        <ButtonGroup
+          onPress={setButtonFilterIndex}
+          selectedIndex={buttonFilterIndex}
+          buttons={['Todo', 'Recarga', 'Transfer']}
+          containerStyle={{ height: 'auto', borderWidth: 0 }}
+          /* containerStyle={{
+            borderWidth: 2,
+            borderRadius: 25,
+            borderColor: colors.primary,
+          }} */
+          innerBorderStyle={{ color: colors.primary }}
+          buttonContainerStyle={styles.buttonGroupBox}
+          selectedButtonStyle={styles.buttonGroupBoxSelected}
+          textStyle={{ color: 'black', marginTop: 0 }}
+          selectedTextStyle={{ color: 'white' }}
+        />
+      </View>
+      <View style={styles.filtersOrder}>
+        <Text style={styles.textGeneral}>Ordenar por: </Text>
+        <ButtonGroup
+          onPress={setButtonOrderIndex}
+          selectedIndex={buttonOrderIndex}
+          buttons={['Mas recientes', 'Mas antiguos']}
+          containerStyle={{ height: 'auto', borderWidth: 0 }}
+          buttonContainerStyle={styles.buttonGroupBox}
+          selectedButtonStyle={styles.buttonGroupBoxSelected}
+          textStyle={{ color: 'black' }}
+          selectedTextStyle={{ color: 'white' }}
+        />
+      </View>
+      <TransactionList
+        style={{ marginTop: '5%' }}
+        data={state}
+        email={account.email}
       />
-      <Text style={styles.textGeneral}>Ordenar por: </Text>
-      <ButtonGroup
-        onPress={setButtonOrderIndex}
-        selectedIndex={buttonOrderIndex}
-        buttons={['Mas recientes', 'Mas antiguos']}
-        containerStyle={{ height: 'auto', borderWidth: 0 }}
-        buttonContainerStyle={styles.buttonGroupBox}
-        selectedButtonStyle={styles.buttonGroupBoxSelected}
-        textStyle={{ color: 'black' }}
-        selectedTextStyle={{ color: 'white' }}
-      />
-      <TransactionList data={state} email={account.email} />
     </ScrollView>
   );
 }

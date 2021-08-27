@@ -36,13 +36,17 @@ export function Card(props) {
 
   return (
     <View key={props.id} style={styles.box}>
-      <View>
+      <View style={{ alignContent: 'center' }}>
         <TouchableOpacity
           style={styles.rowButton}
           onPress={() => toggleExpand()}
         >
           <View style={{ flexDirection: 'row' }}>
-            <Text style={[styles.textGeneral]}>{props.type}</Text>
+            <Text
+              style={{ fontSize: 20, fontWeight: '800', textAlign: 'center' }}
+            >
+              {props.type}
+            </Text>
             <Ionicons
               name={sender ? 'arrow-down' : 'arrow-up'}
               size={30}
@@ -57,13 +61,20 @@ export function Card(props) {
           />
         </TouchableOpacity>
       </View>
-
-      {/* <View style={styles.parentHr} /> */}
       {expanded && (
         <View>
           <View
             style={{
-              marginBottom: 10,
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              width: '100%',
+              borderBottomColor: '#ff4b6e',
+              borderBottomWidth: 2,
+            }}
+          />
+          <View
+            style={{
+              marginBottom: 15,
             }}
           >
             <View style={styles.row}>
@@ -90,13 +101,13 @@ export function Card(props) {
             {receiver ? (
               <View style={styles.row}>
                 <Text style={styles.textCardBold}>Recibido de: </Text>
-                <Text style={styles.textCard}> {props.sender} </Text>
+                <Text style={styles.textCard}>{props.sender} </Text>
               </View>
             ) : null}
             {sender ? (
               <View style={styles.row}>
                 <Text style={styles.textCardBold}>Enviado a: </Text>
-                <Text style={styles.textCard}> {props.receiver} </Text>
+                <Text style={styles.textCard}>{props.receiver} </Text>
               </View>
             ) : null}
           </View>
