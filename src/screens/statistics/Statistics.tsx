@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, Dimensions } from 'react-native';
-import { YAxis, Grid, BarChart } from 'react-native-svg-charts';
+import { Grid, BarChart } from 'react-native-svg-charts';
 import { useSelector } from 'react-redux';
 import { Circle, G, Line, Rect, Text as SvgText } from 'react-native-svg';
 import { RootState, transactionType } from '../../types/Types';
@@ -10,7 +10,6 @@ import colors from '../../constants/colors';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 const fill = colors.primary;
-const contentInset = { top: 50, bottom: 20, left: -35 };
 
 interface tDatosY {
   [key: string]: number[];
@@ -73,7 +72,7 @@ export const Statistics = () => {
       borderRadius: 25,
       borderWidth: 2,
       borderColor: colors.primary,
-      backgroundColor: colors.secondary,
+      backgroundColor: colors.primary,
       padding: 5,
       shadowColor: '#000',
       shadowOffset: {
@@ -108,6 +107,12 @@ export const Statistics = () => {
         { ...styles },
       ],
     };
+    buttonsD.EjeX[elec].textejex = {
+      fontSize: 11.5,
+      fontWeight: '700',
+      alignSelf: 'center',
+      color: 'white',
+    };
     buttonsD.EjeX[elec].buttonejex = {
       flex: 1,
       height: 0.04 * height,
@@ -116,7 +121,7 @@ export const Statistics = () => {
       borderRadius: 10,
       borderWidth: 2,
       borderColor: colors.primary,
-      backgroundColor: colors.secondary,
+      backgroundColor: colors.primary,
       padding: 2,
       paddingTop: 5,
       shadowColor: '#000',
@@ -162,13 +167,19 @@ export const Statistics = () => {
   });
   useEffect(() => {
     const wt = 60;
+    let despX: number;
+    if (muestro === 'Mensual') despX = (0.7 * width - 30) / 12 - 1;
+    else {
+      despX = (0.7 * width - 30) / 14 - 1;
+    }
     const Tooltip = ({ x, y }) => (
-      <G x={x(muestroDecorator) - wt / 2 + 0.05 * width} key="tooltip">
-        <G y={0}>
+      <G x={x(muestroDecorator) - wt / 2 + despX} key="tooltip">
+        <G y={1}>
           <Rect
+            strokeWidth={2}
             height={40}
             width={wt}
-            stroke="grey"
+            stroke={colors.primary}
             fill="white"
             ry={10}
             rx={10}
@@ -189,7 +200,7 @@ export const Statistics = () => {
         </G>
         <G x={wt / 2}>
           <Line
-            y1={0 + 40}
+            y1={1 + 40}
             y2={y(datosY[muestro][muestroDecorator])}
             stroke="grey"
             strokeWidth={2}
@@ -207,19 +218,8 @@ export const Statistics = () => {
     // ACA SE CARGA EL GRAFICO DENTRO DE COMP
     if (muestro !== 'Nothing') {
       setComp(
-        <View>
+        <View style={{ width: 0.7 * width, height: 0.4 * height }}>
           <View style={styles.ejeyconbar}>
-            <YAxis
-              style={styles.ejey}
-              data={datosY[muestro]}
-              svg={{
-                fill: 'white',
-                fontSize: 25,
-              }}
-              numberOfTicks={5}
-              formatLabel={(value: number) => `$${value}`}
-              contentInset={contentInset}
-            />
             <BarChart
               style={styles.bar}
               data={datosY[muestro]}
@@ -240,7 +240,7 @@ export const Statistics = () => {
                     handleButtonDate(index);
                   }}
                 >
-                  <Text style={styles.textejex}>{element}</Text>
+                  <Text style={press2.EjeX[index].textejex}>{element}</Text>
                 </TouchableOpacity>
               );
             })}
@@ -265,7 +265,7 @@ export const Statistics = () => {
 
     getX();
     getY({ ...userAccount });
-    // getY(EJEMPLO);
+    //getY(EJEMPLO);
     handleButton('Diario');
     handleButtonDate(0);
   }, [userAccount.amount, userAccount.history]);
@@ -476,10 +476,10 @@ export const Statistics = () => {
   };
   return (
     <View style={styles.containerall}>
-      <View style={styles.container}>
-        <Text style={styles.text}>Evolución de tu balance</Text>
-        {comp}
+      <View>
+        <Text style={styles.text}>Evolución de tu balance</Text>{' '}
       </View>
+      <View style={styles.container}>{comp}</View>
       <View style={styles.container2}>
         <TouchableOpacity
           style={press.Diario.button}
