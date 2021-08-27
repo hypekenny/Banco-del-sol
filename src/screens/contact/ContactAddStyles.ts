@@ -123,8 +123,8 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     borderRadius: 25,
     borderWidth: 2,
-    borderColor: '#D8D6CD',
-    backgroundColor: '#F2F0E7',
+    borderColor: '#878787',
+    backgroundColor: '#a3a3a3',
     padding: 15,
     shadowColor: '#000',
     shadowOffset: {
@@ -160,7 +160,7 @@ export const styles = StyleSheet.create({
   },
 
   searchDisable: {
-    color: '#9a788ccf',
+    color: '#fff',
     paddingLeft: 5,
     paddingRight: 5,
     alignSelf: 'center',
