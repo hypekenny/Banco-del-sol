@@ -13,7 +13,6 @@ import {
 import { styles } from './LoginStyles';
 import { Props, resFromBack, RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
-import { ErrorStyle } from '../../constants/ErrorStyle';
 import colors from '../../constants/colors';
 import { LoadingFull } from '../loading2/LoadingFull';
 
@@ -81,7 +80,7 @@ export const Login = ({ navigation }: Props) => {
           closeOnTouchOutside={false}
           closeOnHardwareBackPress={false}
           showCancelButton={false}
-          showConfirmButton={true}
+          showConfirmButton
           confirmText="Aceptar"
           confirmButtonColor="#ff4b6e"
           onConfirmPressed={() => {
@@ -90,11 +89,6 @@ export const Login = ({ navigation }: Props) => {
           }}
         />
       </View>
-      {/*    {error.length ? (
-        <View style={ErrorStyle.errorView}>
-          <Text style={ErrorStyle.errorText}>{error}</Text>
-        </View>
-      ) : null} */}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email...."
