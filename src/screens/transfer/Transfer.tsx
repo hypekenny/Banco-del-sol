@@ -48,31 +48,36 @@ export const Transfer = () => {
           <Text style={styles.maxBalanceText}>
             SALDO ${formatNumber(accountStore.balance.amount)}
           </Text>
-          <TextInput
-            value={`$${data.amount.toString()}`}
-            onChangeText={(text: string) => {
-              if (text.substring(1, text.length) === '')
-                setData({ ...data, amount: 0 });
-              else if (
-                parseInt(text.substring(1, text.length), 10) <=
-                accountStore.balance.amount
-              )
-                setData({
-                  ...data,
-                  amount: parseInt(text.substring(1, text.length), 10),
-                });
-            }}
-            keyboardType="number-pad"
-            style={ButtonPrimaryStyle.amountInput}
-          />
+          <LinearGradient
+            colors={[colors.primary, colors.secondary]}
+            style={styles.ammount}
+          >
+            <TextInput
+              value={`$${data.amount.toString()}`}
+              onChangeText={(text: string) => {
+                if (text.substring(1, text.length) === '')
+                  setData({ ...data, amount: 0 });
+                else if (
+                  parseInt(text.substring(1, text.length), 10) <=
+                  accountStore.balance.amount
+                )
+                  setData({
+                    ...data,
+                    amount: parseInt(text.substring(1, text.length), 10),
+                  });
+              }}
+              keyboardType="number-pad"
+              style={styles.amountInput}
+            />
+          </LinearGradient>
         </View>
 
         <TextInput
-          placeholder="Queres dejar un comentario?..."
+          placeholder="Querés dejar un comentario?..."
           placeholderTextColor="grey"
           value={data.comment}
           onChangeText={(text: string) => setData({ ...data, comment: text })}
-          style={ButtonPrimaryStyle.input}
+          style={styles.comment}
         />
       </View>
       <View>
