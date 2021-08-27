@@ -16,6 +16,8 @@ import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
 import { LoadingFull } from '../loading2/LoadingFull';
 import { StylesCon } from '../../constants/Styles';
+import Nicolas from '../../../assets/ProfilesPics/Nicolas.jpg';
+import Sebastian from '../../../assets/ProfilesPics/Sebastian.png';
 
 export const Login = ({ navigation }: Props) => {
   const userStore = useSelector((state: resFromBack) => state.user);
@@ -26,8 +28,8 @@ export const Login = ({ navigation }: Props) => {
   const [state, setState] = useState(false);
 
   const [user, setUser] = useState({
-    email: 'aaa@hotmail.com',
-    password: 'ASD123`',
+    email: '',
+    password: '',
     amount: 0,
   });
 
@@ -43,6 +45,80 @@ export const Login = ({ navigation }: Props) => {
 
   return (
     <View style={StylesCon.phone}>
+      <img
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880917630180028436/Banco-del-Sol-Background_Web.png"
+        alt=""
+      />
+
+      <View style={styles.about}>
+        <Text
+          style={{
+            fontSize: 30,
+            textAlign: 'center',
+          }}
+        >
+          ¿Quien trabajo aca?
+        </Text>
+        <View
+          style={{
+            backgroundColor: 'blue',
+            height: '90%',
+            width: '90%',
+            alignSelf: 'center',
+            justifyContent: 'space-around',
+            flexDirection: 'row',
+          }}
+        >
+          {/* Espacio */}
+          <View
+            style={{
+              width: '45%',
+              height: '85%',
+
+              backgroundColor: 'green',
+            }}
+          >
+            <img
+              style={{
+                width: '60%',
+                borderRadius: 10,
+                alignSelf: 'center',
+                marginTop: '5%',
+              }}
+              src={Sebastian}
+              alt=""
+            />
+          </View>
+
+          <View
+            style={{
+              width: '45%',
+              height: '85%',
+
+              backgroundColor: 'aqua',
+            }}
+          >
+            <img
+              style={{
+                width: '60%',
+                borderRadius: 10,
+                alignSelf: 'center',
+                marginTop: '5%',
+              }}
+              src={Nicolas}
+              alt=""
+            />
+          </View>
+          {/* Espacio */}
+        </View>
+        {/* Espacio */}
+      </View>
+
       <img
         style={{
           width: 411,

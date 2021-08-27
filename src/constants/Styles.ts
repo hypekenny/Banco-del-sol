@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native';
+// import background from '../../assets/Banco-del-Sol-Background_Web.png';
+
 import colors from './colors';
 
 export const StylesCon = StyleSheet.create({
@@ -6,7 +8,8 @@ export const StylesCon = StyleSheet.create({
     height: '100%',
     width: '100%',
     justifyContent: 'space-around',
-    backgroundColor: colors.white,
+    // bac
+    // background: '../../assets/Banco-del-Sol-Background_Web.png',
     overflow: 'hidden',
   },
   filler: {
@@ -72,6 +75,11 @@ export const StylesCon = StyleSheet.create({
     backgroundColor: 'white',
     width: 130,
     height: 65,
+    justifyContent: 'center',
+  },
+
+  image: {
+    flex: 1,
     justifyContent: 'center',
   },
 });

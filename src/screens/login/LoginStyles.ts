@@ -149,4 +149,16 @@ export const styles = StyleSheet.create({
   headerOne: { backgroundColor: '#000', height: 63 },
 
   icon: { marginTop: '-18%' },
+
+  // ABOUT
+
+  about: {
+    zIndex: 10,
+    backgroundColor: 'red',
+    width: '35%',
+    height: '70%',
+    position: 'absolute',
+    // marginTop: '15%',
+    marginLeft: '2%',
+  },
 });
