@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   text: {
-    width: '80%',
+    width: '85%',
     fontSize: 20,
     alignSelf: 'center',
     marginBottom: 30,
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 40,
     fontWeight: 'bold',
-    width: '80%',
+    width: '85%',
     alignSelf: 'center',
     padding: 20,
     color: '#212020',
