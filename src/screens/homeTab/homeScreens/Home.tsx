@@ -77,7 +77,13 @@ export const Home = ({ navigation }: Props) => {
   }, [accountStore, userStore.email]);
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#fff' }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: '#fff',
+        justifyContent: 'space-between',
+      }}
+    >
       {burger ? (
         <View
           style={{
@@ -265,11 +271,11 @@ export const Home = ({ navigation }: Props) => {
         />
       </View>
       <View style={styles.view1}>
-        <Text style={{ fontSize: 20, fontWeight: '100', color: '#3b3b3b' }}>
+        <Text style={{ fontSize: '190%', fontWeight: '100', color: '#3b3b3b' }}>
           Balance
         </Text>
-        <View style={{ flexDirection: 'row' }}>
-          <Text style={{ fontSize: 40, fontWeight: '900' }}>
+        <View style={{ flexDirection: 'row', marginBottom: '10%' }}>
+          <Text style={{ fontSize: '250%', fontWeight: '900' }}>
             ${formatNumber(accountStore.balance.amount)}
           </Text>
           <TouchableOpacity

@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 90,
+    marginTop: '20%',
   },
   view2: {
     flexDirection: 'row',
@@ -150,6 +150,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
   box: {
+    marginTop: '10%',
     borderWidth: 2,
     height: 190,
     width: 330,
