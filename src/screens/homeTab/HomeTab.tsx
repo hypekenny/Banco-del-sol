@@ -32,7 +32,7 @@ const screensOptions = (route: any, color: string) => {
       break;
   }
   return (
-    <Icon type="material-community" name={iconName} size={27} color={color} />
+    <Icon type="material-community" name={iconName} size={33} color={color} />
   );
 };
 
