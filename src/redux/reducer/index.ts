@@ -86,8 +86,6 @@ export default function rootReducer(state = initialState, action: actionType) {
       };
 
     case GET_EMAIL:
-      console.log(action.payload);
-
       return {
         ...state,
         Contacts: [
