@@ -299,15 +299,20 @@ export const styles = StyleSheet.create({
     marginTop: '-3%',
   },
   view: {
+    overflow: 'hidden',
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'white',
   },
   picker: {
-    color: 'grey' /* 
-    border:'none', */,
+    color: 'grey',
+    border: 'none',
     width: '100%',
+  },
+  pickerSelectStyles: {
+    width: '10%',
+    color: 'red',
   },
 
   footer: {

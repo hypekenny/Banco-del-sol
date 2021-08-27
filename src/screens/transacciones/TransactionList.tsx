@@ -36,7 +36,7 @@ export function TransactionList(props) {
   );
 
   return (
-    <View>
+    <View style={{ marginTop: 20 }}>
       <FlatList
         ListEmptyComponent={emptyList}
         data={props.data}

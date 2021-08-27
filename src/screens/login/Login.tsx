@@ -26,8 +26,8 @@ export const Login = ({ navigation }: Props) => {
   const [state, setState] = useState(false);
 
   const [user, setUser] = useState({
-    email: 'sebastiantorrescontacto@gmail.com',
-    password: '123456789S*',
+    email: '',
+    password: '',
     amount: 0,
   });
 
@@ -122,7 +122,7 @@ export const Login = ({ navigation }: Props) => {
       </View>
 
       <View style={styles.btns}>
-        {user.password.length > 6 && user.email.length > 4 ? (
+        {user.password.length >= 6 && user.email.length > 4 ? (
           <TouchableOpacity
             onPress={() => {
               dispatch(login(user.email, user.password));

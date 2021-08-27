@@ -18,7 +18,7 @@ export default function TextInput({
         height: size,
         borderRadius: 25,
         borderColor: validationColor,
-        borderWidth: StyleSheet.hairlineWidth,
+        borderWidth: 2,
         padding: 8,
 
         //marginBottom: '10%',

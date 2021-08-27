@@ -8,6 +8,7 @@ import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
 import { addFunds } from '../../redux/actions';
 import { LoadingFull } from '../loading2/LoadingFull';
+import formatNumber from '../../constants/formatNumber';
 
 export const Transfer = () => {
   const accountStore = useSelector((state: RootState) => state.account);
@@ -45,7 +46,7 @@ export const Transfer = () => {
         />
         <View>
           <Text style={styles.maxBalanceText}>
-            SALDO ${accountStore.balance.amount}
+            SALDO ${formatNumber(accountStore.balance.amount)}
           </Text>
           <TextInput
             value={`$${data.amount.toString()}`}

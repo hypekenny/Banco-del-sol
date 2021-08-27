@@ -42,18 +42,28 @@ export function AccountEdit({ navigation }: Props) {
 
   const FormSchema = Yup.object().shape({
     phoneNumber: Yup.number()
-      .typeError('Debe ser un numero')
-      .required('Debe ingresar un telefono!'),
+      .typeError('Debe ser un número')
+      .required('Ingrese un teléfono')
+      .min(999999, 'Mínimo 7 números')
+      .max(999999999999, 'Máximo 12 números'),
     address: Yup.object().shape({
-      street: Yup.string().required('Debe ingresar una calle!'),
-      number: Yup.number()
-        .typeError('Debe ser un numero')
-        .required('Debe ingresar un numero!'),
+      street: Yup.string()
+        .required('Ingrese una calle')
+        .max(20, 'Máximo 20 caracteres'),
+      number: Yup.string()
+        .required('Ingrese un número')
+        .max(5, 'Máximo 5 números')
+        .matches(/^[0-9]*$/, 'Debe ser un número'),
       zipCode: Yup.number()
-        .typeError('Debe ser un numero')
-        .required('Debe ingresar el codigo postal!'),
-      city: Yup.string().required('Debe ingresar una ciudad!'),
-      province: Yup.string().required('Debe ingresar una provincia!'),
+        .typeError('Debe ser un número')
+        .required('Ingrese código postal')
+        .max(9999, 'Máximo 4 números'),
+      city: Yup.string()
+        .required('Ingrese una ciudad')
+        .max(30, 'Máximo 30 caracteres'),
+      province: Yup.string()
+        .required('Ingrese una provincia')
+        .matches(/^[a-zA-Z ]*$/, 'Provincia inválida'),
     }),
   });
 
@@ -195,7 +205,7 @@ export function AccountEdit({ navigation }: Props) {
             height: size2,
             borderRadius: 25,
             borderColor: '#fb6583',
-            borderWidth: StyleSheet.hairlineWidth,
+            borderWidth: 2,
             padding: 8,
           }}
         >

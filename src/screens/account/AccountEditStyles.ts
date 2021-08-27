@@ -43,8 +43,8 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   picker: {
-    color: 'grey' /* 
-    border:'none', */,
+    color: 'grey',
+    border: 'none',
     width: '100%',
   },
   btns: {

@@ -9,15 +9,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from './TransactionsStyles';
-
-export const Colors = {
-  PRIMARY: '#1abc9c',
-  WHITE: '#ffffff',
-  GREEN: '#0da935',
-  LIGHTGRAY: '#C7C7C7',
-  DARKGRAY: '#5E5E5E',
-  CGRAY: '#ececec',
-};
+import formatNumber from '../../constants/formatNumber';
 
 export function Card(props) {
   if (Platform.OS === 'android') {
@@ -45,7 +37,10 @@ export function Card(props) {
   return (
     <View key={props.id} style={styles.box}>
       <View>
-        <TouchableOpacity style={styles.row} onPress={() => toggleExpand()}>
+        <TouchableOpacity
+          style={styles.rowButton}
+          onPress={() => toggleExpand()}
+        >
           <View style={{ flexDirection: 'row' }}>
             <Text style={[styles.textGeneral]}>{props.type}</Text>
             <Ionicons
@@ -63,21 +58,24 @@ export function Card(props) {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.parentHr} />
+      {/* <View style={styles.parentHr} /> */}
       {expanded && (
         <View>
           <View
             style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
+              marginBottom: 10,
             }}
           >
             <View style={styles.row}>
               <Text style={styles.textCardBold}>Monto: </Text>
               {sender ? (
-                <Text style={styles.textCardR}>{`-${props.value}`}</Text>
+                <Text style={styles.textCardR}>{`-$${formatNumber(
+                  props.value,
+                )}`}</Text>
               ) : (
-                <Text style={styles.textCardG}>{`+${props.value}`} </Text>
+                <Text style={styles.textCardG}>
+                  {`+$${formatNumber(props.value)}`}{' '}
+                </Text>
               )}
             </View>
 
@@ -89,19 +87,15 @@ export function Card(props) {
                 }/${props.date.getFullYear()}`}{' '}
               </Text>
             </View>
-          </View>
-
-          <View>
             {receiver ? (
               <View style={styles.row}>
-                <Text style={styles.textCardBold}> Recibido de: </Text>
+                <Text style={styles.textCardBold}>Recibido de: </Text>
                 <Text style={styles.textCard}> {props.sender} </Text>
               </View>
             ) : null}
-
             {sender ? (
               <View style={styles.row}>
-                <Text style={styles.textCardBold}> Enviado a: </Text>
+                <Text style={styles.textCardBold}>Enviado a: </Text>
                 <Text style={styles.textCard}> {props.receiver} </Text>
               </View>
             ) : null}

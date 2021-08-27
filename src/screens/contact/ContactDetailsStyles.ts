@@ -5,20 +5,22 @@ import colors from '../../constants/colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff0',
-    marginTop: 50,
+    width: '100%',
+    backgroundColor: '#fff',
+    /* marginTop: 50, */
     alignSelf: 'center',
-    height: '15%',
+    /* height: '15%', */
   },
   box: {
-    borderRadius: 23,
+    justifyContent: 'center',
+    borderRadius: 25,
     backgroundColor: '#fff',
     borderColor: `${colors.primary}`,
-    borderWidth: 1,
+    borderWidth: 2,
     textAlign: 'center',
     alignSelf: 'center',
-    height: '35%',
-    width: '195%',
+    height: '34%',
+    width: '85%',
     marginTop: '50%',
 
     shadowColor: '#000',
@@ -30,12 +32,46 @@ export const styles = StyleSheet.create({
     shadowRadius: 26,
     elevation: 14,
   },
-
+  headerOne: { backgroundColor: '#000', marginTop: '2.1%' },
+  textTitle: {
+    position: 'absolute',
+    left: 5,
+    top: 15,
+    fontSize: 20,
+    color: 'white',
+    fontWeight: '500',
+    width: '180%',
+  },
+  title: {
+    height: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    left: 70,
+    top: 0,
+    marginTop: '-1%',
+    width: '30%',
+  },
+  header: {
+    height: 68,
+    width: '100%',
+    marginTop: '-3%',
+  },
   textBoxName: {
     color: '#000',
     fontSize: 25,
     fontWeight: '600',
     marginTop: '5%',
+  },
+  back: {
+    position: 'absolute',
+    height: 40,
+    width: 70,
+    left: 0,
+    top: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: '#000',
   },
   textBoxEmail: {
     color: '#000',
