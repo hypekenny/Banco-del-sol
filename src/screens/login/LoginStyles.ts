@@ -154,11 +154,93 @@ export const styles = StyleSheet.create({
 
   about: {
     zIndex: 10,
-    backgroundColor: 'red',
-    width: '35%',
-    height: '70%',
+    // backgroundColor: 'red',
+    width: '30%',
+    height: '65%',
     position: 'absolute',
-    // marginTop: '15%',
-    marginLeft: '2%',
+    marginLeft: '4%',
+    justifyContent: 'center',
+  },
+  aboutTwo: {
+    zIndex: 10,
+    backgroundColor: 'pink',
+    width: '30%',
+    height: '65%',
+    position: 'absolute',
+
+    marginRight: '4%',
+    justifyContent: 'center',
+    right: 0,
+  },
+  iconLinkedin: {
+    borderRadius: 50,
+  },
+
+  iconGit: {
+    borderRadius: 50,
+  },
+
+  imgBx: {
+    width: '100%',
+    height: '100%',
+
+    backgroundColor: '#fff',
+    marginRight: '4%',
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+
+    elevation: 10,
+
+    transform: [{ rotate: '3deg' }],
+  },
+
+  imgBoxTwo: {
+    width: '50%',
+    height: '60%',
+
+    backgroundColor: '#fff',
+    marginRight: '4%',
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+
+    elevation: 10,
+
+    transform: [{ rotate: '-3deg' }],
+  },
+
+  textAbout: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+
+  imgProfile: {
+    width: '30%',
+    borderRadius: 50,
+    alignSelf: 'center',
+    marginTop: '15%',
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.53,
+    shadowRadius: 13.97,
+
+    elevation: 21,
   },
 });

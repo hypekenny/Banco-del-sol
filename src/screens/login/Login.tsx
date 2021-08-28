@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, Text, TextInput } from 'react-native';
+import { View, TouchableOpacity, Text, TextInput, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai';
 import {
   cleanErrors,
   login,
@@ -24,23 +25,85 @@ export const Login = ({ navigation }: Props) => {
   const loading = useSelector((state: RootState) => state.loading);
   const error = useSelector((state: RootState) => state.errors);
   const dispatch = useDispatch();
-
   const [state, setState] = useState(false);
-
   const [user, setUser] = useState({
     email: '',
     password: '',
     amount: 0,
   });
-
   useEffect(() => {
     if (error.length) {
       setState(true);
     }
   }, [error.length]);
-
   if (error.length) {
     dispatch(setLoadingFalse());
+  }
+
+  // ABOUT
+
+  function linkMarcos() {
+    window.open('https://www.linkedin.com/in/marcos-albarado-7b337820b/');
+  }
+
+  function linkMarcosGit() {
+    window.open('https://github.com/GRIYO35');
+  }
+
+  function linkNico() {
+    window.open('https://www.linkedin.com/in/nicolas-cardone/');
+  }
+
+  function linkNicoGit() {
+    window.open('https://github.com/enodrac');
+  }
+
+  function linkEze() {
+    window.open('https://www.linkedin.com/in/ezequieldecunto/');
+  }
+
+  function linkEzeGit() {
+    window.open('https://github.com/Pinidecu');
+  }
+
+  function linkSan() {
+    window.open('https://www.linkedin.com/in/santiago-ferro-fullstack/');
+  }
+
+  function linkSanGit() {
+    window.open('https://github.com/hypekenny');
+  }
+
+  function linkRodri() {
+    window.open('https://www.linkedin.com/in/rodrigolopezsmz/');
+  }
+
+  function linkRodriGit() {
+    window.open('https://github.com/rodrigolopsmz');
+  }
+
+  function linkKevin() {
+    window.open('https://www.linkedin.com/in/kevin-arian/');
+  }
+
+  function linkKevinGit() {
+    window.open('https://github.com/Vashomaru');
+  }
+
+  function linkSeba() {
+    window.open('https://www.linkedin.com/in/sebastiantorres-fullstack-react/');
+  }
+
+  function linkSebaGit() {
+    window.open('https://github.com/SebastianTorres00');
+  }
+
+  function linkVeiga() {
+    window.open('https://www.linkedin.com/in/santiagoveiga46/');
+  }
+
+  function linkVeigaGit() {
+    window.open('https://github.com/sajave');
   }
 
   return (
@@ -56,63 +119,195 @@ export const Login = ({ navigation }: Props) => {
       />
 
       <View style={styles.about}>
-        <Text
-          style={{
-            fontSize: 30,
-            textAlign: 'center',
-          }}
-        >
-          ¿Quien trabajo aca?
-        </Text>
+        <Text style={styles.textAbout}>¿Quien trabajo aca?</Text>
         <View
           style={{
-            backgroundColor: 'blue',
-            height: '90%',
-            width: '90%',
+            // backgroundColor: 'blue',
+            height: '95%',
+            width: '100%',
             alignSelf: 'center',
             justifyContent: 'space-around',
             flexDirection: 'row',
+            marginTop: '5%',
           }}
         >
           {/* Espacio */}
-          <View
-            style={{
-              width: '45%',
-              height: '85%',
+          <View style={styles.imgBoxTwo}>
+            <View style={styles.imgBx}>
+              <img
+                style={{
+                  width: '30%',
+                  borderRadius: '50%',
+                  alignSelf: 'center',
+                  marginTop: '15%',
 
-              backgroundColor: 'green',
-            }}
-          >
-            <img
-              style={{
-                width: '60%',
-                borderRadius: 10,
-                alignSelf: 'center',
-                marginTop: '5%',
-              }}
-              src={Sebastian}
-              alt=""
-            />
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 10,
+                  },
+                  shadowOpacity: 0.53,
+                  shadowRadius: 13.97,
+
+                  elevation: 21,
+                }}
+                src={Sebastian}
+                alt=""
+              />
+
+              <Text
+                style={{
+                  marginTop: '15%',
+                  fontSize: 25,
+                  fontWeight: '500',
+                  textAlign: 'center',
+                }}
+              >
+                Sebastian Torres
+              </Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  bottom: '-13%',
+                }}
+              >
+                <TouchableOpacity
+                  onPress={linkSeba}
+                  style={{
+                    borderWidth: 1,
+                    borderColor: '#000',
+                    borderRadius: 100,
+                    width: 50,
+                    height: 45,
+                    // backgroundColor: 'yellow',
+                    alignSelf: 'center',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginRight: '2%',
+                  }}
+                >
+                  {/* <AiFillLinkedin className={styles.iconLinkedin} /> */}
+                  <AntDesign
+                    name="linkedin-square"
+                    size={24}
+                    color="#0a66c2"
+                    style={styles.iconLinkedin}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={linkSebaGit}
+                  style={{
+                    borderWidth: 1,
+                    borderColor: '#000',
+                    borderRadius: 100,
+                    width: 50,
+                    height: 45,
+                    // backgroundColor: 'yellow',
+                    alignSelf: 'center',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <AntDesign
+                    name="github"
+                    size={28}
+                    color="#22272e"
+                    style={styles.iconGit}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
 
-          <View
-            style={{
-              width: '45%',
-              height: '85%',
+          <View style={styles.imgBoxTwo}>
+            <View style={styles.imgBx}>
+              <img
+                style={{
+                  width: '30%',
+                  borderRadius: '50%',
+                  alignSelf: 'center',
+                  marginTop: '15%',
 
-              backgroundColor: 'aqua',
-            }}
-          >
-            <img
-              style={{
-                width: '60%',
-                borderRadius: 10,
-                alignSelf: 'center',
-                marginTop: '5%',
-              }}
-              src={Nicolas}
-              alt=""
-            />
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 10,
+                  },
+                  shadowOpacity: 0.53,
+                  shadowRadius: 13.97,
+
+                  elevation: 21,
+                }}
+                src={Nicolas}
+                alt=""
+              />
+
+              <Text
+                style={{
+                  marginTop: '15%',
+                  fontSize: 25,
+                  fontWeight: '500',
+                  textAlign: 'center',
+                }}
+              >
+                Nicolas Cardone
+              </Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  bottom: '-13%',
+                }}
+              >
+                <TouchableOpacity
+                  onPress={linkSeba}
+                  style={{
+                    borderWidth: 1,
+                    borderColor: '#000',
+                    borderRadius: 100,
+                    width: 50,
+                    height: 45,
+                    // backgroundColor: 'yellow',
+                    alignSelf: 'center',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginRight: '2%',
+                  }}
+                >
+                  {/* <AiFillLinkedin className={styles.iconLinkedin} /> */}
+                  <AntDesign
+                    name="linkedin-square"
+                    size={24}
+                    color="#0a66c2"
+                    style={styles.iconLinkedin}
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={linkSebaGit}
+                  style={{
+                    borderWidth: 1,
+                    borderColor: '#000',
+                    borderRadius: 100,
+                    width: 50,
+                    height: 45,
+                    // backgroundColor: 'yellow',
+                    alignSelf: 'center',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <AntDesign
+                    name="github"
+                    size={28}
+                    color="#22272e"
+                    style={styles.iconGit}
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
           {/* Espacio */}
         </View>
@@ -125,6 +320,8 @@ export const Login = ({ navigation }: Props) => {
           height: 813,
           position: 'absolute',
           alignSelf: 'center',
+          marginLeft: '1%',
+          marginRight: '1%',
         }}
         src="https://cdn.discordapp.com/attachments/872492726397042688/880174589605478400/Mockup_-_android_-_BDS_app.png"
         alt=""
@@ -241,6 +438,112 @@ export const Login = ({ navigation }: Props) => {
           : null}
       </View>
       <View style={StylesCon.filler} />
+      <View style={styles.aboutTwo}>
+        <Text
+          style={{
+            fontSize: 30,
+            textAlign: 'center',
+          }}
+        >
+          ¿Quien trabajo aca?
+        </Text>
+        <View
+          style={{
+            backgroundColor: 'blue',
+            height: '90%',
+            width: '90%',
+            alignSelf: 'center',
+            justifyContent: 'space-around',
+            flexDirection: 'row',
+          }}
+        >
+          {/* Espacio */}
+          <View
+            style={{
+              width: '45%',
+              height: '85%',
+
+              backgroundColor: 'green',
+            }}
+          >
+            <img
+              style={{
+                width: '60%',
+                borderRadius: 10,
+                alignSelf: 'center',
+                marginTop: '5%',
+              }}
+              src={Sebastian}
+              alt=""
+            />
+
+            <Text
+              style={{
+                marginTop: '5%',
+                fontSize: 25,
+                fontWeight: '500',
+              }}
+            >
+              Sebastian Torres
+            </Text>
+
+            <Text
+              style={{
+                marginTop: '1 5%',
+                fontSize: 20,
+                fontWeight: '300',
+              }}
+            >
+              Trabajar Junto a Nicolas Cardone fue lo peor que me pudo pasar, no
+              sabe centrar ni un fucking boton.
+            </Text>
+
+            <TouchableOpacity onPress={linkSeba}>
+              {/* <AiFillLinkedin className={styles.iconLinkedin} /> */}
+              <AntDesign
+                name="linkedin-square"
+                size={24}
+                color="#0a66c2"
+                style={styles.iconLinkedin}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={linkSebaGit}>
+              <AntDesign
+                name="github"
+                size={24}
+                color="#22272e"
+                style={styles.iconGit}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <View
+            style={{
+              width: '45%',
+              height: '85%',
+
+              backgroundColor: 'aqua',
+            }}
+          >
+            <img
+              style={{
+                width: '60%',
+                borderRadius: 10,
+                alignSelf: 'center',
+                marginTop: '5%',
+              }}
+              src={Nicolas}
+              alt=""
+            />
+
+            <Text>Nicolas Cardone</Text>
+            <Text>Seba como centro esto?</Text>
+          </View>
+          {/* Espacio */}
+        </View>
+        {/* Espacio */}
+      </View>
     </View>
   );
 };
