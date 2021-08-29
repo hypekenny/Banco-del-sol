@@ -151,7 +151,9 @@ export function Register({ navigation }: Props) {
     'Tierra del Fuego',
     'Tucumán',
   ];
-  const pickerItems = provinces.map(p => <Picker.Item label={p} value={p} />);
+  const pickerItems = provinces.map(p => (
+    <Picker.Item label={p} value={p} key={p} />
+  ));
 
   const [selectedValue, setSelectedValue] = useState();
 
