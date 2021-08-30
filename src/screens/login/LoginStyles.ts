@@ -151,26 +151,33 @@ export const styles = StyleSheet.create({
   icon: { marginTop: '-18%' },
 
   // ABOUT
-
+  // 628 / 510
   about: {
     zIndex: 10,
     // backgroundColor: 'red',
-    width: '30%',
-    height: '65%',
+    width: '33%',
+    // height: '65%',
+    maxHeight: 738,
+    minHeight: 738,
     position: 'absolute',
     marginLeft: '4%',
     justifyContent: 'center',
+
+    marginTop: '-10%',
   },
   aboutTwo: {
-    zIndex: 10,
-    backgroundColor: 'pink',
-    width: '30%',
-    height: '65%',
+    width: '33%',
+    // height: '65%',
+    maxHeight: 828,
+    // minHeight: 828,
     position: 'absolute',
-
+    // marginLeft: '-4%',
     marginRight: '4%',
     justifyContent: 'center',
+
+    marginTop: '-10%',
     right: 0,
+    // backgroundColor: 'red',
   },
   iconLinkedin: {
     borderRadius: 50,
@@ -198,14 +205,19 @@ export const styles = StyleSheet.create({
     elevation: 10,
 
     transform: [{ rotate: '3deg' }],
+
+    marginTop: '5%',
   },
 
   imgBoxTwo: {
-    width: '50%',
-    height: '60%',
+    // width: 289,
+    // height: 315,
+
+    width: '48%',
+    height: '65%',
 
     backgroundColor: '#fff',
-    marginRight: '4%',
+    // marginRight: '4%',
 
     shadowColor: '#000',
     shadowOffset: {
@@ -218,6 +230,8 @@ export const styles = StyleSheet.create({
     elevation: 10,
 
     transform: [{ rotate: '-3deg' }],
+
+    marginTop: '7%',
   },
 
   textAbout: {
