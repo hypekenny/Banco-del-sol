@@ -11,7 +11,7 @@ import { Statistics } from '../screens/statistics/Statistics';
 firebase.initializeApp(firebaseConfig);
 
 const {
-  StartView,
+  Start,
   Login,
   Register,
   Transfer,
@@ -33,7 +33,7 @@ export const Main = () => (
   <LoginStack.Navigator>
     <LoginStack.Screen
       name="StartView"
-      component={StartView}
+      component={Start}
       options={{ headerShown: false }}
     />
     <LoginStack.Screen

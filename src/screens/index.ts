@@ -1,4 +1,4 @@
-import { StartView } from './start/StartView';
+import { Start } from './start/Start';
 import { Login } from './login/Login';
 import { Register } from './register/Register';
 import { HomeTab } from './homeTab/HomeTab';
@@ -16,7 +16,7 @@ import { ContactDetails } from './contact/ContactDetails';
 import { Error } from './error/Error';
 
 export const config = {
-  StartView,
+  Start,
   Login,
   Register,
   HomeTab,

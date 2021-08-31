@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, TextInput, Image } from 'react-native';
+import React from 'react';
+import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { LinearGradient } from 'expo-linear-gradient';
-import { styles } from './StartViewStyles';
+import { styles } from './StartStyles';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
 import { loginStackParamList } from '../../types/Types';
@@ -12,7 +12,7 @@ type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
 };
 
-export const StartView = ({ navigation }: Props) => {
+export const Start = ({ navigation }: Props) => {
   return (
     <View style={StylesCon.phone}>
       <View style={StylesCon.filler} />
@@ -40,33 +40,35 @@ export const StartView = ({ navigation }: Props) => {
       />
 
       <View style={styles.container}>
-        <Image
-          source={require('../../../Img-Sant/Banco-del-Sol-Logo.png')}
-          style={styles.image}
-        />
-        {/* <LinearGradient
-          // Background Linear Gradient
-          colors={[colors.primary, colors.secondary]}
-          locations={[0, 0.4, 0.4, 1]}
-        > */}
+        <View style={{ height: '50%' }}>
+          <Image
+            source={require('../../../Img-Sant/Banco-del-Sol-Logo.png')}
+            style={styles.image}
+          />
+        </View>
+
         <View style={styles.ellipse} />
 
-        <View style={styles.containerButton}>
-          <TouchableOpacity
-            style={ButtonPrimaryStyle.button}
-            onPress={() => navigation.push('Register')}
-          >
-            <Text style={ButtonPrimaryStyle.text}>Registrarse</Text>
-          </TouchableOpacity>
+        <LinearGradient
+          colors={[colors.primary, colors.secondary]}
+          style={{ height: '60%' }}
+        >
+          <View style={styles.containerBtn}>
+            <TouchableOpacity
+              style={ButtonPrimaryStyle.button}
+              onPress={() => navigation.push('Register')}
+            >
+              <Text style={ButtonPrimaryStyle.text}>Registrarse</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            style={ButtonPrimaryStyle.button}
-            onPress={() => navigation.push('Login')}
-          >
-            <Text style={ButtonPrimaryStyle.text}>Iniciar Sesión</Text>
-          </TouchableOpacity>
-        </View>
-        {/* </LinearGradient> */}
+            <TouchableOpacity
+              style={ButtonPrimaryStyle.button}
+              onPress={() => navigation.push('Login')}
+            >
+              <Text style={ButtonPrimaryStyle.text}>Iniciar Sesión</Text>
+            </TouchableOpacity>
+          </View>
+        </LinearGradient>
       </View>
       <View style={StylesCon.filler} />
     </View>
