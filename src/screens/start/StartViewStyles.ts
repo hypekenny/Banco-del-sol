@@ -1,5 +1,4 @@
-import { StyleSheet } from 'react-native';
-import { Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import colors from '../../constants/colors';
 
 const width = Dimensions.get('window').width;
@@ -8,7 +7,7 @@ const radius = width / 2;
 const scaley = (0.3 * width) / height;
 export const styles = StyleSheet.create({
   ellipse: {
-    transform: [
+    /*    transform: [
       { translateX: width / 2 - radius },
       { scaleY: scaley },
       { translateY: ((0.4 * height - 0.5 * width) * 1) / scaley },
@@ -16,21 +15,34 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: radius * 2,
     height: radius * 2,
-    borderRadius: radius,
+    borderRadius: radius, */
   },
 
-  containerT: {
+  /*  containerT: {
     width: width,
     height: height,
+  }, */
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+    justifyContent: 'center',
+    overflow: 'hidden',
+    zIndex: 0,
+    alignSelf: 'center',
+    minHeight: 785,
+    maxHeight: 785,
+    width: 388,
+    marginLeft: -2,
+    borderRadius: 30,
   },
   containerButton: {
-    transform: [{ translateY: 0.05 * height }],
+    width: 300,
     alignSelf: 'center',
   },
   image: {
-    width: width * (294 / 411),
-    height: height * (171 / 823),
-    transform: [{ translateY: -0.9 * height }],
+    padding: 50,
+    width: 300,
+    height: 300,
     alignSelf: 'center',
   },
 });

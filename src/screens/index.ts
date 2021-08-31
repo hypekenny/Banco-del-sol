@@ -1,4 +1,3 @@
-import { Start } from './start/Start';
 import { StartView } from './start/StartView';
 import { Login } from './login/Login';
 import { Register } from './register/Register';
@@ -17,7 +16,6 @@ import { ContactDetails } from './contact/ContactDetails';
 import { Error } from './error/Error';
 
 export const config = {
-  Start,
   StartView,
   Login,
   Register,
