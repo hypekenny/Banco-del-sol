@@ -12,6 +12,7 @@ import {
   setLoadingTrue,
 } from '../../redux/actions';
 import { styles } from './LoginStyles';
+import { stylesAbout } from './AboutStyles';
 import { Props, resFromBack, RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
@@ -27,8 +28,8 @@ export const Login = ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const [state, setState] = useState(false);
   const [user, setUser] = useState({
-    email: '',
-    password: '',
+    email: 'sebastiantorrescontacto@gmail.com',
+    password: '123456789S*',
     amount: 0,
   });
   useEffect(() => {
@@ -117,6 +118,25 @@ export const Login = ({ navigation }: Props) => {
         src="https://cdn.discordapp.com/attachments/872492726397042688/880917630180028436/Banco-del-Sol-Background_Web.png"
         alt=""
       />
+
+      <View style={stylesAbout.about}>
+        <TouchableOpacity style={stylesAbout.btnAbout}>
+          <Text style={stylesAbout.btnText}>Sobre Nosotros</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={stylesAbout.btnAbout}>
+          <Text style={stylesAbout.btnText}>Administrador</Text>
+        </TouchableOpacity>
+
+        <View style={{ width: '100%', alignItems: 'center', bottom: 0 }}>
+          <Image
+            style={stylesAbout.tinyLogo}
+            source={{
+              uri: 'https://media.discordapp.net/attachments/872492726397042688/874643755158892594/Banco-del-Sol-Logo.png',
+            }}
+          />
+        </View>
+      </View>
 
       {/* <View style={styles.about}>
         <View
@@ -451,8 +471,7 @@ export const Login = ({ navigation }: Props) => {
           </View>
         </View>
       </View> */}
-
-      <img
+      <View
         style={{
           width: 411,
           height: 813,
@@ -461,9 +480,20 @@ export const Login = ({ navigation }: Props) => {
           marginLeft: '1%',
           marginRight: '1%',
         }}
-        src="https://cdn.discordapp.com/attachments/872492726397042688/880174589605478400/Mockup_-_android_-_BDS_app.png"
-        alt=""
-      />
+      >
+        <img
+          style={{
+            width: 411,
+            height: 813,
+            position: 'absolute',
+            alignSelf: 'center',
+            marginLeft: '1%',
+            marginRight: '1%',
+          }}
+          src="https://cdn.discordapp.com/attachments/872492726397042688/880174589605478400/Mockup_-_android_-_BDS_app.png"
+          alt=""
+        />
+      </View>
       <View style={StylesCon.filler} />
       <View style={styles.container}>
         <View style={StylesCon.headerOne}>

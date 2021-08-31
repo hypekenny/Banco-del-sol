@@ -45,26 +45,16 @@ export const HomeTab = () => {
         tabBarActiveTintColor: '#ff4b6e',
         tabBarInactiveTintColor: 'white',
         tabBarActiveBackgroundColor: 'white',
-        tabBarBackground: () => (
-          <LinearGradient
-            colors={['#ff4b6e', '#ff9349']}
-            style={{ flex: 1 }}
-            start={{ x: 0, y: 1 }}
-            end={{ x: 0, y: 0 }}
-          />
-        ),
-
-        // tabBarBadgeStyle
-        tabBarStyle: {
-          width: 411,
-          height: 48,
-          alignSelf: 'center',
-          marginTop: '-15%',
-          marginBottom: '15%',
-          // borderBottomLeftRadius: 20,
-          // borderBottomRigthRadius: 20,
+        tabBarItemStyle: {
+          opacity: 0,
         },
-        // headerStyle: {},
+        tabBarStyle: {
+          position: 'absolute',
+          width: 0,
+          height: 0,
+          cursor: 'none',
+          marginBottom: '2%',
+        },
       })}
     >
       <Tab.Screen
