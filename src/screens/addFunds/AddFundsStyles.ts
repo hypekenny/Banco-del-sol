@@ -5,8 +5,13 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
-    padding: 10,
-    justifyContent: 'space-evenly',
+    alignSelf: 'center',
+    zIndex: 0,
+    minHeight: 785,
+    maxHeight: 785,
+    width: 388,
+    marginLeft: -2,
+    borderRadius: 30,
   },
   text: {
     width: '80%',
@@ -36,4 +41,44 @@ export const styles = StyleSheet.create({
     color: '#212020',
     marginTop: '10%',
   },
+  header: {
+    height: 65,
+    width: '100%',
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+  },
+
+  title: {
+    height: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    left: 70,
+    top: 0,
+    marginTop: '-0.3%',
+    width: '30%',
+  },
+
+  textTitle: {
+    position: 'absolute',
+    left: 5,
+    top: 15,
+    fontSize: 20,
+    color: 'white',
+    fontWeight: '500',
+    width: '180%',
+  },
+  back: {
+    position: 'absolute',
+    height: 70,
+    width: 70,
+    left: 0,
+    top: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  headerOne: { backgroundColor: '#000', height: 63 },
+
+  icon: { marginTop: '-18%' },
 });

@@ -77,6 +77,7 @@ export const Main = () => (
       options={{
         headerTitle: 'Inicio',
         headerTintColor: 'white',
+        headerShown: false,
         headerBackground: () => (
           <LinearGradient
             colors={['#ff4b6e', '#ff9349']}
