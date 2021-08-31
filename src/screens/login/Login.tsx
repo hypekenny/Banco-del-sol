@@ -118,8 +118,7 @@ export const Login = ({ navigation }: Props) => {
         alt=""
       />
 
-      <View style={styles.about}>
-        {/* <Text style={styles.textAbout}>¿Quien trabajo aca?</Text> */}
+      {/* <View style={styles.about}>
         <View
           style={{
             // backgroundColor: 'blue',
@@ -128,11 +127,9 @@ export const Login = ({ navigation }: Props) => {
             alignSelf: 'center',
             justifyContent: 'space-around',
             flexDirection: 'row',
-            // marginTop: '5%',
             flexWrap: 'wrap',
           }}
         >
-          {/* Espacio */}
           <View style={styles.imgBoxTwo}>
             <View style={styles.imgBx}>
               <img
@@ -175,14 +172,12 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginRight: '2%',
                   }}
                 >
-                  {/* <AiFillLinkedin className={styles.iconLinkedin} /> */}
                   <AntDesign
                     name="linkedin-square"
                     size={24}
@@ -199,7 +194,6 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -258,14 +252,12 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginRight: '2%',
                   }}
                 >
-                  {/* <AiFillLinkedin className={styles.iconLinkedin} /> */}
                   <AntDesign
                     name="linkedin-square"
                     size={24}
@@ -282,7 +274,6 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -341,14 +332,12 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginRight: '2%',
                   }}
                 >
-                  {/* <AiFillLinkedin className={styles.iconLinkedin} /> */}
                   <AntDesign
                     name="linkedin-square"
                     size={24}
@@ -365,7 +354,6 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -424,14 +412,12 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginRight: '2%',
                   }}
                 >
-                  {/* <AiFillLinkedin className={styles.iconLinkedin} /> */}
                   <AntDesign
                     name="linkedin-square"
                     size={24}
@@ -448,7 +434,6 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -464,10 +449,8 @@ export const Login = ({ navigation }: Props) => {
               </View>
             </View>
           </View>
-          {/* Espacio */}
         </View>
-        {/* Espacio */}
-      </View>
+      </View> */}
 
       <img
         style={{
@@ -593,21 +576,17 @@ export const Login = ({ navigation }: Props) => {
           : null}
       </View>
       <View style={StylesCon.filler} />
-      <View style={styles.aboutTwo}>
-        {/* <Text style={styles.textAbout}>¿Quien trabajo aca?</Text> */}
+      {/* <View style={styles.aboutTwo}>
         <View
           style={{
-            // backgroundColor: 'blue',
             height: '100%',
             width: '100%',
             alignSelf: 'center',
             justifyContent: 'space-around',
             flexDirection: 'row',
-            // marginTop: '5%',
             flexWrap: 'wrap',
           }}
         >
-          {/* Espacio */}
           <View style={styles.imgBoxTwo}>
             <View style={styles.imgBx}>
               <img
@@ -615,17 +594,7 @@ export const Login = ({ navigation }: Props) => {
                   width: 85,
                   borderRadius: '50%',
                   alignSelf: 'center',
-                  marginTop: '15%',
-
-                  shadowColor: '#000',
-                  shadowOffset: {
-                    width: 0,
-                    height: 10,
-                  },
-                  shadowOpacity: 0.53,
-                  shadowRadius: 13.97,
-
-                  elevation: 21,
+                  marginTop: '10%',
                 }}
                 src={Sebastian}
                 alt=""
@@ -633,7 +602,9 @@ export const Login = ({ navigation }: Props) => {
 
               <Text
                 style={{
-                  marginTop: '15%',
+                  marginTop: '8%',
+                  marginBottom: '13%',
+
                   fontSize: 25,
                   fontWeight: '500',
                   textAlign: 'center',
@@ -646,6 +617,8 @@ export const Login = ({ navigation }: Props) => {
                   flexDirection: 'row',
                   justifyContent: 'center',
                   bottom: '-13%',
+
+                  marginBottom: '5%',
                 }}
               >
                 <TouchableOpacity
@@ -656,14 +629,12 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginRight: '2%',
                   }}
                 >
-                  {/* <AiFillLinkedin className={styles.iconLinkedin} /> */}
                   <AntDesign
                     name="linkedin-square"
                     size={24}
@@ -680,7 +651,6 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -701,20 +671,10 @@ export const Login = ({ navigation }: Props) => {
             <View style={styles.imgBx}>
               <img
                 style={{
-                  width: '30%',
+                  width: 85,
                   borderRadius: '50%',
                   alignSelf: 'center',
-                  marginTop: '15%',
-
-                  shadowColor: '#000',
-                  shadowOffset: {
-                    width: 0,
-                    height: 10,
-                  },
-                  shadowOpacity: 0.53,
-                  shadowRadius: 13.97,
-
-                  elevation: 21,
+                  marginTop: '10%',
                 }}
                 src={Sebastian}
                 alt=""
@@ -722,7 +682,9 @@ export const Login = ({ navigation }: Props) => {
 
               <Text
                 style={{
-                  marginTop: '15%',
+                  marginTop: '8%',
+                  marginBottom: '13%',
+
                   fontSize: 25,
                   fontWeight: '500',
                   textAlign: 'center',
@@ -735,6 +697,8 @@ export const Login = ({ navigation }: Props) => {
                   flexDirection: 'row',
                   justifyContent: 'center',
                   bottom: '-13%',
+
+                  marginBottom: '5%',
                 }}
               >
                 <TouchableOpacity
@@ -745,14 +709,12 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginRight: '2%',
                   }}
                 >
-                  {/* <AiFillLinkedin className={styles.iconLinkedin} /> */}
                   <AntDesign
                     name="linkedin-square"
                     size={24}
@@ -769,7 +731,6 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -785,24 +746,15 @@ export const Login = ({ navigation }: Props) => {
               </View>
             </View>
           </View>
+
           <View style={styles.imgBoxTwo}>
             <View style={styles.imgBx}>
               <img
                 style={{
-                  width: '30%',
+                  width: 85,
                   borderRadius: '50%',
                   alignSelf: 'center',
-                  marginTop: '15%',
-
-                  shadowColor: '#000',
-                  shadowOffset: {
-                    width: 0,
-                    height: 10,
-                  },
-                  shadowOpacity: 0.53,
-                  shadowRadius: 13.97,
-
-                  elevation: 21,
+                  marginTop: '10%',
                 }}
                 src={Sebastian}
                 alt=""
@@ -810,7 +762,9 @@ export const Login = ({ navigation }: Props) => {
 
               <Text
                 style={{
-                  marginTop: '15%',
+                  marginTop: '8%',
+                  marginBottom: '13%',
+
                   fontSize: 25,
                   fontWeight: '500',
                   textAlign: 'center',
@@ -823,6 +777,8 @@ export const Login = ({ navigation }: Props) => {
                   flexDirection: 'row',
                   justifyContent: 'center',
                   bottom: '-13%',
+
+                  marginBottom: '5%',
                 }}
               >
                 <TouchableOpacity
@@ -833,14 +789,12 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginRight: '2%',
                   }}
                 >
-                  {/* <AiFillLinkedin className={styles.iconLinkedin} /> */}
                   <AntDesign
                     name="linkedin-square"
                     size={24}
@@ -857,7 +811,6 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -873,44 +826,39 @@ export const Login = ({ navigation }: Props) => {
               </View>
             </View>
           </View>
+
           <View style={styles.imgBoxTwo}>
             <View style={styles.imgBx}>
               <img
                 style={{
-                  width: '30%',
+                  width: 85,
                   borderRadius: '50%',
                   alignSelf: 'center',
-                  marginTop: '15%',
-
-                  shadowColor: '#000',
-                  shadowOffset: {
-                    width: 0,
-                    height: 10,
-                  },
-                  shadowOpacity: 0.53,
-                  shadowRadius: 13.97,
-
-                  elevation: 21,
+                  marginTop: '10%',
                 }}
-                src={Nicolas}
+                src={Sebastian}
                 alt=""
               />
 
               <Text
                 style={{
-                  marginTop: '15%',
+                  marginTop: '8%',
+                  marginBottom: '13%',
+
                   fontSize: 25,
                   fontWeight: '500',
                   textAlign: 'center',
                 }}
               >
-                Nicolas Cardone
+                Sebastian Torres
               </Text>
               <View
                 style={{
                   flexDirection: 'row',
                   justifyContent: 'center',
                   bottom: '-13%',
+
+                  marginBottom: '5%',
                 }}
               >
                 <TouchableOpacity
@@ -921,14 +869,12 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginRight: '2%',
                   }}
                 >
-                  {/* <AiFillLinkedin className={styles.iconLinkedin} /> */}
                   <AntDesign
                     name="linkedin-square"
                     size={24}
@@ -945,7 +891,6 @@ export const Login = ({ navigation }: Props) => {
                     borderRadius: 100,
                     width: 50,
                     height: 45,
-                    // backgroundColor: 'yellow',
                     alignSelf: 'center',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -961,10 +906,8 @@ export const Login = ({ navigation }: Props) => {
               </View>
             </View>
           </View>
-          {/* Espacio */}
         </View>
-        {/* Espacio */}
-      </View>
+      </View> */}
     </View>
   );
 };

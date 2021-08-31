@@ -160,7 +160,7 @@ export const styles = StyleSheet.create({
     maxHeight: 738,
     minHeight: 738,
     position: 'absolute',
-    marginLeft: '4%',
+    marginLeft: '2%',
     justifyContent: 'center',
 
     marginTop: '-10%',
@@ -172,7 +172,7 @@ export const styles = StyleSheet.create({
     // minHeight: 828,
     position: 'absolute',
     // marginLeft: '-4%',
-    marginRight: '4%',
+    marginRight: '2%',
     justifyContent: 'center',
 
     marginTop: '-10%',
