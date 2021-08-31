@@ -78,7 +78,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  headerOne: { backgroundColor: '#000', height: 63 },
+  headerOne: {
+    backgroundColor: '#000',
+    height: 63,
+    borderTopRightRadius: 40,
+    borderTopLeftRadius: 40,
+  },
 
   icon: { marginTop: '-18%' },
 });

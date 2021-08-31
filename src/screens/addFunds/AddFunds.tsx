@@ -33,7 +33,7 @@ export const AddFunds = ({ navigation }: Props) => {
       <View style={styles.container}>
         <View style={StylesCon.headerOne}>
           <LinearGradient
-            style={StylesCon.header}
+            style={styles.header}
             colors={[colors.primary, colors.secondary]}
           />
           <View style={StylesCon.title}>
