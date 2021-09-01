@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
   header: {
     height: 65,
     width: '100%',
-    borderTopRightRadius: 30,
+    borderTopRightRadius: 28,
     borderTopLeftRadius: 30,
   },
 
