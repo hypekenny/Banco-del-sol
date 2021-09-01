@@ -24,6 +24,8 @@ export const Login = ({ navigation }: Props) => {
   const error = useSelector((state: RootState) => state.errors);
   const dispatch = useDispatch();
   const [state, setState] = useState(false);
+  const [num, setNum] = useState(100);
+  const [numTest, setNumTest] = useState(0);
   const [user, setUser] = useState({
     email: 'ferro@hotmail.com',
     password: '123QWE&',
@@ -34,8 +36,32 @@ export const Login = ({ navigation }: Props) => {
       setState(true);
     }
   }, [error.length]);
+
+  useEffect(() => {
+    // Esto es provicional
+    if (numTest === 0) {
+      document.body.style.zoom = `${num}%`;
+    } else {
+      document.body.style.zoom = `${num}%`;
+    }
+  }, [num]);
+
   if (error.length) {
     dispatch(setLoadingFalse());
+  }
+
+  function Zoom() {
+    setNum(num + 10);
+    setTimeout(() => {
+      setNumTest(0);
+    }, 500);
+  }
+
+  function ZoomOut() {
+    setNum(num - 10);
+    setTimeout(() => {
+      setNumTest(1);
+    }, 1000);
   }
 
   return (
@@ -50,7 +76,10 @@ export const Login = ({ navigation }: Props) => {
         alt=""
       />
       <View style={stylesAbout.about}>
-        <TouchableOpacity style={stylesAbout.btnAbout}>
+        <TouchableOpacity
+          style={stylesAbout.btnAbout}
+          onPress={() => navigation.push('AboutUs')}
+        >
           <Text style={stylesAbout.btnText}>Sobre Nosotros</Text>
         </TouchableOpacity>
 
@@ -191,6 +220,31 @@ export const Login = ({ navigation }: Props) => {
         userStore.condition === 'active'
           ? navigation.push('HomeTab')
           : null}
+      </View>
+      <View style={stylesAbout.aboutSelectPhone}>
+        <Text style={stylesAbout.btnTextSelect}>
+          Elige tu resolucion de pantalla
+        </Text>
+        <View
+          style={{
+            position: 'absolute',
+            width: '36%',
+            bottom: 100,
+          }}
+        >
+          <TouchableOpacity
+            style={stylesAbout.btnAboutSelect}
+            onPress={() => ZoomOut()}
+          >
+            <Text style={stylesAbout.btnText}>MENOS</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={stylesAbout.btnAboutSelect}
+            onPress={() => Zoom()}
+          >
+            <Text style={stylesAbout.btnText}>MAS</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={StylesCon.filler} />
     </View>
