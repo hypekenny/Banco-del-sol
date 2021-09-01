@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, Dimensions } from 'react-native';
+import { View, TouchableOpacity, Text, Dimensions, Image } from 'react-native';
 import { YAxis, Grid, BarChart } from 'react-native-svg-charts';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ import { ButtonPrimaryStyle, styles } from './StatisticsStyles';
 import colors from '../../constants/colors';
 import { StylesCon } from '../../constants/Styles';
 import { NavBar } from '../homeTab/navBar';
+import { stylesAbout } from '../login/AboutStyles';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -489,6 +490,24 @@ export const Statistics = ({ navigation }: Props) => {
         src="https://cdn.discordapp.com/attachments/872492726397042688/880917630180028436/Banco-del-Sol-Background_Web.png"
         alt=""
       />
+      <View style={stylesAbout.about}>
+        <TouchableOpacity style={stylesAbout.btnAbout}>
+          <Text style={stylesAbout.btnText}>Sobre Nosotros</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={stylesAbout.btnAbout}>
+          <Text style={stylesAbout.btnText}>Administrador</Text>
+        </TouchableOpacity>
+
+        <View style={{ width: '100%', alignItems: 'center', bottom: 0 }}>
+          <Image
+            style={stylesAbout.tinyLogo}
+            source={{
+              uri: 'https://media.discordapp.net/attachments/872492726397042688/874643755158892594/Banco-del-Sol-Logo.png',
+            }}
+          />
+        </View>
+      </View>
       <img
         style={{
           width: 411,

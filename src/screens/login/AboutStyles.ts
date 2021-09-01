@@ -9,7 +9,7 @@ export const stylesAbout = StyleSheet.create({
     maxHeight: 400,
     minHeight: 400,
     position: 'absolute',
-    marginLeft: '8%',
+    marginLeft: '6%',
     alignItems: 'center',
 
     marginTop: '-10%',

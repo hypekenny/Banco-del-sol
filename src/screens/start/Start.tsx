@@ -7,6 +7,7 @@ import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
 import { loginStackParamList } from '../../types/Types';
 import { StylesCon } from '../../constants/Styles';
+import { stylesAbout } from '../login/AboutStyles';
 
 type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
@@ -25,6 +26,24 @@ export const Start = ({ navigation }: Props) => {
         src="https://cdn.discordapp.com/attachments/872492726397042688/880917630180028436/Banco-del-Sol-Background_Web.png"
         alt=""
       />
+      <View style={stylesAbout.about}>
+        <TouchableOpacity style={stylesAbout.btnAbout}>
+          <Text style={stylesAbout.btnText}>Sobre Nosotros</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={stylesAbout.btnAbout}>
+          <Text style={stylesAbout.btnText}>Administrador</Text>
+        </TouchableOpacity>
+
+        <View style={{ width: '100%', alignItems: 'center', bottom: 0 }}>
+          <Image
+            style={stylesAbout.tinyLogo}
+            source={{
+              uri: 'https://media.discordapp.net/attachments/872492726397042688/874643755158892594/Banco-del-Sol-Logo.png',
+            }}
+          />
+        </View>
+      </View>
 
       <img
         style={{
