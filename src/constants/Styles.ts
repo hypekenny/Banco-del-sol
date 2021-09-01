@@ -1,16 +1,42 @@
 import { StyleSheet } from 'react-native';
-// import background from '../../assets/Banco-del-Sol-Background_Web.png';
+import { createStyles, maxHeight } from 'react-native-media-queries';
 
-import colors from './colors';
+const styles = createStyles(
+  // override styles only if screen height is less than 500
+  maxHeight(500, {
+    logo: {
+      height: 120,
+    },
+  }),
+);
 
 export const StylesCon = StyleSheet.create({
   phone: {
     height: '100%',
     width: '100%',
     justifyContent: 'space-around',
-    // bac
-    // background: '../../assets/Banco-del-Sol-Background_Web.png',
     overflow: 'hidden',
+  },
+  frame: {
+    borderWidth: 10,
+    borderTopWidth: 12,
+    borderBottomWidth: 12,
+    borderColor: 'black',
+    borderRadius: 40,
+    overflow: 'hidden',
+    width: 411,
+    height: 813,
+    minHeight: 813,
+    maxHeight: 813,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    '@media (max-width: 1600px) and (min-width: 800px)': {
+      backgroundColor: 'red',
+    },
+    '@media (max-width: 800px)': {
+      backgroundColor: 'blue',
+    },
   },
   filler: {
     height: '10%',
@@ -18,16 +44,16 @@ export const StylesCon = StyleSheet.create({
   headerOne: {
     backgroundColor: '#000',
     height: 63,
-
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
+    width: '100%',
+    // borderTopRightRadius: 30,
+    // borderTopLeftRadius: 30,
   },
   icon: { marginTop: '-18%' },
   header: {
     height: 65,
     width: '100%',
-    borderTopLeftRadius: 22,
-    borderTopRightRadius: 22,
+    // borderTopLeftRadius: 22,
+    // borderTopRightRadius: 22,
   },
   title: {
     height: 70,
@@ -62,8 +88,8 @@ export const StylesCon = StyleSheet.create({
     flexDirection: 'row',
     height: 65,
     width: '100%',
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
+    // borderBottomRightRadius: 30,
+    // borderBottomLeftRadius: 30,
     justifyContent: 'space-evenly',
   },
   tabBarBtn: {
@@ -76,6 +102,8 @@ export const StylesCon = StyleSheet.create({
     width: 130,
     height: 65,
     justifyContent: 'center',
+    borderBottomRightRadius: 30,
+    borderBottomLeftRadius: 30,
   },
 
   image: {

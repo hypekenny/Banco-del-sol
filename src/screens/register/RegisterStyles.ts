@@ -1,21 +1,28 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
-import { deviceWidth, deviceHeight, size2 } from './Register';
+import { size2 } from './Register';
 
 export const styles = StyleSheet.create({
-  container1: {
+  container: {
     flex: 1,
-    backgroundColor: colors.white,
-    width: '100%',
-    padding: 10,
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    overflow: 'hidden',
+    alignSelf: 'center',
+    minHeight: 785,
+    maxHeight: 785,
+    width: 388,
+    height: 200,
+    marginLeft: -2,
+    borderRadius: 30,
   },
-  container2: {
-    flex: 1,
-    backgroundColor: colors.white,
+  headerOne: {
+    backgroundColor: '#000',
+    height: 63,
     width: '100%',
-    padding: 10,
-    justifyContent: 'space-around',
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
   },
   containerOne: {
     flex: 1,
@@ -298,15 +305,9 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     marginTop: '-3%',
   },
-  view: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
+
   picker: {
-    color: 'grey' /* 
-    border:'none', */,
+    color: 'grey',
     width: '100%',
   },
 

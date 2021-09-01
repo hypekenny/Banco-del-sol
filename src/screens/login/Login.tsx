@@ -25,8 +25,8 @@ export const Login = ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const [state, setState] = useState(false);
   const [user, setUser] = useState({
-    email: 'ferro@hotmail.com',
-    password: '123QWE&',
+    email: 'aaa@hotmail.com',
+    password: 'ASD123`',
     amount: 0,
   });
   useEffect(() => {
@@ -89,7 +89,7 @@ export const Login = ({ navigation }: Props) => {
             colors={[colors.primary, colors.secondary]}
           />
           <View style={StylesCon.title}>
-            <Text style={styles.textTitle}>Ingresar</Text>
+            <Text style={styles.textTitle}>Inicio</Text>
           </View>
           <TouchableOpacity
             style={StylesCon.back}
