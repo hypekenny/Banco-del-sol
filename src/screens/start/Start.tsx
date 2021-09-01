@@ -26,6 +26,19 @@ export const Start = ({ navigation }: Props) => {
         alt=""
       />
 
+      <img
+        style={{
+          width: 411,
+          height: 813,
+          position: 'absolute',
+          alignSelf: 'center',
+          marginLeft: '1%',
+          marginRight: '1%',
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880174589605478400/Mockup_-_android_-_BDS_app.png"
+        alt=""
+      />
+
       <View style={StylesCon.frame}>
         <View style={{ height: '50%' }}>
           <Image

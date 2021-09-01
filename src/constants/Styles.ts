@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+export const deviceWidth = Dimensions.get('window').width;
+export const deviceHeight = Dimensions.get('window').height;
 
 export const StylesCon = StyleSheet.create({
   phone: {
@@ -8,14 +11,11 @@ export const StylesCon = StyleSheet.create({
     overflow: 'hidden',
   },
   frame: {
-    borderWidth: 10,
-    borderTopWidth: 12,
-    borderBottomWidth: 12,
-    borderColor: 'black',
-    borderRadius: 40,
+    borderRadius: 30,
     overflow: 'hidden',
-    width: 411,
-    height: 813,
+    width: 388,
+    height: 785,
+    left: -1,
     justifyContent: 'center',
     alignSelf: 'center',
     backgroundColor: 'white',
