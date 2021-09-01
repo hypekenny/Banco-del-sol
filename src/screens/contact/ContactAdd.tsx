@@ -141,6 +141,15 @@ export const ContactAdd = ({ navigation }: Props) => {
     <View style={StylesCon.phone}>
       <img
         style={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880917630180028436/Banco-del-Sol-Background_Web.png"
+        alt=""
+      />
+      <img
+        style={{
           width: 411,
           height: 813,
           position: 'absolute',
@@ -151,35 +160,35 @@ export const ContactAdd = ({ navigation }: Props) => {
         alt=""
       />
       <View style={StylesCon.filler} />
-      <ScrollView scrollEnabled={false}>
-        <View style={styles.container}>
-          {/* HEADER */}
-          <View style={styles.headerOne}>
-            <LinearGradient
-              style={styles.header}
-              colors={[colors.primary, colors.secondary]}
-              end={[1, 1]}
-            />
 
-            <View style={StylesCon.title}>
-              <Text style={StylesCon.textTitle}>Agregar Contactos</Text>
-            </View>
+      <View style={styles.container}>
+        {/* HEADER */}
+        <View style={styles.headerOne}>
+          <LinearGradient
+            style={styles.header}
+            colors={[colors.primary, colors.secondary]}
+          />
 
-            <TouchableOpacity
-              style={styles.back}
-              onPress={() => {
-                BackAndClear();
-              }}
-            >
-              <AntDesign
-                name="arrowleft"
-                size={35}
-                color="white"
-                style={styles.icon}
-              />
-            </TouchableOpacity>
+          <View style={StylesCon.title}>
+            <Text style={StylesCon.textTitle}>Agregar Contactos</Text>
           </View>
-          {/* FIN HEADER */}
+
+          <TouchableOpacity
+            style={styles.back}
+            onPress={() => {
+              BackAndClear();
+            }}
+          >
+            <AntDesign
+              name="arrowleft"
+              size={35}
+              color="white"
+              style={styles.icon}
+            />
+          </TouchableOpacity>
+        </View>
+        {/* FIN HEADER */}
+        <ScrollView scrollEnabled={false}>
           <TextInput
             onChangeText={setEmail}
             value={email}
@@ -248,8 +257,9 @@ export const ContactAdd = ({ navigation }: Props) => {
             colors={[colors.primary, colors.secondary]}
           />
           {/* </View> */}
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
+
       <View style={StylesCon.filler} />
     </View>
   );

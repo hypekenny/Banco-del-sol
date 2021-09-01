@@ -62,6 +62,15 @@ export const Contact = ({ navigation }: Props) => {
     <View style={styles.phone}>
       <img
         style={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880917630180028436/Banco-del-Sol-Background_Web.png"
+        alt=""
+      />
+      <img
+        style={{
           width: 411,
           height: 813,
           position: 'absolute',
@@ -146,7 +155,7 @@ export const Contact = ({ navigation }: Props) => {
         {!contact[0] ? (
           <View style={styles.ViewDescription}>
             <Text style={styles.TextDescription}>
-              Aca podras visualizar tus contactos.
+              Acá podrás visualizar tus contactos.
             </Text>
           </View>
         ) : null}
