@@ -21,7 +21,7 @@ export const ContactDetails = ({ navigation }: Props) => {
   }
 
   return (
-    <View style={StylesCon.phone}>
+    <View style={styles.phone}>
       <img
         style={{
           width: 411,
@@ -39,7 +39,6 @@ export const ContactDetails = ({ navigation }: Props) => {
           <LinearGradient
             style={styles.header}
             colors={[colors.primary, colors.secondary]}
-            end={[1, 1]}
           />
 
           <View style={StylesCon.title}>

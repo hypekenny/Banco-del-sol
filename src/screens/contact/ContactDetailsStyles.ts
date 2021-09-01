@@ -3,6 +3,13 @@ import colors from '../../constants/colors';
 // import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
+  phone: {
+    height: '100%',
+    width: '100%',
+    justifyContent: 'space-around',
+    backgroundColor: colors.white,
+    overflow: 'hidden',
+  },
   headerOne: {
     // alignSelf: 'center',
     backgroundColor: '#000',
@@ -31,16 +38,17 @@ export const styles = StyleSheet.create({
 
   container: {
     flex: 1,
+
     alignSelf: 'center',
     // minHeight: 750,
-
-    minHeight: 985,
-    maxHeight: 985,
-
+    minHeight: 785,
+    maxHeight: 785,
     width: 400,
 
     borderRadius: 30,
     // zIndex: 20,
+    marginBottom: 200,
+    overflow: 'hidden',
   },
   box: {
     // position: 'absolute',
