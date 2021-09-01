@@ -154,4 +154,13 @@ export const styles = StyleSheet.create({
     shadowRadius: 26,
     elevation: 14,
   },
+  textTitle: {
+    position: 'absolute',
+    left: 5,
+    top: 15,
+    fontSize: 20,
+    color: 'white',
+    fontWeight: '500',
+    width: '180%',
+  },
 });

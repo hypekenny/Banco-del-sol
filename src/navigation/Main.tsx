@@ -59,6 +59,7 @@ export const Main = () => (
       name="Account"
       component={Account}
       options={{
+        headerShown: false,
         headerTitle: 'Inicio',
         headerTintColor: 'white',
         headerBackground: () => (
@@ -171,6 +172,7 @@ export const Main = () => (
       name="AccountEdit"
       component={AccountEdit}
       options={{
+        headerShown: false,
         headerTitle: 'Cambiar datos',
         headerTintColor: 'white',
         headerBackground: () => (
