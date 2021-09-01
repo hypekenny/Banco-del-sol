@@ -54,7 +54,7 @@ export const Transfer = ({ navigation }: Props) => {
             colors={[colors.primary, colors.secondary]}
           />
           <View style={StylesCon.title}>
-            <Text style={StylesCon.textTitle}>Ingresar</Text>
+            <Text style={StylesCon.textTitle}>Enviar dinero</Text>
           </View>
           <TouchableOpacity
             style={StylesCon.back}
