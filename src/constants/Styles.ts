@@ -1,14 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { createStyles, maxHeight } from 'react-native-media-queries';
-
-const styles = createStyles(
-  // override styles only if screen height is less than 500
-  maxHeight(500, {
-    logo: {
-      height: 120,
-    },
-  }),
-);
 
 export const StylesCon = StyleSheet.create({
   phone: {
@@ -31,12 +21,6 @@ export const StylesCon = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     backgroundColor: 'white',
-    '@media (max-width: 1600px) and (min-width: 800px)': {
-      backgroundColor: 'red',
-    },
-    '@media (max-width: 800px)': {
-      backgroundColor: 'blue',
-    },
   },
   filler: {
     height: '10%',
