@@ -5,9 +5,14 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
-    justifyContent: 'center',
+    alignSelf: 'center',
     overflow: 'hidden',
     zIndex: 0,
+    minHeight: 785,
+    maxHeight: 785,
+    width: 388,
+    marginLeft: -2,
+    borderRadius: 30,
   },
   inputContainer: {
     flex: 1,
@@ -30,6 +35,8 @@ export const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   text: {
+    marginLeft: 10,
+    marginRight: 10,
     marginTop: 10,
     marginBottom: 10,
     color: 'grey',
