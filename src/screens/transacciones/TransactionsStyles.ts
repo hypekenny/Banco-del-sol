@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     width: 411,
-    height: 800,
+    height: 900,
     alignSelf: 'center',
   },
   textGeneral: {
@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
   box: {
     borderWidth: 1,
     height: 'auto',
-    width: 390,
+    width: '90%',
     marginLeft: 'auto',
     marginRight: 'auto',
     borderRadius: 18,
@@ -100,6 +100,15 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 19,
     fontWeight: 'bold',
+  },
+  textTitle: {
+    position: 'absolute',
+    left: 5,
+    top: 15,
+    fontSize: 20,
+    color: 'white',
+    fontWeight: '500',
+    width: '180%',
   },
   buttonGroupBox: {
     margin: 20,

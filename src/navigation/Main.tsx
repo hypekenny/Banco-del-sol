@@ -100,7 +100,7 @@ export const Main = () => (
       component={Transactions}
       options={{
         headerTitle: 'Hola {Name}',
-        headerShown: true,
+        headerShown: false,
 
         headerTintColor: 'white',
         headerBackground: () => (
