@@ -40,6 +40,7 @@ export const Home = ({ navigation }: Props) => {
   );
   const token = useSelector((state: RootState) => state.token);
   const error = useSelector((state: RootState) => state.errors);
+
   const dispatch = useDispatch();
   const [burger, setBurger] = useState(false);
   const [state, setState] = useState(false);
@@ -253,7 +254,7 @@ export const Home = ({ navigation }: Props) => {
             colors={[colors.primary, colors.secondary]}
           />
           <View style={StylesCon.title}>
-            <Text style={StylesCon.textTitle}>Home</Text>
+            <Text style={StylesCon.textTitle}>Hola {userStore.name}</Text>
           </View>
           <TouchableOpacity
             style={StylesCon.back}

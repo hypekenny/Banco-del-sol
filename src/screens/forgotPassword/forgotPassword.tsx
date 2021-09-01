@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect, useState } from 'react';
 import AwesomeAlert from 'react-native-awesome-alerts';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Text, TextInput, TouchableOpacity, View, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { AntDesign } from '@expo/vector-icons';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
@@ -11,6 +11,7 @@ import colors from '../../constants/colors';
 import { cleanErrors, resetPass, resetSucceed } from '../../redux/actions';
 import { Props, RootState } from '../../types/Types';
 import { StylesCon } from '../../constants/Styles';
+import { stylesAbout } from '../login/AboutStyles';
 
 export function ForgotPassword({ navigation }: Props) {
   const [email, setEmail] = useState('');
@@ -35,6 +36,33 @@ export function ForgotPassword({ navigation }: Props) {
 
   return (
     <View style={StylesCon.phone}>
+      <img
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880917630180028436/Banco-del-Sol-Background_Web.png"
+        alt=""
+      />
+      <View style={stylesAbout.about}>
+        <TouchableOpacity style={stylesAbout.btnAbout}>
+          <Text style={stylesAbout.btnText}>Sobre Nosotros</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={stylesAbout.btnAbout}>
+          <Text style={stylesAbout.btnText}>Administrador</Text>
+        </TouchableOpacity>
+
+        <View style={{ width: '100%', alignItems: 'center', bottom: 0 }}>
+          <Image
+            style={stylesAbout.tinyLogo}
+            source={{
+              uri: 'https://media.discordapp.net/attachments/872492726397042688/874643755158892594/Banco-del-Sol-Logo.png',
+            }}
+          />
+        </View>
+      </View>
       <img
         style={{
           width: 411,
