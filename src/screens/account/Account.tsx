@@ -1,14 +1,16 @@
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, AntDesign } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { styles } from './AccountStyles';
 import { Props, resFromBack } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
+import { StylesCon } from '../../constants/Styles';
+import { stylesAbout } from '../login/AboutStyles';
 
 export function Account({ navigation }: Props) {
   const accountDetails = useSelector((state: resFromBack) => state.account);
@@ -26,85 +28,154 @@ export function Account({ navigation }: Props) {
   }
 
   return (
-    <View style={styles.container}>
-      <View
+    <View style={StylesCon.phone}>
+      <img
         style={{
-          marginTop: '100%',
-          zIndex: 100,
-          position: 'absolute',
           width: '100%',
+          height: '100%',
+          position: 'absolute',
         }}
-      >
-        <AwesomeAlert
-          show={state}
-          showProgress={false}
-          title="CVU copiado al portapapeles"
-          closeOnTouchOutside={false}
-          closeOnHardwareBackPress={false}
-          showCancelButton={false}
-          showConfirmButton
-          confirmText="Aceptar"
-          confirmButtonColor="#ff4b6e"
-          onConfirmPressed={() => {
-            setState(false);
-          }}
-        />
-      </View>
-      <LinearGradient
-        colors={[colors.primary, colors.secondary]}
-        style={styles.container2}
-      >
-        <View>
-          <View style={styles.titleContainer}>
-            <View />
-            <Text style={styles.header}>Datos</Text>
-            <TouchableOpacity
-              style={styles.editButton}
-              onPress={() => editAccount()}
-            >
-              <MaterialIcons
-                name="edit"
-                size={28}
-                color="white"
-                style={{ paddingLeft: 5 }}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.block}>
-            <Text style={styles.h1}>Titular</Text>
-            <Text
-              style={styles.h2}
-            >{`${userDetails.name} ${userDetails.lastName}`}</Text>
-          </View>
-          <View style={styles.block}>
-            <Text style={styles.h1}>CVU</Text>
-            <Text style={styles.h2}>{accountDetails.cvu}</Text>
-          </View>
-          <View style={styles.block}>
-            <Text style={styles.h1}>Mail</Text>
-            <Text style={styles.h2}>{accountDetails.email}</Text>
-          </View>
-          <View style={styles.block}>
-            <Text style={styles.h1}>Telefono</Text>
-            <Text style={styles.h2}>{userDetails.phoneNumber}</Text>
-          </View>
-        </View>
-      </LinearGradient>
-      <TouchableOpacity
-        style={ButtonPrimaryStyle.button}
-        onPress={() => copyToClipboard()}
-      >
-        <View style={styles.ImageAndButton}>
-          <MaterialIcons
-            name="content-copy"
-            size={32}
-            color={colors.primary}
-            style={{ paddingLeft: 5, paddingRight: 5 }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880917630180028436/Banco-del-Sol-Background_Web.png"
+        alt=""
+      />
+      <View style={stylesAbout.about}>
+        <TouchableOpacity style={stylesAbout.btnAbout}>
+          <Text style={stylesAbout.btnText}>Sobre Nosotros</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={stylesAbout.btnAbout}>
+          <Text style={stylesAbout.btnText}>Administrador</Text>
+        </TouchableOpacity>
+
+        <View style={{ width: '100%', alignItems: 'center', bottom: 0 }}>
+          <Image
+            style={stylesAbout.tinyLogo}
+            source={{
+              uri: 'https://media.discordapp.net/attachments/872492726397042688/874643755158892594/Banco-del-Sol-Logo.png',
+            }}
           />
-          <Text style={ButtonPrimaryStyle.text}>Copiar CVU</Text>
         </View>
-      </TouchableOpacity>
-      <View />
+      </View>
+
+      <img
+        style={{
+          width: 411,
+          height: 813,
+          position: 'absolute',
+          alignSelf: 'center',
+          marginLeft: '1%',
+          marginRight: '1%',
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880174589605478400/Mockup_-_android_-_BDS_app.png"
+        alt=""
+      />
+
+      <View style={StylesCon.filler} />
+      <View style={StylesCon.container}>
+        <View style={StylesCon.headerOne}>
+          <LinearGradient
+            style={StylesCon.header}
+            colors={[colors.primary, colors.secondary]}
+          />
+          <View style={StylesCon.title}>
+            <Text style={styles.textTitle}>Mis datos</Text>
+          </View>
+          <TouchableOpacity
+            style={StylesCon.back}
+            onPress={() => {
+              navigation.push('HomeTab');
+            }}
+          >
+            <AntDesign
+              name="arrowleft"
+              size={35}
+              color="white"
+              style={StylesCon.icon}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.container}>
+          <View
+            style={{
+              marginTop: '100%',
+              zIndex: 100,
+              position: 'absolute',
+              width: '100%',
+            }}
+          >
+            <AwesomeAlert
+              show={state}
+              showProgress={false}
+              title="CVU copiado al portapapeles"
+              closeOnTouchOutside={false}
+              closeOnHardwareBackPress={false}
+              showCancelButton={false}
+              showConfirmButton
+              confirmText="Aceptar"
+              confirmButtonColor="#ff4b6e"
+              onConfirmPressed={() => {
+                setState(false);
+              }}
+            />
+          </View>
+          <LinearGradient
+            colors={[colors.primary, colors.secondary]}
+            style={styles.container2}
+          >
+            <View>
+              <View style={styles.titleContainer}>
+                <View />
+                <Text style={styles.header}>Datos</Text>
+                <TouchableOpacity
+                  style={styles.editButton}
+                  onPress={() => editAccount()}
+                >
+                  <MaterialIcons
+                    name="edit"
+                    size={28}
+                    color="white"
+                    style={{ paddingLeft: 5 }}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View style={styles.block}>
+                <Text style={styles.h1}>Titular</Text>
+                <Text
+                  style={styles.h2}
+                >{`${userDetails.name} ${userDetails.lastName}`}</Text>
+              </View>
+              <View style={styles.block}>
+                <Text style={styles.h1}>CVU</Text>
+                <Text style={styles.h2}>{accountDetails.cvu}</Text>
+              </View>
+              <View style={styles.block}>
+                <Text style={styles.h1}>Mail</Text>
+                <Text style={styles.h2}>{accountDetails.email}</Text>
+              </View>
+              <View style={styles.block}>
+                <Text style={styles.h1}>Telefono</Text>
+                <Text style={styles.h2}>{userDetails.phoneNumber}</Text>
+              </View>
+            </View>
+          </LinearGradient>
+          <TouchableOpacity
+            style={ButtonPrimaryStyle.button}
+            onPress={() => copyToClipboard()}
+          >
+            <View style={styles.ImageAndButton}>
+              <MaterialIcons
+                name="content-copy"
+                size={32}
+                color={colors.primary}
+                style={{ paddingLeft: 5, paddingRight: 5 }}
+              />
+              <Text style={ButtonPrimaryStyle.text}>Copiar CVU</Text>
+            </View>
+          </TouchableOpacity>
+          <View />
+        </View>
+      </View>
+      <View style={StylesCon.filler} />
     </View>
   );
 }
