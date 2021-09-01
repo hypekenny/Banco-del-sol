@@ -38,6 +38,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-around',
     backgroundColor: colors.white,
+    overflow: 'hidden',
   },
   back: {
     position: 'absolute',

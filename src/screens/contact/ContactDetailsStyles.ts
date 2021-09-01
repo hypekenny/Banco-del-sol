@@ -17,14 +17,14 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
     // width: '100%',
-    marginTop: '25%',
+    // marginTop: '25%',
   },
   header: {
     alignSelf: 'center',
     height: 65,
-    width: '97%',
-    borderTopLeftRadius: 22,
-    borderTopRightRadius: 22,
+    width: '100%',
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
   },
   back: {
     position: 'absolute',
@@ -38,23 +38,22 @@ export const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-
     alignSelf: 'center',
     // minHeight: 750,
     minHeight: 785,
     maxHeight: 785,
-    width: 400,
-
+    width: 388,
+    backgroundColor: colors.white,
     borderRadius: 30,
+    marginRight: 2,
     // zIndex: 20,
-    marginBottom: 200,
     overflow: 'hidden',
   },
   box: {
     // position: 'absolute',
 
     backgroundColor: '#fff',
-    borderRadius: 23,
+    borderRadius: 30,
     borderColor: `${colors.primary}`,
     borderWidth: 1,
     textAlign: 'center',
