@@ -37,7 +37,7 @@ export const AddFunds = ({ navigation }: Props) => {
             colors={[colors.primary, colors.secondary]}
           />
           <View style={StylesCon.title}>
-            <Text style={StylesCon.textTitle}>Ingresar</Text>
+            <Text style={StylesCon.textTitle}>Recarga</Text>
           </View>
           <TouchableOpacity
             style={StylesCon.back}
