@@ -9,8 +9,10 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     minHeight: 785,
     maxHeight: 785,
-    width: 400,
+    width: 388,
     borderRadius: 30,
+    marginRight: 2,
+    backgroundColor: colors.white,
   },
   headerOne: {
     // alignSelf: 'center',
@@ -23,9 +25,10 @@ export const styles = StyleSheet.create({
   header: {
     alignSelf: 'center',
     height: 65,
-    width: '97%',
-    borderTopLeftRadius: 22,
-    borderTopRightRadius: 22,
+    width: '100%',
+    marginRight: 0.5,
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
   },
 
   phone: {
@@ -33,6 +36,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-around',
     backgroundColor: colors.white,
+    overflow: 'hidden',
   },
   Box: {
     zIndex: 70,
@@ -113,8 +117,8 @@ export const styles = StyleSheet.create({
     // position: 'fixed',
     // top: 0,
     // left: 0,
-    right: 10,
-    bottom: 10,
+    right: 30,
+    bottom: 30,
 
     borderRadius: 100,
     borderWidth: 1,
