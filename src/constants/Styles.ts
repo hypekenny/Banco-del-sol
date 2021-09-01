@@ -1,16 +1,24 @@
-import { StyleSheet } from 'react-native';
-// import background from '../../assets/Banco-del-Sol-Background_Web.png';
+import { StyleSheet, Dimensions } from 'react-native';
 
-import colors from './colors';
+export const deviceWidth = Dimensions.get('window').width;
+export const deviceHeight = Dimensions.get('window').height;
 
 export const StylesCon = StyleSheet.create({
   phone: {
     height: '100%',
     width: '100%',
     justifyContent: 'space-around',
-    // bac
-    // background: '../../assets/Banco-del-Sol-Background_Web.png',
     overflow: 'hidden',
+  },
+  frame: {
+    borderRadius: 30,
+    overflow: 'hidden',
+    width: 388,
+    height: 785,
+    left: -1,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    backgroundColor: 'white',
   },
   filler: {
     height: '10%',
@@ -18,16 +26,12 @@ export const StylesCon = StyleSheet.create({
   headerOne: {
     backgroundColor: '#000',
     height: 63,
-
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
+    width: '100%',
   },
   icon: { marginTop: '-18%' },
   header: {
     height: 65,
     width: '100%',
-    borderTopLeftRadius: 22,
-    borderTopRightRadius: 22,
   },
   title: {
     height: 70,
@@ -62,8 +66,8 @@ export const StylesCon = StyleSheet.create({
     flexDirection: 'row',
     height: 65,
     width: '100%',
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
+    // borderBottomRightRadius: 30,
+    // borderBottomLeftRadius: 30,
     justifyContent: 'space-evenly',
   },
   tabBarBtn: {
@@ -76,6 +80,8 @@ export const StylesCon = StyleSheet.create({
     width: 130,
     height: 65,
     justifyContent: 'center',
+    borderBottomRightRadius: 30,
+    borderBottomLeftRadius: 30,
   },
 
   image: {

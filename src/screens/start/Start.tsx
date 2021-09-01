@@ -39,7 +39,7 @@ export const Start = ({ navigation }: Props) => {
         alt=""
       />
 
-      <View style={styles.container}>
+      <View style={StylesCon.frame}>
         <View style={{ height: '50%' }}>
           <Image
             source={require('../../../Img-Sant/Banco-del-Sol-Logo.png')}
@@ -70,6 +70,7 @@ export const Start = ({ navigation }: Props) => {
           </View>
         </LinearGradient>
       </View>
+
       <View style={StylesCon.filler} />
     </View>
   );

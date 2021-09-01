@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   ellipse: {
@@ -12,20 +11,6 @@ export const styles = StyleSheet.create({
     transform: [{ scaleX: 3 }],
     position: 'absolute',
     zIndex: 20,
-  },
-
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignSelf: 'center',
-    backgroundColor: colors.white,
-    overflow: 'hidden',
-    zIndex: 0,
-    minHeight: 785,
-    maxHeight: 785,
-    width: 388,
-    marginLeft: -2,
-    borderRadius: 30,
   },
   image: {
     width: 420,

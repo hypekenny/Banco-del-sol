@@ -32,7 +32,7 @@ const LoginStack = createStackNavigator<loginStackParamList>();
 export const Main = () => (
   <LoginStack.Navigator>
     <LoginStack.Screen
-      name="StartView"
+      name="Start"
       component={Start}
       options={{ headerShown: false }}
     />

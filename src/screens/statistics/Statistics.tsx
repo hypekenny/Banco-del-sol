@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, Dimensions } from 'react-native';
 import { YAxis, Grid, BarChart } from 'react-native-svg-charts';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector } from 'react-redux';
 import { Circle, G, Line, Rect, Text as SvgText } from 'react-native-svg';
-import { RootState, transactionType } from '../../types/Types';
+import { AntDesign } from '@expo/vector-icons';
+import { Props, RootState, transactionType } from '../../types/Types';
 import { ButtonPrimaryStyle, styles } from './StatisticsStyles';
 import colors from '../../constants/colors';
+import { StylesCon } from '../../constants/Styles';
+import { NavBar } from '../homeTab/navBar';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -51,7 +55,7 @@ const EJEMPLO: balanceType = {
     },
   ],
 };
-export const Statistics = () => {
+export const Statistics = ({ navigation }: Props) => {
   const userAccount: balanceType = useSelector(
     (state: RootState) => state.account.balance,
   );
@@ -475,33 +479,81 @@ export const Statistics = () => {
     });
   };
   return (
-    <View style={styles.containerall}>
-      <View style={styles.container}>
-        <Text style={styles.text}>Evolución de tu balance</Text>
-        {comp}
-      </View>
-      <View style={styles.container2}>
-        <TouchableOpacity
-          style={press.Diario.button}
-          onPress={() => handleButton('Diario')}
-        >
-          <Text style={press.Diario.text}>Diario</Text>
-        </TouchableOpacity>
+    <View style={StylesCon.phone}>
+      <img
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880917630180028436/Banco-del-Sol-Background_Web.png"
+        alt=""
+      />
+      <img
+        style={{
+          width: 411,
+          height: 813,
+          position: 'absolute',
+          alignSelf: 'center',
+          marginLeft: '1%',
+          marginRight: '1%',
+        }}
+        src="https://cdn.discordapp.com/attachments/872492726397042688/880174589605478400/Mockup_-_android_-_BDS_app.png"
+        alt=""
+      />
+      <View style={StylesCon.filler} />
+      <View style={styles.containerall}>
+        <View>
+          <LinearGradient
+            style={styles.header}
+            colors={[colors.primary, colors.secondary]}
+          />
+          <View style={StylesCon.title}>
+            <Text style={StylesCon.textTitle}>Ingresar</Text>
+          </View>
+          <TouchableOpacity
+            style={StylesCon.back}
+            onPress={() => {
+              navigation.push('HomeTab');
+            }}
+          >
+            <AntDesign
+              name="arrowleft"
+              size={35}
+              color="white"
+              style={StylesCon.icon}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.container}>
+          <Text style={styles.text}>Evolución de tu balance</Text>
+          {comp}
+        </View>
+        <View style={styles.container2}>
+          <TouchableOpacity
+            style={press.Diario.button}
+            onPress={() => handleButton('Diario')}
+          >
+            <Text style={press.Diario.text}>Diario</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={press.Semanal.button}
-          onPress={() => handleButton('Semanal')}
-        >
-          <Text style={press.Semanal.text}>Semanal</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={press.Semanal.button}
+            onPress={() => handleButton('Semanal')}
+          >
+            <Text style={press.Semanal.text}>Semanal</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={press.Mensual.button}
-          onPress={() => handleButton('Mensual')}
-        >
-          <Text style={press.Mensual.text}>Mensual</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={press.Mensual.button}
+            onPress={() => handleButton('Mensual')}
+          >
+            <Text style={press.Mensual.text}>Mensual</Text>
+          </TouchableOpacity>
+        </View>
+        <NavBar navigation={navigation} />
       </View>
+      <View style={StylesCon.filler} />
     </View>
   );
 };

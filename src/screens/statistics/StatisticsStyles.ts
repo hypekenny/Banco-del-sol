@@ -1,8 +1,8 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+const width = 388;
+const height = 811;
 export const ButtonPrimaryStyle = StyleSheet.create({
   button: {
     flex: 1,
@@ -64,7 +64,18 @@ export const styles = StyleSheet.create({
   containerall: {
     width,
     height,
-    backgroundColor: colors.white,
+    backgroundColor: 'white',
+    alignSelf: 'center',
+    minHeight: 785,
+    maxHeight: 785,
+    marginLeft: -2,
+    borderRadius: 30,
+  },
+  header: {
+    height: 65,
+    width: '100%',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
   },
   container: {
     width: 0.9 * width,
@@ -73,10 +84,8 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     margin: 10,
-    borderRadius: 25,
     borderWidth: 2,
     borderColor: colors.primary,
-    backgroundColor: '#ffffff',
     padding: 5,
     shadowColor: '#000',
     shadowOffset: {
@@ -86,10 +95,9 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 26,
     elevation: 14,
+    zIndex: 1,
   },
   container2: {
-    height: 0.1 * height,
-    transform: [{ translateY: 0.1 * height }],
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
