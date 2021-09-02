@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 14,
     fontWeight: 'bold',
+
     color: '#ffffff',
   },
   row: {
@@ -64,9 +65,11 @@ export const styles = StyleSheet.create({
   box: {
     borderWidth: 1,
     height: 'auto',
-    width: '90%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    // width: '90%',
+    width: 370,
+    alignSelf: 'center',
+    // marginLeft: 'auto',
+    // marginRight: 'auto',
     borderRadius: 18,
     borderColor: colors.primary,
     marginBottom: 30,
