@@ -4,6 +4,14 @@ import { AntDesign } from '@expo/vector-icons';
 import { styles } from './AboutStyles';
 // import { AntDesign } from '@expo/vector-icons';
 import Sebastian from '../../../assets/ProfilesPics/Sebastian.png';
+import Nicolas from '../../../assets/ProfilesPics/Nicolas.jpg';
+import Ezequiel from '../../../assets/ProfilesPics/Ezequiel.jpg';
+import SantiagoF from '../../../assets/ProfilesPics/SantiagoF.jpg';
+import SantiagoV from '../../../assets/ProfilesPics/SantiagoV.jpg';
+import Marcos from '../../../assets/ProfilesPics/Marcos.jpg';
+import Rodrigo from '../../../assets/ProfilesPics/Rodrigo.jpg';
+import Kevin from '../../../assets/ProfilesPics/Kevin.jpg';
+
 import { Props } from '../../types/Types';
 
 export const AboutUs = ({ navigation }: Props) => {
@@ -13,6 +21,62 @@ export const AboutUs = ({ navigation }: Props) => {
 
   function linkSebaGit() {
     window.open('https://github.com/SebastianTorres00');
+  }
+
+  function linkMarcos() {
+    window.open('https://www.linkedin.com/in/marcos-albarado-7b337820b/');
+  }
+
+  function linkMarcosGit() {
+    window.open('https://github.com/GRIYO35');
+  }
+
+  function linkNico() {
+    window.open('https://www.linkedin.com/in/nicolas-cardone/');
+  }
+
+  function linkNicoGit() {
+    window.open('https://github.com/enodrac');
+  }
+
+  function linkEze() {
+    window.open('https://www.linkedin.com/in/ezequieldecunto/');
+  }
+
+  function linkEzeGit() {
+    window.open('https://github.com/Pinidecu');
+  }
+
+  function linkSan() {
+    window.open('https://www.linkedin.com/in/santiago-ferro-fullstack/');
+  }
+
+  function linkSanGit() {
+    window.open('https://github.com/hypekenny');
+  }
+
+  function linkRodri() {
+    window.open('https://www.linkedin.com/in/rodrigolopezsmz/');
+  }
+
+  function linkRodriGit() {
+    window.open('https://github.com/rodrigolopsmz');
+  }
+
+  function linkKevin() {
+    window.open('https://www.linkedin.com/in/kevin-arian/');
+  }
+
+  function linkKevinGit() {
+    window.open('https://github.com/Vashomaru');
+  }
+
+  function linkVeiga() {
+    window.open('https://www.linkedin.com/in/santiagoveiga46/');
+  }
+
+  function linkVeigaGit() {
+    window.open('https://github.com/sajave');
   }
   return (
     <View style={styles.container}>
@@ -58,7 +122,7 @@ export const AboutUs = ({ navigation }: Props) => {
           width: '80%',
           height: '80%',
           flexWrap: 'wrap',
-          flexDirection: 'row-reverse',
+          flexDirection: 'row',
           justifyContent: 'center',
         }}
       >
@@ -150,7 +214,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 alignSelf: 'center',
                 marginTop: '5%',
               }}
-              src={Sebastian}
+              src={Nicolas}
               alt=""
             />
             <Text
@@ -161,7 +225,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 textAlign: 'center',
               }}
             >
-              Sebastian Torres
+              Nicolas Cardone
             </Text>
             <View
               style={{
@@ -171,7 +235,7 @@ export const AboutUs = ({ navigation }: Props) => {
               }}
             >
               <TouchableOpacity
-                onPress={linkSeba}
+                onPress={linkNico}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
@@ -195,7 +259,7 @@ export const AboutUs = ({ navigation }: Props) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={linkSebaGit}
+                onPress={linkNicoGit}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
@@ -228,7 +292,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 alignSelf: 'center',
                 marginTop: '5%',
               }}
-              src={Sebastian}
+              src={SantiagoF}
               alt=""
             />
             <Text
@@ -239,7 +303,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 textAlign: 'center',
               }}
             >
-              Sebastian Torres
+              Santiago Ferro
             </Text>
             <View
               style={{
@@ -249,7 +313,7 @@ export const AboutUs = ({ navigation }: Props) => {
               }}
             >
               <TouchableOpacity
-                onPress={linkSeba}
+                onPress={linkSan}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
@@ -273,7 +337,7 @@ export const AboutUs = ({ navigation }: Props) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={linkSebaGit}
+                onPress={linkSanGit}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
@@ -306,7 +370,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 alignSelf: 'center',
                 marginTop: '5%',
               }}
-              src={Sebastian}
+              src={SantiagoV}
               alt=""
             />
             <Text
@@ -317,7 +381,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 textAlign: 'center',
               }}
             >
-              Sebastian Torres
+              Santiago Veiga
             </Text>
             <View
               style={{
@@ -327,7 +391,7 @@ export const AboutUs = ({ navigation }: Props) => {
               }}
             >
               <TouchableOpacity
-                onPress={linkSeba}
+                onPress={linkVeiga}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
@@ -351,7 +415,7 @@ export const AboutUs = ({ navigation }: Props) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={linkSebaGit}
+                onPress={linkVeigaGit}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
@@ -384,7 +448,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 alignSelf: 'center',
                 marginTop: '5%',
               }}
-              src={Sebastian}
+              src={Marcos}
               alt=""
             />
             <Text
@@ -395,7 +459,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 textAlign: 'center',
               }}
             >
-              Sebastian Torres
+              Marcos
             </Text>
             <View
               style={{
@@ -405,7 +469,7 @@ export const AboutUs = ({ navigation }: Props) => {
               }}
             >
               <TouchableOpacity
-                onPress={linkSeba}
+                onPress={linkMarcos}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
@@ -429,7 +493,7 @@ export const AboutUs = ({ navigation }: Props) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={linkSebaGit}
+                onPress={linkMarcosGit}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
@@ -462,7 +526,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 alignSelf: 'center',
                 marginTop: '5%',
               }}
-              src={Sebastian}
+              src={Ezequiel}
               alt=""
             />
             <Text
@@ -473,7 +537,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 textAlign: 'center',
               }}
             >
-              Sebastian Torres
+              Ezequiel
             </Text>
             <View
               style={{
@@ -483,7 +547,7 @@ export const AboutUs = ({ navigation }: Props) => {
               }}
             >
               <TouchableOpacity
-                onPress={linkSeba}
+                onPress={linkEze}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
@@ -507,7 +571,7 @@ export const AboutUs = ({ navigation }: Props) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={linkSebaGit}
+                onPress={linkEzeGit}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
@@ -540,7 +604,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 alignSelf: 'center',
                 marginTop: '5%',
               }}
-              src={Sebastian}
+              src={Rodrigo}
               alt=""
             />
             <Text
@@ -551,7 +615,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 textAlign: 'center',
               }}
             >
-              Sebastian Torres
+              Rodrigo
             </Text>
             <View
               style={{
@@ -561,7 +625,7 @@ export const AboutUs = ({ navigation }: Props) => {
               }}
             >
               <TouchableOpacity
-                onPress={linkSeba}
+                onPress={linkRodri}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
@@ -585,7 +649,7 @@ export const AboutUs = ({ navigation }: Props) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={linkSebaGit}
+                onPress={linkRodriGit}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
@@ -618,7 +682,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 alignSelf: 'center',
                 marginTop: '5%',
               }}
-              src={Sebastian}
+              src={Kevin}
               alt=""
             />
             <Text
@@ -629,7 +693,7 @@ export const AboutUs = ({ navigation }: Props) => {
                 textAlign: 'center',
               }}
             >
-              Sebastian Torres
+              Kevin Ordoñez
             </Text>
             <View
               style={{
@@ -639,7 +703,7 @@ export const AboutUs = ({ navigation }: Props) => {
               }}
             >
               <TouchableOpacity
-                onPress={linkSeba}
+                onPress={linkKevin}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
@@ -663,7 +727,7 @@ export const AboutUs = ({ navigation }: Props) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={linkSebaGit}
+                onPress={linkKevinGit}
                 style={{
                   borderWidth: 1,
                   borderColor: '#000',
