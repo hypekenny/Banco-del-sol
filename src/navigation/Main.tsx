@@ -25,6 +25,7 @@ const {
   Contact,
   ContactDetails,
   Error,
+  AboutUs,
 } = config;
 
 const LoginStack = createStackNavigator<loginStackParamList>();
@@ -193,6 +194,11 @@ export const Main = () => (
     <LoginStack.Screen
       name="Statistics"
       component={Statistics}
+      options={{ headerShown: false }}
+    />
+    <LoginStack.Screen
+      name="AboutUs"
+      component={AboutUs}
       options={{ headerShown: false }}
     />
   </LoginStack.Navigator>

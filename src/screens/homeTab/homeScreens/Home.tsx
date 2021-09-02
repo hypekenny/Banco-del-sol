@@ -79,6 +79,32 @@ export const Home = ({ navigation }: Props) => {
     setGast(totalOutgoings);
   }, [accountStore, userStore.email]);
 
+  const [num, setNum] = useState(100);
+  const [numTest, setNumTest] = useState(0);
+
+  useEffect(() => {
+    // Esto es provicional
+    if (numTest === 0) {
+      document.body.style.zoom = `${num}%`;
+    } else {
+      document.body.style.zoom = `${num}%`;
+    }
+  }, [num]);
+
+  function Zoom() {
+    setNum(num + 10);
+    setTimeout(() => {
+      setNumTest(0);
+    }, 500);
+  }
+
+  function ZoomOut() {
+    setNum(num - 10);
+    setTimeout(() => {
+      setNumTest(1);
+    }, 1000);
+  }
+
   return (
     <View style={StylesCon.phone}>
       <img
@@ -376,6 +402,31 @@ export const Home = ({ navigation }: Props) => {
           ? dispatch(setLoadingFalse())
           : null}
         <NavBar navigation={navigation} />
+      </View>
+      <View style={stylesAbout.aboutSelectPhone}>
+        <Text style={stylesAbout.btnTextSelect}>
+          Elige tu resolucion de pantalla
+        </Text>
+        <View
+          style={{
+            position: 'absolute',
+            width: '36%',
+            bottom: 100,
+          }}
+        >
+          <TouchableOpacity
+            style={stylesAbout.btnAboutSelect}
+            onPress={() => ZoomOut()}
+          >
+            <Text style={stylesAbout.btnText}>ZOOM - </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={stylesAbout.btnAboutSelect}
+            onPress={() => Zoom()}
+          >
+            <Text style={stylesAbout.btnText}>ZOOM + </Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={StylesCon.filler} />
     </View>

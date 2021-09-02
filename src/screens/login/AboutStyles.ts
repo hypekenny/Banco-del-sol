@@ -90,6 +90,7 @@ export const stylesAbout = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 18,
     fontWeight: '700',
+    marginTop: '15%',
   },
 
   btnAboutSelect: {

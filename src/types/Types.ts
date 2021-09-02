@@ -23,6 +23,7 @@ export type loginStackParamList = {
   ContactDetails: undefined;
   Error: undefined;
   Statistics: undefined;
+  AboutUs: undefined;
 };
 
 export type burgerStackParamList = {
