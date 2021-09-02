@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -14,6 +14,31 @@ type Props = {
 };
 
 export const Start = ({ navigation }: Props) => {
+  const [num, setNum] = useState(100);
+  const [numTest, setNumTest] = useState(0);
+
+  useEffect(() => {
+    // Esto es provicional
+    if (numTest === 0) {
+      document.body.style.zoom = `${num}%`;
+    } else {
+      document.body.style.zoom = `${num}%`;
+    }
+  }, [num]);
+
+  function Zoom() {
+    setNum(num + 10);
+    setTimeout(() => {
+      setNumTest(0);
+    }, 500);
+  }
+
+  function ZoomOut() {
+    setNum(num - 10);
+    setTimeout(() => {
+      setNumTest(1);
+    }, 1000);
+  }
   return (
     <View style={StylesCon.phone}>
       <View style={StylesCon.filler} />
@@ -27,7 +52,10 @@ export const Start = ({ navigation }: Props) => {
         alt=""
       />
       <View style={stylesAbout.about}>
-        <TouchableOpacity style={stylesAbout.btnAbout}>
+        <TouchableOpacity
+          style={stylesAbout.btnAbout}
+          onPress={() => navigation.push('AboutUs')}
+        >
           <Text style={stylesAbout.btnText}>Sobre Nosotros</Text>
         </TouchableOpacity>
 
@@ -89,7 +117,31 @@ export const Start = ({ navigation }: Props) => {
           </View>
         </LinearGradient>
       </View>
-
+      <View style={stylesAbout.aboutSelectPhone}>
+        <Text style={stylesAbout.btnTextSelect}>
+          Elige tu resolucion de pantalla
+        </Text>
+        <View
+          style={{
+            position: 'absolute',
+            width: '36%',
+            bottom: 100,
+          }}
+        >
+          <TouchableOpacity
+            style={stylesAbout.btnAboutSelect}
+            onPress={() => ZoomOut()}
+          >
+            <Text style={stylesAbout.btnText}>ZOOM - </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={stylesAbout.btnAboutSelect}
+            onPress={() => Zoom()}
+          >
+            <Text style={stylesAbout.btnText}>ZOOM + </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
       <View style={StylesCon.filler} />
     </View>
   );

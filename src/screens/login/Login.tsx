@@ -27,8 +27,8 @@ export const Login = ({ navigation }: Props) => {
   const [num, setNum] = useState(100);
   const [numTest, setNumTest] = useState(0);
   const [user, setUser] = useState({
-    email: 'ferro@hotmail.com',
-    password: '123QWE&',
+    email: 'sebastiantorrescontacto@gmail.com',
+    password: '123456789S*',
     amount: 0,
   });
   useEffect(() => {
@@ -236,13 +236,13 @@ export const Login = ({ navigation }: Props) => {
             style={stylesAbout.btnAboutSelect}
             onPress={() => ZoomOut()}
           >
-            <Text style={stylesAbout.btnText}>MENOS</Text>
+            <Text style={stylesAbout.btnText}>ZOOM - </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={stylesAbout.btnAboutSelect}
             onPress={() => Zoom()}
           >
-            <Text style={stylesAbout.btnText}>MAS</Text>
+            <Text style={stylesAbout.btnText}>ZOOM + </Text>
           </TouchableOpacity>
         </View>
       </View>

@@ -14,6 +14,7 @@ import { ContactAdd } from './contact/ContactAdd';
 import { Contact } from './contact/Contact';
 import { ContactDetails } from './contact/ContactDetails';
 import { Error } from './error/Error';
+import { AboutUs } from './About/About';
 
 export const config = {
   Start,
@@ -32,4 +33,5 @@ export const config = {
   Contact,
   ContactDetails,
   Error,
+  AboutUs,
 };
