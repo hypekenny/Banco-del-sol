@@ -474,7 +474,6 @@ export function RemoveUpdatedAccount(dispatch) {
 }
 
 export const RemoveContact = (email: string) => dispatch => {
-  console.log('RemoveContact', email);
   dispatch({
     type: REMOVE_CONTACT,
     payload: email,
@@ -483,8 +482,6 @@ export const RemoveContact = (email: string) => dispatch => {
 // SET_ZOOM;
 
 export const SetZoom = (num: number) => dispatch => {
-  console.log(num, 'SET');
-
   dispatch({
     type: SET_ZOOM,
     payload: num,
@@ -492,8 +489,6 @@ export const SetZoom = (num: number) => dispatch => {
 };
 
 export const SetZoomOut = (num: number) => dispatch => {
-  console.log(num, 'OUTS');
-
   dispatch({
     type: SET_ZOOMOUT,
     payload: num,

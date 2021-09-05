@@ -193,15 +193,11 @@ export default function rootReducer(state = initialState, action: actionType) {
         updatedAccount: action.payload,
       };
     case SET_ZOOM:
-      console.log('asdsa', action.payload);
-
       return {
         ...state,
         numZoom: action.payload,
       };
     case SET_ZOOMOUT:
-      console.log('asdsa', action.payload);
-
       return {
         ...state,
         numZoom: action.payload,
