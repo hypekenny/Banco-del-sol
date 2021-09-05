@@ -20,6 +20,8 @@ import {
   SET_ITEM,
   SET_ZOOM,
   SET_ZOOMOUT,
+  SET_TRANSMSG,
+  SET_TRANSMSGFALSE,
 } from '../actions/index';
 
 interface actionType {
@@ -48,6 +50,7 @@ export const initialState = {
   updatedAccount: false,
   tabBarItem: 0,
   numZoom: 100,
+  transactionMsg: { state: false, msg: '' },
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -93,6 +96,18 @@ export default function rootReducer(state = initialState, action: actionType) {
       return {
         ...state,
         tabBarItem: action.payload,
+      };
+
+    case SET_TRANSMSG:
+      return {
+        ...state,
+        transactionMsg: { state: true, msg: action.payload },
+      };
+
+    case SET_TRANSMSGFALSE:
+      return {
+        ...state,
+        transactionMsg: { state: action.payload, msg: '' },
       };
 
     case GET_EMAIL:
