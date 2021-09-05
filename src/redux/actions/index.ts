@@ -314,10 +314,10 @@ export function addFunds(
         },
       )
       .then(response => {
-        if (response.data === 'Transaccion realizada') {
+        if (response.data === 'Transacción realizada') {
           dispatch({
             type: SET_TRANSMSG,
-            payload: 'Transaccion realizada',
+            payload: response.data,
           });
         } else {
           dispatch({

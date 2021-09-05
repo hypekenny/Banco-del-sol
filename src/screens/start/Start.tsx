@@ -21,9 +21,11 @@ export const Start = ({ navigation }: Props) => {
   const [numTest, setNumTest] = useState(0);
   const numUse = useSelector(state => state.numZoom);
   const dispatch = useDispatch();
+
   useEffect(() => {
     setNum(numUse);
   }, []);
+
   useEffect(() => {
     // Esto es provicional
     if (numTest === 1) {
