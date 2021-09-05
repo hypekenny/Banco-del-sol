@@ -1,4 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
+import { boolean, string } from 'yup/lib/locale';
 
 export type Props = {
   navigation: StackNavigationProp<loginStackParamList, 'List'>;
@@ -111,6 +112,12 @@ export interface RootState {
   updatedAccount: boolean;
   DetailTransfer: { name: string; email: string };
   tabBarItem: number;
+  transactionMsg: tranMsg;
+}
+
+export interface tranMsg {
+  state: boolean;
+  msg: string;
 }
 
 export type errors = {
