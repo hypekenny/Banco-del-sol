@@ -3,11 +3,12 @@ import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import { styles } from './TransferStyles';
 import { Props, RootState } from '../../types/Types';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import colors from '../../constants/colors';
-import { addFunds } from '../../redux/actions';
+import { addFunds, setTranMsgFalse } from '../../redux/actions';
 import { LoadingFull } from '../loading2/LoadingFull';
 import { StylesCon } from '../../constants/Styles';
 import { stylesAbout } from '../login/AboutStyles';
@@ -17,6 +18,9 @@ export const Transfer = ({ navigation }: Props) => {
   const userStore = useSelector((state: RootState) => state.user);
   const token = useSelector((state: RootState) => state.token);
   const loading = useSelector((state: RootState) => state.loading);
+  const transactionMsg = useSelector(
+    (state: RootState) => state.transactionMsg,
+  );
   const ContactDetails = useSelector(
     (state: RootState) => state.DetailTransfer,
   );
@@ -74,6 +78,30 @@ export const Transfer = ({ navigation }: Props) => {
       />
       <View style={StylesCon.filler} />
       <View style={styles.container}>
+        {/* esto es el alert para las transacciones */}
+        <View
+          style={{
+            marginTop: '100%',
+            zIndex: 100,
+            position: 'absolute',
+            width: '100%',
+          }}
+        >
+          <AwesomeAlert
+            show={transactionMsg.state}
+            showProgress={false}
+            title={transactionMsg.msg}
+            closeOnTouchOutside={false}
+            closeOnHardwareBackPress={false}
+            showCancelButton={false}
+            showConfirmButton
+            confirmText="Aceptar"
+            confirmButtonColor="green"
+            onConfirmPressed={() => {
+              dispatch(setTranMsgFalse());
+            }}
+          />
+        </View>
         <LoadingFull show={loading} />
 
         <View>
