@@ -60,21 +60,15 @@ export const Login = ({ navigation }: Props) => {
   }, [numTest]);
 
   function Zoom() {
-    console.log(num, 'asa2');
-
     setNum(numUse + 10);
-    setTimeout(() => {
-      dispatch(SetZoom(num + 10));
-      setNumTest(1);
-    }, 500);
+    dispatch(SetZoom(num + 10));
+    setNumTest(1);
   }
 
   function ZoomOut() {
     setNum(numUse - 10);
-    setTimeout(() => {
-      dispatch(SetZoomOut(num - 10));
-      setNumTest(2);
-    }, 500);
+    dispatch(SetZoomOut(num - 10));
+    setNumTest(2);
   }
 
   return (
