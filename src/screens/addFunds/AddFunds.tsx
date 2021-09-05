@@ -6,7 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { styles } from './AddFundsStyles';
-import { addFunds, cleanErrors, setTranMsgFalse } from '../../redux/actions';
+import { addFunds, setTranMsgFalse } from '../../redux/actions';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import { RootState, Props } from '../../types/Types';
 import colors from '../../constants/colors';
@@ -16,11 +16,9 @@ import { stylesAbout } from '../login/AboutStyles';
 export const AddFunds = ({ navigation }: Props) => {
   const userStore = useSelector((state: RootState) => state.user);
   const token = useSelector((state: RootState) => state.token);
-  const error = useSelector((state: RootState) => state.errors);
   const transactionMsg = useSelector(
     (state: RootState) => state.transactionMsg,
   );
-  const [state, setState] = useState(false);
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
 
