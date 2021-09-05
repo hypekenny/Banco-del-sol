@@ -65,31 +65,6 @@ export const AddFunds = ({ navigation }: Props) => {
       />
       <View style={StylesCon.filler} />
       <View style={styles.container}>
-        {/* esto es el alert si falla o fue declinada */}
-        <View
-          style={{
-            marginTop: '100%',
-            zIndex: 100,
-            position: 'absolute',
-            width: '100%',
-          }}
-        >
-          <AwesomeAlert
-            show={state}
-            showProgress={false}
-            title={error}
-            closeOnTouchOutside={false}
-            closeOnHardwareBackPress={false}
-            showCancelButton={false}
-            showConfirmButton
-            confirmText="Aceptar"
-            confirmButtonColor="#ff4b6e"
-            onConfirmPressed={() => {
-              setState(false);
-              dispatch(cleanErrors());
-            }}
-          />
-        </View>
         {/* esto es el alert para las transacciones */}
         <View
           style={{
