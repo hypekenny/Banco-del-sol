@@ -26,6 +26,8 @@ export const REMOVE_UPDATED_ACCOUNT = 'REMOVE_UPDATED_ACCOUNT';
 export const SET_ITEM = 'SET_ITEM';
 export const SET_ZOOM = 'SET_ZOOM';
 export const SET_ZOOMOUT = 'SET_ZOOMOUT';
+export const SET_TRANSMSG = 'SET_TRANSMSG';
+export const SET_TRANSMSGFALSE = 'SET_TRANSMSGFALSE';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -86,6 +88,15 @@ export function register(user: userType, password: string) {
         }
         console.error(error);
       });
+  };
+}
+
+export function setTranMsgFalse() {
+  return (dispatch: any) => {
+    dispatch({
+      type: SET_TRANSMSGFALSE,
+      payload: false,
+    });
   };
 }
 
@@ -302,6 +313,19 @@ export function addFunds(
           },
         },
       )
+      .then(response => {
+        if (response.data === 'Transaccion realizada') {
+          dispatch({
+            type: SET_TRANSMSG,
+            payload: 'Transaccion realizada',
+          });
+        } else {
+          dispatch({
+            type: SET_ERROR,
+            payload: response.data,
+          });
+        }
+      })
       .catch(error => {
         console.log(error);
         dispatch({
