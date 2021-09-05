@@ -4,8 +4,9 @@ import { TextInput } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { AntDesign } from '@expo/vector-icons';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import { styles } from './AddFundsStyles';
-import { addFunds } from '../../redux/actions';
+import { addFunds, cleanErrors, setTranMsgFalse } from '../../redux/actions';
 import { ButtonPrimaryStyle } from '../../constants/ButtonPrymaryStyle';
 import { RootState, Props } from '../../types/Types';
 import colors from '../../constants/colors';
@@ -15,6 +16,11 @@ import { stylesAbout } from '../login/AboutStyles';
 export const AddFunds = ({ navigation }: Props) => {
   const userStore = useSelector((state: RootState) => state.user);
   const token = useSelector((state: RootState) => state.token);
+  const error = useSelector((state: RootState) => state.errors);
+  const transactionMsg = useSelector(
+    (state: RootState) => state.transactionMsg,
+  );
+  const [state, setState] = useState(false);
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
 
@@ -59,6 +65,55 @@ export const AddFunds = ({ navigation }: Props) => {
       />
       <View style={StylesCon.filler} />
       <View style={styles.container}>
+        {/* esto es el alert si falla o fue declinada */}
+        <View
+          style={{
+            marginTop: '100%',
+            zIndex: 100,
+            position: 'absolute',
+            width: '100%',
+          }}
+        >
+          <AwesomeAlert
+            show={state}
+            showProgress={false}
+            title={error}
+            closeOnTouchOutside={false}
+            closeOnHardwareBackPress={false}
+            showCancelButton={false}
+            showConfirmButton
+            confirmText="Aceptar"
+            confirmButtonColor="#ff4b6e"
+            onConfirmPressed={() => {
+              setState(false);
+              dispatch(cleanErrors());
+            }}
+          />
+        </View>
+        {/* esto es el alert para las transacciones */}
+        <View
+          style={{
+            marginTop: '100%',
+            zIndex: 100,
+            position: 'absolute',
+            width: '100%',
+          }}
+        >
+          <AwesomeAlert
+            show={transactionMsg.state}
+            showProgress={false}
+            title={transactionMsg.msg}
+            closeOnTouchOutside={false}
+            closeOnHardwareBackPress={false}
+            showCancelButton={false}
+            showConfirmButton
+            confirmText="Aceptar"
+            confirmButtonColor="green"
+            onConfirmPressed={() => {
+              dispatch(setTranMsgFalse());
+            }}
+          />
+        </View>
         <View style={StylesCon.headerOne}>
           <LinearGradient
             style={styles.header}
