@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, TextInput, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Feather } from '@expo/vector-icons';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import {
   cleanErrors,
   login,
   setLoadingFalse,
   setLoadingTrue,
+  SetZoom,
+  SetZoomOut,
 } from '../../redux/actions';
 import { styles } from './LoginStyles';
 import { stylesAbout } from './AboutStyles';
@@ -23,6 +25,7 @@ export const Login = ({ navigation }: Props) => {
   const loading = useSelector((state: RootState) => state.loading);
   const error = useSelector((state: RootState) => state.errors);
   const dispatch = useDispatch();
+  const numUse = useSelector(state => state.numZoom);
   const [state, setState] = useState(false);
   const [num, setNum] = useState(100);
   const [numTest, setNumTest] = useState(0);
@@ -37,31 +40,41 @@ export const Login = ({ navigation }: Props) => {
     }
   }, [error.length]);
 
-  useEffect(() => {
-    // Esto es provicional
-    if (numTest === 0) {
-      document.body.style.zoom = `${num}%`;
-    } else {
-      document.body.style.zoom = `${num}%`;
-    }
-  }, [num]);
-
   if (error.length) {
     dispatch(setLoadingFalse());
   }
 
-  function Zoom() {
-    setNum(num + 10);
-    setTimeout(() => {
+  useEffect(() => {
+    setNum(numUse);
+  }, []);
+
+  useEffect(() => {
+    // Esto es provicional
+    if (numTest === 1) {
+      document.body.style.zoom = `${numUse}%`;
       setNumTest(0);
+    } else {
+      document.body.style.zoom = `${numUse}%`;
+      setNumTest(0);
+    }
+  }, [numTest]);
+
+  function Zoom() {
+    console.log(num, 'asa2');
+
+    setNum(numUse + 10);
+    setTimeout(() => {
+      dispatch(SetZoom(num + 10));
+      setNumTest(1);
     }, 500);
   }
 
   function ZoomOut() {
-    setNum(num - 10);
+    setNum(numUse - 10);
     setTimeout(() => {
-      setNumTest(1);
-    }, 1000);
+      dispatch(SetZoomOut(num - 10));
+      setNumTest(2);
+    }, 500);
   }
 
   return (
@@ -227,24 +240,56 @@ export const Login = ({ navigation }: Props) => {
         </Text>
         <View
           style={{
-            position: 'absolute',
-            width: '36%',
-            bottom: 100,
+            width: 250,
+            height: 100,
+            // backgroundColor: '#000',
+            flexDirection: 'row',
+            justifyContent: 'center',
           }}
         >
           <TouchableOpacity
             style={stylesAbout.btnAboutSelect}
             onPress={() => ZoomOut()}
           >
-            <Text style={stylesAbout.btnText}>ZOOM - </Text>
+            <Text style={stylesAbout.btnText}>
+              ZOOM
+              <Feather
+                name="zoom-out"
+                size={20}
+                color={colors.primary}
+                style={{
+                  marginLeft: 10,
+                  marginTop: 10,
+                }}
+              />
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={stylesAbout.btnAboutSelect}
             onPress={() => Zoom()}
           >
-            <Text style={stylesAbout.btnText}>ZOOM + </Text>
+            <Text style={stylesAbout.btnText}>
+              ZOOM
+              <Feather
+                name="zoom-in"
+                size={20}
+                color={colors.primary}
+                style={{
+                  marginLeft: 10,
+                  marginTop: 10,
+                }}
+              />
+            </Text>
           </TouchableOpacity>
         </View>
+        {/* <View style={{ width: 250, alignItems: 'center', bottom: 25 }}>
+          <Image
+            style={stylesAbout.tinyLogoTwo}
+            source={{
+              uri: 'https://media.discordapp.net/attachments/872492726397042688/874643755158892594/Banco-del-Sol-Logo.png',
+            }}
+          />
+        </View> */}
       </View>
       <View style={StylesCon.filler} />
     </View>

@@ -18,6 +18,8 @@ import {
   SET_UPDATE_ACCOUNT,
   REMOVE_UPDATED_ACCOUNT,
   SET_ITEM,
+  SET_ZOOM,
+  SET_ZOOMOUT,
 } from '../actions/index';
 
 interface actionType {
@@ -45,6 +47,7 @@ export const initialState = {
   succeed: false,
   updatedAccount: false,
   tabBarItem: 0,
+  numZoom: 100,
 };
 
 export default function rootReducer(state = initialState, action: actionType) {
@@ -173,6 +176,20 @@ export default function rootReducer(state = initialState, action: actionType) {
       return {
         ...state,
         updatedAccount: action.payload,
+      };
+    case SET_ZOOM:
+      console.log('asdsa', action.payload);
+
+      return {
+        ...state,
+        numZoom: action.payload,
+      };
+    case SET_ZOOMOUT:
+      console.log('asdsa', action.payload);
+
+      return {
+        ...state,
+        numZoom: action.payload,
       };
     default:
       return state;

@@ -24,6 +24,8 @@ export const SET_SUCCEED = 'SET_SUCCEED';
 export const SET_UPDATE_ACCOUNT = 'SET_UPDATE_ACCOUNT';
 export const REMOVE_UPDATED_ACCOUNT = 'REMOVE_UPDATED_ACCOUNT';
 export const SET_ITEM = 'SET_ITEM';
+export const SET_ZOOM = 'SET_ZOOM';
+export const SET_ZOOMOUT = 'SET_ZOOMOUT';
 
 export function register(user: userType, password: string) {
   return (dispatch: any) => {
@@ -452,5 +454,24 @@ export const RemoveContact = (email: string) => dispatch => {
   dispatch({
     type: REMOVE_CONTACT,
     payload: email,
+  });
+};
+// SET_ZOOM;
+
+export const SetZoom = (num: number) => dispatch => {
+  console.log(num, 'SET');
+
+  dispatch({
+    type: SET_ZOOM,
+    payload: num,
+  });
+};
+
+export const SetZoomOut = (num: number) => dispatch => {
+  console.log(num, 'OUTS');
+
+  dispatch({
+    type: SET_ZOOMOUT,
+    payload: num,
   });
 };

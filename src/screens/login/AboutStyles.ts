@@ -50,21 +50,26 @@ export const stylesAbout = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
     alignSelf: 'center',
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: '700',
+    marginBottom: 8,
   },
   tinyLogo: {
     width: 300,
     height: 150,
   },
   // Abot two
+  tinyLogoTwo: {
+    width: 300,
+    height: 150,
+  },
   aboutSelectPhone: {
     right: 0,
     zIndex: 10,
     backgroundColor: '#fff',
-    width: 342,
-    maxHeight: 400,
-    minHeight: 400,
+    width: 300,
+    maxHeight: 185,
+    minHeight: 185,
     position: 'absolute',
     marginRight: '8%',
     alignItems: 'center',
@@ -91,14 +96,20 @@ export const stylesAbout = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     marginTop: '15%',
+
+    textAlign: 'center',
   },
 
   btnAboutSelect: {
-    width: 250,
+    height: 30,
+    width: 115,
+    justifyContent: 'space-evenly',
+
     alignSelf: 'center',
     alignItems: 'center',
-    marginTop: 20,
-    marginBottom: 20,
+
+    marginLeft: 10,
+
     borderRadius: 25,
     borderWidth: 1,
     borderColor: colors.primary,
