@@ -25,7 +25,6 @@ export const StylesCon = StyleSheet.create({
     height: '10%',
   },
   headerOne: {
-    backgroundColor: '#000',
     height: 63,
     width: '100%',
   },
