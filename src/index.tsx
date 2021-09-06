@@ -5,12 +5,18 @@ import { Provider } from 'react-redux';
 import { ErrorBoundary } from 'react-error-boundary';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import axios from 'axios';
+import dotenv from 'dotenv';
 import { styles } from '../src/screens/error/ErrorStyles';
 import colors from '../src/constants/colors';
 import store from './redux/store';
 import { Main } from './navigation/Main';
 import { ButtonPrimaryStyle } from '../src/constants/ButtonPrymaryStyle';
 import { ButtonSecondaryStyle } from '../src/constants/ButtonSecondaryStyle';
+
+dotenv.config();
+
+axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001';
 
 const ErrorFallback = ({ resetErrorBoundary }) => {
   return (
