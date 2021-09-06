@@ -523,10 +523,10 @@ export const Statistics = ({ navigation }: Props) => {
       <View style={StylesCon.filler} />
       <View style={styles.containerall}>
         <View>
-          <LinearGradient
+          {/* <LinearGradient
             style={styles.header}
             colors={[colors.primary, colors.secondary]}
-          />
+          /> */}
           <View style={StylesCon.title}>
             <Text style={StylesCon.textTitle}>Estadísticas</Text>
           </View>

@@ -20,6 +20,8 @@ export const Colors = {
 };
 
 export function Card(props) {
+  console.log(props.tran, 'AAAAAAAAAAAAAAAAAAAAAAAAAA');
+
   if (Platform.OS === 'android') {
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
@@ -103,6 +105,13 @@ export function Card(props) {
               <View style={styles.row}>
                 <Text style={styles.textCardBold}> Enviado a: </Text>
                 <Text style={styles.textCard}> {props.receiver} </Text>
+              </View>
+            ) : null}
+
+            {props.tran.failCause ? (
+              <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                <Text style={styles.textCardBold}> Causa: </Text>
+                <Text style={styles.textCard}> {props.tran.failCause} </Text>
               </View>
             ) : null}
           </View>

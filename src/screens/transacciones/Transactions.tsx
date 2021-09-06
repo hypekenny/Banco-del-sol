@@ -11,6 +11,7 @@ import { TransactionList } from './TransactionList';
 import { StylesCon } from '../../constants/Styles';
 import colors from '../../constants/colors';
 import { stylesAbout } from '../login/AboutStyles';
+import { NavBar } from '../homeTab/navBar';
 
 export function Transactions({ navigation }: Props) {
   const account = useSelector((state: RootState) => state.account);
@@ -152,7 +153,7 @@ export function Transactions({ navigation }: Props) {
       />
       <View style={StylesCon.filler} />
       <View style={StylesCon.container}>
-        <View style={StylesCon.headerOne}>
+        {/* <View style={StylesCon.headerOne}>
           <LinearGradient
             style={StylesCon.header}
             colors={[colors.primary, colors.secondary]}
@@ -173,7 +174,7 @@ export function Transactions({ navigation }: Props) {
               style={StylesCon.icon}
             />
           </TouchableOpacity>
-        </View>
+        </View> */}
 
         <ScrollView style={styles.container}>
           <Text style={styles.textGeneral}>Filtrar por: </Text>
@@ -191,7 +192,7 @@ export function Transactions({ navigation }: Props) {
           <ButtonGroup
             onPress={setButtonOrderIndex}
             selectedIndex={buttonOrderIndex}
-            buttons={['Mas recientes', 'Mas antiguos', 'fallidas']}
+            buttons={['Recientes', 'Antiguas', 'Fallidas']}
             containerStyle={{ height: 'auto', borderWidth: 0 }}
             buttonContainerStyle={styles.buttonGroupBox}
             selectedButtonStyle={styles.buttonGroupBoxSelected}
@@ -200,6 +201,7 @@ export function Transactions({ navigation }: Props) {
           />
           <TransactionList data={state} email={account.email} />
         </ScrollView>
+        <NavBar navigation={navigation} />
       </View>
       <View style={StylesCon.filler} />
     </View>

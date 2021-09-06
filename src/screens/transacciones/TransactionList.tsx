@@ -21,6 +21,7 @@ export function TransactionList(props) {
     );
   };
 
+  // console.log(item);
   const renderItem = ({ item }) => (
     <Card
       type={item.type}
@@ -32,6 +33,7 @@ export function TransactionList(props) {
       user={props.email}
       expanded={false}
       id={props.id}
+      tran={item}
     />
   );
 

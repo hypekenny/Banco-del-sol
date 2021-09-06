@@ -70,6 +70,7 @@ export const styles = StyleSheet.create({
     maxHeight: 785,
     marginLeft: -2,
     borderRadius: 30,
+    overflow: 'hidden',
   },
   header: {
     height: 65,
