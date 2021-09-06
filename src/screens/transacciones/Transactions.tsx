@@ -58,11 +58,27 @@ export function Transactions({ navigation }: Props) {
   const filterAndOrder = () => {
     if (buttonFilterIndex === 0) {
       if (buttonOrderIndex === 0) {
-        const aux = [...account.balance.history].reverse();
+        const aux = [
+          ...account.balance.history.filter(
+            tran => tran.condition !== 'failed',
+          ),
+        ].reverse();
         setState(aux);
       }
       if (buttonOrderIndex === 1) {
-        const aux = [...account.balance.history];
+        const aux = [
+          ...account.balance.history.filter(
+            tran => tran.condition !== 'failed',
+          ),
+        ];
+        setState(aux);
+      }
+      if (buttonOrderIndex === 2) {
+        const aux = [
+          ...account.balance.history.filter(
+            tran => tran.condition === 'failed',
+          ),
+        ];
         setState(aux);
       }
     }
@@ -175,7 +191,7 @@ export function Transactions({ navigation }: Props) {
           <ButtonGroup
             onPress={setButtonOrderIndex}
             selectedIndex={buttonOrderIndex}
-            buttons={['Mas recientes', 'Mas antiguos']}
+            buttons={['Mas recientes', 'Mas antiguos', 'fallidas']}
             containerStyle={{ height: 'auto', borderWidth: 0 }}
             buttonContainerStyle={styles.buttonGroupBox}
             selectedButtonStyle={styles.buttonGroupBoxSelected}

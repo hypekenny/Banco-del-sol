@@ -91,6 +91,7 @@ export type transactionType = {
   type: string;
   value: number;
   date: Date;
+  condition: string;
 };
 
 /* OJO que toque el account */
