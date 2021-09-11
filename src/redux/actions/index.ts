@@ -34,7 +34,7 @@ export function register(user: userType, password: string) {
           ?.getIdToken()
           .then(idToken => {
             axios
-              .post<resFromBack>(`http://localhost:3001/api/user/`, user, {
+              .post<resFromBack>(`/api/user/`, user, {
                 headers: {
                   authorization: `Bearer ${idToken}`,
                 },
@@ -97,7 +97,7 @@ export function login(email: string, password: string) {
           .then(idToken => {
             axios
               .get<resFromBack>(
-                `http://localhost:3001/api/user/?email=${email}`,
+                `/api/user/?email=${email}`,
                 {
                   headers: {
                     authorization: `Bearer ${idToken}`,
@@ -268,7 +268,7 @@ export function addFunds(
   return (dispatch: any) => {
     axios
       .post(
-        'http://localhost:3001/api/account',
+        '/api/account',
         { senderEmail, receiverEmail, type, value, comment },
         {
           headers: {
@@ -292,7 +292,7 @@ export const getEmail =
     const email = emailUser.toLowerCase();
 
     axios
-      .get(`http://localhost:3001/api/contacts/${email}`, {
+      .get(`/api/contacts/${email}`, {
         headers: {
           authorization: `Bearer ${idToken}`,
         },
@@ -321,7 +321,7 @@ export const getName = (emailUser: string, idToken: string) => dispatch => {
   const email = emailUser.toLowerCase();
 
   axios
-    .get(`http://localhost:3001/api/contacts/${email}`, {
+    .get(`/api/contacts/${email}`, {
       headers: {
         authorization: `Bearer ${idToken}`,
       },
@@ -370,7 +370,7 @@ export const detailContact = (email: string, name: string) => dispatch => {
 export function updateAccount(email: string, token: string) {
   return (dispatch: any) => {
     axios
-      .get(`http://localhost:3001/api/account/`, {
+      .get(`/api/account/`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -395,7 +395,7 @@ export async function updateUser(user: any, token: string, dispatch: any) {
   const { phoneNumber, address } = user;
   axios
     .put(
-      `http://localhost:3001/api/user/`,
+      `/api/user/`,
       { phoneNumber, address },
       {
         headers: {
